@@ -66,7 +66,8 @@ class FormularioLogin extends Formulario
             } else {
                 $_SESSION['login'] = true;
                 $_SESSION['nombreUsuario'] = $usuario->getNombreUsuario();
-                $_SESSION['esAdmin'] = $usuario->getRol_user();
+                $_SESSION['esAdmin'] = $usuario->getAdmin();
+                $_SESSION['esEditor'] = $usuario->getEditor();
             }
         }
     }

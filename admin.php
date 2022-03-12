@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-//aaaaaa
+
 $tituloPagina = 'Admin';
 
 $contenidoPrincipal = '';
@@ -18,4 +18,3 @@ if (! isset($_SESSION['esAdmin']) || !$_SESSION['esAdmin']){
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
-

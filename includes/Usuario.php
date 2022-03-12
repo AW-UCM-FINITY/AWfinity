@@ -7,7 +7,7 @@ namespace es\ucm\fdi\aw;
 class Usuario
 {
 
-    private $id;
+    private $id_usuario;
     private $nombreUsuario;
     private $nombre;
     private $apellido;
@@ -32,7 +32,7 @@ class Usuario
     }
     /**Funciones get */
     public function getId() {
-        return $this->id;
+        return $this->id_usuario;
     }
 
     public function getNombreUsuario() {
@@ -48,27 +48,30 @@ class Usuario
     }
 
     /** Comprueba si la contraseña introducida coincide con la del Usuario.*/
-    public function compruebaPassword($password){
-        return password_verify($password, $this->password);
+    public function compruebaPassword($contrasenia){
+        return password_verify($contrasenia, $this->password);
     }
 
-    public function getRoles(){
+    /*public function getRoles(){
         $arrayRoles = array();
-        foreach(self::TIPOS as $i => $rol){
-            $arrayRoles[] = $rol;
+        foreach(self::TIPOS as $i => $rol_user){
+            $arrayRoles[] = $rol_user;
         }
         return $arrayRoles;
+    }*/
+    public function getAdmin(){
+        return $this->rol_user == 'admin' ? true : false;
     }
 
-    public function getRol_user(){
-        return $this->rol_user;
+    public function getEditor(){
+        return $this->rol_user == 'editor' ? true : false;
     }
 
     /**Fin funciones get */
 
-    public function nuevoRol($role){ //Añade un nuevo rol
+  /*  public function nuevoRol($role){ //Añade un nuevo rol
         $this->roles[] = $role;
-    }
+    }*/
 
 
     /*public function tieneRol($role){
@@ -159,7 +162,7 @@ class Usuario
             , $conn->real_escape_string($usuario->rol_user)
             , $usuario->id
         );
-        if ( $conn->query($query) ) {
+        if ( $conn->query($query)) {
             /*$result = self::borraRoles($usuario);
             if ($result) {
                 $result = self::insertaRoles($usuario);
@@ -215,13 +218,15 @@ class Usuario
     /** Usando las funciones anteriores, devuelve un objeto Usuario si el usuario existe y coincide su
     * contraseña. En caso contrario, devuelve false.
     */
-    public static function login($nombreUsuario, $password){
+    public static function login($nombreUsuario, $contrasenia){
+        $result = false;
         $usuario = self::buscaUsuario($nombreUsuario);
-        if ($usuario && $usuario->compruebaPassword($password)) {
+        if ($usuario && $usuario->compruebaPassword($contrasenia)) {
            // return self::cargaRoles($usuario);
-           return $usuario;
+           $result = $usuario;
+           //return $usuario;
         }
-        return false;
+        return $result;
     }
 
 
@@ -249,13 +254,14 @@ class Usuario
     public static function buscaUsuario($nombreUsuario)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM Usuarios U WHERE U.nombreUsuario='%s'", $conn->real_escape_string($nombreUsuario));
+        $query = sprintf("SELECT * FROM usuarios U WHERE U.nombreUsuario='%s'", $conn->real_escape_string($nombreUsuario));
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
                 $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user']);
+                
             }
             $rs->free();
         } else {
@@ -300,7 +306,7 @@ class Usuario
     }*/
     
 
-    private static function borraRoles($usuario){
+   /* private static function borraRoles($usuario){
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("DELETE FROM RolesUsuario RU WHERE RU.usuario = %d"
             , $usuario->id
@@ -310,7 +316,7 @@ class Usuario
             return false;
         }
         return $usuario;
-    }
+    }*/
    
 
 }
