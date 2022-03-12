@@ -112,6 +112,7 @@ class Aplicacion
 	 * 
 	 * @return \mysqli Conexión a MySQL.
 	 */
+	
 	public function getConexionBd()
 	{
 	    $this->compruebaInstanciaInicializada();
