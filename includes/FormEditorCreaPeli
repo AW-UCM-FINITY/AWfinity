@@ -1,0 +1,151 @@
+<?php
+namespace es\ucm\fdi\aw;
+use es\ucm\fdi\aw as path;
+
+class FormEditorCreaPeli extends Formulario
+{
+    public function __construct() {
+        parent::__construct('FormEditorCreaPeli', ['urlRedireccion' => 'editor.php']);
+    }
+    
+    protected function generaCamposFormulario(&$datos)
+    {
+        $titulo = $datos['titulo'] ?? '';
+        $director = $datos['director'] ?? '';
+        $duracion = $datos['duracion'] ?? '';
+        $genero = $datos['genero'] ?? '';
+        $sinopsis = $datos['sinopsis'] ?? '';
+        $ruta_imagen = $datos['ruta_imagen'] ?? '';
+
+        // Se generan los mensajes de error si existen.
+        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
+        $erroresCampos = self::generaErroresCampos(['titulo', 'director', 'duracion', 'genero', 'sinopsis','ruta_imagen'], $this->errores, 'span', array('class' => 'error'));
+
+        $html = <<<EOF
+        $htmlErroresGlobales
+        <fieldset>
+            <legend>Datos para el registro de nueva Película</legend>
+            <div>
+                <label for="titulo">Titulo de la pelicula:</label>
+                <input id="titulo" type="text" name="titulo" value="$titulo" />
+                {$erroresCampos['titulo']}
+            </div>
+            <div>
+                <label for="director">Director:</label>
+                <input id="director" type="text" name="director" value="$director" />
+                {$erroresCampos['director']}
+            </div>
+            <div>
+                <label for="duracion">Duracion (min):</label>
+                <input id="duracion" type="number" name="duracion" value="60" />
+                {$erroresCampos['duracion']}
+            </div>
+            <div>
+                <label for="genero">Genero:</label>
+                <select id="genero" name="genero">
+                    <option value="Accion">Accion</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Ficcion">Ficcion</option>
+                    <option value="Terro">Terro</option>
+                </select>
+                {$erroresCampos['genero']}
+            </div>
+            <div>
+                <label for="sinopsis">Sinopsis:</label>
+                <input id="sinopsis" type="text" name="sinopsis" value="$sinopsis" />
+                {$erroresCampos['sinopsis']}
+            </div>
+            <div>
+                <label for="imagen">Fichero de imagen:</label>
+                <input id="imagen" type="file" name="imagen" value="$sinopsis" />
+                {$erroresCampos['imagen']}
+            </div>
+            <div>
+                <button type="submit" name="registro">Crear</button>
+            </div>
+        </fieldset>
+        EOF;
+        return $html;
+    }
+
+    protected function procesaFormulario(&$datos)
+    {
+        $this->errores = [];
+
+        $titulo = trim($datos['titulo'] ?? '');
+        $titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ( ! $titulo || mb_strlen($titulo) < 5) {
+            $this->errores['titulo'] = 'El nombre de la pelicula tiene que tener una longitud de al menos 5 caracteres.';
+        }
+
+        $director = trim($datos['director'] ?? '');
+        $director = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ( ! $director || mb_strlen($director) < 5) {
+            $this->errores['nombre'] = 'El nombre del director tiene que tener una longitud de al menos 5 caracteres.';
+        }
+
+        $duracion = trim($datos['duracion'] ?? '');
+        $duracion = filter_var($duracion, FILTER_SANITIZE_NUMBER_INT);
+        if ( ! $duracion || $duracion < 1 ) {
+            $this->errores['duracion'] = 'La duracion de la pelicula tiene que ser mayor que 0 minutos.';
+        }
+        /**$fecha_Lanzamiento = $datos['fecha_Lanzamiento'] ?? null;
+        if ( empty($fecha_Lanzamiento) ) {
+            $result['fecha_Lanzamiento'] = "La fecha de lanzamiento no puede estar vacía.";
+        } */
+        $genero = trim($datos['genero'] ?? '');
+        if ( empty( $genero)) {
+            $this->errores['genero'] = 'El genero no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
+        }
+
+        $sinopsis = trim($datos['sinopsis'] ?? '');
+        //$sinopsis = filter_var($sinopsis, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //
+        if ( empty( $sinopsis)) {
+            $this->errores['sinopsis'] = 'El sinopsi no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
+        }
+
+        //Imagen
+        $nombre_imagen = $_FILES['imagen']['name'] ?? null;
+        $tipo_imagen = $_FILES['imagen']['type'] ?? null;
+        $tamaño_imagen = $_FILES['imagen']['size'] ?? null;
+
+        if(empty($nombre_imagen) || empty($tipo_imagen) || empty($tamaño_imagen) ){
+            $this->errores['ruta_imagen'] = "La imagen no puede ser vacía";
+        }
+
+        if($tamaño_imagen > 2147483648){//2GB
+            $this->errores['ruta_imagen']  = "La imagen es demasiado grande";
+        }
+
+        if(strpos($tipo_imagen,'jpg') === false && strpos($tipo_imagen,'png') === false ){
+            $this->errores['ruta_imagen']  = "El fichero seleccionado tiene que ser de tipo png/e";       
+        }
+
+
+        if (count($this->errores) === 0) {
+
+            $name = basename($_FILES['imagen']['name']);
+        
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], __DIR__."/img/pelis/$name")){
+                $peli = path\Pelicula::crea($titulo,$director,$duracion,$genero,$sinopsis,$nombre_imagen);
+
+                //$result = 'index.php';
+            }
+            else{
+                $this->errores['ruta_imagen'] = "Ha habido un error con la imagen";
+            }
+
+           /*$usuario = path\Usuario::crea($nombreUsuario, $nombre, $apellido, $password, path\Usuario::USER_ROLE);
+	
+            if (!$usuario) {
+                $this->errores[] = "El usuario ya existe";
+            } else {
+                $_SESSION['login'] = true;
+                $_SESSION['nombreUsuario'] = $usuario->getNombreUsuario();
+                $_SESSION['id'] = $usuario->getId();
+            }*/
+        }
+    }
+}

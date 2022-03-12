@@ -8,8 +8,8 @@
 		<li><a href="">FORO</a></li>
 		<li><a href="">MÁS</a>
 			<ul>
-				<li><a href="">Administrador</a></li>
-				<li><a href="">Editor</a></li>
+				<li><a href="<?= RUTA_APP ?>/admin.php">Administrador</a></li>
+				<li><a href="<?= RUTA_APP ?>/editor.php">Editor</a></li>
 			</ul>
 		</li>
 		<li><a href="">CONTACTO</a></li>
