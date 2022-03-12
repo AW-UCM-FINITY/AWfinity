@@ -1,7 +1,16 @@
 <?php
 require_once __DIR__.'/includes/config.php';
 
+use es\ucm\fdi\aw as path;
+
 $tituloPagina = 'Editor';
+$claseArticle = 'FormCreaPeli';
+
+$formC = new path\FormEditorCreaPeli();
+$htmlFormCreaPeli = $formC->gestiona();
+
+$formP = new path\FormEditorElimPeli();
+$htmlFormElimPeli = $formP->gestiona();
 
 $contenidoPrincipal = '';
 if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
@@ -12,7 +21,9 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 }else{
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
-	<p>Aquí estarían todos los controles de administración</p>
+	<p>Aquí estarían todos los controles de edición del contenido</p>
+	$htmlFormElimPeli
+	$htmlFormCreaPeli
 	EOS;
 }
 

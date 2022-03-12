@@ -17,7 +17,7 @@
     <main>
         <article class="<?= $claseArticle?>">
 			<?= $contenidoPrincipal ?>
-    </article>
+        </article>
     </main>
 
     <?php

@@ -52,19 +52,19 @@ class Usuario
         return password_verify($contrasenia, $this->password);
     }
 
-    public function getRoles(){
+    /*public function getRoles(){
         $arrayRoles = array();
         foreach(self::TIPOS as $i => $rol_user){
             $arrayRoles[] = $rol_user;
         }
         return $arrayRoles;
-    }
+    }*/
     public function getAdmin(){
-        return $this->rol_user == "admin" ? true : false;
+        return $this->rol_user == 'admin' ? true : false;
     }
 
     public function getEditor(){
-        return $this->rol_user == "editor" ? true : false;
+        return $this->rol_user == 'editor' ? true : false;
     }
 
     /**Fin funciones get */

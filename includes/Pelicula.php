@@ -15,7 +15,7 @@ class Pelicula
     private $ruta_imagen;
 
     public const ACCION = "accion";
-    public const ACCION = "anime";
+    public const ANIME = "anime";
     public const DRAMA = "drama";
     public const FICCION = "ficcion";
     public const TERROR = "terro";
@@ -31,6 +31,7 @@ class Pelicula
         $this->duracion = $duracion;
         $this->genero = $genero;
         $this->sinopsis = $sinopsis;
+        $this->ruta_imagen = $ruta_imagen;
     }
 
      /**Funciones get */
@@ -73,16 +74,17 @@ class Pelicula
         if ($peli) {
             return false;
         }
+
         $peli = new Pelicula($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen);
-        
-        return self::insertar($peli);
+    
+        return self::inserta($peli);
     }
 
      /** Inserta nuevo usuario en BD guarda() -> inserta() */
      private static function inserta($peli){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("INSERT INTO peliculas (titulo, director, duracion, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%s', '%s', '%s')"
+        $query = sprintf("INSERT INTO peliculas (titulo, director, duracion, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')"
             , $conn->real_escape_string($peli->titulo)
             , $conn->real_escape_string($peli->director)
             , $conn->real_escape_string($peli->duracion)
@@ -90,6 +92,7 @@ class Pelicula
             , $conn->real_escape_string($peli->sinopsis)
             , $conn->real_escape_string($peli->ruta_imagen)
         );
+    
         if ($conn->query($query)) {
             $peli->id_pelicula = $conn->insert_id;
             $result = true;
@@ -105,6 +108,7 @@ class Pelicula
         $query = sprintf("SELECT * FROM peliculas P WHERE P.titulo='%s'", $conn->real_escape_string($titulo));
         $rs = $conn->query($query);
         $result = false;
+      
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
@@ -117,6 +121,38 @@ class Pelicula
         return $result;
     }
 
+
+    public static function getPeliculas(){
+        
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = "SELECT * FROM peliculas";
+        $consulta = $conn->query($sql);
+
+        $arrayPeliculas = array();
+
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arrayPeliculas[$fila['id_pelicula']] = $fila['titulo'];
+            }
+            $consulta->free();
+        }
+        return $arrayPeliculas; //ARRIBA ESPAÑAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    }
+
+    public static function eliminarPelicula($id_pelicula){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();	
+        
+        $query = sprintf("DELETE FROM peliculas WHERE id_pelicula = $id_pelicula");
+		$rs = $conn->query($query);
+        $check =false;
+
+		if($rs){
+			$check =true;
+		}
+        
+		return $check;        
+    }
     //buscar por id¿?
 
    /* public static function guarda($peli){

@@ -148,6 +148,9 @@ input {
 .form-field-error {
 	display: block;
 }
+select.peli_titulo{
+	text-rendering: auto;
+}
 
 .mensajes {
 	position: fixed;
@@ -194,6 +197,10 @@ form button.enlace, form button.enlace:visited {
 	border: none;
 }
 
+form input.sinopsis{
+	column-span: 100 ;
+	row-gap: 8;
+}
 form button.enlace:hover {
 	color: red;
 	font-weight: bold;

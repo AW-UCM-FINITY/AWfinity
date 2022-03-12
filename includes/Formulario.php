@@ -195,7 +195,6 @@ abstract class Formulario
         if (!$this->formularioEnviado($datos)) {
             return $this->generaFormulario();
         }
-
         $this->procesaFormulario($datos);
         $esValido = count($this->errores) === 0;
 

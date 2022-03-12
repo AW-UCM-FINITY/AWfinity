@@ -5,7 +5,7 @@ use es\ucm\fdi\aw as path;
 class FormEditorCreaPeli extends Formulario
 {
     public function __construct() {
-        parent::__construct('FormEditorCreaPeli', ['urlRedireccion' => 'editor.php']);
+        parent::__construct('FormEditorCreaPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'editor.php']);//por ahora queda mas claro asi
     }
     
     protected function generaCamposFormulario(&$datos)
@@ -15,11 +15,11 @@ class FormEditorCreaPeli extends Formulario
         $duracion = $datos['duracion'] ?? '';
         $genero = $datos['genero'] ?? '';
         $sinopsis = $datos['sinopsis'] ?? '';
-        $ruta_imagen = $datos['ruta_imagen'] ?? '';
+        $uploadfile = $datos['uploadfile'] ?? '';
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['titulo', 'director', 'duracion', 'genero', 'sinopsis','ruta_imagen'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['titulo', 'director', 'duracion', 'genero', 'sinopsis','uploadfile'], $this->errores, 'span', array('class' => 'error'));
 
         $html = <<<EOF
         $htmlErroresGlobales
@@ -53,13 +53,13 @@ class FormEditorCreaPeli extends Formulario
             </div>
             <div>
                 <label for="sinopsis">Sinopsis:</label>
-                <input id="sinopsis" type="text" name="sinopsis" value="$sinopsis" />
+                <textarea rows= 5 cols= 50 name="sinopsis" value="" required> </textarea>
                 {$erroresCampos['sinopsis']}
             </div>
             <div>
                 <label for="imagen">Fichero de imagen:</label>
-                <input id="imagen" type="file" name="imagen" value="$sinopsis" />
-                {$erroresCampos['imagen']}
+                <input type="file" name="uploadfile" value="" />
+                {$erroresCampos['uploadfile']}
             </div>
             <div>
                 <button type="submit" name="registro">Crear</button>
@@ -80,7 +80,7 @@ class FormEditorCreaPeli extends Formulario
         }
 
         $director = trim($datos['director'] ?? '');
-        $director = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $director = filter_var($director, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $director || mb_strlen($director) < 5) {
             $this->errores['nombre'] = 'El nombre del director tiene que tener una longitud de al menos 5 caracteres.';
         }
@@ -90,10 +90,7 @@ class FormEditorCreaPeli extends Formulario
         if ( ! $duracion || $duracion < 1 ) {
             $this->errores['duracion'] = 'La duracion de la pelicula tiene que ser mayor que 0 minutos.';
         }
-        /**$fecha_Lanzamiento = $datos['fecha_Lanzamiento'] ?? null;
-        if ( empty($fecha_Lanzamiento) ) {
-            $result['fecha_Lanzamiento'] = "La fecha de lanzamiento no puede estar vacía.";
-        } */
+        
         $genero = trim($datos['genero'] ?? '');
         if ( empty( $genero)) {
             $this->errores['genero'] = 'El genero no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
@@ -107,45 +104,20 @@ class FormEditorCreaPeli extends Formulario
         }
 
         //Imagen
-        $nombre_imagen = $_FILES['imagen']['name'] ?? null;
-        $tipo_imagen = $_FILES['imagen']['type'] ?? null;
-        $tamaño_imagen = $_FILES['imagen']['size'] ?? null;
-
-        if(empty($nombre_imagen) || empty($tipo_imagen) || empty($tamaño_imagen) ){
-            $this->errores['ruta_imagen'] = "La imagen no puede ser vacía";
-        }
-
-        if($tamaño_imagen > 2147483648){//2GB
-            $this->errores['ruta_imagen']  = "La imagen es demasiado grande";
-        }
-
-        if(strpos($tipo_imagen,'jpg') === false && strpos($tipo_imagen,'png') === false ){
-            $this->errores['ruta_imagen']  = "El fichero seleccionado tiene que ser de tipo png/e";       
-        }
-
-
-        if (count($this->errores) === 0) {
-
-            $name = basename($_FILES['imagen']['name']);
+        $filename = $_FILES['uploadfile']['name'];
+        $tempname = $_FILES['uploadfile']['tmp_name'];    
         
-            if (move_uploaded_file($_FILES['imagen']['tmp_name'], __DIR__."/img/pelis/$name")){
-                $peli = path\Pelicula::crea($titulo,$director,$duracion,$genero,$sinopsis,$nombre_imagen);
-
-                //$result = 'index.php';
+        $folder = $_SERVER["DOCUMENT_ROOT"].RUTA_IMGS."/".$filename;
+        //print($folder);
+        //print($tempname);
+        if (count($this->errores) === 0) {
+            // Now let's move the uploaded image into the folder: image
+            if (move_uploaded_file($tempname, $folder)){
+                $this->errores['uploadfile'] =  "Image uploaded successfully";
+                $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);
+            }else{
+                $this->errores['uploadfile'] =  "Failed to upload image";
             }
-            else{
-                $this->errores['ruta_imagen'] = "Ha habido un error con la imagen";
-            }
-
-           /*$usuario = path\Usuario::crea($nombreUsuario, $nombre, $apellido, $password, path\Usuario::USER_ROLE);
-	
-            if (!$usuario) {
-                $this->errores[] = "El usuario ya existe";
-            } else {
-                $_SESSION['login'] = true;
-                $_SESSION['nombreUsuario'] = $usuario->getNombreUsuario();
-                $_SESSION['id'] = $usuario->getId();
-            }*/
         }
     }
 }

@@ -92,7 +92,7 @@ class FormularioRegistro extends Formulario
 
         if (count($this->errores) === 0) {
            // $usuario = path\Usuario::buscaUsuario($nombreUsuario);
-           $usuario = path\Usuario::crea($nombreUsuario, $nombre, $apellido, $password, path\Usuario::USER_ROLE);
+           $usuario = path\Usuario::crea($nombreUsuario, $nombre, $apellido, $password, path\Usuario::EDIT_ROLE);
 	
             if (!$usuario) {
                 $this->errores[] = "El usuario ya existe";
