@@ -7,25 +7,6 @@ $tituloPagina = 'Página Inicial';
 $contenidoPrincipal = "";
 $claseArticle = 'Index';
 
-$arrayPelis = path\Pelicula::ordenarPor("anime");
-
-
-foreach ($arrayPelis as $key => $value) {
- 	$ruta = $value->getRutaImagen();
-	$id = $value->getId();
-	print("he pasao por getId");
-	$id_p = strval($id);
-	print($id_p);
-
-	//$pelicula = $value->buscaPeliID($id);
- 	$cadena = substr($ruta,25); //restamos 25 pa quitar de delante lo de C://........
-	$contenidoPrincipal.= <<< EOS
-	<div id ="cartelera">
-		<a href="peliVista.php?id_pelicula=<?php echo $id_p; ?>"><img src="$cadena" /></a>
-	</div>
-	EOS;
-}
-
 $contenidoPrincipal .= <<< EOS
 <section class ="bloque-area">	
 	<h1> AWfinity </h1>	
@@ -33,6 +14,18 @@ $contenidoPrincipal .= <<< EOS
 	<p> Aquí está el contenido público, visible para todos los usuarios. </p>
 </section>
 EOS;
+$arrayPelis = path\Pelicula::ordenarPor("anime");
+
+foreach ($arrayPelis as $key => $value) {
+	$titulo = $value->getTitulo();
+ 	$ruta = $value->getRutaImagen();
+ 	 $cadena = substr($ruta,25); //restamos 25 pa quitar de delante lo de C://........
+
+	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"> 
+	 							<img src=$cadena> 
+	 					</a>";
+}
+
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 

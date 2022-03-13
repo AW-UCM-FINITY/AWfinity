@@ -5,7 +5,7 @@
 		<li><a href="">SERIES</a></li>
 		<li><a href="">BSO</a></li>
 		<li><a href="">RETOS</a></li>
-		<li><a href="">FORO</a></li>
+		<li><a href="">BLOG</a></li>
 		<li><a href="">MÁS</a>
 			<ul>
 				<li><a href="<?= RUTA_APP ?>/admin.php">Administrador</a></li>

@@ -167,7 +167,7 @@ class Pelicula
 
         if($consulta->num_rows > 0){
             while ($fila = mysqli_fetch_assoc($consulta)) {
-                $arrayPeliculas[$fila['id_pelicula']] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+                $arrayPeliculas[] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
             }
             $consulta->free();
         }
