@@ -1,7 +1,7 @@
 <nav id="menuP">
 	<ul class="nav">
 		<li><a href="<?= RUTA_APP ?>/index.php">HOME</a></li>
-		<li><a href="">PELÍCULAS</a></li>
+		<li><a href="<?= RUTA_APP ?>/contenidoPelis.php">PELÍCULAS</a></li>
 		<li><a href="">SERIES</a></li>
 		<li><a href="">BSO</a></li>
 		<li><a href="">RETOS</a></li>
