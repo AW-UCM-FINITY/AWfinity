@@ -42,7 +42,7 @@ class FormEditorElimPeli extends Formulario
     protected function procesaFormulario(&$datos) //le llega el selectPeli
     {
         $titulo = trim($datos['titulo'] ?? '');
-        $borrar = path\Pelicula::eliminarPelicula($titulo);
+        $borrar = path\Pelicula::eliminarPelicula($titulo); //realmente le esta pasando el id
         
 
        $vuelta = 'edit.php';

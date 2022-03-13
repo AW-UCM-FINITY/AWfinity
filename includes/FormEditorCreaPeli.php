@@ -17,6 +17,15 @@ class FormEditorCreaPeli extends Formulario
         $sinopsis = $datos['sinopsis'] ?? '';
         $uploadfile = $datos['uploadfile'] ?? '';
 
+        //Generos
+        $peli = path\Pelicula::getGenerosPeli();
+        $selectPeli = "<select class='peli_genero' name=genero>" ;
+        foreach ($peli as $key => $value) {
+            $selectPeli.="<option value=$key> $value </option> ";
+
+        }
+        $selectPeli.="</select>";
+
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['titulo', 'director', 'duracion', 'genero', 'sinopsis','uploadfile'], $this->errores, 'span', array('class' => 'error'));
@@ -42,14 +51,10 @@ class FormEditorCreaPeli extends Formulario
             </div>
             <div>
                 <label for="genero">Genero:</label>
-                <select id="genero" name="genero">
-                    <option value="Accion">Accion</option>
-                    <option value="Anime">Anime</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Ficcion">Ficcion</option>
-                    <option value="Terro">Terro</option>
-                </select>
-                {$erroresCampos['genero']}
+                
+                $selectPeli 
+                
+                
             </div>
             <div>
                 <label for="sinopsis">Sinopsis:</label>
@@ -92,9 +97,9 @@ class FormEditorCreaPeli extends Formulario
         }
         
         $genero = trim($datos['genero'] ?? '');
-        if ( empty( $genero)) {
-            $this->errores['genero'] = 'El genero no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
-        }
+        // if ( empty( $genero)) {
+        //     $this->errores['genero'] = 'El genero no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
+        // }
 
         $sinopsis = trim($datos['sinopsis'] ?? '');
         //$sinopsis = filter_var($sinopsis, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
