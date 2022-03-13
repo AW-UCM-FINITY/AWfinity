@@ -3,22 +3,23 @@ require_once __DIR__.'/includes/config.php';
 
 use es\ucm\fdi\aw as path;
 
-// $id_pelicula = isset($_GET['id_pelicula']) ? htmlspecialchars(trim(strip_tags($_GET["id_pelicula"]))) : 0;
-// $id_pelicula = isset($_POST['id_pelicula']) ? htmlspecialchars(trim(strip_tags($_POST["id_pelicula"]))) : $id_pelicula;
+$titulo = isset($_GET['titulo']) ? htmlspecialchars(trim(strip_tags($_GET["titulo"]))) : 0;
+$titulo = isset($_POST['titulo']) ? htmlspecialchars(trim(strip_tags($_POST["titulo"]))) : $titulo;
 
-$id_pelicula = $_GET['id_pelicula'];
+// $id_pelicula = $_GET['id_pelicula'];
 //$id_pelicula = $_GET['id_pelicula'];
-print("este es el id");
-print($id_pelicula);
-// $pelicula = path\Pelicula::buscaPeliID($id_pelicula);
+// print("este es el id");
+// print($id_pelicula);
 
-// $titulo = $pelicula->getTitulo();
-// $director = $pelicula->getDirector();
-// $duracion = $pelicula->getDuracion();
-// $genero = $pelicula->getGenero();
-// $sinopsis= $pelicula->getSinopsis();
-// $ruta = $pelicula->getRutaImagen();
-// $cadena = substr($ruta,25);
+$pelicula = path\Pelicula::buscaPelicula($titulo);
+
+//$titulo = $pelicula->getTitulo();
+$director = $pelicula->getDirector();
+$duracion = $pelicula->getDuracion();
+$genero = $pelicula->getGenero();
+$sinopsis= $pelicula->getSinopsis();
+$ruta = $pelicula->getRutaImagen();
+$cadena = substr($ruta,25);
 
 
 $tituloPagina = 'Película';
