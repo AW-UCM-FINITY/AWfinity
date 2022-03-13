@@ -14,14 +14,6 @@ class Pelicula
     private $sinopsis;
     private $ruta_imagen;
 
-    public const ACCION = "accion";
-    public const ANIME = "anime";
-    public const DRAMA = "drama";
-    public const FICCION = "ficcion";
-    public const TERROR = "terro";
-
-
-    private const GENEROS = array(self::ACCION,self::ANIME, self::DRAMA, self::FICCION, self::TERROR); 
 
     //Constructor
     private function __construct($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen) {
@@ -36,7 +28,7 @@ class Pelicula
 
      /**Funciones get */
      public function getId() {
-        return $this->id_titulo;
+        return $this->id_pelicula;
     }
 
     public function getTitulo() {
@@ -59,12 +51,22 @@ class Pelicula
         return $this->sinopsis;
     }
 
-    public function get_generoPeli(){
-        $arrayRoles = array();
-        foreach(self::GENEROS as $i => $genero){
-            $arrayRoles[] = $genero;
-        }
-        return $arrayRoles;
+    public function getRutaImagen() {
+        return $this->ruta_imagen;
+    }
+
+
+    //Obtener lista de generos de las películas de la BD
+    public static function getGenerosPeli(){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $rs = $conn->query("SHOW COLUMNS FROM peliculas WHERE Field = 'genero'" );
+        $type = $rs->fetch_row();
+        preg_match('/^enum\((.*)\)$/', $type[1], $matches); 
+
+        foreach( explode(',', $matches[1]) as $value ) { 
+            $enum[] = trim( $value, "'" ); 
+        } 
+        return $enum;
     }
 
     /** Crea un nuevo usuario con los datos introducidos por parámetro*/
@@ -74,9 +76,7 @@ class Pelicula
         if ($peli) {
             return false;
         }
-
         $peli = new Pelicula($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen);
-    
         return self::inserta($peli);
     }
 
@@ -96,6 +96,25 @@ class Pelicula
         if ($conn->query($query)) {
             $peli->id_pelicula = $conn->insert_id;
             $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
+    public static function buscaPeliID($id_pelicula)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM peliculas P WHERE P.id_pelicula='%s'", $conn->real_escape_string($id_pelicula));
+        $rs = $conn->query($query);
+        $result = false;
+      
+        if ($rs) {
+            $fila = $rs->fetch_assoc();
+            if ($fila) {
+                $result = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+            }
+            $rs->free();
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
@@ -136,8 +155,27 @@ class Pelicula
             }
             $consulta->free();
         }
-        return $arrayPeliculas; //ARRIBA ESPAÑAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        return $arrayPeliculas;
     }
+    //$genero cambiar a $opcion
+    public static function ordenarPor($genero){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = sprintf("SELECT * FROM peliculas P WHERE P.genero='%s'", $conn->real_escape_string($genero));
+        $consulta = $conn->query($sql);
+
+        $arrayPeliculas = array();
+
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arrayPeliculas[$fila['id_pelicula']] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+            }
+            $consulta->free();
+        }
+        return $arrayPeliculas;   
+    }
+
+
+    
 
     public static function eliminarPelicula($id_pelicula){
 
