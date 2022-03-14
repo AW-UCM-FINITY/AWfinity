@@ -1,3 +1,3 @@
-# Ejercicio 3 AW / SW
+# Proyecto AW / SW
 
-Repositorio para el ejercicio 3 de las asignaturas Aplicaciones Web y Sistemas Web de la Facultad de Informática de la UCM.
+Repositorio para el proyecto AWfinity UCM
