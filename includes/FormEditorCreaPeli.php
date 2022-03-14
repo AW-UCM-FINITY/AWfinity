@@ -21,7 +21,7 @@ class FormEditorCreaPeli extends Formulario
         $peli = path\Pelicula::getGenerosPeli();
         $selectPeli = "<select class='peli_genero' name=genero>" ;
         foreach ($peli as $key => $value) {
-            $selectPeli.="<option value=$key> $value </option> ";
+            $selectPeli.="<option > $value </option> ";
 
         }
         $selectPeli.="</select>";
@@ -51,10 +51,7 @@ class FormEditorCreaPeli extends Formulario
             </div>
             <div>
                 <label for="genero">Genero:</label>
-                
                 $selectPeli 
-                
-                
             </div>
             <div>
                 <label for="sinopsis">Sinopsis:</label>
