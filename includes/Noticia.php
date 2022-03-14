@@ -16,12 +16,13 @@ class Noticia{
 
 
  //Constructor
- private function __construct( $titulo, $subtitulo, $imagenNombre, $fechaPublicacion, $autor,$categoria,$etiquetas) {
+ private function __construct( $titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas) {
 
     $this->titutlo=$titulo;
     $this->subtitulo=$subtitulo;
     $this->imagenNombre=$imagenNombre;
-    $this->fecha_publicacion=$fecha_publicacion;
+    $this->contenido=$contenido;
+    $this->fechaPublicacion=$fechaPublicacion;
     $this->autor=$autor;
     $this->categoria=$categoria;
     $this->etiquetas=$etiquetas;
@@ -81,17 +82,29 @@ public function getEtiquetas(){
 
 
 
+//Obtener lista de generos de las películas de la BD
+public static function getCategoriaNoticia(){
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $rs = $conn->query("SHOW COLUMNS FROM noticias WHERE Field = 'categoria'" );
+    $type = $rs->fetch_row();
+    preg_match('/^enum\((.*)\)$/', $type[1], $matches); 
+
+    foreach( explode(',', $matches[1]) as $value ) { 
+        $enum[] = trim( $value, "'" ); 
+    } 
+    return $enum;
+}
 
 
 
 
-public static function crea($titulo, $subtitulo, $imagenNombre, $fechaPublicacion, $autor,$categoria,$etiquetas){
+public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas ){
   
     $noticia = self::buscaNoticia($titulo);
     if ($noticia) {
         return false;
     }
-    $noticia = new \Noticia( $titulo, $subtitulo, $imagenNombre, $fechaPublicacion, $autor,$categoria,$etiquetas);
+    $noticia = new \Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
 
     return self::inserta($noticia);
 }
@@ -105,6 +118,7 @@ public static function crea($titulo, $subtitulo, $imagenNombre, $fechaPublicacio
         , $conn->real_escape_string($noticia->titulo)
         , $conn->real_escape_string($noticia->subtitulo)
         , $conn->real_escape_string($noticia->imagenNombre)
+        , $conn->real_escape_string($noticia->contenido)
         , $conn->real_escape_string($noticia->fechaPublicacion)
         , $conn->real_escape_string($noticia->autor)
         , $conn->real_escape_string($noticia->categoria)
@@ -131,7 +145,7 @@ public static function buscaNoticiaID($idNoticia)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
         }
         $rs->free();
     } else {
@@ -150,7 +164,7 @@ public static function buscaNoticia($titulo)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
         }
         $rs->free();
     } else {
@@ -166,7 +180,7 @@ public static function getNoticias(){
     $sql = "SELECT * FROM noticias";
     $consulta = $conn->query($sql);
 
-    $arrayNoticias array();
+    $arrayNoticias = array();
 
     if($consulta->num_rows > 0){
         while ($fila = mysqli_fetch_assoc($consulta)) {
@@ -183,9 +197,10 @@ public static function ordenarPorFecha($orden){ //1 orden mayor a menor, 2 orden
 
     $arrayPeliculas = self::getNoticias();
     if($orden==1){
-        $resul=usort($arrayPeliculas,'date_compare1');
+    
+        $resul=usort($arrayPeliculas,array('es\ucm\fdi\aw\Noticia', 'date_compare1'));
     }else{
-        $resul=usort($arrayPeliculas,'date_compare2');
+        $resul=usort($arrayPeliculas,array('es\ucm\fdi\aw\Noticia','date_compare2'));
     }
    if ($resul==false){
     error_log("Error de ordenacion de noticias");
@@ -193,12 +208,12 @@ public static function ordenarPorFecha($orden){ //1 orden mayor a menor, 2 orden
     return $arrayPeliculas;   
 }
 //geeksforgeeks.com
-function date_compare1($element1, $element2) {
+public static function date_compare1($element1, $element2) {
     $datetime1 = strtotime($element1['fechaPublicacion']);
     $datetime2 = strtotime($element2['fechaPublicacion']);
     return $datetime1 - $datetime2;
 } 
-function date_compare2($element1, $element2) {
+public static  function  date_compare2($element1, $element2) {
     $datetime1 = strtotime($element1['fechaPublicacion']);
     $datetime2 = strtotime($element2['fechaPublicacion']);
     return $datetime2 - $datetime1;
@@ -239,11 +254,11 @@ public static function eliminarNoticia($idNoticia){
         , $noticia->idNoticia
     );
     if ( $conn->query($query) ) {
-      
+        $result = true;
     } else {
         error_log("Error BD ({$conn->errno}): {$conn->error}");
     }
-    return $peli;
+    return $result;
 }
 
 

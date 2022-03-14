@@ -16,6 +16,14 @@ div#contenedor {
 	background-color: #aaaaaa;
 	
 }
+/*sidebar para panel de editor*/
+.sidebar {
+	padding: 10px;
+	float: left;
+	width: 150px;
+	height: 650px;
+	background-color: #dddddd;
+}
 /* CSS HEADER*/
 * {
 	margin:0px;
@@ -94,7 +102,7 @@ main {
 	padding-top: 30px;
 	padding-left: 50px;
 	float: left;
-	width: 100%;
+	width: 85%;
 	min-height: 600px;
 	background-color: white;
 }
@@ -244,3 +252,85 @@ a.boton {
 a.deshabilitado {
 	color: rgba(16, 16, 16, 0.3);
 }
+
+
+
+
+/*PARA BLOG----------------------------------------*/
+
+/* Header/Blog Title */
+.header2 {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background: rgb(78, 113, 129);
+  }
+  
+  /* izquieda */
+  .columnaIzq {
+    float: left;
+    width: 70%;
+	
+
+  }
+  .columna{
+	background: rgb(207, 205, 233);
+  }
+  
+  /* derecha*/
+  .columnaDer {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+  }
+  
+  /* fotos */
+  .img2 {
+    background-color: #aaa;
+    width: 90px;
+    padding: 20px;
+  }
+  
+  /* articulos como cartas */
+  .card {
+    background-color: rgb(244, 221, 250);
+    padding: 20px;
+    margin-top: 20px;
+	
+  }
+  
+  /* Clear floats after the columns */
+  .columna:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .imagNoticias{
+    height:250px;
+	width: 250px;
+  }
+
+  .imagAboutus{
+    height:100px;
+  }
+  .footer2 {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+  
+  /* Para cuando se reduzca el tamaño de la ventana */
+  @media screen and (max-width: 800px) {
+    .columnaIzq, .columnaDer {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+
+
+
+
+/*------------------------------------------------------------*/

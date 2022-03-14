@@ -14,6 +14,12 @@
 		require(RAIZ_APP.'/vistas/comun/cabecera.php');
 	?>
     
+    <?php
+    if (isset($sidebar)){
+        require(RAIZ_APP.'/vistas/comun/sidebarIzq.php');
+    }
+    ?>
+
     <main>
         <article class="<?= $claseArticle?>">
 			<?= $contenidoPrincipal ?>
