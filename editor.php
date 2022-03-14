@@ -5,13 +5,9 @@ require_once __DIR__.'/includes/config.php';
 
 
 $tituloPagina = 'Editor';
-$claseArticle = 'FormCreaPeli';
+$claseArticle = 'editorPanel';
 
-$formC = new FormEditorCreaPeli();
-$htmlFormCreaPeli = $formC->gestiona();
 
-$formP = new FormEditorElimPeli();
-$htmlFormElimPeli = $formP->gestiona();
 
 $contenidoPrincipal = '';
 if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
@@ -20,14 +16,12 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 	<p>No tienes permisos suficientes para editar el contenido de la web.</p>
 	EOS;
 }else{
-	$sidebar = "si";
+	//$sidebar = "si";
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
-	$htmlFormElimPeli
-	$htmlFormCreaPeli
 	EOS;
 }
 
-require __DIR__. '/includes/vistas/plantillas/plantilla.php';
+require __DIR__. '/includes/vistas/plantillas/plantillaEditor.php';
 ?>

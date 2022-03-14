@@ -3,11 +3,14 @@ require_once __DIR__.'/includes/config.php';
 
 use es\ucm\fdi\aw as path;
 
-$tituloPagina = 'Editar Noticias';
-$claseArticle = 'FormCreaNoticia';
+$tituloPagina = 'Editar Películas';
+$claseArticle = 'editPeli';
 
-$formN = new path\FormEditorCreaNoticia();
-$htmlFormCreaNoticia = $formN->gestiona();
+$formC = new path\FormEditorCreaPeli();
+$htmlFormCreaPeli = $formC->gestiona();
+
+$formP = new path\FormEditorElimPeli();
+$htmlFormElimPeli = $formP->gestiona();
 
 
 $contenidoPrincipal = '';
@@ -21,7 +24,8 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
-	$htmlFormCreaNoticia
+	$htmlFormElimPeli
+	$htmlFormCreaPeli
 	EOS;
 }
 
