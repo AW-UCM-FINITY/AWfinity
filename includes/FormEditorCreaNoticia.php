@@ -1,6 +1,6 @@
 <?php
 namespace es\ucm\fdi\aw;
-
+use es\ucm\fdi\aw as path;
 
 class FormEditorCreaNoticia extends Formulario
 {
@@ -17,7 +17,7 @@ class FormEditorCreaNoticia extends Formulario
         $autor = $datos['autor'] ?? '';
         $categoria = $datos['categoria'] ?? '';
         $uploadfile = $datos['uploadfile'] ?? '';
-
+        $etiquetas = $datos['etiquetas']?? '';
         //Categoria
         $noticia = Noticia::getCategoriaNoticia();
         $selectNoticia = "<select class='noticia_categoria' name=categoria>" ;
@@ -47,12 +47,12 @@ class FormEditorCreaNoticia extends Formulario
             </div>
             <div>
                 <label for="autor">Autor:</label>
-                <input id="autor" type="text" name="subtitulo" value="$autor" />
-                {$erroresCampos['subtitulo']}
+                <input id="autor" type="text" name="autor" value="$autor" />
+                {$erroresCampos['autor']}
             </div>
             <div>
                 <label for="fecha">Fecha (dd/mm/aa):</label>
-                <input id="fecha" type="number" name="fecha" value="" />
+                <input id="fecha" type="text" name="fecha" value="" />
                 {$erroresCampos['fecha']}
             </div>
             <div>
@@ -99,40 +99,44 @@ class FormEditorCreaNoticia extends Formulario
 
         $autor = trim($datos['autor'] ?? '');
         $autor = filter_var($autor, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $director || mb_strlen($autor)<5){
+        if ( ! $autor || mb_strlen($autor)<5){
             $this->errores['autor'] = 'El autor tiene que tener una longitud de al menos 5 caracteres.';
         }
 
-        $duracion = trim($datos['fecha'] ?? '');
-        $duracion = filter_var($fecha, FILTER_SANITIZE_NUMBER_INT);
-        if ( ! $fecha || $fecha < 1 ) {
-            $this->errores['duracion'] = 'La fecha de publicacion tiene que ser mayor que 0 minutos.';
+        $fechaPublicacion = trim($datos['fecha'] ?? '');
+    
+       $fechaPublicacion = filter_var($fechaPublicacion, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ( ! $fechaPublicacion  /*|| $fecha < */ ) {
+            $this->errores['fecha'] = 'La fecha de publicacion tiene que ser mayor que 0 minutos.';
         }
         
-        $genero = trim($datos['categoria'] ?? '');
+        $categoria = trim($datos['categoria'] ?? '');
         // if ( empty( $genero)) {
         //     $this->errores['genero'] = 'El genero no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
         // }
 
-        $sinopsis = trim($datos['contenido'] ?? '');
+        $contenido = trim($datos['contenido'] ?? '');
         //$sinopsis = filter_var($sinopsis, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         //
         if ( empty( $contenido)) {
             $this->errores['contenido'] = 'El contenido no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
         }
-
+        $etiquetas='';
+        $etiquetas=trim($datos['etiquetas'] ?? '');
         //Imagen
         $filename = $_FILES['uploadfile']['name'];
         $tempname = $_FILES['uploadfile']['tmp_name'];    
         
-        $folder = $_SERVER["DOCUMENT_ROOT"].RUTA_IMGS."/".$filename;
+        
+        $folder = RUTA_IMGS."/".$filename;
         //print($folder);
         //print($tempname);
         if (count($this->errores) === 0) {
             // Now let's move the uploaded image into the folder: image
             if (move_uploaded_file($tempname, $folder)){
+                
                 $this->errores['uploadfile'] =  "Image uploaded successfully";
-                $peli = path\Noticia::crea($titulo, $subtitulo, $folder, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                $noticiass = path\Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
             }else{
                 $this->errores['uploadfile'] =  "Failed to upload image";
             }

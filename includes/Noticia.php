@@ -18,7 +18,7 @@ class Noticia{
  //Constructor
  private function __construct( $titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas) {
 
-    $this->titutlo=$titulo;
+    $this->titulo=$titulo;
     $this->subtitulo=$subtitulo;
     $this->imagenNombre=$imagenNombre;
     $this->contenido=$contenido;
@@ -104,7 +104,7 @@ public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fec
     if ($noticia) {
         return false;
     }
-    $noticia = new \Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+    $noticia = new Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
 
     return self::inserta($noticia);
 }
@@ -164,7 +164,7 @@ public static function buscaNoticia($titulo)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
         }
         $rs->free();
     } else {

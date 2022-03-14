@@ -5,7 +5,7 @@ use es\ucm\fdi\aw as path;
 class FormEditorCreaPeli extends Formulario
 {
     public function __construct() {
-        parent::__construct('FormEditorCreaPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'editor.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorCreaPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'editPeli.php']);//por ahora queda mas claro asi
     }
     
     protected function generaCamposFormulario(&$datos)
@@ -109,7 +109,7 @@ class FormEditorCreaPeli extends Formulario
         $filename = $_FILES['uploadfile']['name'];
         $tempname = $_FILES['uploadfile']['tmp_name'];    
         
-        $folder = $_SERVER["DOCUMENT_ROOT"].RUTA_IMGS."/".$filename;
+        $folder = /*$_SERVER["DOCUMENT_ROOT"].*/ RUTA_IMGS."/".$filename;
         //print($folder);
         //print($tempname);
         if (count($this->errores) === 0) {
