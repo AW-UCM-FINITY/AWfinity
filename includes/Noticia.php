@@ -106,7 +106,7 @@ public static function getTituloNoticia(){
 
     if($consulta->num_rows > 0){
         while ($fila = mysqli_fetch_assoc($consulta)) {
-            $arrayNoticias[]=$fila;
+            $arrayNoticias[]=$fila['titulo'];
         }
         $consulta->free();
     }
@@ -254,21 +254,20 @@ public static function eliminarNoticia($idNoticia){
 
 
 /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
- private static function actualiza($noticia){
+ public static function actualiza($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas){
     $result = false;
     $conn = Aplicacion::getInstance()->getConexionBd();
-    $query=sprintf("UPDATE noticias SET noticias.titulo = '%s', noticias.subtitulo='%s', noticias.imagenNombre='%s',
+    $query=sprintf("UPDATE noticias SET noticias.subtitulo='%s', noticias.imagenNombre='%s',
      noticias.contenido='%s', noticias.fechaPublicacion='%s', noticias.autor='%s', noticias.categoria='%s', noticias.etiquetas='%s'
-        WHERE noticias.idNoticia = %d"
-        , $conn->real_escape_string($noticia->titulo)
-        , $conn->real_escape_string($noticia->subtitulo)
-        , $conn->real_escape_string($noticia->imagenNombre)
-        , $conn->real_escape_string($noticia->contenido)
-        , $conn->real_escape_string($noticia->FechaPublicacion)
-        , $conn->real_escape_string($noticia->autor)
-        , $conn->real_escape_string($noticia->categoria)
-        , $conn->real_escape_string($noticia->etiquetas)
-        , $noticia->idNoticia
+        WHERE noticias.titulo = %s"
+        , $conn->real_escape_string($subtitulo)
+        , $conn->real_escape_string($imagenNombre)
+        , $conn->real_escape_string($contenido)
+        , $conn->real_escape_string($fechaPublicacion)
+        , $conn->real_escape_string($autor)
+        , $conn->real_escape_string($categoria)
+        , $conn->real_escape_string($etiquetas)
+        , $conn->real_escape_string($titulo)
     );
     if ( $conn->query($query) ) {
         $result = true;

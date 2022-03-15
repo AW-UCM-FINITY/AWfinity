@@ -32,7 +32,7 @@ class FormEditorEditNoticia extends Formulario
         $noticiaT = Noticia::getTituloNoticia();
         $selectNoticiaT = "<select class='noticia_titulo' name=titulo>" ;
         foreach ($noticiaT as $valueT) {
-            $selectNoticiaT.="<option value=$valueT> $valueT </option> ";
+            $selectNoticiaT .= "<option value=$valueT> $valueT </option> ";
         
         }
         $selectNoticiaT.="</select>";
@@ -146,7 +146,7 @@ class FormEditorEditNoticia extends Formulario
                 
                 
                 $noticiass = path\Noticia::actualiza($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
-                if(!$noticiass){
+                if($noticiass){
                     $this->errores['uploadfile'] =  "Image uploaded successfully";
                 }else{
                     $this->errores['uploadfile'] = "Error no se ha metido la noticia";
