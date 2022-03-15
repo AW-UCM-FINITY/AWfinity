@@ -33,6 +33,7 @@ if(!$noticias==false){
                             </div> 
                             <div><p> </p></div>
                             <p>{$notic['contenido']}</p>
+                            <p><b>Pincha en la noticia para seguir viendo..</b></p>
                             </div>
 
                             
