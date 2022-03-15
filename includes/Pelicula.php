@@ -194,7 +194,9 @@ class Pelicula
             //print($ruta);    //esto no muestra nada 
 
             //NO FUNCIONAN:
-            //if (unlink($ruta)){} //esto no funciona
+            //if (unlink($ruta)){} //esto no funciona __DIR.     position pa la pantalla (relativo bottom 0 el footer)
+            //CAMBIAR EDITAR Y AÑADIR EL BORRAR DENTRO DE LA PELICULA: ACTUAMOS CON PERMISOS
+            //ELIMINAR SOLCION AVANZADA EJERCICIO 2 
             //if (unlink('$ruta')){}                  
             //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
 		}
