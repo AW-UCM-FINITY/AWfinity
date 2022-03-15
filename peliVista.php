@@ -19,38 +19,56 @@ $duracion = $pelicula->getDuracion();
 $genero = $pelicula->getGenero();
 $sinopsis= $pelicula->getSinopsis();
 $ruta = $pelicula->getRutaImagen();
-$cadena = substr($ruta,25);
+$cadena = substr($ruta,2);
 
 
 $tituloPagina = 'Película';
+$claseArticle = 'vistaPeli';
+$contenidoPrincipal = "";
 
-$contenidoPrincipal = <<<EOS
-<div class="card">
-	<div class="card-header text-center">
-		<h2 id="Título"></h2>
-		<h6 id="Sinopsis"></h6>
-	</div>
-	<div class="row my-2">
-		<div class="col-md-3 offset-md-3">
-			<div class="row"><label><em>Titulo: </em></label></div>
-			<div class="row"><label><b>Director: </b></label></div>
-			<div class="row"><label><b>Duracion </b></label></div>
-			<div class="row"><label><b>Genero: </b></label></div>
-			<div class="row"><label><b>Sinopsis: </b></label></div>
-		</div>
-		<div class="col-md-2">
-			<div class="row"><label id="titulo">$titulo</label></div>
-			<div class="row"><label id="director">$director</label></div>
-			<div class="row"><label id="duracion">$duracion</label></div>
-			<div class="row"><label id="genero">$genero</label></div>
-			<div class="row"><label id="sinopsis"></label>$sinopsis</div>
-		</div>
-		<div class="col-md-3">
-			<img class="w-100 rounded mt-3" id="foto_receta" src=$cadena >
-		</div>
-	</div>
-</div>
-EOS;
+$contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
+
+$contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'> <img src=$cadena /> </div>";
+
+$contenidoPrincipal .= "<div class='peli-datos-card' id ='peli-datos'>";
+
+$contenidoPrincipal .= "<div class='fila-dato'> <strong>Titulo:  </strong>$titulo</div>";
+$contenidoPrincipal .= "<div class='fila-dato'> <strong>Director:  </strong>$director</div>";
+$contenidoPrincipal .= "<div class='fila-dato'> <strong>Duracion:  </strong>$duracion  minutos</div>";
+$contenidoPrincipal .= "<div class='fila-dato'> <strong>Genero:  </strong>$genero</div>";
+$contenidoPrincipal .= "<div class='fila-dato'> <strong>Sinopsis:  </strong>$sinopsis</div>";
+
+$contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
+
+$contenidoPrincipal .= "</div>"; //fin div = peli-card
+
+// $contenidoPrincipal = <<<EOS
+// <div class="card">
+// 	<div class="card-header text-center">
+// 		<h2 id="Título"></h2>
+// 		<h6 id="Sinopsis"></h6>
+// 	</div>
+// 	<div class="row my-2">
+// 		<div class="col-md-3 offset-md-3">
+// 			<div class="row"><label><em>Titulo: </em></label></div>
+// 			<div class="row"><label><b>Director: </b></label></div>
+// 			<div class="row"><label><b>Duracion </b></label></div>
+// 			<div class="row"><label><b>Genero: </b></label></div>
+// 			<div class="row"><label><b>Sinopsis: </b></label></div>
+// 		</div>
+// 		<div class="col-md-2">
+// 			<div class="row"><label id="titulo">$titulo</label></div>
+// 			<div class="row"><label id="director">$director</label></div>
+// 			<div class="row"><label id="duracion">$duracion</label></div>
+// 			<div class="row"><label id="genero">$genero</label></div>
+// 			<div class="row"><label id="sinopsis"></label>$sinopsis</div>
+// 		</div>
+// 		<div class="col-md-3">
+// 			<img class="w-100 rounded mt-3" id="foto_receta" src=$cadena >
+// 		</div>
+// 	</div>
+// </div>
+// EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

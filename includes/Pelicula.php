@@ -17,7 +17,7 @@ class Pelicula
 
     //Constructor
     private function __construct($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen) {
-        //$this->id_usuario= $id;
+        
         $this->titulo = $titulo;
         $this->director = $director;
         $this->duracion = $duracion;
@@ -177,17 +177,29 @@ class Pelicula
 
     
 
-    public static function eliminarPelicula($id_pelicula){
+    public static function eliminarPelicula($id_pelicula, $ruta){
 
+        //borro de la bd
         $conn = Aplicacion::getInstance()->getConexionBd();	
-        
         $query = sprintf("DELETE FROM peliculas WHERE id_pelicula = $id_pelicula");
-		$rs = $conn->query($query);
+		
+        $rs = $conn->query($query);
         $check =false;
-
 		if($rs){
 			$check =true;
+            //borro la imagen fisica de la carpeta 
+                   
+            //if (unlink("./img/pelis/titanic.png")){} esto sí funciona
+
+            //print($ruta);    //esto no muestra nada 
+
+            //NO FUNCIONAN:
+            //if (unlink($ruta)){} //esto no funciona
+            //if (unlink('$ruta')){}                  
+            //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
 		}
+
+        
         
 		return $check;        
     }
