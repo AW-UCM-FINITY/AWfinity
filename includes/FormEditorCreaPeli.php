@@ -109,7 +109,7 @@ class FormEditorCreaPeli extends Formulario
         $filename = $_FILES['uploadfile']['name'];
         $tempname = $_FILES['uploadfile']['tmp_name'];    
         
-        $folder = /*$_SERVER["DOCUMENT_ROOT"].*/ RUTA_IMGS."/".$filename;
+        $folder = /*$_SERVER["DOCUMENT_ROOT"].*/ RUTA_IMGS."/pelis/".$filename;
         //print($folder);
         //print($tempname);
         if (count($this->errores) === 0) {
