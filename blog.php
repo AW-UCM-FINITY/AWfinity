@@ -23,8 +23,8 @@ if(!$noticias==false){
       foreach($noticias as $notic){
         $contenidoPrincipal .=<<<EOS
                       
-                     
-                           <div class="card">
+       
+                           <div class="card" onclick="location.href='./blogVista.php?tituloid={$notic['idNoticia']}'">
                             <h2>{$notic['titulo']}</h2>
                             <h5>{$notic['subtitulo']}, {$notic['fechaPublicacion']}</h5>
                             <div></div>
@@ -35,11 +35,12 @@ if(!$noticias==false){
                             <p>{$notic['contenido']}</p>
                             </div>
 
-                            </div>
+                            
                         
           EOS;
       }
  $contenidoPrincipal.=<<<EOS
+                       </div>
                        <div class="columnaDer">
                         <div class="card">
                           <h2>About Us</h2>

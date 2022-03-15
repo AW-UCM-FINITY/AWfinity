@@ -96,6 +96,23 @@ public static function getCategoriaNoticia(){
 }
 
 
+//Obtener lista de titulos de las noticias de la BD
+public static function getTituloNoticia(){
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $sql = "SELECT titulo FROM noticias";
+    $consulta = $conn->query($sql);
+
+    $arrayNoticias = array();
+
+    if($consulta->num_rows > 0){
+        while ($fila = mysqli_fetch_assoc($consulta)) {
+            $arrayNoticias[]=$fila;
+        }
+        $consulta->free();
+    }
+    return $arrayNoticias;
+}
+
 
 
 public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas ){
@@ -145,7 +162,7 @@ public static function buscaNoticiaID($idNoticia)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new \Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
         }
         $rs->free();
     } else {

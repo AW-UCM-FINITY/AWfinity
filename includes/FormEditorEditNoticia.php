@@ -2,10 +2,10 @@
 namespace es\ucm\fdi\aw;
 use es\ucm\fdi\aw as path;
 
-class FormEditorCreaNoticia extends Formulario
+class FormEditorEditNoticia extends Formulario
 {
     public function __construct() {
-        parent::__construct('FormEditorCreaNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'creaNoticia.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorEditNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'editNoticia.php']);//por ahora queda mas claro asi
     }
     
     protected function generaCamposFormulario(&$datos)
@@ -27,6 +27,15 @@ class FormEditorCreaNoticia extends Formulario
         }
         $selectNoticia.="</select>";
 
+        
+        //Elegir titulo de noticia a modificar
+        $noticiaT = Noticia::getTituloNoticia();
+        $selectNoticiaT = "<select class='noticia_titulo' name=titulo>" ;
+        foreach ($noticiaT as $valueT) {
+            $selectNoticiaT.="<option value=$valueT> $valueT </option> ";
+        
+        }
+        $selectNoticiaT.="</select>";
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
@@ -35,11 +44,10 @@ class FormEditorCreaNoticia extends Formulario
         $html = <<<EOF
         $htmlErroresGlobales
         <fieldset>
-            <legend>Datos para el registro de nueva Noticia</legend>
+            <legend>Datos para la modificacion de Noticia</legend>
             <div>
                 <label for="titulo">Titulo de la noticia:</label>
-                <input id="titulo" type="text" name="titulo" value="$titulo" />
-                {$erroresCampos['titulo']}
+                $selectNoticiaT 
             </div>
             <div>
                 <label for="subtitulo">Subtitulo:</label>
@@ -74,7 +82,7 @@ class FormEditorCreaNoticia extends Formulario
                 {$erroresCampos['uploadfile']}
             </div>
             <div>
-                <button type="submit" name="registro">Crear</button>
+                <button type="submit" name="registro">Modificar</button>
             </div>
         </fieldset>
         EOF;
@@ -86,10 +94,10 @@ class FormEditorCreaNoticia extends Formulario
         $this->errores = [];
 
         $titulo = trim($datos['titulo'] ?? '');
-        $titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        /*$titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $titulo || mb_strlen($titulo) < 5) {
             $this->errores['titulo'] = 'El nombre de la noticia tiene que tener una longitud de al menos 5 caracteres.';
-        }
+        }*/
 
         $subtitulo = trim($datos['subtitulo'] ?? '');
         $subtitulo = filter_var($subtitulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -137,7 +145,7 @@ class FormEditorCreaNoticia extends Formulario
             if (move_uploaded_file($tempname, $folder)){
                 
                 
-                $noticiass = path\Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                $noticiass = path\Noticia::actualiza($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
                 if(!$noticiass){
                     $this->errores['uploadfile'] =  "Image uploaded successfully";
                 }else{
