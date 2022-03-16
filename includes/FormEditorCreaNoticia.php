@@ -53,7 +53,7 @@ class FormEditorCreaNoticia extends path\Formulario
             </div>
             <div>
                 <label for="fecha">Fecha (dd/mm/aa):</label>
-                <input id="fecha" type="text" name="fecha" value="" />
+                <input id="fecha" type="text" name="fecha" value="{$fecha}" />
                 {$erroresCampos['fecha']}
             </div>
             <div>
@@ -65,7 +65,7 @@ class FormEditorCreaNoticia extends path\Formulario
             </div>
             <div>
                 <label for="contenido">Contenido:</label>
-                <textarea rows= 5 cols= 50 name="contenido" value="" required> </textarea>
+                <textarea rows= 5 cols= 50 name="contenido" value="" required> {$contenido}</textarea>
                 {$erroresCampos['contenido']}
             </div>
             <div>
