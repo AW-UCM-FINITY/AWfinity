@@ -2,7 +2,7 @@
 namespace es\ucm\fdi\aw;
 use es\ucm\fdi\aw as path;
 
-class FormEditorCreaNoticia extends Formulario
+class FormEditorCreaNoticia extends path\Formulario
 {
     public function __construct() {
         parent::__construct('FormEditorCreaNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'creaNoticia.php']);//por ahora queda mas claro asi
@@ -138,7 +138,7 @@ class FormEditorCreaNoticia extends Formulario
                 
                 
                 $noticiass = path\Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
-                if(!$noticiass){
+                if($noticiass){
                     $this->errores['uploadfile'] =  "Image uploaded successfully";
                 }else{
                     $this->errores['uploadfile'] = "Error no se ha metido la noticia";

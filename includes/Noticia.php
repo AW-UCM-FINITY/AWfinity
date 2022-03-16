@@ -7,7 +7,7 @@ class Noticia{
     private $titulo;
     private $subtitulo;
     private $imagenNombre;
-    private $contenido; //Enum de generos
+    private $contenido;
     private $fechaPublicacion;
     private $autor;
     private $categoria;//(noticia, noticia-evento,noticia-estreno)
@@ -16,12 +16,12 @@ class Noticia{
 
 
  //Constructor
- private function __construct( $titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas) {
+ private function __construct( $titulo, $subtitulo, $imagenNombre, $contenidos, $fechaPublicacion, $autor,$categoria,$etiquetas) {
 
     $this->titulo=$titulo;
     $this->subtitulo=$subtitulo;
     $this->imagenNombre=$imagenNombre;
-    $this->contenido=$contenido;
+    $this->contenido=$contenidos;
     $this->fechaPublicacion=$fechaPublicacion;
     $this->autor=$autor;
     $this->categoria=$categoria;
@@ -241,7 +241,7 @@ public static function eliminarNoticia($idNoticia){
 
     $conn = Aplicacion::getInstance()->getConexionBd();	
     
-    $query = sprintf("DELETE FROM noticia WHERE idNoticia = $idNoticia");
+    $query = sprintf("DELETE FROM noticias WHERE noticias.idNoticia='%s'",$idNoticia);
     $rs = $conn->query($query);
     $check =false;
 
@@ -257,9 +257,10 @@ public static function eliminarNoticia($idNoticia){
  public static function actualiza($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas){
     $result = false;
     $conn = Aplicacion::getInstance()->getConexionBd();
-    $query=sprintf("UPDATE noticias SET noticias.subtitulo='%s', noticias.imagenNombre='%s',
+    $query=sprintf("UPDATE noticias SET noticias.titulo='%s', noticias.subtitulo='%s', noticias.imagenNombre='%s',
      noticias.contenido='%s', noticias.fechaPublicacion='%s', noticias.autor='%s', noticias.categoria='%s', noticias.etiquetas='%s'
-        WHERE noticias.titulo = %s"
+        WHERE noticias.titulo = '%s'"
+        ,$conn->real_escape_string($titulo)
         , $conn->real_escape_string($subtitulo)
         , $conn->real_escape_string($imagenNombre)
         , $conn->real_escape_string($contenido)

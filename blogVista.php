@@ -32,9 +32,19 @@ $noticia=Noticia::buscaNoticiaID($_GET['tituloid'] );
                             </div> 
                             <div><p> </p></div>
                             <p>{$noticia->getContenido()}</p>
+                            <form action="./editNoticia.php?idnoticia={$_GET['tituloid']}" method="POST">
+                            <div>
+                            <button type="submit" name="editarNoticia">Editar</button>
+                            </div>
+                            </form>
+                            <form action="./borrarNoticia.php?tituloid={$_GET['tituloid']}" method="POST">
+                            <div>
+                            <button type="submit" name="BorrarNoticia">Borrar</button>
+                            </div>
+                            </form>
                             </div>
                             </div>
-
+                            
                             
                         
           EOS;

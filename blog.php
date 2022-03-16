@@ -12,6 +12,18 @@ $contenidoPrincipal = '';
 $contenidoPrincipal .=<<<EOS
           <div class="header2">
             <h2>Blog AWfinity</h2>
+EOS;
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+  $contenidoPrincipal.=<<<EOS
+        <form action="./creaNoticia.php" method="POST">
+        <div>
+        <button type="submit" name="crearNoticia">Crear</button>
+        </div>
+        </form>
+
+EOS;
+}
+$contenidoPrincipal.=<<<EOS
           </div>
 
           <div class="columna">

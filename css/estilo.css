@@ -22,10 +22,11 @@ div#contenedor {
 	padding: 10px;
 	float: left;
 	width: 10%;
-	height: 650px;
+
 	background-color: #badbe4;
 	border: 2px solid black;
 }
+
 .editorPanel {
 	padding: 10px;
 	float: left;

@@ -10,33 +10,27 @@ class FormEditorEditNoticia extends Formulario
     
     protected function generaCamposFormulario(&$datos)
     {
-        $titulo = $datos['titulo'] ?? '';
-        $subtitulo = $datos['subtitulo'] ?? '';
-        $contenido = $datos['contenido'] ?? '';
-        $fecha = $datos['fecha'] ?? '';
-        $autor = $datos['autor'] ?? '';
-        $categoria = $datos['categoria'] ?? '';
+
+        $noticia=Noticia::buscaNoticiaID($_GET['idnoticia']);
+
+        $titulo = $noticia->getTitulo() ?? '';
+        $subtitulo = $noticia->getSubtitulo() ?? '';
+        $contenido = $noticia->getContenido() ?? '';
+        $fecha = $noticia->getFechaPublicacion() ?? '';
+        $autor = $noticia->getAutor() ?? '';
+        $categoria = $noticia->getCategoria() ?? '';
         $uploadfile = $datos['uploadfile'] ?? '';
-        $etiquetas = $datos['etiquetas']?? '';
+        $etiquetas = $noticia->getEtiquetas() ?? '';
         //Categoria
-        $noticia = Noticia::getCategoriaNoticia();
+        $categorias = Noticia::getCategoriaNoticia();
         $selectNoticia = "<select class='noticia_categoria' name=categoria>" ;
-        foreach ($noticia as $key => $value) {
+        foreach ($categorias as $key => $value) {
             $selectNoticia.="<option value=$key> $value </option> ";
 
         }
         $selectNoticia.="</select>";
 
         
-        //Elegir titulo de noticia a modificar
-        $noticiaT = Noticia::getTituloNoticia();
-        $selectNoticiaT = "<select class='noticia_titulo' name=titulo>" ;
-        foreach ($noticiaT as $valueT) {
-            $selectNoticiaT .= "<option value=$valueT> $valueT </option> ";
-        
-        }
-        $selectNoticiaT.="</select>";
-
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['titulo', 'subtitulo', 'contenido', 'fecha', 'autor','categoria', 'uploadfile'], $this->errores, 'span', array('class' => 'error'));
@@ -46,8 +40,9 @@ class FormEditorEditNoticia extends Formulario
         <fieldset>
             <legend>Datos para la modificacion de Noticia</legend>
             <div>
-                <label for="titulo">Titulo de la noticia:</label>
-                $selectNoticiaT 
+                <label for="titulo">Titulo:</label>
+                <input id="titulo" type="text" name="titulo" value="$titulo" />
+                {$erroresCampos['titulo']}
             </div>
             <div>
                 <label for="subtitulo">Subtitulo:</label>
@@ -61,7 +56,7 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="fecha">Fecha (dd/mm/aa):</label>
-                <input id="fecha" type="text" name="fecha" value="" />
+                <input id="fecha" type="text" name="fecha" value="$fecha" />
                 {$erroresCampos['fecha']}
             </div>
             <div>
@@ -73,7 +68,7 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="contenido">Contenido:</label>
-                <textarea rows= 5 cols= 50 name="contenido" value="" required> </textarea>
+                <textarea rows=5 cols=50 name="contenido" required> {$contenido}</textarea>
                 {$erroresCampos['contenido']}
             </div>
             <div>
