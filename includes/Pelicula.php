@@ -16,7 +16,7 @@ class Pelicula
 
 
     //Constructor
-    private function __construct($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen) {
+    private function __construct($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen, $id_pelicula = NULL) {
         
         $this->titulo = $titulo;
         $this->director = $director;
@@ -24,6 +24,7 @@ class Pelicula
         $this->genero = $genero;
         $this->sinopsis = $sinopsis;
         $this->ruta_imagen = $ruta_imagen;
+        $this->id_pelicula = $id_pelicula;
     }
 
      /**Funciones get */
@@ -105,14 +106,14 @@ class Pelicula
     public static function buscaPeliID($id_pelicula)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM peliculas P WHERE P.id_pelicula='%s'", $conn->real_escape_string($id_pelicula));
+        $query = sprintf("SELECT * FROM peliculas P WHERE P.id_pelicula='%d'", $conn->real_escape_string($id_pelicula));
         $rs = $conn->query($query);
         $result = false;
       
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+                $result = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_pelicula']);
             }
             $rs->free();
         } else {
@@ -131,7 +132,7 @@ class Pelicula
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+                $result = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_pelicula']);
             }
             $rs->free();
         } else {
@@ -141,22 +142,23 @@ class Pelicula
     }
 
 
-    public static function getPeliculas(){
+    // public static function getPeliculas(){
         
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $sql = "SELECT * FROM peliculas";
-        $consulta = $conn->query($sql);
+    //     $conn = Aplicacion::getInstance()->getConexionBd();
+    //     $sql = "SELECT * FROM peliculas";
+    //     $consulta = $conn->query($sql);
 
-        $arrayPeliculas = array();
+    //     $arrayPeliculas = array();
 
-        if($consulta->num_rows > 0){
-            while ($fila = mysqli_fetch_assoc($consulta)) {
-                $arrayPeliculas[$fila['id_pelicula']] = $fila['titulo'];
-            }
-            $consulta->free();
-        }
-        return $arrayPeliculas;
-    }
+    //     if($consulta->num_rows > 0){
+    //         while ($fila = mysqli_fetch_assoc($consulta)) {
+    //             $arrayPeliculas[$fila['id_pelicula']] = $fila['titulo'];
+    //         }
+    //         $consulta->free();
+    //     }
+    //     return $arrayPeliculas;
+    // }
+
     //$genero cambiar a $opcion
     public static function ordenarPor($genero){
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -167,7 +169,7 @@ class Pelicula
 
         if($consulta->num_rows > 0){
             while ($fila = mysqli_fetch_assoc($consulta)) {
-                $arrayPeliculas[] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen']);
+                $arrayPeliculas[] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_pelicula']);
             }
             $consulta->free();
         }
@@ -175,9 +177,34 @@ class Pelicula
     }
 
 
-    
+    public static function eliminarPeliTitulo($titulo){
 
-    public static function eliminarPelicula($id_pelicula, $ruta){
+        //borro de la bd
+        print($titulo);
+        $conn = Aplicacion::getInstance()->getConexionBd();	
+        $query = sprintf("DELETE FROM peliculas WHERE titulo = '%s'", $conn->real_escape_string($titulo));
+		print($titulo);
+        $rs = $conn->query($query);
+        $check =false;
+		if($rs){
+			$check =true;
+            //borro la imagen fisica de la carpeta 
+                   
+            //if (unlink("./img/pelis/titanic.png")){} esto sí funciona
+
+            //print($ruta);    //esto no muestra nada 
+
+            //NO FUNCIONAN:
+            //if (unlink($ruta)){} //esto no funciona __DIR.     position pa la pantalla (relativo bottom 0 el footer)
+            //CAMBIAR EDITAR Y AÑADIR EL BORRAR DENTRO DE LA PELICULA: ACTUAMOS CON PERMISOS
+            //ELIMINAR SOLCION AVANZADA EJERCICIO 2 
+            //if (unlink('$ruta')){}                  
+            //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
+		}
+		return $check;        
+    }
+
+    public static function eliminarPelicula($id_pelicula){
 
         //borro de la bd
         $conn = Aplicacion::getInstance()->getConexionBd();	
@@ -200,9 +227,6 @@ class Pelicula
             //if (unlink('$ruta')){}                  
             //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
 		}
-
-        
-        
 		return $check;        
     }
     //buscar por id¿?

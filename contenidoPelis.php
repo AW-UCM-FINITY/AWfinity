@@ -17,16 +17,21 @@ $contenidoPrincipal .=
 </div>";
 
 
+$formC = new path\FormEditorCreaPeli();
+$htmlFormCreaPeli = $formC->gestiona();
+
+
+
 /**MOSTRAMOS PELICULAS GENERO ACCION */
 $contenidoPrincipal .="<div class='pelisIndex'>";
 $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCULAS DE ACCIÓN</h3> </div>";
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("accion");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$ruta></a>";
+	$id_pelicula = $value->getId();
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$ruta></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -37,10 +42,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("anime");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -50,10 +55,10 @@ $contenidoPrincipal .="<div class='pelisIndex'>";
 $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCULAS DE CIENCIA FICCIÓN</h3> </div>";$contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("ciencia ficcion");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -64,10 +69,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("comedia");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -79,10 +84,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("drama");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -93,10 +98,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("fantasia");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -108,10 +113,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("musical");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -122,10 +127,10 @@ $contenidoPrincipal.= "<div class='tituloPeliIndex' id='lista-peli'> <h3>PELÍCU
 $contenidoPrincipal .= "<div class='peliLista' id='pelis'>";
 $arrayPelis = path\Pelicula::ordenarPor("TERROR");
 foreach ($arrayPelis as $key => $value) {
-	$titulo = $value->getTitulo();
+	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	 $cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?titulo=$titulo\"><img src=$cadena></a>";
+	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";

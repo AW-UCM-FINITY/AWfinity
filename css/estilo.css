@@ -65,7 +65,7 @@ ul, ol {
 }
 
 .nav li a:hover {
-	background-color:#434343;
+	background-color:#ffffff;
 }
 
 .nav li ul {
@@ -437,8 +437,11 @@ div.fila-dato{
 	padding-bottom: 10px;
 	margin-right: 120px;
 }
-
-
-
+div#peli-editar.peli-editar-card{
+	display: block;
+}
+div.editar-buton{
+	display: inline-block;
+}
 
  /*FIN PARA LA VISTA DE 1 PELÍCULA*/

@@ -4,9 +4,13 @@ use es\ucm\fdi\aw as path;
 
 class FormEditorElimPeli extends Formulario
 {
-    public function __construct() {
-        parent::__construct('FormEditorElimPeli', ['urlRedireccion' => 'editor.php']);//por ahora queda mas claro asi
+    private $id_pelicula;
+    //parametro id_pelicula
+    public function __construct($id_pelicula) {
+        parent::__construct('FormEditorElimPeli', ['urlRedireccion' => 'contenidoPelis.php']);//por ahora queda mas claro asi
+        $this->id_pelicula = $id_pelicula;
     }
+
     
     protected function generaCamposFormulario(&$datos)
     {
@@ -14,45 +18,33 @@ class FormEditorElimPeli extends Formulario
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
 
-        $peli = path\Pelicula::getPeliculas();
-        $selectPeli = "<select class='peli_titulo' name=titulo>" ;
-        ///"<option value="" selected disabled hidden>Choose here</option>";
-        foreach ($peli as $key => $value) {
-            $selectPeli.="<option value=$key> $value </option> ";
-
-        }
-        $selectPeli.="</select>";
-
+        //input type hidden
        // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $html = <<<EOF
         $htmlErroresGlobales
-            <fieldset> 
-            <legend>Eliminar una Pelicula</legend>
-                <div>
-                    $selectPeli 
-                </div>
-                <div>
-                    <button type="submit" name="eliminar">Eliminar</button>
-                </div>
-            </fieldset>
+        <div>
+            <input type="hidden" name ="eliminarPeli "value="$this->id_pelicula" />
+            <button type="submit" name="eliminar">Eliminar</button>
+        </div>
+           
         EOF;
         return $html;
     }
 
     protected function procesaFormulario(&$datos) //le llega el selectPeli
     {
-        $titulo = trim($datos['titulo'] ?? '');
-        $ruta = trim($datos['ruta_imagen'] ?? '');
+        // $titulo = trim($datos['titulo'] ?? '');
+        // = trim($datos['id_pelicula'] ?? '');
         //no restamos porque con el . salimos de la carpeta include y con la / vamos a img/...etc
         //$ruta2 = substr($ruta,2); //restamos
         
 
-        $borrar = path\Pelicula::eliminarPelicula($titulo, $ruta); //realmente le esta pasando el id
+        $borrar = path\Pelicula::eliminarPelicula($this->id_pelicula); //realmente le esta pasando el id
         
 
-       $vuelta = 'edit.php';
+       //$vuelta = 'edit.php';
 
-       return $vuelta;
+      // return $vuelta;
     }
 }
 
