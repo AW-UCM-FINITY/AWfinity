@@ -18,6 +18,11 @@ $contenidoPrincipal .=<<<EOS
          
 EOS;
 
+$formP = new FormEditorElimNoticia($_GET['tituloid']);
+$htmlFormElimNoticia = $formP->gestiona();
+
+
+
 $noticia=Noticia::buscaNoticiaID($_GET['tituloid'] );
 
         $contenidoPrincipal .=<<<EOS
@@ -40,11 +45,9 @@ if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
   <button type="submit" name="editarNoticia">Editar</button>
   </div>
   </form>
-  <form action="./borrarNoticia.php?tituloid={$_GET['tituloid']}" method="POST">
-  <div>
-  <button type="submit" name="BorrarNoticia">Borrar</button>
-  </div>
-  </form>
+
+  $htmlFormElimNoticia
+  
 EOS;
 }
 $contenidoPrincipal .=<<<EOS

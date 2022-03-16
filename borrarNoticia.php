@@ -17,10 +17,13 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 	EOS;
 }else{
 	$sidebar = "si";
-    $resul = path\Noticia::eliminarNoticia($_GET['tituloid']);
+
+    
     if($resul){
         $contenidoPrincipal .= <<<EOS
+
         <h1>Consola de Edición de Contenido</h1>
+        $htmlFormElimNoticia
         <p>HAS BORRADO LA NOTICIA CORRECTAMENTE</p>
         
         EOS;

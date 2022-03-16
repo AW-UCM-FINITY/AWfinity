@@ -16,8 +16,8 @@ class Noticia{
 
 
  //Constructor
- private function __construct( $titulo, $subtitulo, $imagenNombre, $contenidos, $fechaPublicacion, $autor,$categoria,$etiquetas) {
-
+ private function __construct($titulo, $subtitulo, $imagenNombre, $contenidos, $fechaPublicacion, $autor,$categoria,$etiquetas,$idNoticia) {
+    $this->idNoticia=$idnoticia;
     $this->titulo=$titulo;
     $this->subtitulo=$subtitulo;
     $this->imagenNombre=$imagenNombre;
@@ -105,7 +105,7 @@ public static function getTituloNoticia(){
     $arrayNoticias = array();
 
     if($consulta->num_rows > 0){
-        while ($fila = mysqli_fetch_assoc($consulta)) {
+        while ($fila = $consulta->fetch_assoc()) {
             $arrayNoticias[]=$fila['titulo'];
         }
         $consulta->free();
@@ -115,13 +115,13 @@ public static function getTituloNoticia(){
 
 
 
-public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas ){
+public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas,$idNoticia ){
   
     $noticia = self::buscaNoticia($titulo);
     if ($noticia) {
         return false;
     }
-    $noticia = new Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+    $noticia = new Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas, $idNoticia);
 
     return self::inserta($noticia);
 }
@@ -200,7 +200,7 @@ public static function getNoticias(){
     $arrayNoticias = array();
 
     if($consulta->num_rows > 0){
-        while ($fila = mysqli_fetch_assoc($consulta)) {
+        while ($fila = $consulta->fetch_assoc()) {
             $arrayNoticias[]=$fila;
         }
         $consulta->free();
