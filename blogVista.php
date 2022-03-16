@@ -32,22 +32,25 @@ $noticia=Noticia::buscaNoticiaID($_GET['tituloid'] );
                             </div> 
                             <div><p> </p></div>
                             <p>{$noticia->getContenido()}</p>
-                            <form action="./editNoticia.php?idnoticia={$_GET['tituloid']}" method="POST">
-                            <div>
-                            <button type="submit" name="editarNoticia">Editar</button>
+EOS;
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+  $contenidoPrincipal .=<<<EOS
+  <form action="./editNoticia.php?idnoticia={$_GET['tituloid']}" method="POST">
+  <div>
+  <button type="submit" name="editarNoticia">Editar</button>
+  </div>
+  </form>
+  <form action="./borrarNoticia.php?tituloid={$_GET['tituloid']}" method="POST">
+  <div>
+  <button type="submit" name="BorrarNoticia">Borrar</button>
+  </div>
+  </form>
+EOS;
+}
+$contenidoPrincipal .=<<<EOS
                             </div>
-                            </form>
-                            <form action="./borrarNoticia.php?tituloid={$_GET['tituloid']}" method="POST">
-                            <div>
-                            <button type="submit" name="BorrarNoticia">Borrar</button>
                             </div>
-                            </form>
-                            </div>
-                            </div>
-                            
-                            
-                        
-          EOS;
+                            EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

@@ -140,7 +140,7 @@ class FormEditorEditNoticia extends Formulario
             if (move_uploaded_file($tempname, $folder)){
                 
                 
-                $noticiass = path\Noticia::actualiza($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                $noticiass = path\Noticia::actualiza($_GET['idnoticia'], $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
                 if($noticiass){
                     $this->errores['uploadfile'] =  "Image uploaded successfully";
                 }else{

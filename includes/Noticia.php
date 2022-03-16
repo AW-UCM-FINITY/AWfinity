@@ -254,12 +254,12 @@ public static function eliminarNoticia($idNoticia){
 
 
 /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
- public static function actualiza($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas){
+ public static function actualiza($idnoticia,$titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas){
     $result = false;
     $conn = Aplicacion::getInstance()->getConexionBd();
     $query=sprintf("UPDATE noticias SET noticias.titulo='%s', noticias.subtitulo='%s', noticias.imagenNombre='%s',
      noticias.contenido='%s', noticias.fechaPublicacion='%s', noticias.autor='%s', noticias.categoria='%s', noticias.etiquetas='%s'
-        WHERE noticias.titulo = '%s'"
+        WHERE noticias.idNoticia = '%s'"
         ,$conn->real_escape_string($titulo)
         , $conn->real_escape_string($subtitulo)
         , $conn->real_escape_string($imagenNombre)
@@ -268,7 +268,7 @@ public static function eliminarNoticia($idNoticia){
         , $conn->real_escape_string($autor)
         , $conn->real_escape_string($categoria)
         , $conn->real_escape_string($etiquetas)
-        , $conn->real_escape_string($titulo)
+        , $conn->real_escape_string($idnoticia)
     );
     if ( $conn->query($query) ) {
         $result = true;
