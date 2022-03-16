@@ -3,19 +3,24 @@ require_once __DIR__.'/includes/config.php';
 
 use es\ucm\fdi\aw as path;
 
-$titulo = isset($_GET['titulo']) ? htmlspecialchars(trim(strip_tags($_GET["titulo"]))) : 0;
-$titulo = isset($_POST['titulo']) ? htmlspecialchars(trim(strip_tags($_POST["titulo"]))) : $titulo;
+$id_pelicula = isset($_GET['id_pelicula']) ? htmlspecialchars(trim(strip_tags($_GET["id_pelicula"]))) : 0;
+//$id_pelicula = isset($_POST['id_pelicula']) ? htmlspecialchars(trim(strip_tags($_POST["id_pelicula"]))) : $id_pelicula;
 
 // $id_pelicula = $_GET['id_pelicula'];
 //$id_pelicula = $_GET['id_pelicula'];
 // print("este es el id");
-// print($id_pelicula);
+ 
+$pelicula = path\Pelicula::buscaPeliID($id_pelicula);
+$titulo = $pelicula->getTitulo();
 
-$pelicula = path\Pelicula::buscaPelicula($titulo);
+$formP = new path\FormEditorElimPeli($id_pelicula);
+$htmlFormElimPeli = $formP->gestiona();
 
-//$titulo = $pelicula->getTitulo();
-$director = $pelicula->getDirector();
+// $formP = new path\FormEditorEditarPeli($titulo);
+// $htmlFormEditarPeli = $formP->gestiona();
+
 $duracion = $pelicula->getDuracion();
+$director = $pelicula->getDirector();
 $genero = $pelicula->getGenero();
 $sinopsis= $pelicula->getSinopsis();
 $ruta = $pelicula->getRutaImagen();
@@ -42,33 +47,16 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
 
-// $contenidoPrincipal = <<<EOS
-// <div class="card">
-// 	<div class="card-header text-center">
-// 		<h2 id="Título"></h2>
-// 		<h6 id="Sinopsis"></h6>
-// 	</div>
-// 	<div class="row my-2">
-// 		<div class="col-md-3 offset-md-3">
-// 			<div class="row"><label><em>Titulo: </em></label></div>
-// 			<div class="row"><label><b>Director: </b></label></div>
-// 			<div class="row"><label><b>Duracion </b></label></div>
-// 			<div class="row"><label><b>Genero: </b></label></div>
-// 			<div class="row"><label><b>Sinopsis: </b></label></div>
-// 		</div>
-// 		<div class="col-md-2">
-// 			<div class="row"><label id="titulo">$titulo</label></div>
-// 			<div class="row"><label id="director">$director</label></div>
-// 			<div class="row"><label id="duracion">$duracion</label></div>
-// 			<div class="row"><label id="genero">$genero</label></div>
-// 			<div class="row"><label id="sinopsis"></label>$sinopsis</div>
-// 		</div>
-// 		<div class="col-md-3">
-// 			<img class="w-100 rounded mt-3" id="foto_receta" src=$cadena >
-// 		</div>
-// 	</div>
-// </div>
-// EOS;
+
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+    $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
+
+    $contenidoPrincipal .=" <div class='editar-buton'> $htmlFormElimPeli </div>";
+    //$contenidoPrincipal .=" <div class='editar-buton'> $htmlFormEditarPeli </div>";
+
+    $contenidoPrincipal .= "</div>"; //fin div = peli-editar
+
+  }
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
