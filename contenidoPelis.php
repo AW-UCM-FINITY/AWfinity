@@ -16,7 +16,18 @@ $contenidoPrincipal .=
     
 
 if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
-	$contenidoPrincipal .= "<a href='creaPeli.php'> Nueva Película</a> ";
+	//Antes de modificar
+	/*$contenidoPrincipal .= "<a href='creaPeli.php'> Nueva Película</a> ";*/
+
+	$contenidoPrincipal.=<<<EOS
+	<form action="./creaPeli.php" method="POST">
+	<div>
+	<button type="submit" name="creaPeli">Nueva Película</button>
+	</div>
+	</form>
+
+EOS;
+	
 }
 $contenidoPrincipal .= "</div>";
 //$formC = new path\FormEditorEditPeli();

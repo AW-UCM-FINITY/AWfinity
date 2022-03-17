@@ -65,7 +65,7 @@ ul, ol {
 }
 
 .nav li a:hover {
-	background-color:#ffffff;
+	background-color:#9f2863;
 }
 
 .nav li ul {
@@ -235,7 +235,7 @@ form button.enlace:hover {
 form button{
 	background-color: white; 
 	color: black; 
-	border: 2px solid #4CAF50;
+	border: 2px solid #9f2863;
 	padding: 9px 20px;
 	text-align: center;
 	text-decoration: none;
@@ -244,7 +244,7 @@ form button{
 	transition-duration: 0.4s;
 }
 form button:hover{
-	background-color: #4CAF50;
+	background-color: #9f2863;
   	color: white;
 }
 button, a.boton {
