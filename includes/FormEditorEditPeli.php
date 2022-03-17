@@ -155,7 +155,7 @@ class FormEditorEditPeli extends Formulario
             if (move_uploaded_file($tempname, $folder)){
                 
                 if(isset($this->id_pelicula)){//existe la pelicula
-                    $peli = path\Pelicula::actualiza($this->$id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $folder);
+                    $peli = path\Pelicula::actualiza($this->id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $folder);
                 }
                 else{//no existe la peli
                     $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                

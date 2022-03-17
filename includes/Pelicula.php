@@ -251,7 +251,7 @@ class Pelicula
             , $conn->real_escape_string($sinopsis)
             , $conn->real_escape_string($ruta_imagen)
         );
-        if ($conn->query($query) ) {
+        if ($conn->query($query)) {
             $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
