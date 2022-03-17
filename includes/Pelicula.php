@@ -56,6 +56,35 @@ class Pelicula
         return $this->ruta_imagen;
     }
 
+    /**Funciones set */
+    public function setId($id) {
+        $this->id_pelicula= $id;
+    }
+
+    public function setTitulo($titulo) {
+        $this->titulo = $titulo;
+    }
+
+    public function setDirector($director){
+        $this->director = $director;
+    }
+
+    public function setDuracion($duracion){
+        $this->duracion = $duracion;
+    }
+    
+    public function setGenero($genero) {
+        $this->genero = $genero;
+    }
+    
+    public function setSinopsis($sinopsis) {
+        $this->sinopsis = $sinopsis;
+    }
+
+    public function setRutaImagen($ruta_imagen) {
+        $this->ruta_imagen = $ruta_imagen;
+    }
+
 
     //Obtener lista de generos de las películas de la BD
     public static function getGenerosPeli(){
@@ -208,13 +237,20 @@ class Pelicula
 
         //borro de la bd
         $conn = Aplicacion::getInstance()->getConexionBd();	
+        $peli = Pelicula::buscapeliID($id_pelicula);
+        $ruta =$peli->getRutaImagen();
+
         $query = sprintf("DELETE FROM peliculas WHERE id_pelicula = $id_pelicula");
 		
         $rs = $conn->query($query);
         $check =false;
 		if($rs){
 			$check =true;
+            
             //borro la imagen fisica de la carpeta 
+            //$ruta =$peli->getRutaImagen();
+            unlink($ruta);  
+            //unlink("imagenes/thumbs/thumb_".$foto);  
                    
             //if (unlink("./img/pelis/titanic.png")){} esto sí funciona
 
@@ -239,17 +275,18 @@ class Pelicula
     }*/
 
     /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
-    public static function actualiza($id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen){
+    public static function actualiza($peli){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
+        $id_pelicula=$peli->getId();
         $query=sprintf("UPDATE peliculas P SET P.titulo='%s', P.director='%s', P.duracion='%d', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s' 
             WHERE P.id_pelicula = $id_pelicula"
-            , $conn->real_escape_string($titulo)
-            , $conn->real_escape_string($director)
-            , $conn->real_escape_string($duracion)
-            , $conn->real_escape_string($genero)
-            , $conn->real_escape_string($sinopsis)
-            , $conn->real_escape_string($ruta_imagen)
+            , $conn->real_escape_string($peli->getTitulo())
+            , $conn->real_escape_string($peli->getDirector())
+            , $conn->real_escape_string($peli->getDuracion())
+            , $conn->real_escape_string($peli->getGenero())
+            , $conn->real_escape_string($peli->getSinopsis())
+            , $conn->real_escape_string($peli->getRutaImagen())
         );
         if ($conn->query($query)) {
             $result = true;
