@@ -17,7 +17,7 @@ class Noticia{
 
  //Constructor
  private function __construct($titulo, $subtitulo, $imagenNombre, $contenidos, $fechaPublicacion, $autor,$categoria,$etiquetas,$idNoticia) {
-    $this->idNoticia=$idnoticia;
+    $this->idNoticia=$idNoticia;
     $this->titulo=$titulo;
     $this->subtitulo=$subtitulo;
     $this->imagenNombre=$imagenNombre;
@@ -118,7 +118,7 @@ public static function getTituloNoticia(){
 public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas,$idNoticia ){
   
     $noticia = self::buscaNoticia($titulo);
-    if ($noticia) {
+    if ($noticia) {//AQUI SI DA FALSE SE METE LA NOTIICA(PORQUE NO EXISTE DE ANTES)
         return false;
     }
     $noticia = new Noticia( $titulo, $subtitulo, $imagenNombre,$contenido, $fechaPublicacion, $autor,$categoria,$etiquetas, $idNoticia);
@@ -162,7 +162,7 @@ public static function buscaNoticiaID($idNoticia)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas'], $fila['idNoticia']);
         }
         $rs->free();
     } else {
@@ -181,7 +181,7 @@ public static function buscaNoticia($titulo)
     if ($rs) {
         $fila = $rs->fetch_assoc();
         if ($fila) {
-            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas']);
+            $result = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas'],$fila['idNoticia']);
         }
         $rs->free();
     } else {
@@ -201,7 +201,8 @@ public static function getNoticias(){
 
     if($consulta->num_rows > 0){
         while ($fila = $consulta->fetch_assoc()) {
-            $arrayNoticias[]=$fila;
+            $arrayNoticias[]=new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas'],$fila['idNoticia']);
+      
         }
         $consulta->free();
     }
@@ -226,13 +227,13 @@ public static function ordenarPorFecha($orden){ //1 orden mayor a menor, 2 orden
 }
 //geeksforgeeks.com
 public static function date_compare1($element1, $element2) {
-    $datetime1 = strtotime($element1['fechaPublicacion']);
-    $datetime2 = strtotime($element2['fechaPublicacion']);
+    $datetime1 = strtotime($element1->fechaPublicacion);
+    $datetime2 = strtotime($element2->fechaPublicacion);
     return $datetime1 - $datetime2;
 } 
 public static  function  date_compare2($element1, $element2) {
-    $datetime1 = strtotime($element1['fechaPublicacion']);
-    $datetime2 = strtotime($element2['fechaPublicacion']);
+    $datetime1 = strtotime($element1->fechaPublicacion);
+    $datetime2 = strtotime($element2->fechaPublicacion);
     return $datetime2 - $datetime1;
 }
 

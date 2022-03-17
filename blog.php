@@ -31,20 +31,20 @@ $contenidoPrincipal.=<<<EOS
 EOS;
 
 $noticias=Noticia::getNoticias();
-if(!$noticias==false){
+if(!($noticias===false)){
       foreach($noticias as $notic){
         $contenidoPrincipal .=<<<EOS
                       
        
-                           <div class="card" onclick="location.href='./blogVista.php?tituloid={$notic['idNoticia']}'">
-                            <h2>{$notic['titulo']}</h2>
-                            <h5>{$notic['subtitulo']}, {$notic['fechaPublicacion']}</h5>
+                           <div class="card" onclick="location.href='./blogVista.php?tituloid={$notic->getIdNoticia()}'">
+                            <h2>{$notic->getTitulo()}</h2>
+                            <h5>{$notic->getSubtitulo()}, {$notic->getFechaPublicacion()}</h5>
                             <div></div>
                             <div>
-                            <img class="imagNoticias" src="img/{$notic['imagenNombre']}" alt="Imagen">
+                            <img class="imagNoticias" src="img/{$notic->getImagenNombre()}" alt="Imagen">
                             </div> 
                             <div><p> </p></div>
-                            <p>{$notic['contenido']}</p>
+                            <p>{$notic->getContenido()}</p>
                             <p><b>Pincha en la noticia para seguir viendo..</b></p>
                             </div>
 
@@ -73,8 +73,8 @@ if(!$noticias==false){
     }
     $rondas=$rondas+1;
     $contenidoPrincipal.=<<<EOS
-                        <div >
-                        <img class="img2" src="img/{$notic['imagenNombre']}" alt="Imagen">
+                        <div onclick="location.href='./blogVista.php?tituloid={$notic->getIdNoticia()}'">
+                        <img class="img2" src="img/{$notic->getImagenNombre()}" alt="Imagen">
                         </div>
 EOS;
    

@@ -29,5 +29,5 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 	EOS;
 }
 
-require __DIR__. '/includes/vistas/plantillas/plantillaEditor.php';
+require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

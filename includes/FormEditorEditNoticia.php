@@ -1,26 +1,49 @@
 <?php
 namespace es\ucm\fdi\aw;
-use es\ucm\fdi\aw as path;
 
 class FormEditorEditNoticia extends Formulario
 {
-    public function __construct() {
-        parent::__construct('FormEditorEditNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'editNoticia.php']);//por ahora queda mas claro asi
+    private $idNoticia;
+
+    public function __construct($idNoticia) {
+        // en funcion de si le esta pasando el id de la Noticia, va a ser crear o modificar
+        $this->idNoticia = $idNoticia;
+        
+        if(isset($this->idNoticia)){
+            
+            parent::__construct('FormEditorEditNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'blogVista.php?tituloid='.$this->idNoticia]);  //por ahora queda mas claro asi
+        }
+        else{
+            parent::__construct('FormEditorCreaNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'blog.php']);
+        }
     }
     
     protected function generaCamposFormulario(&$datos)
     {
+        if(isset($this->idNoticia)){
+            //modifica la noticia
+            $noticia=Noticia::buscaNoticiaID($this->idNoticia);
 
-        $noticia=Noticia::buscaNoticiaID($_GET['idnoticia']);
-
-        $titulo = $noticia->getTitulo() ?? '';
-        $subtitulo = $noticia->getSubtitulo() ?? '';
-        $contenido = $noticia->getContenido() ?? '';
-        $fecha = $noticia->getFechaPublicacion() ?? '';
-        $autor = $noticia->getAutor() ?? '';
-        $categoria = $noticia->getCategoria() ?? '';
-        $uploadfile = $datos['uploadfile'] ?? '';
-        $etiquetas = $noticia->getEtiquetas() ?? '';
+            $titulo = $noticia->getTitulo() ?? '';
+            $subtitulo = $noticia->getSubtitulo() ?? '';
+            $contenido = $noticia->getContenido() ?? '';
+            $fecha = $noticia->getFechaPublicacion() ?? '';
+            $autor = $noticia->getAutor() ?? '';
+            $categoria = $noticia->getCategoria() ?? '';
+            $uploadfile = $datos['uploadfile'] ?? '';
+            $etiquetas = $noticia->getEtiquetas() ?? '';
+        }
+        else{
+            // crea la noticia
+            $titulo = $datos['titulo'] ?? '';
+            $subtitulo = $datos['subtitulo'] ?? '';
+            $contenido = $datos['contenido'] ?? '';
+            $fecha = $datos['fecha'] ?? '';
+            $autor = $datos['autor'] ?? '';
+            $categoria = $datos['categoria'] ?? '';
+            $uploadfile = $datos['uploadfile'] ?? '';
+            $etiquetas = $datos['etiquetas']?? ''; 
+        }
         //Categoria
         $categorias = Noticia::getCategoriaNoticia();
         $selectNoticia = "<select class='noticia_categoria' name=categoria>" ;
@@ -35,10 +58,19 @@ class FormEditorEditNoticia extends Formulario
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['titulo', 'subtitulo', 'contenido', 'fecha', 'autor','categoria', 'uploadfile'], $this->errores, 'span', array('class' => 'error'));
 
+        if(isset($this->idNoticia)){
+            $funcionalidad = "modificación";
+            $textoBoton = "modificar";
+        } 
+        else{
+            $funcionalidad = "creación";
+            $textoBoton = "crear";
+        } 
+
         $html = <<<EOF
         $htmlErroresGlobales
         <fieldset>
-            <legend>Datos para la modificacion de Noticia</legend>
+            <legend>Datos para la {$funcionalidad} de Noticia</legend>
             <div>
                 <label for="titulo">Titulo:</label>
                 <input id="titulo" type="text" name="titulo" value="$titulo" />
@@ -56,7 +88,7 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="fecha">Fecha (dd/mm/aa):</label>
-                <input id="fecha" type="text" name="fecha" value="$fecha" />
+                <input id="fecha" type="date" name="fecha" value="$fecha" required />
                 {$erroresCampos['fecha']}
             </div>
             <div>
@@ -68,7 +100,7 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="contenido">Contenido:</label>
-                <textarea rows=5 cols=50 name="contenido" required> {$contenido}</textarea>
+                <textarea rows=5 cols=50 name="contenido" required>{$contenido}</textarea>
                 {$erroresCampos['contenido']}
             </div>
             <div>
@@ -77,7 +109,7 @@ class FormEditorEditNoticia extends Formulario
                 {$erroresCampos['uploadfile']}
             </div>
             <div>
-                <button type="submit" name="registro">Modificar</button>
+                <button type="submit" name="registro">{$textoBoton}</button>
             </div>
         </fieldset>
         EOF;
@@ -89,10 +121,10 @@ class FormEditorEditNoticia extends Formulario
         $this->errores = [];
 
         $titulo = trim($datos['titulo'] ?? '');
-        /*$titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $titulo || mb_strlen($titulo) < 5) {
             $this->errores['titulo'] = 'El nombre de la noticia tiene que tener una longitud de al menos 5 caracteres.';
-        }*/
+        }
 
         $subtitulo = trim($datos['subtitulo'] ?? '');
         $subtitulo = filter_var($subtitulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -108,10 +140,12 @@ class FormEditorEditNoticia extends Formulario
         }
 
         $fechaPublicacion = trim($datos['fecha'] ?? '');
-    
-       $fechaPublicacion = filter_var($fechaPublicacion, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $fechaPublicacion  /*|| $fecha < */ ) {
-            $this->errores['fecha'] = 'La fecha de publicacion tiene que ser mayor que 0 minutos.';
+        
+        //validacion fecha publicacion
+        $hoy=date("Y-m-d");
+        $fechaPublicacion = filter_var($fechaPublicacion, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ( ! $fechaPublicacion ||$fechaPublicacion<$hoy || $fechaPublicacion>$hoy ) {
+            $this->errores['fecha'] = 'La fecha debe ser igual a la de hoy';
         }
         
         $categoria = trim($datos['categoria'] ?? '');
@@ -139,14 +173,18 @@ class FormEditorEditNoticia extends Formulario
             // Now let's move the uploaded image into the folder: image
             if (move_uploaded_file($tempname, $folder)){
                 
-                
-                $noticiass = path\Noticia::actualiza($_GET['idnoticia'], $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
-                if($noticiass){
+                if(isset($this->idNoticia)){
+                    $noticiass = Noticia::actualiza($this->idNoticia, $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                }
+                else{
+                    $noticiass = Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas,NULL);
+                }
+              /*  if($noticiass){
                     $this->errores['uploadfile'] =  "Image uploaded successfully";
                 }else{
                     $this->errores['uploadfile'] = "Error no se ha metido la noticia";
                 }
-                
+                */
             }else{
                 $this->errores['uploadfile'] =  "Failed to upload image";
             }

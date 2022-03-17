@@ -5,7 +5,7 @@ use es\ucm\fdi\aw as path;
 class FormEditorElimNoticia extends path\Formulario
 {
 
-    private $idNoticia='';
+    private $idNoticia;
     
     public function __construct($idNoticiaa) {
         parent::__construct('FormEditorElimNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'blog.php']);//por ahora queda mas claro asi
@@ -15,13 +15,10 @@ class FormEditorElimNoticia extends path\Formulario
 
     protected function generaCamposFormulario(&$datos){
         $html=<<<EOS
-        <form id= action="./blog.php" method="POST">
-        <input type="hidden" name="idNoticia" value="$idNoticia">
-       
         <div>
-        <button type="submit" name="BorrarNoticia">Borrar</button>
+            <input type="hidden" name="eliminarNoticia" value="$this->idNoticia" />
+            <button type="submit" name="Eliminar">Eliminar</button>
         </div>
-        </form>
         EOS;
         
         return $html;
@@ -29,20 +26,16 @@ class FormEditorElimNoticia extends path\Formulario
 
     protected function procesaFormulario(&$datos)
     {
-        $this->errores = [];
+        /*$this->errores = [];
         $idnot = trim($datos['idNoticia'] ?? '');
         $idnot = filter_var($idnot, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $idnot) {
             $this->errores['titulo'] = 'El nombre de la noticia tiene que tener una longitud de al menos 5 caracteres.';
-        }
+        }*/
        
                 
-                $noticiass = path\Noticia::eliminaNoticia($idnot);
-                if($noticiass){
-                    $this->errores['eliminaNoticia'] =  "Noticia borrada correctamente";
-                }else{
-                    $this->errores['eliminaNoticia'] = "Noticia no borrada correctamente";
-                }
+                $borrarNoticia = path\Noticia::eliminarNoticia($this->idNoticia);
+                
                 
           
      }

@@ -6,7 +6,9 @@ use es\ucm\fdi\aw as path;
 $tituloPagina = 'Editar Noticias';
 $claseArticle = 'FormEditNoticia';
 
-$formN = new path\FormEditorEditNoticia();
+$id_noticia = htmlspecialchars(trim(strip_tags($_GET['idnoticia'])));
+
+$formN = new path\FormEditorEditNoticia($id_noticia);
 $htmlFormEditNoticia = $formN->gestiona();
 
 
@@ -25,5 +27,5 @@ if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
 	EOS;
 }
 
-require __DIR__. '/includes/vistas/plantillas/plantillaEditor.php';
+require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
