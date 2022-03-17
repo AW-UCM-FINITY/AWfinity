@@ -9,7 +9,7 @@ class FormEditorEditPeli extends Formulario
     public function __construct($id_pelicula) {
 
         $this->id_pelicula = $id_pelicula;
-        
+       
         if(isset($this->id_pelicula)){ //si existe el id -> actualizamos
             
             parent::__construct('FormEditorEditPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'peliVista.php?id_pelicula='.$this->id_pelicula]);  
@@ -27,14 +27,14 @@ class FormEditorEditPeli extends Formulario
         if(isset($this->id_pelicula)){ //si existe el id -> actualizamos
             //buscamos la pelicula para obtener atributos
             $peli= path\Pelicula::buscapeliID($this->id_pelicula);
-
+            
             $titulo = $peli->getTitulo() ?? '';
             $director = $peli->getDirector() ?? '';
             $duracion = $peli->getDuracion() ?? '';
             $genero = $peli->getGenero() ?? '';
             $sinopsis = $peli->getSinopsis() ?? '';
-            //$ruta_imagen = $peli->getRutaImagen() ?? '';
-            $uploadfile = $datos['uploadfile'] ?? '';       
+            $uploadfile = $peli->getRutaImagen() ?? '';
+            //$uploadfile = $datos['uploadfile'] ?? '';       
            
         }else{  //creamos
             $titulo = $datos['titulo'] ?? '';
@@ -51,8 +51,12 @@ class FormEditorEditPeli extends Formulario
         $peli = path\Pelicula::getGenerosPeli();
         $selectPeli = "<select class='peli_genero' name='genero'>" ;
         foreach ($peli as $key => $value) {
-            $selectPeli.="<option> $value </option> ";
-
+            if($value == $genero){
+                $selectPeli.="<option selected> $value </option> ";
+            }
+            else{
+                $selectPeli.="<option> $value </option> ";
+            }
         }
         $selectPeli.="</select>";
 
@@ -119,7 +123,7 @@ class FormEditorEditPeli extends Formulario
         if ( ! $titulo || mb_strlen($titulo) < 5) {
             $this->errores['titulo'] = 'El nombre de la pelicula tiene que tener una longitud de al menos 5 caracteres.';
         }
-
+        
         $director = trim($datos['director'] ?? '');
         $director = filter_var($director, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $director || mb_strlen($director) < 5) {
@@ -147,22 +151,44 @@ class FormEditorEditPeli extends Formulario
         //Imagen
         $filename = $_FILES['uploadfile']['name'];
         $tempname = $_FILES['uploadfile']['tmp_name'];    
-        
+
         $folder = RUTA_IMGS."/pelis/".$filename;
 
         if (count($this->errores) === 0) {
-            // Now let's move the uploaded image into the folder: image
-            if (move_uploaded_file($tempname, $folder)){
-                
+            if($filename != NULL){
+                // Now let's move the uploaded image into the folder: image
+                if (move_uploaded_file($tempname, $folder)){
+                    if(isset($this->id_pelicula)){//existe la pelicula
+                        $peli= path\Pelicula::buscapeliID($this->id_pelicula);
+                        $peli->setTitulo($titulo);
+                        $peli->setDirector($director);
+                        $peli->setDuracion($duracion);
+                        $peli->setGenero($genero);
+                        $peli->setSinopsis($sinopsis);
+                        $peli->setRutaImagen($folder);
+                        $peli = path\Pelicula::actualiza($peli);
+                    }
+                    else{//no existe la peli
+                        $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                
+                    }
+                }else{
+                    $this->errores['uploadfile'] =  "Failed to upload image";
+                }    
+            }
+            else{
                 if(isset($this->id_pelicula)){//existe la pelicula
-                    $peli = path\Pelicula::actualiza($this->id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $folder);
+                    $peli= path\Pelicula::buscapeliID($this->id_pelicula);
+                    $peli->setTitulo($titulo);
+                    $peli->setDirector($director);
+                    $peli->setDuracion($duracion);
+                    $peli->setGenero($genero);
+                    $peli->setSinopsis($sinopsis);
+                    $peli = path\Pelicula::actualiza($peli);
                 }
-                else{//no existe la peli
-                    $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                
+                else{
+                    $this->errores['uploadfile'] =  "Failed to upload image";
                 }
-            }else{
-                $this->errores['uploadfile'] =  "Failed to upload image";
-            }    
+            }
         }   
            
     }     //cierro procesa form
