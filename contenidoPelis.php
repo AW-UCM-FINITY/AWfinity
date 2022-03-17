@@ -12,11 +12,13 @@ $contenidoPrincipal .=  "<div class='contenidoPelis' id='contenidoPelis'>";
 $contenidoPrincipal .= 
 "<div class='tituloIndex' id ='tituloIndexPeliculas'>
     <h2>AWfinity </h2>
-	<h1><span>Películas</span> todos los géneros y más </h1>
+	<h1><span>Películas</span> todos los géneros y más </h1>";
     
-</div>";
 
-
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+	$contenidoPrincipal .= "<a href='creaPeli.php'> Nueva Película</a> ";
+}
+$contenidoPrincipal .= "</div>";
 //$formC = new path\FormEditorEditPeli();
 //$htmlFormEditPeli = $formC->gestiona();
 

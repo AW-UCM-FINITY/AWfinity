@@ -28,11 +28,12 @@ class FormEditorEditPeli extends Formulario
             //buscamos la pelicula para obtener atributos
             $peli= path\Pelicula::buscapeliID($this->id_pelicula);
 
-            $tit = $peli->getTitulo() ?? '';
-            $dir = $peli->getDirector() ?? '';
-            $dur = $peli->getDuracion() ?? '';
-            $sin = $peli->getSinopsis() ?? '';
-            $ruta_imagen = $peli->getRutaImagen() ?? '';
+            $titulo = $peli->getTitulo() ?? '';
+            $director = $peli->getDirector() ?? '';
+            $duracion = $peli->getDuracion() ?? '';
+            $genero = $peli->getGenero() ?? '';
+            $sinopsis = $peli->getSinopsis() ?? '';
+            //$ruta_imagen = $peli->getRutaImagen() ?? '';
             $uploadfile = $datos['uploadfile'] ?? '';       
            
         }else{  //creamos
@@ -42,14 +43,15 @@ class FormEditorEditPeli extends Formulario
             $genero = $datos['genero'] ?? '';
             $sinopsis = $datos['sinopsis'] ?? '';
             $uploadfile = $datos['uploadfile'] ?? '';
+            //$ruta_imagen = NULL;
 
         }
 
         //Generos
         $peli = path\Pelicula::getGenerosPeli();
-        $selectPeli = "<select class='peli_genero' name=genero>" ;
+        $selectPeli = "<select class='peli_genero' name='genero'>" ;
         foreach ($peli as $key => $value) {
-            $selectPeli.="<option > $value </option> ";
+            $selectPeli.="<option> $value </option> ";
 
         }
         $selectPeli.="</select>";
@@ -73,17 +75,17 @@ class FormEditorEditPeli extends Formulario
             <legend>Datos para el registro la $funcionalidad de Película</legend>
             <div>
                 <label for="titulo">Titulo de la pelicula:</label>
-                <input id="titulo" type="text" name="titulo" value="$tit" />
+                <input id="titulo" type="text" name="titulo" value="$titulo" />
                 {$erroresCampos['titulo']}
             </div>
             <div>
                 <label for="director">Director:</label>
-                <input id="director" type="text" name="director" value="$dir" />
+                <input id="director" type="text" name="director" value="$director" />
                 {$erroresCampos['director']}
             </div>
             <div>
                 <label for="duracion">Duracion (min):</label>
-                <input id="duracion" type="number" name="duracion" value="$dur" />
+                <input id="duracion" type="number" name="duracion" value="$duracion" />
                 {$erroresCampos['duracion']}
             </div>
             <div>
@@ -92,17 +94,16 @@ class FormEditorEditPeli extends Formulario
             </div>
             <div>
                 <label for="sinopsis">Sinopsis:</label>
-                <textarea rows= 5 cols= 50 name="sinopsis" value="" required>$sin</textarea>
+                <textarea rows= 5 cols= 50 name="sinopsis" value="" required>$sinopsis</textarea>
                 {$erroresCampos['sinopsis']}
             </div>
             <div>
                 <label for="imagen">Fichero de imagen:</label>
-                <img class="imgEdit" src="{$ruta_imagen}" alt="Portada">
-                <input type="file" name="uploadfile" value="$ruta_imagen" />
+                <input type="file" name="uploadfile"/>
                 {$erroresCampos['uploadfile']}
             </div>
             <div>
-                <button type="submit" name="registro">$textoBoton</button>
+                <button type="submit" name="modificar">$textoBoton</button>
             </div>
         </fieldset>
         EOF;
@@ -148,46 +149,29 @@ class FormEditorEditPeli extends Formulario
         $tempname = $_FILES['uploadfile']['tmp_name'];    
         
         $folder = RUTA_IMGS."/pelis/".$filename;
-        
+
         if (count($this->errores) === 0) {
-            if(isset($this->id_pelicula)){
-                if($ruta_imagen == $folder){
-                    $peli = path\Pelicula::actualiza($this->$id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen);
-                }
-                elseif (move_uploaded_file($tempname, $folder)){
+            // Now let's move the uploaded image into the folder: image
+            if (move_uploaded_file($tempname, $folder)){
+                
+                if(isset($this->id_pelicula)){//existe la pelicula
                     $peli = path\Pelicula::actualiza($this->$id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $folder);
                 }
-            }
-            else{
-                $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                
-            }
-        }else{
-            $this->errores['uploadfile'] =  "Failed to upload image";
-        }
-
-        // // Now let's move the uploaded image into the folder: image
-        // if($ruta_imagen == $folder){
-            
-        // }
-        // elseif (move_uploaded_file($tempname, $folder)){
-        //     if(isset($this->id_pelicula)){
-        //         $peli = path\Pelicula::actualiza($this->$id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $folder);
-        //     }
-        //     else{
-        //         $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                
-        //     }
-        //         //$this->errores['uploadfile'] =  "Image uploaded successfully";
-        // }
-            
+                else{//no existe la peli
+                    $peli = path\Pelicula::crea($titulo, $director, $duracion, $genero, $sinopsis, $folder);                
+                }
+            }else{
+                $this->errores['uploadfile'] =  "Failed to upload image";
+            }    
+        }   
            
     }     //cierro procesa form
 }  //class
-
-
-
 //<div>
 // <label for="imagen">Fichero de imagen:</label>
 // <img class="imgEdit" src="{$ruta_imagen}" alt="Portada">
 // <input type="file" name="uploadfile" value="$ruta_imagen" />
 // {$erroresCampos['uploadfile']}
 // </div>
+
+?>

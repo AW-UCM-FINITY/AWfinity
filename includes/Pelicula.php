@@ -239,10 +239,10 @@ class Pelicula
     }*/
 
     /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
-    private static function actualiza($id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen){
+    public static function actualiza($id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE peliculas P SET P.titulo = '%s', P.director='%s', P.duracion='%d', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s' 
+        $query=sprintf("UPDATE peliculas P SET P.titulo='%s', P.director='%s', P.duracion='%d', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s' 
             WHERE P.id_pelicula = $id_pelicula"
             , $conn->real_escape_string($titulo)
             , $conn->real_escape_string($director)
@@ -252,7 +252,7 @@ class Pelicula
             , $conn->real_escape_string($ruta_imagen)
         );
         if ($conn->query($query) ) {
-          
+            $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
