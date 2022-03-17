@@ -17,8 +17,8 @@ $contenidoPrincipal .=
 </div>";
 
 
-$formC = new path\FormEditorCreaPeli();
-$htmlFormCreaPeli = $formC->gestiona();
+//$formC = new path\FormEditorEditPeli();
+//$htmlFormEditPeli = $formC->gestiona();
 
 
 

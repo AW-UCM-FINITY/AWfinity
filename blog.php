@@ -40,8 +40,8 @@ if(!($noticias===false)){
                             <h2>{$notic->getTitulo()}</h2>
                             <h5>{$notic->getSubtitulo()}, {$notic->getFechaPublicacion()}</h5>
                             <div></div>
-                            <div>
-                            <img class="imagNoticias" src="img/{$notic->getImagenNombre()}" alt="Imagen">
+                            <div><img
+                             class="imagNoticias" src="img/{$notic->getImagenNombre()}" alt="Imagen">
                             </div> 
                             <div><p> </p></div>
                             <p>{$notic->getContenido()}</p>

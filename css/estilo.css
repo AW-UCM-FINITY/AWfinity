@@ -202,6 +202,14 @@ select.peli_titulo{
 	display: none;
 }
 
+/*CSS FORMULARIOS*/
+
+
+form#FormEditorEditPeli fieldset div img.imgEdit {
+	width: 150px;
+	height: 200px;
+}
+
 form.inline {
 	display: inline;
 }

@@ -85,7 +85,7 @@ class Pelicula
      private static function inserta($peli){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("INSERT INTO peliculas (titulo, director, duracion, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')"
+        $query = sprintf("INSERT INTO peliculas (titulo, director, duracion, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')"
             , $conn->real_escape_string($peli->titulo)
             , $conn->real_escape_string($peli->director)
             , $conn->real_escape_string($peli->duracion)
@@ -239,26 +239,25 @@ class Pelicula
     }*/
 
     /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
-   /* private static function actualiza($peli){
+    private static function actualiza($id_pelicula, $titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE peliculas P SET P.titulo = '%s', P.director='%s', P.duracion='%s', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s'' 
-            WHERE P.id_pelicula = %d"
-            , $conn->real_escape_string($peli->titulo)
-            , $conn->real_escape_string($peli->director)
-            , $conn->real_escape_string($peli->duracion)
-            , $conn->real_escape_string($peli->genero)
-            , $conn->real_escape_string($peli->sinopsis)
-            , $conn->real_escape_string($peli->ruta_imagen)
-            , $peli->id_pelicula
+        $query=sprintf("UPDATE peliculas P SET P.titulo = '%s', P.director='%s', P.duracion='%d', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s' 
+            WHERE P.id_pelicula = $id_pelicula"
+            , $conn->real_escape_string($titulo)
+            , $conn->real_escape_string($director)
+            , $conn->real_escape_string($duracion)
+            , $conn->real_escape_string($genero)
+            , $conn->real_escape_string($sinopsis)
+            , $conn->real_escape_string($ruta_imagen)
         );
-        if ( $conn->query($query) ) {
+        if ($conn->query($query) ) {
           
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
         return $peli;
-    }*/
+    }
 }
 
 ?>

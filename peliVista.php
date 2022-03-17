@@ -16,6 +16,11 @@ $titulo = $pelicula->getTitulo();
 $formP = new path\FormEditorElimPeli($id_pelicula);
 $htmlFormElimPeli = $formP->gestiona();
 
+
+$formP = new path\FormEditorEditPeli($id_pelicula);
+$htmlFormEditPeli = $formP->gestiona();
+
+
 // $formP = new path\FormEditorEditarPeli($titulo);
 // $htmlFormEditarPeli = $formP->gestiona();
 
@@ -52,10 +57,8 @@ if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
     $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
 
     $contenidoPrincipal .=" <div class='editar-buton'> $htmlFormElimPeli </div>";
-    //$contenidoPrincipal .=" <div class='editar-buton'> $htmlFormEditarPeli </div>";
-
+    $contenidoPrincipal .=" <div class='editar-buton'><a href='editPeli.php?id_pelicula=$id_pelicula'> </div>";
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
-
   }
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
