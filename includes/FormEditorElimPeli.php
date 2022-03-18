@@ -23,7 +23,7 @@ class FormEditorElimPeli extends Formulario
         $html = <<<EOF
         $htmlErroresGlobales
         <div>
-            <input type="hidden" name ="eliminarPeli "value="$this->id_pelicula" />
+            <input type="hidden" name ="eliminarPeli" value="$this->id_pelicula" />
             <button type="submit" name="eliminar">Eliminar</button>
         </div>
            
