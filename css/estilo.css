@@ -354,32 +354,32 @@ a.deshabilitado {
 
 /* CSS PARA LA VISTA DE LAS PELÍCULAS INDEX*/
 
-div#contenidoPelis.contenidoPelis{
+div.contenidoPelis{
 	padding-top: 50px;
 	padding-bottom: 200px;
 }
 
-div#tituloIndexPeliculas.tituloIndex h1{
+div.tituloIndex h1{
 	align-items: center;
 	font-size: 40px;
 	padding-bottom: 20px;
 }
-div#tituloIndexPeliculas.tituloIndex h2{
+div.tituloIndex h2{
 	align-items: center;
 	font-size: 20px;
 	padding-bottom: 20px;
 }
-div#tituloIndexPeliculas.tituloIndex span{
+div.tituloIndex span{
 	color: #9f2863;     /*Te has vuelto a ir*/
 }
 
-div#pelis.peliLista a img {
+div.peliLista a img {
     width: 230px;
 	height: 300px;
 	float: left;
 }
 
-div#pelisIndex {
+div.pelisIndex {
 	padding-top: 5px;
     padding-left: 15px;
     padding-right: 0px;
@@ -393,7 +393,7 @@ div#pelisIndex {
     ;
     align-items : center;
 }
-div#pelis.peliLista{
+div.peliLista{
 	grid-area: peli;
     align-items: center;
     display: grid;
@@ -404,7 +404,7 @@ div#pelis.peliLista{
 
 }
 
-div#lista-peli.tituloPeliIndex h3{
+div.tituloPeliIndex h3{
 	grid-area: titulo;
     align-items: center;
 	padding-top: 45px;
