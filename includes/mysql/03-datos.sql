@@ -1,19 +1,34 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-03-2022 a las 18:41:18
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.2
 
--- --------------------------------------------------------
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Estructura de tabla para la tabla `peliculas`
+-- Base de datos: `awfinity`
 --
 
-CREATE TABLE `peliculas` (
-  `id_pelicula` int(10) NOT NULL,
-  `titulo` varchar(20) NOT NULL,
-  `director` varchar(20) NOT NULL,
-  `duracion` int(10) NOT NULL,
-  `genero` enum('accion','anime','ciencia ficcion','comedia','drama','fantasia','musical','terror') NOT NULL,
-  `sinopsis` text NOT NULL,
-  `ruta_imagen` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`idNoticia`, `titulo`, `subtitulo`, `imagenNombre`, `contenido`, `fechaPublicacion`, `autor`, `categoria`, `etiquetas`) VALUES
+(31, 'Alma coin y las virtudes de esta villana', 'La mala no tan mala', 'alma.jpg', 'La presidenta Coin aparece por primera vez en Sinsajo. Ella es la líder de la rebelión, y la presidenta del Distrito 13. Ella asume el poder después de que la rebelión termina. Katniss se da cuenta de su hambre de poder. Ella es muy egoísta, aunque trata de no parecerlo, como lo demuestra en numerosos actos en todo el libro. Algunos de estos actos incluyen ordenar el asesinato de Katniss, el bombardeo a los niños en el Capitolio lo que mata no sólo a los niños, sino también algunos médicos rebeldes, entre ellos Primrose Everdeen, y matando a una gran cantidad de gente innecesariamente. También es muy injusta, ya que iba a enjuiciar a Peeta Mellark, Johanna Mason y a Enobaria sólo por quedarse en la arena. Ella es aún más despiadada que el presidente Snow en muchos aspectos. Como venganza por los malos tratos a los distritos, ella sugiere en hacer los 76º Juegos del Hambre, pero en este caso los tributos serán tomados de los niños del capitolio. Estos juegos fueron votados por los vencedores, donde la mayoría decidió que había que hacerlos. Pero los juegos nunca se llevaron acabo por el asesinato de Coin. Ella fue asesinada por una flecha disparada por Katniss Everdeen (en parte para vengar la muerte de Primrose Everdeen) durante la ejecución del ex presidente de Panem, el presidente Snow. En Los Juegos del Hambre: Sinsajo - parte 1, Katniss pregunta a Prim por la escasez de niños, a lo que Prim responde que muchos de ellos murieron en una epidemia de varicela, incluyendo al esposo y a la hija de la presidenta Coin.', '2022-03-18', 'Mohammed', 'noticia', ''),
+(32, 'Emma Watson estrena pel&iacute;cula en Fox', 'La maga novel se embarca en una nueva historia', 'emma.jpg', 'Ya ha visto la luz la primera imagen del nuevo filme de Emma Watson, Colonia. En el fotograma publicado por la productora Majestic Filmproduktion podemos ver a la actriz siendo intimidada por su compañero de reparto Mikael Nyqvist, actor de la trilogía Millenium.\r\nTambién se aprecia la ambientación de los años 70, ya que la película dirigida por el director Florian Gallenberger, quien ganó un Oscar por su cortometraje Quiero ser, cuenta la historia de una pareja de alemanes que son separados durante la dictadura de Pinochet en Chile. Cuando Daniel (Daniel Brühl, El hombre más buscado) es secuestrado, su esposa Lena (Watson) deberá unirse a una iglesia muy peligrosa para rescatarlo.\r\n\r\nEl equpo de Colonia acaba de terminar de rodar en Luxemburgo y ahora la producción se trasladará a Alemania antes de terminar en Sudamérica. Un largo camino hasta su estreno oficial programado para octubre de 2015.', '2022-03-18', 'Jie Gao', 'noticiaEstreno', ''),
+(33, 'Kate Winslet sera la anfitriona de la inauguraci&oacute;n de DivergentPark', 'El nuevo parque que revolucionara Castilla y Leon', 'kate.jpg', 'Kate Elizabeth Winslet (CBE ) nació el 5 de octubre de 1975, en Reading, Inglaterra. Es una actriz británica de cine y cantante ocasional. En 2008 ganó el premio Óscar a la mejor actriz por su papel en The Reader, convirtiéndose en la actriz más joven en conseguir más nominaciones en dicho premio. Logró gran reconocimiento gracias a su participación en Sense and Sensibility en 1995, y la fama mundial por Titanic en 1997. Desde el año 2000, sus interpretaciones continuaron teniendo buenos comentarios de los críticos de cine, y ha sido nominada para varios premios por su trabajo en pelíclas como Quills (2000), Iris (2001), Eternal Sunshine of the Spotless Mind (2004), Finding Neverland (2004), Little Children (2006), The Reader (2008) y Revolutionary Road (2008). La revista New York la nombró como la \"mejor actriz anglo-parlante de su generación\".\r\n\r\nInterpreta a Jeanine Matthews en la adaptación de la novela Divergente escrita por Veronica Roth.', '2022-03-18', 'Sandra Sanchez', 'noticiaEvento', '');
 
 --
 -- Volcado de datos para la tabla `peliculas`
@@ -32,4 +47,18 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `director`, `duracion`, `gener
 (26, 'El Rito', 'Mikael H&aring;fstr&', 112, 'terror', 'Michael Kovak (Colin O\'Donoghue), un decepcionado seminarista norteamericano, decide asistir a un curso de exorcismos en el Vaticano, lo que hará que su fe se tambalee y tenga que enfrentarse a terribles fuerzas demoniacas. En Roma conocerá al Padre Lucas (Hopkins), un sacerdote poco ortodoxo que le enseñará el lado oscuro de la Fe.', './img/pelis/rito.png'),
 (27, 'Mi vecino Totoro', 'Hayao Miyazaki', 86, 'anime', 'En los años 50, una familia japonesa se traslada al campo. Las dos hijas, Satsuki y Mei, entablan amistad con Totoro, un espíritu del bosque. El padre es un profesor universitario que estimula la imaginación de sus hijas relatándoles fábulas e historias mágicas sobre duendes, fantasmas y espíritus protectores de los hogares, mientras la madre se encuentra enferma en el hospital.', './img/pelis/totoro.png'),
 (28, 'La tumba de las luci', 'Isao Takahata', 93, 'anime', 'Segunda Guerra Mundial (1939-1945). Seita y Setsuko son hijos de un oficial de la marina japonesa que viven en Kobe. Un día, durante un bombardeo, no consiguen llegar a tiempo al búnker donde su madre los espera. Cuando después buscan a su madre, la encuentran malherida en la escuela, que ha sido convertida en un hospital de urgencia.', './img/pelis/tumbaluciernagas.png'),
-(29, 'Evangelion: 3.0+1.0', 'Hideaki Anno', 154, 'anime', 'Cuarto y último volumen de La Reconstrucción de Evangelion. Misato y su grupo anti-NERV, Wille, llegan a una París roja por la nucleización. La tripulación de la nave Wunder aterriza en una torre de contención con solo 720 seg para reestablecer la ciudad. Cuando una horda de Evas NERV aparece, la mejorada Unidad Eva 8 debe interceptarlos. Mientras, Shinji, Asuka y Rei merodean por Japón.', './img/pelis/evangelion3.png');
+(39, 'La Tribu', 'Fernando Colomo', 90, 'comedia', 'Virginia (Carmen Machi), limpiadora de profesión y “streetdancer” vocacional, recupera al hijo que dio en adopción: Fidel (Paco León), un ejecutivo que lo ha perdido todo, incluida la memoria. Junto a “Las Mamis”, el extravagante grupo de baile que forman las compañeras de Virginia, madre e hijo descubrirán que a pesar de venir de mundos muy diferentes, ambos llevan el ritmo en la sangre.', './img/pelis/latribu.png');
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_user`, `nombreUsuario`, `nombre`, `apellido`, `password`, `rol_user`) VALUES
+(6, 'Admin', 'Administrador', 'Administrador', '$2y$10$KggiRmk9OI39yyBdNJw48.FTfGkKVEJLoNgYrfWMf0k4RbTCRCnxC', 'admin'),
+(7, 'Editor', 'Editor', 'Editor', '$2y$10$CKrc4uVMK8j9xikFAKG0FuxmnW9CCiBMSNICSKu9xPdC9Nowrw.9q', 'editor'),
+(8, 'User1', 'Usuario', 'Usuario', '$2y$10$WNEu6ImVGgVr0tGzuDCsmuit20sQpmAHfgbFqXDxeAbUb5bk.BQj.', 'editor');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

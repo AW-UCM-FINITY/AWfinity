@@ -1,0 +1,3 @@
+# Privilegios para `awfinityuser`@`localhost`
+
+GRANT ALL PRIVILEGES ON *.* TO `awfinityuser`@`localhost` IDENTIFIED BY PASSWORD '*8621C7F6E228A9A554AF5C83A1DD8AC689657B20' WITH GRANT OPTION;
