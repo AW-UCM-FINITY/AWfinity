@@ -42,7 +42,7 @@ foreach ($arrayPelis as $key => $value) {
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
 	$id_pelicula = $value->getId();
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$ruta></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$ruta></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -56,7 +56,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -70,7 +70,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -84,7 +84,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -99,7 +99,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -113,7 +113,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -128,7 +128,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";
@@ -142,7 +142,7 @@ foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
 	 $cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src=$cadena></a>";
+	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
 $contenidoPrincipal .= "</div>";

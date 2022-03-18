@@ -38,7 +38,7 @@ $contenidoPrincipal = "";
 
 $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
 
-$contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'> <img src=$cadena /> </div>";
+$contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'> <img alt='imgPeli' src=$cadena /> </div>";
 
 $contenidoPrincipal .= "<div class='peli-datos-card' id ='peli-datos'>";
 
