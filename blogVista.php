@@ -17,7 +17,8 @@ $contenidoPrincipal .=<<<EOS
          
 EOS;
 
-$id_noticia = $_GET['tituloid'];//falta lo dee html especial characters!!!!!!!
+$id_noticia =isset($_GET['tituloid']) ? htmlspecialchars(trim(strip_tags($_GET["tituloid"]))) : 0;
+
 
 $formP = new FormEditorElimNoticia($id_noticia);
 $htmlFormElimNoticia = $formP->gestiona();
@@ -40,18 +41,17 @@ $contenidoPrincipal .=<<<EOS
     <p>{$noticia->getContenido()}</p>
 EOS;
 
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+// cuando es editor muestra el boton para editar blog
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
   $contenidoPrincipal .=<<<EOS
-  <form action="./editNoticia.php?idnoticia={$id_noticia}" method="POST">
-  <div>
-  <button type="submit" name="editarNoticia">Editar</button>
-  </div>
-  </form>
+  
+  <div class='butonGeneral'> <a href='editNoticia.php?idnoticia={$id_noticia}'> Editar </a> </div>
 
   $htmlFormElimNoticia
   
 EOS;
 }
+
 $contenidoPrincipal .=<<<EOS
                             </div>
                             </div>

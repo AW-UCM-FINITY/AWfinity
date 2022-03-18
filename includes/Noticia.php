@@ -92,6 +92,7 @@ public static function getCategoriaNoticia(){
     foreach( explode(',', $matches[1]) as $value ) { 
         $enum[] = trim( $value, "'" ); 
     } 
+    $rs->free();
     return $enum;
 }
 
@@ -149,6 +150,7 @@ public static function crea($titulo, $subtitulo, $imagenNombre, $contenido, $fec
     } else {
         error_log("Error BD ({$conn->errno}): {$conn->error}");
     }
+    
     return $result;
 }
 
@@ -257,13 +259,22 @@ public static function eliminarNoticia($idNoticia){
 /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
  public static function actualiza($idnoticia,$titulo, $subtitulo, $imagenNombre, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas){
     $result = false;
+    $imagenNombree='';
+    if($imagenNombre==NULL){
+        $not=self::buscaNoticiaID($idnoticia);
+        $imagenNombree=$not->imagenNombre;
+    }else{
+        $imagenNombree= $imagenNombre;
+    }
     $conn = Aplicacion::getInstance()->getConexionBd();
+   
+    
     $query=sprintf("UPDATE noticias SET noticias.titulo='%s', noticias.subtitulo='%s', noticias.imagenNombre='%s',
      noticias.contenido='%s', noticias.fechaPublicacion='%s', noticias.autor='%s', noticias.categoria='%s', noticias.etiquetas='%s'
         WHERE noticias.idNoticia = '%s'"
         ,$conn->real_escape_string($titulo)
         , $conn->real_escape_string($subtitulo)
-        , $conn->real_escape_string($imagenNombre)
+        , $conn->real_escape_string($imagenNombree)
         , $conn->real_escape_string($contenido)
         , $conn->real_escape_string($fechaPublicacion)
         , $conn->real_escape_string($autor)

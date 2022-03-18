@@ -15,9 +15,9 @@ $contenidoPrincipal .=
 	<h1><span>Películas</span> todos los géneros y más </h1>";
     
 
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
 	//Antes de modificar
-	$contenidoPrincipal .= "<a href='creaPeli.php'> Nueva Película</a> ";
+	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
 /*	$contenidoPrincipal.=<<<EOS
 	<form action="./creaPeli.php" method="POST">
 	<div>

@@ -13,16 +13,15 @@ $contenidoPrincipal .=<<<EOS
           <div class="header2">
             <h2>Blog AWfinity</h2>
 EOS;
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
-  $contenidoPrincipal.=<<<EOS
-        <form action="./creaNoticia.php" method="POST">
-        <div>
-        <button type="submit" name="crearNoticia">Crear</button>
-        </div>
-        </form>
 
+// cuando es editor muestra el boton para crear blog
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
+  $contenidoPrincipal.=<<<EOS
+
+    <div class='butonGeneral'> <a href='creaNoticia.php'> Crear </a> </div>
 EOS;
 }
+
 $contenidoPrincipal.=<<<EOS
           </div>
 
@@ -31,7 +30,8 @@ $contenidoPrincipal.=<<<EOS
 EOS;
 
 $noticias=Noticia::getNoticias();
-if(!($noticias===false)){
+
+if(!($noticias==false)){
       foreach($noticias as $notic){
         $contenidoPrincipal .=<<<EOS
                       
@@ -52,23 +52,25 @@ if(!($noticias===false)){
                         
           EOS;
       }
- $contenidoPrincipal.=<<<EOS
+
+  $contenidoPrincipal.=<<<EOS
                        </div>
                        <div class="columnaDer">
                         <div class="card">
                           <h2>About Us</h2>
                           <div >
-                          <img class="imagAboutus" src="img/logan.png" alt="Imagen">
+                          <img class="imagAboutus" src="img/logan.jpeg" alt="Imagen">
                           </div>
                           <p>El blog que tu quieres, con el mejor contenido ofrecido por los mejores editores de contenidos del mundo de la cinematografía</p>
                         </div>
                         <div class="card">
                         <h3>Ultimas noticias!</h3>
     EOS;
+  
   $ultimasNoticias=Noticia::ordenarPorFecha(1);
   $rondas=0;
   foreach($ultimasNoticias as $notic){
-    if($rondas==3){
+    if($rondas===3){
       break;
     }
     $rondas=$rondas+1;
@@ -76,7 +78,7 @@ if(!($noticias===false)){
                         <div onclick="location.href='./blogVista.php?tituloid={$notic->getIdNoticia()}'">
                         <img class="img2" src="img/{$notic->getImagenNombre()}" alt="Imagen">
                         </div>
-EOS;
+      EOS;
    
   }
   $contenidoPrincipal.=<<<EOS

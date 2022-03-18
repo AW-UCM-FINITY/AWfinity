@@ -6,7 +6,8 @@ use es\ucm\fdi\aw as path;
 $tituloPagina = 'Editar Noticias';
 $claseArticle = 'FormEditNoticia';
 
-$id_noticia = htmlspecialchars(trim(strip_tags($_GET['idnoticia'])));
+$id_noticia = isset($_GET['idnoticia']) ? htmlspecialchars(trim(strip_tags($_GET["idnoticia"]))) : 0;
+
 
 $formN = new path\FormEditorEditNoticia($id_noticia);
 $htmlFormEditNoticia = $formN->gestiona();

@@ -448,8 +448,25 @@ div.fila-dato{
 div#peli-editar.peli-editar-card{
 	display: block;
 }
-div.editar-buton{
+div.butonGeneral{
 	display: inline-block;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #9f2863;
+	padding: 9px 20px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	transition-duration: 0.4s;
+	border-radius: 4px;
+}
+div.butonGeneral:hover{
+	background-color: #9f2863;
+  	color: white;
 }
 
+div.butonGeneral a{
+	color: black; 
+	text-decoration:none;
+}
  /*FIN PARA LA VISTA DE 1 PELÍCULA*/

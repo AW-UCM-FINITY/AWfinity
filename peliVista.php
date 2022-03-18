@@ -53,12 +53,12 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
 
 
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true){
+if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
   
     $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
 
-    $contenidoPrincipal .=" <div class='editar-buton'> $htmlFormElimPeli </div>";
-    $contenidoPrincipal .=" <div class='editar-buton'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
+    $contenidoPrincipal .="$htmlFormElimPeli";
+    $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
 
 

@@ -9,12 +9,12 @@ class FormEditorEditNoticia extends Formulario
         // en funcion de si le esta pasando el id de la Noticia, va a ser crear o modificar
         $this->idNoticia = $idNoticia;
         
-        if(isset($this->idNoticia)){
-            
-            parent::__construct('FormEditorEditNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'blogVista.php?tituloid='.$this->idNoticia]);  //por ahora queda mas claro asi
+        if(isset($this->idNoticia)){    //si existe el id -> actualizamos
+            $urll='blogVista.php?tituloid='.$this->idNoticia;
+            parent::__construct('FormEditorEditNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => $urll]);  //por ahora queda mas claro asi
         }
-        else{
-            parent::__construct('FormEditorCreaNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' => 'blog.php']);
+        else{   //sino -> creamos
+            parent::__construct('FormEditorCreaNoticia', ['enctype' => 'multipart/form-data','urlRedireccion' =>  'blog.php']);
         }
     }
     
@@ -47,11 +47,19 @@ class FormEditorEditNoticia extends Formulario
         //Categoria
         $categorias = Noticia::getCategoriaNoticia();
         $selectNoticia = "<select class='noticia_categoria' name=categoria>" ;
+        
         foreach ($categorias as $key => $value) {
-            $selectNoticia.="<option value=$key> $value </option> ";
-
+            if($value == $categoria){
+                $selectNoticia.="<option selected> $value </option> ";
+            }
+            else{
+                $selectNoticia.="<option> $value </option> ";
+            }
         }
-        $selectNoticia.="</select>";
+       
+        
+        
+            $selectNoticia.="</select>";
 
         
         // Se generan los mensajes de error si existen.
@@ -105,13 +113,27 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="imagen">Fichero de imagen:</label>
-                <input type="file" name="uploadfile" value="" />
-                {$erroresCampos['uploadfile']}
+        EOF;
+        
+        if(isset($this->idNoticia)){
+            $html.=<<<EOF
+                <input type="file" name="uploadfile"  />
+            EOF;
+        }else{
+            $html.=<<<EOF
+                <input type="file" name="uploadfile"  required />
+            EOF;
+        }
+        
+        $html.=<<<EOF
+            
+            {$erroresCampos['uploadfile']}
+            
             </div>
             <div>
                 <button type="submit" name="registro">{$textoBoton}</button>
             </div>
-        </fieldset>
+            </fieldset>
         EOF;
         return $html;
     }
@@ -160,7 +182,7 @@ class FormEditorEditNoticia extends Formulario
             $this->errores['contenido'] = 'El contenido no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
         }
         $etiquetas='';
-        $etiquetas=trim($datos['etiquetas'] ?? '');
+        $etiquetas=trim($datos['etiquetas'] ?? '');//aun no es requerido implementarlo
         //Imagen
         $filename = $_FILES['uploadfile']['name'];
         $tempname = $_FILES['uploadfile']['tmp_name'];    
@@ -171,23 +193,27 @@ class FormEditorEditNoticia extends Formulario
         //print($tempname);
         if (count($this->errores) === 0) {
             // Now let's move the uploaded image into the folder: image
-            if (move_uploaded_file($tempname, $folder)){
-                
-                if(isset($this->idNoticia)){
-                    $noticiass = Noticia::actualiza($this->idNoticia, $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
-                }
-                else{
-                    $noticiass = Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas,NULL);
-                }
-              /*  if($noticiass){
-                    $this->errores['uploadfile'] =  "Image uploaded successfully";
-                }else{
-                    $this->errores['uploadfile'] = "Error no se ha metido la noticia";
-                }
-                */
+            if($filename==NULL){
+                        if(isset($this->idNoticia)){
+                            $noticiass = Noticia::actualiza($this->idNoticia, $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                        }else{
+                            $this->errores['uploadfile'] =  "Imagen no seleccionada";
+                        }
             }else{
-                $this->errores['uploadfile'] =  "Failed to upload image";
+                if (move_uploaded_file($tempname, $folder)){
+                        if(isset($this->idNoticia)){
+                            $noticiass = Noticia::actualiza($this->idNoticia, $titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas);
+                        }else{
+                            $noticiass = Noticia::crea($titulo, $subtitulo, $filename, $contenido, $fechaPublicacion, $autor,$categoria,$etiquetas,NULL);
+                        
+                        }
+                }else{
+                    $this->errores['uploadfile'] =  "Failed to uploadd image";
+                }
             }
-        }
+               
+
+            }
+        
     }
 }
