@@ -2,16 +2,15 @@
 namespace es\ucm\fdi\aw;
 use es\ucm\fdi\aw as path;
 
-class FormEditorElimPeli extends Formulario
+class FormEditorElimSerie extends Formulario
 {
-    private $id_pelicula;
-    //parametro id_pelicula
-    public function __construct($id_pelicula) {
-        parent::__construct('FormEditorElimPeli', ['urlRedireccion' => 'contenidoPelis.php']);//por ahora queda mas claro asi
-        $this->id_pelicula = $id_pelicula;
-    }
 
-    
+    private $id_serie;
+
+    public function __construct($id_serie) {
+        parent::__construct('FormEditorElimSerie', ['urlRedireccion' => 'contenidoSeries.php']);//por ahora queda mas claro asi
+        $this->id_serie = $id_serie;
+    }
     protected function generaCamposFormulario(&$datos)
     {
 
@@ -23,7 +22,7 @@ class FormEditorElimPeli extends Formulario
         $html = <<<EOF
         $htmlErroresGlobales
         <div>
-            <input type="hidden" name ="eliminarPeli" value="$this->id_pelicula" />
+            <input type="hidden" name ="eliminarSerie" value="$this->id_serie" />
             <button type="submit" name="eliminar">Eliminar</button>
         </div>
            
@@ -33,8 +32,15 @@ class FormEditorElimPeli extends Formulario
 
     protected function procesaFormulario(&$datos) //le llega el selectPeli
     {
-        $borrar = path\Pelicula::eliminarPelicula($this->id_pelicula); //realmente le esta pasando el id
+        //Borra la serie y todos los episodio asociados
+        $borrar = path\Serie::eliminarSerie($this->id_serie); //realmente le esta pasando el id
+        
         
     }
+
+
+
 }
 
+
+?>

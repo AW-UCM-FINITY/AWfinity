@@ -22,7 +22,7 @@ class Usuario
 
 
     /** Prevent creating a new instance outside of the class via the new operator.*/
-    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user) {
+    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user, $id_usuario = NULL) {
         //$this->id_usuario= $id;
         $this->nombreUsuario = $nombreUsuario;
         $this->nombre = $nombre;
@@ -52,13 +52,6 @@ class Usuario
         return password_verify($contrasenia, $this->password);
     }
 
-    /*public function getRoles(){
-        $arrayRoles = array();
-        foreach(self::TIPOS as $i => $rol_user){
-            $arrayRoles[] = $rol_user;
-        }
-        return $arrayRoles;
-    }*/
     public function getAdmin(){
         return $this->rol_user == 'admin' ? true : false;
     }
@@ -68,38 +61,6 @@ class Usuario
     }
 
     /**Fin funciones get */
-
-  /*  public function nuevoRol($role){ //Añade un nuevo rol
-        $this->roles[] = $role;
-    }*/
-
-
-    /*public function tieneRol($role){
-        if ($this->role_user == null) {
-            self::cargaRoles($this);
-        }
-        return array_search($role, $this->roles) !== false;
-    }*/
-   /* private static function cargaRoles($usuario){
-        $roles=[];
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT RU.rol FROM RolesUsuario RU WHERE RU.usuario=%d", $usuario->id);
-        $rs = $conn->query($query);
-        if ($rs) {
-            $roles = $rs->fetch_all(MYSQLI_ASSOC);
-            $rs->free();
-
-            $usuario->roles = [];
-            foreach($roles as $rol) {
-                $usuario->roles[] = $rol['rol'];
-            }
-            return $usuario;
-
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return false;
-    }*/
 
     
    /* public function cambiaPassword($nuevoPassword){
@@ -260,7 +221,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user']);
+                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],  $fila['id_user']);
                 
             }
             $rs->free();
@@ -276,7 +237,7 @@ class Usuario
         $rs = $conn->query($query);
         if ($rs) {
             $fila = $rs->fetch_assoc();
-            $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user']);
+            $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],  $fila['id_user']);
             $rs->free();
 
             return $user;

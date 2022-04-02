@@ -10,7 +10,7 @@ unset($_SESSION['nombre']);
 session_destroy();
 
 $tituloPagina = 'Logout';
-
+$claseArticle = 'Logout';
 $contenidoPrincipal = <<< EOS
 	<h1>Hasta pronto!</h1>
 EOS;

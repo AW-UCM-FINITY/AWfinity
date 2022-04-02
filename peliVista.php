@@ -61,15 +61,6 @@ if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEd
     $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
 
-
-    /*$contenidoPrincipal.=<<<EOS
-    <form action="./editPeli.php?id_pelicula=$id_pelicula" method="POST">
-    <div>
-    <button type="submit" name="editPeli">Editar</button>
-    </div>
-    </form>
-  
-  EOS;*/
   }
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

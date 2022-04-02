@@ -99,7 +99,7 @@ class Pelicula
         return $enum;
     }
 
-    /** Crea un nuevo usuario con los datos introducidos por parámetro*/
+    /** Crea un nueva peli con los datos introducidos por parámetro*/
     public static function crea($titulo, $director, $duracion, $genero, $sinopsis, $ruta_imagen){
         $ok = false;
         $peli = self::buscaPelicula($titulo);

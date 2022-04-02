@@ -18,18 +18,9 @@ $contenidoPrincipal .=
 if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
 	//Antes de modificar
 	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
-/*	$contenidoPrincipal.=<<<EOS
-	<form action="./creaPeli.php" method="POST">
-	<div>
-	<button type="submit" name="creaPeli">Nueva Película</button>
-	</div>
-	</form>
-
-EOS;* */	
+	
 }
 $contenidoPrincipal .= "</div>";
-//$formC = new path\FormEditorEditPeli();
-//$htmlFormEditPeli = $formC->gestiona();
 
 
 

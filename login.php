@@ -7,7 +7,7 @@ $tituloPagina = 'Login';
 
 $form = new path\FormularioLogin();
 $htmlFormLogin = $form->gestiona();
-
+$claseArticle = 'Login';
 
 $contenidoPrincipal = <<<EOS
 	<h1>Acceso al sistema</h1>
