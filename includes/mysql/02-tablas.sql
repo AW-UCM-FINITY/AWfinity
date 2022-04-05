@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-03-2022 a las 18:39:29
+-- Tiempo de generación: 05-04-2022 a las 17:07:03
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `awfinity`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `episodios`
+--
+
+CREATE TABLE `episodios` (
+  `id_episodio` int(11) NOT NULL,
+  `id_serie` int(11) NOT NULL,
+  `titulo` varchar(20) NOT NULL,
+  `duracion` int(11) NOT NULL,
+  `temporada` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,6 +72,22 @@ CREATE TABLE `peliculas` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `series`
+--
+
+CREATE TABLE `series` (
+  `id_serie` int(11) NOT NULL,
+  `titulo` varchar(20) NOT NULL,
+  `productor` varchar(20) NOT NULL,
+  `numTemporadas` int(11) NOT NULL,
+  `genero` enum('accion','anime','ciencia ficcion','comedia','drama','fantasia','musical','terror') NOT NULL,
+  `sinopsis` text NOT NULL,
+  `ruta_imagen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -75,6 +105,12 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Indices de la tabla `episodios`
+--
+ALTER TABLE `episodios`
+  ADD PRIMARY KEY (`id_episodio`);
+
+--
 -- Indices de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -85,6 +121,13 @@ ALTER TABLE `noticias`
 --
 ALTER TABLE `peliculas`
   ADD PRIMARY KEY (`id_pelicula`),
+  ADD KEY `titulo` (`titulo`);
+
+--
+-- Indices de la tabla `series`
+--
+ALTER TABLE `series`
+  ADD PRIMARY KEY (`id_serie`),
   ADD KEY `titulo` (`titulo`);
 
 --
@@ -99,6 +142,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `episodios`
+--
+ALTER TABLE `episodios`
+  MODIFY `id_episodio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -109,6 +158,12 @@ ALTER TABLE `noticias`
 --
 ALTER TABLE `peliculas`
   MODIFY `id_pelicula` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `series`
+--
+ALTER TABLE `series`
+  MODIFY `id_serie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

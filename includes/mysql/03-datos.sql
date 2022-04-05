@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-03-2022 a las 18:41:18
+-- Tiempo de generación: 05-04-2022 a las 17:07:36
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -20,6 +20,15 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `awfinity`
 --
+
+--
+-- Volcado de datos para la tabla `episodios`
+--
+
+INSERT INTO `episodios` (`id_episodio`, `id_serie`, `titulo`, `duracion`, `temporada`) VALUES
+(24, 2, 'El principio del fin', 61, 1),
+(25, 2, 'Luna traicionera', 67, 1),
+(26, 2, 'Deseos', 61, 1);
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -48,6 +57,13 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `director`, `duracion`, `gener
 (27, 'Mi vecino Totoro', 'Hayao Miyazaki', 86, 'anime', 'En los años 50, una familia japonesa se traslada al campo. Las dos hijas, Satsuki y Mei, entablan amistad con Totoro, un espíritu del bosque. El padre es un profesor universitario que estimula la imaginación de sus hijas relatándoles fábulas e historias mágicas sobre duendes, fantasmas y espíritus protectores de los hogares, mientras la madre se encuentra enferma en el hospital.', './img/pelis/totoro.png'),
 (28, 'La tumba de las luci', 'Isao Takahata', 93, 'anime', 'Segunda Guerra Mundial (1939-1945). Seita y Setsuko son hijos de un oficial de la marina japonesa que viven en Kobe. Un día, durante un bombardeo, no consiguen llegar a tiempo al búnker donde su madre los espera. Cuando después buscan a su madre, la encuentran malherida en la escuela, que ha sido convertida en un hospital de urgencia.', './img/pelis/tumbaluciernagas.png'),
 (39, 'La Tribu', 'Fernando Colomo', 90, 'comedia', 'Virginia (Carmen Machi), limpiadora de profesión y “streetdancer” vocacional, recupera al hijo que dio en adopción: Fidel (Paco León), un ejecutivo que lo ha perdido todo, incluida la memoria. Junto a “Las Mamis”, el extravagante grupo de baile que forman las compañeras de Virginia, madre e hijo descubrirán que a pesar de venir de mundos muy diferentes, ambos llevan el ritmo en la sangre.', './img/pelis/latribu.png');
+
+--
+-- Volcado de datos para la tabla `series`
+--
+
+INSERT INTO `series` (`id_serie`, `titulo`, `productor`, `numTemporadas`, `genero`, `sinopsis`, `ruta_imagen`) VALUES
+(2, 'The Witcher', 'Tomasz Bagiński', 2, 'fantasia', 'Serie de TV (2019-actualidad). 2 temporadas. Geralt de Rivia, un cazador de monstruos mutante, viaja en pos de su destino por un mundo turbulento en el que, a menudo, los humanos son peores que las bestias. Adaptación a la televisión de la saga literaria de Andrzej Sapkowski, que dio a su vez origen a una trilogía de prestigiosos videojuegos. (FILMAFFINITY)', './img/series/brujero.jpg');
 
 --
 -- Volcado de datos para la tabla `usuarios`
