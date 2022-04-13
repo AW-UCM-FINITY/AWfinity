@@ -217,7 +217,7 @@ class Serie
             unlink($ruta);  
 
 		}
-		return $check;        
+		return $check; 
     }
 
 

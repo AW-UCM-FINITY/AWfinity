@@ -36,15 +36,15 @@ foreach ($arrayEpisodios as $key => $episodio) {
     $duracionEp = $episodio->getDuracion();
     $id_episodio = $episodio->getId();
 	
-    $formP = new path\FormEditorElimEpisodio($id_episodio, $id_serie);
-    $htmlFormEliEpisodio = $formP->gestiona();
-	$contenidoPrincipal .= "<div> $tituloEp ";
+	$contenidoPrincipal .= "<div> <a href='episodioVista.php?id_episodio=$id_episodio'> $tituloEp </a> ";
 	
 	
 	$contenidoPrincipal .= "</div>";
-	if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
-		$contenidoPrincipal .= "$htmlFormEliEpisodio";
-	}
+	// if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
+	// 	$formP = new path\FormEditorElimEpisodio($id_episodio);
+	// 	$htmlFormEliEpisodio = $formP->gestiona();
+	// 	$contenidoPrincipal .= "$htmlFormEliEpisodio";
+	// }
     
 }
 $contenidoPrincipal .= "</div>";

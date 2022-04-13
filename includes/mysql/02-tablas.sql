@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2022 a las 17:07:03
+-- Tiempo de generación: 13-04-2022 a las 11:34:13
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -32,8 +32,10 @@ CREATE TABLE `episodios` (
   `id_serie` int(11) NOT NULL,
   `titulo` varchar(20) NOT NULL,
   `duracion` int(11) NOT NULL,
-  `temporada` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `temporada` int(11) NOT NULL,
+  `ruta_video` varchar(525) NOT NULL,
+  `sinopsis` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -108,7 +110,8 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `episodios`
 --
 ALTER TABLE `episodios`
-  ADD PRIMARY KEY (`id_episodio`);
+  ADD PRIMARY KEY (`id_episodio`),
+  ADD KEY `id_serie` (`id_serie`);
 
 --
 -- Indices de la tabla `noticias`

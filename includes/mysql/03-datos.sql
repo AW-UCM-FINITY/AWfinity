@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2022 a las 17:07:36
+-- Tiempo de generación: 13-04-2022 a las 11:34:21
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -25,10 +25,9 @@ SET time_zone = "+00:00";
 -- Volcado de datos para la tabla `episodios`
 --
 
-INSERT INTO `episodios` (`id_episodio`, `id_serie`, `titulo`, `duracion`, `temporada`) VALUES
-(24, 2, 'El principio del fin', 61, 1),
-(25, 2, 'Luna traicionera', 67, 1),
-(26, 2, 'Deseos', 61, 1);
+INSERT INTO `episodios` (`id_episodio`, `id_serie`, `titulo`, `duracion`, `temporada`, `ruta_video`, `sinopsis`) VALUES
+(21, 5, 'aaaaaaaaaa', 22, 1, './img/episodios/videogenerico.mp4', 'aaaaaaaaaaaa'),
+(23, 5, 'cccccc', 55, 1, './img/episodios/videogenerico.mp4', 'ccccccccccccc');
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -63,7 +62,7 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `director`, `duracion`, `gener
 --
 
 INSERT INTO `series` (`id_serie`, `titulo`, `productor`, `numTemporadas`, `genero`, `sinopsis`, `ruta_imagen`) VALUES
-(2, 'The Witcher', 'Tomasz Bagiński', 2, 'fantasia', 'Serie de TV (2019-actualidad). 2 temporadas. Geralt de Rivia, un cazador de monstruos mutante, viaja en pos de su destino por un mundo turbulento en el que, a menudo, los humanos son peores que las bestias. Adaptación a la televisión de la saga literaria de Andrzej Sapkowski, que dio a su vez origen a una trilogía de prestigiosos videojuegos. (FILMAFFINITY)', './img/series/brujero.jpg');
+(5, 'ggggggggggggggg', 'ggggggggggggggg', 2, 'accion', 'gggggggggggggggggggggggggg', './img/series/brujero.jpg');
 
 --
 -- Volcado de datos para la tabla `usuarios`

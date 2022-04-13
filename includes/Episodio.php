@@ -11,14 +11,18 @@ class Episodio
     private $id_serie;
     private $duracion;
     private $temporada;
+    private $ruta_video;
+    private $sinopsis;
 
     //Constructor
-    private function __construct($id_serie, $titulo, $duracion, $temporada, $id_episodio = NULL) {
+    private function __construct($id_serie, $titulo, $duracion, $temporada,  $ruta_video, $sinopsis, $id_episodio = NULL) {
     
         $this->id_serie = $id_serie;
         $this->titulo = $titulo;
         $this->duracion = $duracion;
         $this->temporada = $temporada;
+        $this->ruta_video = $ruta_video;
+        $this->sinopsis = $sinopsis;
         $this->id_episodio = $id_episodio;
     }
     //Getter
@@ -29,9 +33,17 @@ class Episodio
     public function getDuracion(){
         return $this->duracion;
     }
-    
+   
+    public function getRutaVideo() {
+        return $this->ruta_video;
+    }
+
     public function getSinopsis() {
         return $this->sinopsis;
+    }
+
+    public function getTemporada(){
+        return $this->temporada;
     }
 
     public function getId_serie() {
@@ -62,13 +74,13 @@ class Episodio
     }
     
     /** Crea un nuevo episodio con los datos introducidos por parámetro*/
-    public static function crea($id_serie, $titulo, $duracion, $temporada){
+    public static function crea($id_serie, $titulo, $duracion, $temporada, $sinopsis, $ruta_video){
         $ok = false;
         $episodio = self::buscaEpisodio($titulo, $id_serie);
         if ($episodio) {
             return false;
         }
-        $episodio = new Episodio($id_serie, $titulo, $duracion, $temporada);
+        $episodio = new Episodio($id_serie, $titulo, $duracion, $temporada, $ruta_video, $sinopsis);
         return self::inserta($episodio);
     }
 
@@ -76,11 +88,15 @@ class Episodio
     private static function inserta($episodio){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("INSERT INTO episodios (id_serie, titulo, duracion, temporada) VALUES ('%d', '%s', '%d', '%d')"
+        $query = sprintf("INSERT INTO episodios (id_serie, titulo, duracion, temporada,  ruta_video, sinopsis) VALUES ('%d', '%s', '%d', '%d', '%s', '%s')"
             , $conn->real_escape_string($episodio->id_serie)
             , $conn->real_escape_string($episodio->titulo)
             , $conn->real_escape_string($episodio->duracion)
             , $conn->real_escape_string($episodio->temporada)
+            , $conn->real_escape_string($episodio->ruta_video)
+            , $conn->real_escape_string($episodio->sinopsis)
+
+
         );
     
         if ($conn->query($query)) {
@@ -105,7 +121,7 @@ class Episodio
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'],$fila['id_episodio']);
+                $result = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'], $fila['ruta_video'], $fila['sinopsis'], $fila['id_episodio']);
             }
             $rs->free();
         } else {
@@ -127,7 +143,7 @@ class Episodio
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'],$fila['id_episodio']);
+                $result = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'],  $fila['ruta_video'], $fila['sinopsis'], $fila['id_episodio']);
             }
             $rs->free();
         } else {
@@ -148,7 +164,7 @@ class Episodio
 
         if($consulta->num_rows > 0){
             while ($fila = mysqli_fetch_assoc($consulta)) {
-                $arrayEpisodios[] = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'], $fila['id_episodio']);
+                $arrayEpisodios[] = new Episodio($fila['id_serie'], $fila['titulo'], $fila['duracion'], $fila['temporada'],  $fila['ruta_video'], $fila['sinopsis'], $fila['id_episodio']);
             }
             $consulta->free();
         }
@@ -158,16 +174,17 @@ class Episodio
     public static function eliminarEpisodio($id_episodio){
 
         //borro de la bd
-        $conn = Aplicacion::getInstance()->getConexionBd();	
-        //$epi = Episodio::buscaEpisodioId($id_episodio);
-        
-        $query = sprintf("DELETE FROM episodios WHERE id_episodio = '$id_episodio'");
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $episodio = Episodio::buscaEpisodioId($id_episodio);
+        $rutaV = $episodio->getRutaVideo();
+
+        $query = sprintf("DELETE FROM episodios WHERE id_episodio = $id_episodio");
 		
         $rs = $conn->query($query);
         $check =false;
 		if($rs){
 			$check =true;
-            
+            unlink($rutaV);
 		}
 		return $check;        
     }

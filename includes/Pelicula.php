@@ -170,24 +170,6 @@ class Pelicula
         return $result;
     }
 
-
-    // public static function getPeliculas(){
-        
-    //     $conn = Aplicacion::getInstance()->getConexionBd();
-    //     $sql = "SELECT * FROM peliculas";
-    //     $consulta = $conn->query($sql);
-
-    //     $arrayPeliculas = array();
-
-    //     if($consulta->num_rows > 0){
-    //         while ($fila = mysqli_fetch_assoc($consulta)) {
-    //             $arrayPeliculas[$fila['id_pelicula']] = $fila['titulo'];
-    //         }
-    //         $consulta->free();
-    //     }
-    //     return $arrayPeliculas;
-    // }
-
     //$genero cambiar a $opcion
     public static function ordenarPor($genero){
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -205,34 +187,6 @@ class Pelicula
         return $arrayPeliculas;   
     }
 
-
-    public static function eliminarPeliTitulo($titulo){
-
-        //borro de la bd
-        print($titulo);
-        $conn = Aplicacion::getInstance()->getConexionBd();	
-        $query = sprintf("DELETE FROM peliculas WHERE titulo = '%s'", $conn->real_escape_string($titulo));
-		print($titulo);
-        $rs = $conn->query($query);
-        $check =false;
-		if($rs){
-			$check =true;
-            //borro la imagen fisica de la carpeta 
-                   
-            //if (unlink("./img/pelis/titanic.png")){} esto sí funciona
-
-            //print($ruta);    //esto no muestra nada 
-
-            //NO FUNCIONAN:
-            //if (unlink($ruta)){} //esto no funciona __DIR.     position pa la pantalla (relativo bottom 0 el footer)
-            //CAMBIAR EDITAR Y AÑADIR EL BORRAR DENTRO DE LA PELICULA: ACTUAMOS CON PERMISOS
-            //ELIMINAR SOLCION AVANZADA EJERCICIO 2 
-            //if (unlink('$ruta')){}                  
-            //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
-		}
-		return $check;        
-    }
-
     public static function eliminarPelicula($id_pelicula){
 
         //borro de la bd
@@ -246,33 +200,13 @@ class Pelicula
         $check =false;
 		if($rs){
 			$check =true;
-            
             //borro la imagen fisica de la carpeta 
-            //$ruta =$peli->getRutaImagen();
             unlink($ruta);  
-            //unlink("imagenes/thumbs/thumb_".$foto);  
-                   
-            //if (unlink("./img/pelis/titanic.png")){} esto sí funciona
-
-            //print($ruta);    //esto no muestra nada 
-
-            //NO FUNCIONAN:
-            //if (unlink($ruta)){} //esto no funciona __DIR.     position pa la pantalla (relativo bottom 0 el footer)
-            //CAMBIAR EDITAR Y AÑADIR EL BORRAR DENTRO DE LA PELICULA: ACTUAMOS CON PERMISOS
-            //ELIMINAR SOLCION AVANZADA EJERCICIO 2 
-            //if (unlink('$ruta')){}                  
-            //if (unlink( $_SERVER["DOCUMENT_ROOT"].$ruta)){} esto no funciona
+            
 		}
 		return $check;        
     }
-    //buscar por id¿?
 
-   /* public static function guarda($peli){
-        if ($peli->id_pelicula!== null) {
-            return self::actualiza($peli);
-        }
-        return self::inserta($peli);
-    }*/
 
     /** Actualiza la peliicula existente en BD guarda() -> actualiza() */
     public static function actualiza($peli){

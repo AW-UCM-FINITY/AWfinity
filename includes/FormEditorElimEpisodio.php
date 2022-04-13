@@ -5,11 +5,12 @@ use es\ucm\fdi\aw as path;
 class FormEditorElimEpisodio extends Formulario
 {
     private $id_episodio;
-    private $id_serie;
-    public function __construct($id_episodio, $id_serie) {
-        $this->id_serie = $id_serie;
-        parent::__construct('FormEditorElimEpisodio', ['urlRedireccion' => 'serieVista.php?id_serie='.$this->id_serie]);
+    //private $id_serie;
+    public function __construct($id_episodio) {
+        parent::__construct('FormEditorElimEpisodio', ['urlRedireccion' => 'contenidoSeries.php']);
         $this->id_episodio = $id_episodio;
+        //$this->id_serie = $id_serie;
+        //'serieVista.php?id_serie='.$this->id_serie
     }
 
     
