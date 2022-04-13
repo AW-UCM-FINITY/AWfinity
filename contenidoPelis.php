@@ -23,7 +23,6 @@ if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEd
 $contenidoPrincipal .= "</div>";
 
 
-
 /**MOSTRAMOS PELICULAS GENERO ACCION */
 $contenidoPrincipal .="<div class='pelisIndex'>";
 $contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE ACCIÓN</h3> </div>";
