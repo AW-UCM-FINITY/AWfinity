@@ -1,10 +1,11 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobaciones de login y esAdmin
 
 $tituloPagina = 'Admin';
 
 $contenidoPrincipal = '';
-if (! isset($_SESSION['esAdmin']) || !$_SESSION['esAdmin']){
+if (!esAdmin()){
 	$contenidoPrincipal .= <<< EOS
 	<h1>Acceso denegado!</h1>
 	<p>No tienes permisos suficientes para administrar la web.</p>

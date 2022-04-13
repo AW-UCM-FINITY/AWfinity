@@ -1,10 +1,11 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require __DIR__. '/includes/helpers/autorizacion.php';
+
 
 use es\ucm\fdi\aw as path;
 
-$id_episodio = isset($_GET['id_episodio']) ? htmlspecialchars(tr
-(strip_tags($_GET["id_episodio"]))) : 0;
+$id_episodio = isset($_GET['id_episodio']) ? htmlspecialchars(trim(strip_tags($_GET["id_episodio"]))) : 0;
 
  
 $episodio = path\Episodio::buscaEpisodioId($id_episodio);
@@ -45,7 +46,7 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
 
 
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
+if(esEditor()){
   
     $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
     $contenidoPrincipal .="$htmlFormElimEpisodio";

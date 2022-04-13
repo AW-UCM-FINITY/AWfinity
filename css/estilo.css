@@ -17,22 +17,7 @@ div#contenedor {
 	background-color: #aaaaaa;
 	
 }
-/*sidebar para panel de editor*/
-.sidebar {
-	padding: 10px;
-	float: left;
-	width: 10%;
 
-	background-color: #badbe4;
-	border: 2px solid black;
-}
-
-.editorPanel {
-	padding: 10px;
-	float: left;
-	width: 90%;
-	
-}
 /* CSS HEADER*/
 * {
 	margin:0px;
