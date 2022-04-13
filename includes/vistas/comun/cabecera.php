@@ -1,6 +1,7 @@
 <?php
+
 function mostrarSaludo() {
-	if (isset($_SESSION['login']) && ($_SESSION['login']===true)) {
+	if (estaLogado()) {
 		return "Bienvenido, {$_SESSION['nombreUsuario']}      <a href='logout.php'> (Logout) </a>";
 		
 	} else {

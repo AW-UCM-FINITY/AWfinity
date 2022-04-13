@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__.'/includes/config.php';
+require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobaciones de login y esEditor
+
 
 use es\ucm\fdi\aw as path;
 
@@ -14,7 +16,7 @@ $htmlFormEditNoticia = $formN->gestiona();
 
 
 $contenidoPrincipal = '';
-if (! isset($_SESSION['esEditor']) || !$_SESSION['esEditor']){
+if (!esEditor()){//Funcion de archivo includes/helpers/autorizacion.php
 	$contenidoPrincipal .= <<< EOS
 	<h1>Acceso denegado!</h1>
 	<p>No tienes permisos suficientes para editar el contenido de la web.</p>

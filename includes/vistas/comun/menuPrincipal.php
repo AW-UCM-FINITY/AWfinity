@@ -6,12 +6,6 @@
 		<li><a href="<?= RUTA_APP ?>/contenido.php">BSO</a></li>
 		<li><a href="<?= RUTA_APP ?>/contenido.php">RETOS</a></li>
 		<li><a href="<?= RUTA_APP ?>/blog.php">BLOG</a></li>
-		<!--<li><a href="">MÁS</a>
-			<ul>
-				<li><a href="/admin.php">Administrador</a></li>
-				<li><a href="/editor.php">Editor</a></li>
-			</ul>
-		</li>-->
 		<li><a href="<?= RUTA_APP ?>/contenido.php">CONTACTO</a></li>
 	</ul>
 </nav>
