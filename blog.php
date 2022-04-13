@@ -24,7 +24,17 @@ EOS;
 
 $contenidoPrincipal.=<<<EOS
           </div>
-
+          <div class="menublog">
+          <a class="active" href="#home">Inicio</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <div class="barraBusca">
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit">Buscar</button>
+          </form>
+          </div>
+          </div>
           <div class="columna">
             <div class="columnaIzq">
 EOS;
