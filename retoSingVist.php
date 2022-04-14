@@ -42,9 +42,11 @@ $contenidoPrincipal .=<<<EOS
     <h2>{$reto->getNombre()}</h2>
     
     <div></div>
+    <h5> Este reto tiene una duración de {$reto->getDias()} dias y otorga {$reto->getPuntos()} puntos </h5>
     <h5> Actualmente hay {$suma} personas en el reto </h5> ;
-    <p>El reto ha sido INICIADO POR: {$reto->getNumMiembros()} </p>
-    <p>El reto ha sido COMPLETADO POR: {$reto->getNumCompletado()} </p>
+    <h5> El reto tiene una dificultad {$reto->getDificultad()} </h5>
+    <h5>El reto ha sido INICIADO POR: {$reto->getNumMiembros()} personas</h5>
+    <h5>El reto ha sido COMPLETADO POR: {$reto->getNumCompletado()} personas</h5>
     
     <p>{$reto->getDescripcion()}</p>
     <p> </p>

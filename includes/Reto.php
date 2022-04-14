@@ -189,6 +189,7 @@ class Reto{
         , $conn->real_escape_string($dias)
         , $conn->real_escape_string($puntos)
         , $conn->real_escape_string($id_Reto)
+   
     );
     if ( $conn->query($query) ) {
         $result = true;
