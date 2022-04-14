@@ -27,7 +27,7 @@ $contenidoPrincipal.=<<<EOS
           <div class="menublog">
           
           <a class="active" href="./retoVista.php">Retos</a>
-          <a  href="#home">Ranking</a>
+          <a  href="./ranking.php">Ranking</a>
           <div class="barraBusca">
           <form action="/action_page.php">
             <input type="text" placeholder="Search.." name="search">

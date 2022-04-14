@@ -13,6 +13,7 @@ class Usuario
     private $apellido;
     private $password;
     private $rol_user;
+    private $puntos;
     
     public const ADMIN_ROLE = "admin";
     public const EDIT_ROLE = "editor";
@@ -22,13 +23,14 @@ class Usuario
 
 
     /** Prevent creating a new instance outside of the class via the new operator.*/
-    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user, $id_usuario = NULL) {
+    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user,$puntos, $id_usuario = NULL) {
         //$this->id_usuario= $id;
         $this->nombreUsuario = $nombreUsuario;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->password = $password;
         $this->rol_user = $rol_user;
+        $this->$puntos=$puntos;
     }
     /**Funciones get */
     public function getId() {
@@ -42,7 +44,9 @@ class Usuario
     public function getNombre(){
         return $this->nombre;
     }
-
+    public function getPuntos(){
+        return $this->puntos;
+    }
     public function getApellido(){
         return $this->apellido;
     }
@@ -79,7 +83,7 @@ class Usuario
         if ($user) {
             return false;
         }
-        $user = new Usuario($nombreUsuario, $nombre, $apellido, self::hashPassword($password), $rol_user);
+        $user = new Usuario($nombreUsuario, $nombre, $apellido, self::hashPassword($password),$rol_user, 0);
         //$user->añadeRol($rol);
         return self::guarda($user);
     }
@@ -95,12 +99,13 @@ class Usuario
     private static function inserta($usuario){
         //$result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("INSERT INTO usuarios(nombreUsuario, nombre, apellido, password, rol_user) VALUES ('%s', '%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO usuarios(nombreUsuario, nombre, apellido, password, rol_user, puntos) VALUES ('%s', '%s', '%s', '%s', '%s', '%d')"
             , $conn->real_escape_string($usuario->nombreUsuario)
             , $conn->real_escape_string($usuario->nombre)
             , $conn->real_escape_string($usuario->apellido)
             , $conn->real_escape_string($usuario->password)
             , $conn->real_escape_string($usuario->rol_user)
+            ,0
         );
         if ($conn->query($query)) {
             $usuario->id_usuario = $conn->insert_id;
@@ -221,7 +226,7 @@ class Usuario
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],  $fila['id_user']);
+                $result = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'] ,$fila['puntos'], $fila['id_user']);
                 
             }
             $rs->free();
@@ -230,14 +235,31 @@ class Usuario
         }
         return $result;
     }
-
+    public static function getUsuariosOrdenPuntos()
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM usuarios ORDER BY puntos ASC");
+        $rs = $conn->query($query);
+        $result = array();
+        if ($rs) {
+            $fila = $rs->fetch_assoc();
+            if ($fila) {
+                $result[] = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);
+                 
+            }
+            $rs->free();
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
     public static function buscaPorId($idUsuario){
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM usuarios WHERE id=%d", $idUsuario);
         $rs = $conn->query($query);
         if ($rs) {
             $fila = $rs->fetch_assoc();
-            $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],  $fila['id_user']);
+            $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);
             $rs->free();
 
             return $user;

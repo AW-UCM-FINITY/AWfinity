@@ -1,6 +1,6 @@
 <?php 
 namespace es\ucm\fdi\aw;
-use es\ucm\fdi\aw as path;
+
 
 class UsuarioReto{
 
@@ -32,21 +32,40 @@ class UsuarioReto{
     static public function cuentaUsuariosPorReto($reto){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $sql = "SELECT COUNT(*) FROM usuarioreto WHERE id_Reto = $reto";
+        $sql = "SELECT COUNT(*) as total FROM usuarioreto WHERE id_Reto = $reto";
 
 		$consulta = $conn->query($sql);
         $result=false;
 
+      
        if($consulta->num_rows > 0){
 	       if ($fila = mysqli_fetch_assoc($consulta)) {
-	        	$result = $fila['COUNT'];
+	        	$result = $fila['total'];
 	        	
 	        }
 	        $consulta->free();
     	}
+        
         return $result;
     }
-    
+    static public function retosCompletadosPorUser($id_user){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = "SELECT COUNT(*) as total FROM usuarioreto WHERE id_usuario = $id_user AND completado='1'";
+
+		$consulta = $conn->query($sql);
+        $result=false;
+        if(!$consulta){
+        if($consulta->num_rows > 0){
+	       if ($fila = mysqli_fetch_assoc($consulta)) {
+	        	$result = $fila['total'];
+	        	
+	        }
+	        $consulta->free();
+    	}
+    }
+        return $result;
+}
     /* Busca y devuelve un array de los retos en los que está unido un usuario */
     static public function misRetos($id){
 
