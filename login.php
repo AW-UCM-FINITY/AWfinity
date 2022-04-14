@@ -11,7 +11,7 @@ $claseArticle = 'Login';
 
 $contenidoPrincipal = <<<EOS
 	<h1>Acceso al sistema</h1>
-	$htmlFormLogin
+	{$htmlFormLogin['Contenido']}
 EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

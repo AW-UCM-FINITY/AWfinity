@@ -18,7 +18,7 @@ $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
 <h1>Consola de Edición de Series</h1>
-$htmlFormEditSerie
+{$htmlFormEditSerie['Contenido']}
 EOS;
 
 

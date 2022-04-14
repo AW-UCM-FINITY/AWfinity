@@ -19,7 +19,7 @@ $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
 <h1>Consola de Creacion de Episodios</h1>
-$htmlFormCreaEpisodio
+{$htmlFormCreaEpisodio['Contenido']}
 EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

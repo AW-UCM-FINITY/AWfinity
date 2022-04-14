@@ -1,16 +1,16 @@
 <?php
 require_once __DIR__.'/includes/config.php';
 require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobaciones de login y esEditor
-
-
 use es\ucm\fdi\aw as path;
 
-$tituloPagina = 'Crear Noticias';
-$claseArticle = 'FormCreaNoticia';
+$tituloPagina = 'Crear Reto';
+$claseArticle = 'FormCreaReto';
 
-$formN = new path\FormEditorEditNoticia(NULL);
-$htmlFormCreaNoticia = $formN->gestiona();
+$formN = new path\FormEditorEditReto(NULL);
+$htmlFormCreaReto = $formN->gestiona();
 
+$formB = new path\FormEditorBuscaPelisReto(NULL);
+$htmlFormBuscaPelis = $formB->gestiona();
 
 $contenidoPrincipal = '';
 if (!esEditor()){
@@ -23,8 +23,9 @@ if (!esEditor()){
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
-	{$htmlFormCreaNoticia['Contenido']}
+	{$htmlFormCreaReto['Contenido']}
 	EOS;
+	
 }
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

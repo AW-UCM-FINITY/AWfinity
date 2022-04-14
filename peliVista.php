@@ -52,7 +52,7 @@ if(esEditor()){
   
     $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
 
-    $contenidoPrincipal .="$htmlFormElimPeli";
+    $contenidoPrincipal .="{$htmlFormElimPeli['Contenido']}";
     $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
 

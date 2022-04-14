@@ -190,7 +190,7 @@ class FormEditorEditPeli extends Formulario
                 }
             }
         }   
-           
+        return null;   
     }     //cierro procesa form
 }  //class
 //<div>

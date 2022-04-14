@@ -170,6 +170,27 @@ class Pelicula
         return $result;
     }
 
+    // devuelve una lista de peliculas que coincida con %titulo% -> es un buscador de peliculas.
+    static public function buscar($busqueda){ 
+
+        $sql = "SELECT * FROM peliculas P  WHERE P.titulo LIKE \"%$busqueda%\" ";
+        
+       
+        $conn =  Aplicacion::getInstance()->getConexionBd();
+        $consulta = $conn->query($sql);
+        $arrayPelis=array();
+ 
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arrayPelis[]= new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_pelicula']);
+                
+            }
+            $consulta->free();
+        }
+ 
+        return $arrayPelis;
+    }
+
     //$genero cambiar a $opcion
     public static function ordenarPor($genero){
         $conn = Aplicacion::getInstance()->getConexionBd();

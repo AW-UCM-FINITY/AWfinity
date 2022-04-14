@@ -35,12 +35,12 @@ class FormEditorEditReto extends Formulario
         else{
             // crea la reto
             $nombre = $datos['nombre'] ?? '';
-            $num_usuarios = $datos['num_usuarios'] ?? '';
-            $num_completado = $datos['num_completado'] ?? '';
+            $num_usuarios = $datos['num_usuarios'] ?? '0';
+            $num_completado = $datos['num_completado'] ?? '0';
             $dificultad = $datos['dificultad'] ?? '';
             $descripcion = $datos['descripcion'] ?? '';
-            $dias = $datos['dias'] ?? '';
-            $puntos = $datos['puntos']?? ''; 
+            $dias = $datos['dias'] ?? '1';
+            $puntos = $datos['puntos']?? '5'; 
         }
         //dias
         $dificultades = Reto::getdificultades();
@@ -75,38 +75,41 @@ class FormEditorEditReto extends Formulario
         <fieldset>
             <legend>Datos para la {$funcionalidad} de reto</legend>
             <div>
-                <label for="nombre">nombre:</label>
+                <label for="nombre">Nombre:</label>
                 <input id="nombre" type="text" name="nombre" value="$nombre" />
                 {$erroresCampos['nombre']}
             </div>
 
             <div>
-                <label for="descripcion">descripcion:</label>
+                <label for="descripcion">Descripcion:</label>
                 <textarea rows=5 cols=50 name="descripcion" required>{$descripcion}</textarea>
                 {$erroresCampos['descripcion']}
             </div>
             
-            $selectDificultad 
-
             <div>
-                <label for="dias">dias (1-30):</label>
+                <label for="dificultad">Dificultad:</label>
+                {$selectDificultad} 
+
+            </div>
+            <div>
+                <label for="dias">Dias (1-30):</label>
                 <input id="dias" type="number" name="dias" value="$dias" min="1" max="30"/>
                 {$erroresCampos['dias']}
             </div>
 
             <div>
-            <label for="puntos">puntos (5-100):</label>
-            <input id="puntos" type="range" name="puntos" value="$puntos" min="5" max="100"/>
+            <label for="puntos">Puntos (5-100):</label>
+            <input id="puntos" type="range" name="puntos" value="$puntos" min="5" max="50"/>
             {$erroresCampos['puntos']}
             </div>
 
             
 
             <div>
-            <label for="num_usuarios">num_usuarios: "$num_usuarios"</label>
+            <label for="num_usuarios">Han aceptado este reto: {$num_usuarios} personas</label>
             </div>
             <div>
-            <label for="num_completado">num_completado: "$num_completado"</label>
+            <label for="num_completado">Han completado este reto: {$num_completado} personas</label>
             </div>
 
             <div>
@@ -135,6 +138,6 @@ class FormEditorEditReto extends Formulario
 
        
        
-        
+       return null; 
     }
 }

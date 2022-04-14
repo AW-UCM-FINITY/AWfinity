@@ -34,6 +34,7 @@ class FormEditorElimPeli extends Formulario
     protected function procesaFormulario(&$datos) //le llega el selectPeli
     {
         $borrar = path\Pelicula::eliminarPelicula($this->id_pelicula); //realmente le esta pasando el id
+        return null;
         
     }
 }

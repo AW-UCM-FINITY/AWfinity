@@ -188,7 +188,7 @@ class FormEditorEditSerie extends Formulario
                 }
             }
         }   
-           
+       return null;    
     }     //cierro procesa form
 
 

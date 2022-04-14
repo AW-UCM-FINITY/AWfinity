@@ -186,20 +186,32 @@ abstract class Formulario
      */
     public function gestiona()
     {
+        $resultado = array();
         $datos = &$_POST;
+        $resultadoProcesar=null;
         if (strcasecmp('GET', $this->method) == 0) {
             $datos = &$_GET;
         }
         $this->errores = [];
 
         if (!$this->formularioEnviado($datos)) {
-            return $this->generaFormulario();
+            $resultado['HTML']='SI';
+            $resultado['Contenido']=$this->generaFormulario();
+            return $resultado;
         }
-        $this->procesaFormulario($datos);
+        $resultadoProcesar=$this->procesaFormulario($datos);
         $esValido = count($this->errores) === 0;
 
         if (! $esValido ) {
-            return $this->generaFormulario($datos);
+            $resultado['HTML']='SI';
+            $resultado['Contenido']=$this->generaFormulario($datos);
+            return $resultado;
+        }
+        
+        if ($resultadoProcesar !== null){
+            $resultado['HTML']='NO';
+            $resultado['Contenido']=$resultadoProcesar;
+            return $resultado;
         }
 
         if ($this->urlRedireccion !== null) {

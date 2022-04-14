@@ -11,7 +11,7 @@ $htmlFormRegistro = $form->gestiona();
 
 $contenidoPrincipal = <<<EOS
 	<h1>Registro de usuario</h1>
-	$htmlFormRegistro
+	{$htmlFormRegistro['Contenido']}
 EOS;
 
 require __DIR__.'/includes/vistas/plantillas/plantilla.php';

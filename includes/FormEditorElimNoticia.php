@@ -36,7 +36,7 @@ class FormEditorElimNoticia extends path\Formulario
                 
         $borrarNoticia = path\Noticia::eliminarNoticia($this->idNoticia);
                 
-                
+        return null;
           
      }
 }

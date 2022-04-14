@@ -18,7 +18,7 @@ $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
 <h1>Consola de Edición de Peliculas</h1>
-$htmlFormEditPeli
+{$htmlFormEditPeli['Contenido']}
 EOS;
 
 
