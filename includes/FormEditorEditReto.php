@@ -30,7 +30,7 @@ class FormEditorEditReto extends Formulario
             $dificultad = $reto->getDificultad() ?? '';
             $descripcion = $reto->getDescripcion() ?? '';
             $dias = $reto->getDias() ?? '';
-            $puntos = $reto->getPuntos() ?? '';
+            $puntos = $reto->getPuntos() ?? '5';
         }
         else{
             // crea la reto
@@ -127,7 +127,7 @@ class FormEditorEditReto extends Formulario
 
         $nombre = trim($datos['nombre'] ?? '');
         $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombre || mb_strlen($nombre) < 5) {
+        if ( ! $nombre || mb_strlen($nombre) < 1) {
             $this->errores['nombre'] = 'El nombre de reto tiene que tener una longitud de al menos 5 caracteres.';
         }
 
@@ -158,7 +158,7 @@ class FormEditorEditReto extends Formulario
 
         $puntos = $puntos['puntos']?? '5'; 
         $puntos  = filter_var($puntos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if($dias<5){
+        if($puntos<5){
             $this->errores['puntos'] = 'Los puntos no pueden ser menores que 5';//para empezar lo dejamos asi, mas tarde en otra tabla
   
         }
