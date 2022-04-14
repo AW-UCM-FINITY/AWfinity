@@ -30,7 +30,7 @@ class Usuario
         $this->apellido = $apellido;
         $this->password = $password;
         $this->rol_user = $rol_user;
-        $this->$puntos=$puntos;
+        $this->puntos=$puntos;
     }
     /**Funciones get */
     public function getId() {
@@ -238,12 +238,12 @@ class Usuario
     public static function getUsuariosOrdenPuntos()
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM usuarios ORDER BY puntos ASC");
+        $query = sprintf("SELECT * FROM usuarios ORDER BY puntos DESC");
         $rs = $conn->query($query);
         $result = array();
         if ($rs) {
-            $fila = $rs->fetch_assoc();
-            if ($fila) {
+           while($fila = mysqli_fetch_assoc($rs)){
+            
                 $result[] = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);
                  
             }

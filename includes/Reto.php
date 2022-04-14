@@ -13,7 +13,7 @@ class Reto{
     private $puntos;
 
     const dificultadES = array("DIFICIL","MEDIO","FACIL");
-    public function __construct($nombree, $num_usuarioss, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto)
+    public function __construct($nombree, $num_usuarioss, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto = NULL)
     {
         $this->id_Reto=$id_Reto;
         $this->nombre=$nombree;
@@ -68,13 +68,13 @@ class Reto{
   
 
 
-    public static function crea($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto){
+    public static function crea($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos){
   
-        $reto = self::buscar($nombre);
+        $reto = self::buscarNombre($nombre);
         if ($reto) {//AQUI SI DA FALSE SE METE el reto(PORQUE NO EXISTE DE ANTES)
             return false;
         }
-        $reto = new Reto( $nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto);
+        $reto = new Reto( $nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos);
     
         return self::inserta($reto);
     }
@@ -86,7 +86,7 @@ class Reto{
         $query = sprintf("INSERT INTO retos (nombre,num_usuarios, num_completado, dificultad, descripcion, dias, puntos) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')"
       
             , $conn->real_escape_string($reto->nombre)
-            , $conn->real_escape_string($reto-$num_usuarios)
+            , $conn->real_escape_string($reto->num_usuarios)
             , $conn->real_escape_string($reto->num_completado)
             , $conn->real_escape_string($reto->dificultad)
             , $conn->real_escape_string($reto->descripcion)
@@ -105,7 +105,27 @@ class Reto{
         return $result;
     }
     
+    static public function buscarNombre($busqueda){ 
 
+     
+
+        $sql = "SELECT * FROM retos R  WHERE R.nombre =$busqueda ";
+        
+       
+        $conn =  Aplicacion::getInstance()->getConexionBd();
+        $consulta = $conn->query($sql);
+        $reto=false;
+ 
+        if($consulta && $consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $reto= new Reto($fila['nombre'],$fila['num_usuarios'],$fila['num_completado'],$fila['dificultad'],$fila['descripcion'],$fila['dias'],$fila['puntos'],$fila['id_Reto']);
+                
+            }
+            $consulta->free();
+        }
+ 
+        return $reto;
+    }
     static public function buscar($busqueda){ 
 
      
@@ -158,7 +178,7 @@ class Reto{
     $conn = Aplicacion::getInstance()->getConexionBd();
    
     
-    $query=sprintf("UPDATE retos R SET R.nombre='%s', R$num_usuarios='%s', R.num_completado='%s',
+    $query=sprintf("UPDATE retos R SET R.nombre='%s', R.num_usuarios='%s', R.num_completado='%s',
      R.dificultad='%s', R.descripcion='%s', R.dias='%s', R.puntos='%s'
         WHERE R.id_Reto = '%s'"
         ,$conn->real_escape_string($nombre)

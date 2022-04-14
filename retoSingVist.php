@@ -13,6 +13,11 @@ $contenidoPrincipal .=<<<EOS
           <div class="header2">
             <h2>Reto</h2>
           </div>
+          <div class="menublog">
+          
+          <a class="active" href="./retoVista.php">Retos</a>
+          <a  href="./ranking.php">Ranking</a>
+          </div>
           <div class="columna">
          
 EOS;
@@ -65,7 +70,7 @@ if(esEditor()){
   
   <div class='butonGeneral'> <a href='editReto.php?retoid={$id_reto}'> Editar </a> </div>
 
-  $htmlFormElimReto
+  {$htmlFormElimReto['Contenido']}
   
 EOS;
 }

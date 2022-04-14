@@ -15,8 +15,11 @@ $contenidoPrincipal .= <<<EOS
 <div class="header2">
                                 <h2>Ranking</h2>
                                 </div>
-                                <div class="columna">
-                                <div class="columnaIzq">
+                                <div class="menublog">
+          
+                                <a class="active" href="./retoVista.php">Retos</a>
+                                <a  href="./ranking.php">Ranking</a>
+                                </div>
                                 <div class="contened">
                                 <div class="wrapper">
                                 <table>
@@ -25,7 +28,7 @@ $contenidoPrincipal .= <<<EOS
                                             <th>Usuario</th>
                                             <th>Retos completados</th>
                                             <th>Puntos</th>
-                                            <th>+/-</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody> 
@@ -36,16 +39,16 @@ $usuarios= Usuario::getUsuariosOrdenPuntos();
         foreach($usuarios as $us){
                 $contenidoPrincipal .=<<<EOS
                 <tr>
-                                            <td class="rank">{$us->getNombre()}</td>
+                <td class="nombre">{$us->getNombre()}</td>
                         
                 EOS;
 
                 $retoscompl=UsuarioReto::retosCompletadosPorUser($us->getId());
                 $contenidoPrincipal.=<<<EOS
                 <td class="team">{$retoscompl}</td>
-                                <td class="points">{$us->getPuntos()}</td>
-                                <td class="up-down">0</td>
-                                </tr>
+                <td class="points">{$us->getPuntos()}</td>
+                                
+                </tr>
                 EOS;
         }	
                 
@@ -54,8 +57,7 @@ $contenidoPrincipal.=<<<EOS
 		</table>
 		</div>
 		</div>
-        </div>
-        </div>
+      
 EOS;
 
 

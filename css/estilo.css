@@ -355,7 +355,7 @@ a.deshabilitado {
 	line-height: 1.5em;
 	margin: 0 auto;
 	padding: 2em 0 3em;
-	width: 90%;
+	width: 100%;
 	max-width: 2000px;
 	overflow: hidden;
 }
@@ -389,7 +389,7 @@ a.deshabilitado {
     background-color: rgba(50,98,149,.3);
 }
 
-.wrapper td.rank {
+.wrapper td.nombre {
 	text-transform: capitalize;
 }
 

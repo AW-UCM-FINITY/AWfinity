@@ -54,8 +54,9 @@ class UsuarioReto{
         $sql = "SELECT COUNT(*) as total FROM usuarioreto WHERE id_usuario = $id_user AND completado='1'";
 
 		$consulta = $conn->query($sql);
-        $result=false;
-        if(!$consulta){
+        $result=0;
+        
+        if($consulta){
         if($consulta->num_rows > 0){
 	       if ($fila = mysqli_fetch_assoc($consulta)) {
 	        	$result = $fila['total'];

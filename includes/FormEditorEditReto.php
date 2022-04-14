@@ -5,16 +5,16 @@ class FormEditorEditReto extends Formulario
 {
     private $id_Reto;
 
-    public function __construct($id_Reto) {
+    public function __construct($id_Retoo) {
         // en funcion de si le esta pasando el id de la reto, va a ser crear o modificar
-        $this->id_Reto = $id_Reto;
+        $this->id_Reto = $id_Retoo;
         
         if(isset($this->id_Reto)){    //si existe el id -> actualizamos
-            $urll='retoVista.php?nombreid='.$this->id_Reto;
+            $urll='retoSingVist.php?retoid='.$this->id_Reto;
             parent::__construct('FormEditorEditReto', ['enctype' => 'multipart/form-data','urlRedireccion' => $urll]);  //por ahora queda mas claro asi
         }
         else{   //sino -> creamos
-            parent::__construct('FormEditorCreaReto', ['enctype' => 'multipart/form-data','urlRedireccion' =>  'reto.php']);
+            parent::__construct('FormEditorCreaReto', ['enctype' => 'multipart/form-data','urlRedireccion' =>  'retoVista.php']);
         }
     }
     
@@ -99,7 +99,8 @@ class FormEditorEditReto extends Formulario
 
             <div>
             <label for="puntos">Puntos (5-100):</label>
-            <input id="puntos" type="range" name="puntos" value="$puntos" min="5" max="50"/>
+            <input id="puntos" type="range" name="puntos" value="$puntos" min="5" max="50" oninput="puntosout.value = puntos.value"/>
+            <output name="puntosout" id="puntosout">$puntos</output>
             {$erroresCampos['puntos']}
             </div>
 
@@ -132,12 +133,54 @@ class FormEditorEditReto extends Formulario
 
 
         $descripcion = trim($datos['descripcion'] ?? '');
+        $descripcion  = filter_var($descripcion, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( empty( $descripcion)) {
             $this->errores['descripcion'] = 'La descripcion no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
         }
 
        
-       
+        $num_usuarios =trim( $datos['num_usuarios'] ?? '0');
+        
+
+        $num_completado =trim( $datos['num_completado'] ?? '0');
+        
+
+        
+        $dificultad = trim($datos['dificultad'] ?? '');
+        $dificultad  = filter_var($dificultad, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        $dias = trim($datos['dias'] ?? '1');
+        $dias  = filter_var($dias, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if($dias<1){
+            $this->errores['dias'] = 'El dia no puede ser menor que 1';//para empezar lo dejamos asi, mas tarde en otra tabla
+  
+        }
+
+        $puntos = $puntos['puntos']?? '5'; 
+        $puntos  = filter_var($puntos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if($dias<5){
+            $this->errores['puntos'] = 'Los puntos no pueden ser menores que 5';//para empezar lo dejamos asi, mas tarde en otra tabla
+  
+        }
+ 
+        if (count($this->errores) === 0) {
+            
+                    if(isset($this->id_Reto)){//existe
+                        $reto=  Reto::actualiza($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos, $this->id_Reto);
+                    }
+                    else{//no existe 
+                        $reto=Reto::crea($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos);
+                        
+                    }
+                    if(!$reto){
+                        $this->errores['nombre'] =  "Error ya existe un reto con ese nombre";
+                    }
+                 
+            
+           
+        }else{
+            $this->errores['nombre'] =  "Error de crea/edita";
+        }  
        return null; 
     }
 }
