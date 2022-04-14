@@ -335,7 +335,15 @@ a.deshabilitado {
 
 
 /* fin de wr3schools*/
-
+/* vista de retos*/
+.boxlay {
+	background-color: lightgrey;
+	width: 300px;
+	border: 15px solid rgb(27, 71, 165);
+	padding: 50px;
+	margin: 20px;
+  }
+/*--------------*/
 
 /* Header/Blog Title */
 .header2 {

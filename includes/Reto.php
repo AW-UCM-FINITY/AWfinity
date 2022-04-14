@@ -13,11 +13,12 @@ class Reto{
     private $puntos;
 
     const dificultadES = array("DIFICIL","MEDIO","FACIL");
-    public function __construct($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto)
+    public function __construct($nombree, $num_usuarioss, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto)
     {
         $this->id_Reto=$id_Reto;
-        $this->nombre=$nombre;
-        $this-$num_usuarios=$num_usuarios;
+        $this->nombre=$nombree;
+
+        $this->num_usuarios=$num_usuarioss;
         $this->num_completado=$num_completado;
         $this->dificultad=$dificultad;
         $this->descripcion=$descripcion;
@@ -46,7 +47,7 @@ class Reto{
     }
     
     public function getDescripcion(){
-        return $this->num_completado;
+        return $this->descripcion;
     }
     public function getDias(){
         return $this->dias;
@@ -199,15 +200,18 @@ public static function getRetos(){
     $conn = Aplicacion::getInstance()->getConexionBd();
     $consulta = $conn->query($sql);
 
-    $arrayRetos = array();
+    
 
     if($consulta->num_rows > 0){
+        $arrayRetos = array();
         while ($fila = mysqli_fetch_assoc($consulta)) {
 
             $arrayRetos[]= new Reto($fila['nombre'],$fila['num_usuarios'],$fila['num_completado'],$fila['dificultad'],$fila['descripcion'],$fila['dias'],$fila['puntos'],$fila['id_Reto']);
               
         }
         $consulta->free();
+    }else{
+        $arrayRetos = false;
     }
 
 
