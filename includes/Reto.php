@@ -35,7 +35,7 @@ class Reto{
     }
 
     public function getNumMiembros(){
-        return $this-$num_usuarios;
+        return $this->num_usuarios;
     }
     
     public function getNumCompletado(){
@@ -132,16 +132,16 @@ class Reto{
 
      
 
-    $sql = "SELECT * FROM retos R  WHERE R.id_Reto= \"%$id%\" ";
+    $sql = "SELECT * FROM retos R  WHERE R.id_Reto= $id ";
     
    
     $conn =  Aplicacion::getInstance()->getConexionBd();
     $consulta = $conn->query($sql);
-    $arrayRetos=array();
+    $arrayRetos=false;
 
     if($consulta->num_rows > 0){
         while ($fila = mysqli_fetch_assoc($consulta)) {
-            $arrayRetos[]= new Reto($fila['nombre'],$fila['num_usuarios'],$fila['num_completado'],$fila['dificultad'],$fila['descripcion'],$fila['dias'],$fila['puntos'],$fila['id_Reto']);
+            $arrayRetos= new Reto($fila['nombre'],$fila['num_usuarios'],$fila['num_completado'],$fila['dificultad'],$fila['descripcion'],$fila['dias'],$fila['puntos'],$fila['id_Reto']);
             
         }
         $consulta->free();
@@ -278,7 +278,7 @@ static public function incrementUsuarios($id_Reto){
 
     $conn = Aplicacion::getInstance()->getConexionBd();
     $reto = new self($id_Reto);
-    $query="UPDATE retos SET $num_usuarios = $reto-$num_usuarios + 1 WHERE id_Reto = $id_Reto";
+    $query="UPDATE retos SET num_usuarios = $reto-$num_usuarios + 1 WHERE id_Reto = $id_Reto";
 
     if ( $conn->query($query) ) {
         if ( $conn->affected_rows != 1) {

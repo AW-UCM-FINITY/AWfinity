@@ -20,7 +20,7 @@ class PelisReto{
        if($consulta->num_rows > 0){
 	        while ($fila = mysqli_fetch_assoc($consulta)) {
 	        	
-	        	$arrayLibros[]= Pelicula::buscaPeliID($fila['id_pelicula']);
+	        	$arrayLibros[]= Pelicula::buscaPeliID($fila['id_Pelicula']);
              }
 	        $consulta->free();
     	}
@@ -30,7 +30,7 @@ class PelisReto{
     /* Contar las peliculas asociadas un reto o devuelve false si falla */
     static public function cuentasPelisPorReto($reto){
 
-        $sql = "SELECT COUNT(*) FROM pelisreto WHERE id_Reto = $reto";
+        $sql = "SELECT COUNT(*) as total FROM pelisreto WHERE id_Reto = $reto";
 	
       
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -40,7 +40,7 @@ class PelisReto{
 
        if($consulta->num_rows > 0){
 	       if ($fila = mysqli_fetch_assoc($consulta)) {
-	        	$result = $fila['COUNT'];
+	        	$result = $fila['total'];
 	        	
 	        }
 	        $consulta->free();
