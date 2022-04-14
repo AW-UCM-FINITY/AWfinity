@@ -170,11 +170,11 @@ class FormEditorEditReto extends Formulario
                     }
                     else{//no existe 
                         $reto=Reto::crea($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos);
-                        
+                        if(!$reto){
+                            $this->errores['nombre'] =  "Error ya existe un reto con ese nombre";
+                        }
                     }
-                    if(!$reto){
-                        $this->errores['nombre'] =  "Error ya existe un reto con ese nombre";
-                    }
+                   
                  
             
            
