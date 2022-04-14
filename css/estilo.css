@@ -343,8 +343,57 @@ a.deshabilitado {
 	padding: 50px;
 	margin: 20px;
   }
-/*--------------*/
 
+/*--------------*/
+/* ranking de retos--------*/
+
+
+
+
+
+.wrapper {
+	line-height: 1.5em;
+	margin: 0 auto;
+	padding: 2em 0 3em;
+	width: 90%;
+	max-width: 2000px;
+	overflow: hidden;
+}
+
+.wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+
+.wrapper th {
+    background-color: #326295;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.wrapper td, th {
+    padding: 1em 1.5em;
+    text-align: left;
+}
+
+.wrapper tbody th {
+	background-color: #2ea879;
+}
+.wrapper tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+.wrapper tbody tr:hover {
+    background-color: rgba(50,98,149,.3);
+}
+
+.wrapper td.rank {
+	text-transform: capitalize;
+}
+
+/*-----------------------------*/
 /* Header/Blog Title */
 .header2 {
     padding: 30px;

@@ -7,7 +7,7 @@ class FormEditorElimReto extends Formulario
     private $id_Reto;
     
     public function __construct($id_Reto) {
-        parent::__construct('FormEditorElimReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'reto.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorElimReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoVista.php']);//por ahora queda mas claro asi
         $this->id_Reto=$id_Reto;
     }
     

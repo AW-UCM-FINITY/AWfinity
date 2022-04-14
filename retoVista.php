@@ -25,8 +25,9 @@ EOS;
 $contenidoPrincipal.=<<<EOS
           </div>
           <div class="menublog">
-          <a class="active" href="#home">Ranking</a>
-          <a href="#about">Retos</a>
+          
+          <a class="active" href="./retoVista.php">Retos</a>
+          <a  href="./ranking.php">Ranking</a>
           <div class="barraBusca">
           <form action="/action_page.php">
             <input type="text" placeholder="Search.." name="search">
@@ -45,7 +46,7 @@ if(!($retos==false)){
         $contenidoPrincipal .=<<<EOS
                       
        
-                           <div class="boxlay" onclick="location.href='./retoSingVist.php?tituloid={$ret->getIdReto()}'">
+                           <div class="boxlay" onclick="location.href='./retoSingVist.php?retoid={$ret->getIdReto()}'">
                             
                             <h5>{$ret->getNombre()}</h5>
                          
@@ -68,8 +69,6 @@ if(!($retos==false)){
   
  
 
-}else{
-  echo "<p>Error en la muestra de noticias</p>";
 }
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
