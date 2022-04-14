@@ -17,6 +17,8 @@ class FormEditorAddPelisReto extends Formulario
 
     protected function generaCamposFormulario(&$datos){
 
+        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
+
         $html= "";
         foreach($this->lista as $pelis){
             $id_pelis = $pelis->getId();
@@ -42,7 +44,7 @@ class FormEditorAddPelisReto extends Formulario
         foreach($peli_seleccionado as $pelis){
             
         }*/
-        PelisReto::anadirPeliAReto(21,1);
+        PelisReto::anadirPeliAReto(23,1);
         return null;
     }
 }

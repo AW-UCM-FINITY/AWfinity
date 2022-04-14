@@ -39,7 +39,6 @@ class FormEditorBuscaPelisReto extends Formulario
         }
         
         if (count($this->errores) === 0) {
-
             return Pelicula::buscar($titulo);
         }
         return null;        

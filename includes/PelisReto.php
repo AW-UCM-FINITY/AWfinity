@@ -51,12 +51,11 @@ class PelisReto{
     /*Añadir pelis al reto */ 
     static public function anadirPeliAReto($pelis, $reto){
 
-        $pelii=$pelii=$conn->real_escape_string($pelis);
-        $retoo=$pelii=$conn->real_escape_string($reto);
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $pelii=$conn->real_escape_string($pelis);
+        $retoo=$conn->real_escape_string($reto);
         $sql = "INSERT INTO pelisreto VALUES ('$pelii','$retoo')";
         
-        
-        $conn = Aplicacion::getInstance()->getConexionBd();
         if($conn->query($sql) === TRUE){
             $resultado=true;
            
