@@ -127,6 +127,7 @@ class Reto{
 
        return $arrayRetos;
    }
+   
    static public function buscarPorId($id){ 
 
      
@@ -148,6 +149,8 @@ class Reto{
 
     return $arrayRetos;
 }
+
+
 
    public static function actualiza($nombre, $num_usuarios, $num_completado, $dificultad, $descripcion, $dias, $puntos, $id_Reto){
    
