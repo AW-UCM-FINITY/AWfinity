@@ -1,5 +1,5 @@
 <?php
-require(RAIZ_APP.'/helpers/autorizacion.php');
+require_once(RAIZ_APP.'/helpers/autorizacion.php');
 function mostrarSaludo() {
 	if (estaLogado()) {
 		return "Bienvenido, {$_SESSION['nombreUsuario']}      <a href='logout.php'> (Logout) </a>";
