@@ -6,6 +6,7 @@ require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobacion
 
 $tituloPagina = 'Noticias';
 $claseArticle = 'NoticiasAll';
+$valr =isset($_GET['search']) ? htmlspecialchars(trim(strip_tags($_GET["search"]))) : 0;
 
 $contenidoPrincipal = '';
 
@@ -25,13 +26,11 @@ EOS;
 $contenidoPrincipal.=<<<EOS
           </div>
           <div class="menublog">
-          <a class="active" href="#home">Inicio</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <a class="active" href="blog.php">Inicio</a>
           <div class="barraBusca">
-          <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Buscar</button>
+          <form action="blog.php" method="GET">
+          <input type="text" placeholder="Busca por título o contenido" name="search">
+          <button type="submit">Buscar</button>
           </form>
           </div>
           </div>
@@ -39,7 +38,15 @@ $contenidoPrincipal.=<<<EOS
             <div class="columnaIzq">
 EOS;
 
-$noticias=Noticia::getNoticias();
+if(isset($_GET['search'])){
+  
+ 
+
+  $noticias=Noticia::busca($valr);
+}else{
+  $noticias=Noticia::getNoticias();
+}
+
 
 if(!($noticias==false)){
       foreach($noticias as $notic){
@@ -106,7 +113,12 @@ if(!($noticias==false)){
 EOS;
 
 }else{
-  echo "<p>Error en la muestra de noticias</p>";
+  $contenidoPrincipal.=<<<EOS
+<h2> No hay noticias que mostrarle</h2>
+</div>
+</div>
+
+EOS;
 }
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

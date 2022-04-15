@@ -192,6 +192,24 @@ public static function buscaNoticia($titulo)
     return $result;
 }
 
+public static function busca($busqueda)
+{
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $query ="SELECT * FROM noticias WHERE noticias.titulo LIKE \"%$busqueda%\" OR noticias.contenido LIKE \"%$busqueda%\" ";
+    $rs = $conn->query($query);
+    $result = array();
+  
+    if ($rs) {
+        while($fila = $rs->fetch_assoc()){
+        
+            $result[] = new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas'],$fila['idNoticia']);
+        }
+        $rs->free();
+    } else {
+        error_log("Error BD ({$conn->errno}): {$conn->error}");
+    }
+    return $result;
+}
 
 public static function getNoticias(){
     

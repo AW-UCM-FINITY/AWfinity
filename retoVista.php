@@ -6,6 +6,7 @@ require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobacion
 
 $tituloPagina = 'Noticias';
 $claseArticle = 'NoticiasAll';
+$valr =isset($_GET['search']) ? htmlspecialchars(trim(strip_tags($_GET["search"]))) : 0;
 
 $contenidoPrincipal = '';
 
@@ -26,10 +27,10 @@ $contenidoPrincipal.=<<<EOS
           </div>
           <div class="menublog">
           
-          <a class="active" href="./retoVista.php">Retos</a>
+          <a class="active" href="retoVista.php">Retos</a>
           <a  href="./ranking.php">Ranking</a>
           <div class="barraBusca">
-          <form action="/action_page.php">
+          <form action="retoVista.php" method="GET">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Buscar</button>
           </form>
@@ -39,56 +40,65 @@ $contenidoPrincipal.=<<<EOS
             <div class="columnaIzq">
 EOS;
 
-$retos=Reto::getRetos();
+if(isset($_GET['search'])){
+  
+ 
+
+  $retos=Reto::buscar($valr);
+}else{
+  $retos=Reto::getRetos();
+}
+
 
 if(!($retos==false)){
       foreach($retos as $ret){
         $contenidoPrincipal .=<<<EOS
                       
-       
-                           <div class="boxlay" onclick="location.href='./retoSingVist.php?retoid={$ret->getIdReto()}'">
-                            
-                            <h5>{$ret->getNombre()}</h5>
-                         
-                            <p>{$ret->getDescripcion()}</p>
-                           
-                            
-
-                            
-                        
-          EOS;
+      <div class="boxlay" onclick="location.href='./retoSingVist.php?retoid={$ret->getIdReto()}'">
+      <h5>{$ret->getNombre()}</h5>
+      <p>{$ret->getDescripcion()}</p>
+EOS;
           if(estaLogado()&& !esEditor() && !esAdmin()){
            
-            $idReto = $ret->getIdReto();
-            $idUsuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
-            if(UsuarioReto::compruebaCompletado($idReto, $idUsuario)){
-              $contenidoPrincipal.= "<p>Completado</p>";
-            }
-            else{
-              $contenidoPrincipal.= "<p>No Completado</p>";
-              if(UsuarioReto::compruebaPerteneceReto($idUsuario,$idReto)){
-                $contenidoPrincipal.= "<p>Reto Aceptado</p>";
-              }
-              else{
-                $contenidoPrincipal.= "<p>Únete al reto</p>";
-              }
-            }
+                $idReto = $ret->getIdReto();
+                $idUsuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+                if(UsuarioReto::compruebaCompletado($idReto, $idUsuario)){
+                  $contenidoPrincipal.= "<p>Completado</p>";
+                }
+                else{
+                  $contenidoPrincipal.= "<p>No Completado</p>";
+                  if(UsuarioReto::compruebaPerteneceReto($idUsuario,$idReto)){
+                    $contenidoPrincipal.= "<p>Reto Aceptado</p>";
+                  }
+                  else{
+                    $contenidoPrincipal.= "<p>Únete al reto</p>";
+                  }
+                }
     
             
-      }
+          }
       $contenidoPrincipal.= "</div>";
       }
 
-  $contenidoPrincipal.=<<<EOS
-                       </div>
-                       
-    EOS;
+
   
   
    
   
  
 
+}else{
+  $contenidoPrincipal.=<<<EOS
+  <h2>         No hay retos que concuerden con su busqueda o no hay ningun reto registrado</h2>
+
+
+EOS;
 }
+
+$contenidoPrincipal.=<<<EOS
+</div>
+</div>
+
+EOS;
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
