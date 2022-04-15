@@ -23,8 +23,8 @@ class Usuario
 
 
     /** Prevent creating a new instance outside of the class via the new operator.*/
-    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user,$puntos, $id_usuario = NULL) {
-        //$this->id_usuario= $id;
+    private function __construct($nombreUsuario, $nombre, $apellido, $password, $rol_user,$puntos, $id = NULL) {
+        $this->id_usuario= $id;
         $this->nombreUsuario = $nombreUsuario;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
