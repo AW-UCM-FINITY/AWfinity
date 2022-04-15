@@ -106,13 +106,9 @@ class Reto{
     }
     
     static public function buscarNombre($busqueda){ 
-
-     
-
-        $sql = "SELECT * FROM retos R  WHERE R.nombre =$busqueda ";
-        
        
         $conn =  Aplicacion::getInstance()->getConexionBd();
+        $sql = sprintf("SELECT * FROM retos R  WHERE R.nombre ='%s'", $conn->real_escape_string($busqueda));
         $consulta = $conn->query($sql);
         $reto=false;
  
@@ -128,12 +124,11 @@ class Reto{
     }
     static public function buscar($busqueda){ 
 
-     
+       $conn =  Aplicacion::getInstance()->getConexionBd();
 
        $sql = "SELECT * FROM retos R  WHERE R.nombre LIKE \"%$busqueda%\" ";
        
-      
-       $conn =  Aplicacion::getInstance()->getConexionBd();
+
        $consulta = $conn->query($sql);
        $arrayRetos=array();
 

@@ -11,7 +11,7 @@ class FormEditorAddPelisReto extends Formulario
     public function __construct($id_Reto) {
         $this->lista = $_SESSION['array'];
         $this->id_Reto = $id_Reto;
-        parent::__construct('FormEditorAddPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoVista.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorAddPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoSingVist.php?retoid='.$id_Reto]);//por ahora queda mas claro asi
     }
     
 
@@ -32,7 +32,8 @@ class FormEditorAddPelisReto extends Formulario
         }
         $html.=<<<EOS
         <div>
-            <button type="submit" name="registro"> Añadir </button>
+            <button type="submit" name="anadir"> Añadir </button>
+            <button type="submit" name="cancelar"> Cancelar </button>
         </div>
         </fieldset>
         EOS;
@@ -44,11 +45,14 @@ class FormEditorAddPelisReto extends Formulario
 
     protected function procesaFormulario(&$datos)
     {
-        /*$peli_seleccionado = $datos['pelis_marcados'];
-        foreach($peli_seleccionado as $pelis){
-            
-        }*/
-        PelisReto::anadirPeliAReto(17,1);
+        if(isset($datos['anadir'])){
+
+            $peli_seleccionado = $datos['pelis_marcados'];
+            foreach($peli_seleccionado as $pelis){
+                PelisReto::anadirPeliAReto($pelis,$this->id_Reto);
+            }
+        }
+        
         return null;
     }
 }
