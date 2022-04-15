@@ -33,7 +33,19 @@ $contenidoPrincipal = "";
 
 $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
 
+$contenidoPrincipal .= "<div class='derecha'>";
 $contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'> <img alt='imgPeli' src=$cadena /> </div>";
+
+if(esEditor()){
+  
+  $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
+
+  $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormElimPeli </div>";
+  $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
+  $contenidoPrincipal .= "</div>"; //fin div = peli-editar
+
+}
+$contenidoPrincipal .= "</div>"; //cierra div derecha
 
 $contenidoPrincipal .= "<div class='peli-datos-card' id ='peli-datos'>";
 
@@ -48,15 +60,6 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
 
 
-if(esEditor()){
-  
-    $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
-
-    $contenidoPrincipal .="$htmlFormElimPeli";
-    $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
-    $contenidoPrincipal .= "</div>"; //fin div = peli-editar
-
-  }
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

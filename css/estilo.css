@@ -31,7 +31,7 @@ header {
 	font-family:Arial, Helvetica, sans-serif;
 }
 
-ul, ol {
+nav#menuP ul {
 	list-style:none;
 }
 
@@ -488,6 +488,10 @@ div.tituloIndex h2{
 	font-size: 20px;
 	padding-bottom: 20px;
 }
+div.tituloIndex h3{
+	padding-bottom: 20px;
+}
+
 div.tituloIndex span{
 	color: #9f2863;     /*Te has vuelto a ir*/
 }
@@ -535,8 +539,8 @@ div.tituloPeliIndex h3{
  /* CSS PARA LA VISTA 1PELÍCULA */
 div#peli-card.peli-card{
 	margin-top: 50px;
-	margin-left: 50px;
-	background-color: #d47ea9;
+	background-color: rgb(242, 211, 250);;
+	display: grid;
     grid-template-areas: "foto datos";
 	height: 400px;
 	grid-column-gap: 10px;
@@ -553,11 +557,12 @@ div#peli-foto.peli-foto-card img {
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 20px;	
+	display: block;
+	grid-area: foto;
 }
 div#peli-datos.peli-datos-card {
 	grid-area: datos;
 	padding-right: 20px;
-	padding-left: 60px;
 	padding-top: 60px;	
 }
 div.fila-dato{
@@ -566,6 +571,20 @@ div.fila-dato{
 }
 div#peli-editar.peli-editar-card{
 	display: block;
+	margin-left: 35px;
+	grid-area: editar;
+}
+div.derecha{
+	display: grid;
+	grid-row: auto;
+	grid-template-areas: 
+	"foto" 
+	"editar";
+	
+}
+div.generalBoton{
+	display: inline-block;
+	padding-right: 10px;
 }
 div.butonGeneral{
 	display: inline-block;
@@ -589,3 +608,22 @@ div.butonGeneral a{
 	text-decoration:none;
 }
  /*FIN PARA LA VISTA DE 1 PELÍCULA*/
+
+ /*CSS VISTA CAPITULOS*/
+ div.listaCapitulos li{
+	 padding-top: 10px;
+	 padding-bottom: 10px;
+ }
+ div.listaCapitulos ol{
+	 margin-left: 20px;
+ }
+
+ div#peli-foto.peli-foto-card video {
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 59px;	
+	display: block;
+	grid-area: foto;
+}
+ /*FIN CSS VISTA CAPITULOS*/
