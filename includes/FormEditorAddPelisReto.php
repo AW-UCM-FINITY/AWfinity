@@ -52,7 +52,5 @@ class FormEditorAddPelisReto extends Formulario
                 PelisReto::anadirPeliAReto($pelis,$this->id_Reto);
             }
         }
-        
-        return null;
     }
 }

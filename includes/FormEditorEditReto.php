@@ -181,6 +181,5 @@ class FormEditorEditReto extends Formulario
         }else{
             $this->errores['nombre'] =  "Error de crea/edita";
         }  
-       return null; 
     }
 }

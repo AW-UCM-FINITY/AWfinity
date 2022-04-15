@@ -47,7 +47,7 @@ if(esEditor()){
   
   <div class='butonGeneral'> <a href='editNoticia.php?idnoticia={$id_noticia}'> Editar </a> </div>
 
-  {$htmlFormElimNoticia['Contenido']}
+  $htmlFormElimNoticia
   
 EOS;
 }

@@ -23,7 +23,7 @@ if (!esEditor()){
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
-	{$htmlFormCreaNoticia['Contenido']}
+	$htmlFormCreaNoticia
 	EOS;
 }
 

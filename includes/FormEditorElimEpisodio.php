@@ -36,7 +36,6 @@ class FormEditorElimEpisodio extends Formulario
     protected function procesaFormulario(&$datos) 
     {
         $borrar = path\Episodio::eliminarEpisodio($this->id_episodio); 
-        return null;
         
     }
 }

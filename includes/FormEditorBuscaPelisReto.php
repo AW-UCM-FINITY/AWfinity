@@ -42,7 +42,6 @@ class FormEditorBuscaPelisReto extends Formulario
         if (count($this->errores) === 0) {
             $_SESSION['array']=Pelicula::buscar($titulo);
 
-        }
-        return null;        
+        }   
      }
 }

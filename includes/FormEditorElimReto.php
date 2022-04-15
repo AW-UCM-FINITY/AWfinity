@@ -26,7 +26,6 @@ class FormEditorElimReto extends Formulario
     protected function procesaFormulario(&$datos)
     {
         $borrarReto = Reto::elimina($this->id_Reto);
-        return null;
               
      }
 }

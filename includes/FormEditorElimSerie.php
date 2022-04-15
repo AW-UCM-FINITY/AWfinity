@@ -34,7 +34,6 @@ class FormEditorElimSerie extends Formulario
     {
         //Borra la serie y todos los episodio asociados
         $borrar = path\Serie::eliminarSerie($this->id_serie); //realmente le esta pasando el id
-        return null;
         
     }
 

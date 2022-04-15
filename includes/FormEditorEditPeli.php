@@ -189,8 +189,7 @@ class FormEditorEditPeli extends Formulario
                     $this->errores['uploadfile'] =  "Failed to upload image";
                 }
             }
-        }   
-        return null;   
+        }    
     }     //cierro procesa form
 }  //class
 //<div>

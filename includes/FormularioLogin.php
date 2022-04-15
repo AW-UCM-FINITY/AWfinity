@@ -70,6 +70,5 @@ class FormularioLogin extends Formulario
                 $_SESSION['esEditor'] = $usuario->getEditor();
             }
         }
-        return null;
     }
 }

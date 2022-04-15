@@ -103,6 +103,5 @@ class FormularioRegistro extends Formulario
                 $_SESSION['id'] = $usuario->getId();
             }
         }
-        return null;
     }
 }

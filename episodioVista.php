@@ -49,7 +49,7 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-card
 if(esEditor()){
   
     $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
-    $contenidoPrincipal .="{$htmlFormElimEpisodio['Contenido']}";
+    $contenidoPrincipal .="$htmlFormElimEpisodio";
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
 
 }

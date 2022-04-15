@@ -213,7 +213,6 @@ class FormEditorEditNoticia extends Formulario
             }
                
 
-            }
-      return null;  
+            } 
     }
 }

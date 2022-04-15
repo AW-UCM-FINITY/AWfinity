@@ -9,8 +9,6 @@ $claseArticle = 'FormCreaReto';
 $formN = new path\FormEditorEditReto(NULL);
 $htmlFormCreaReto = $formN->gestiona();
 
-$formB = new path\FormEditorBuscaPelisReto(NULL);
-$htmlFormBuscaPelis = $formB->gestiona();
 
 $contenidoPrincipal = '';
 if (!esEditor()){
@@ -23,7 +21,7 @@ if (!esEditor()){
 	$contenidoPrincipal .= <<< EOS
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
-	{$htmlFormCreaReto['Contenido']}
+	$htmlFormCreaReto
 	EOS;
 	
 }

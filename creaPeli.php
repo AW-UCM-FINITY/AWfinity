@@ -18,7 +18,7 @@ $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
 <h1>Consola de Creación de Peliculas</h1>
-{$htmlFormCreaPeli['Contenido']}
+$htmlFormCreaPeli
 EOS;
 
 

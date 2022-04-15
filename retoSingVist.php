@@ -72,7 +72,7 @@ if(esEditor()){
   
   <div class='butonGeneral'> <a href='editReto.php?retoid={$id_reto}'> Editar </a> </div>
 
-  {$htmlFormElimReto['Contenido']}
+  $htmlFormElimReto
   
 EOS;
 }
@@ -89,14 +89,14 @@ if(!isset($_GET['busca'])){
 $formB = new FormEditorBuscaPelisReto($id_reto);
 $htmlFormBuscaPelis = $formB->gestiona();
 $contenidoPrincipal .= <<< EOS
-  {$htmlFormBuscaPelis['Contenido']}
+  $htmlFormBuscaPelis
   EOS;
 }else{
   $formA = new FormEditorAddPelisReto($id_reto);
   $htmlFormAnadirPelis = $formA->gestiona();
   
   $contenidoPrincipal .= <<< EOS
-  {$htmlFormAnadirPelis['Contenido']}
+  $htmlFormAnadirPelis
   EOS;
 }
 
