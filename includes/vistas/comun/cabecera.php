@@ -2,7 +2,7 @@
 require_once(RAIZ_APP.'/helpers/autorizacion.php');
 function mostrarSaludo() {
 	if (estaLogado()) {
-		return "Bienvenido, {$_SESSION['nombreUsuario']}      <a href='logout.php'> (Logout) </a>";
+		return "Bienvenido, {$_SESSION['nombreUsuario']}  ,  <a href='perfil.php'>  Ver perfil </a>   <a href='logout.php'> (Logout) </a>";
 		
 	} else {
 		return "Usuario desconocido. <a href='login.php'>Login</a> <a href='registro.php'>Registro</a>";

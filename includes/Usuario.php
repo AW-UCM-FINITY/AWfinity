@@ -140,7 +140,7 @@ class Usuario
     }
     public function actualizaRolUser($id, $rol_user){
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE usuarios U SET rol_user = 'rol_user' WHERE U.id=$id");
+        $query=sprintf("UPDATE usuarios U SET rol_user = '$rol_user' WHERE U.id=$id");
         if ( $conn->query($query) ) {
             /*$result = self::borraRoles($usuario);
             if ($result) {
