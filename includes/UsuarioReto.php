@@ -51,7 +51,7 @@ class UsuarioReto{
     static public function retosCompletadosPorUser($id_user){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $sql = "SELECT COUNT(*) as total FROM usuarioreto WHERE id_usuario = $id_user AND completado='1'";
+        $sql = sprintf("SELECT COUNT(*) total FROM usuarioreto U WHERE U.id_usuario ='%s' AND U.completado='%s'",$conn->real_escape_string($id_user),1);
 
 		$consulta = $conn->query($sql);
         $result=0;

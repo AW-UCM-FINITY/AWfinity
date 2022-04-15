@@ -100,7 +100,7 @@ $contenidoPrincipal .= <<< EOS
   EOS;
 }
 
-
+unset($_SESSION['array']); // destruir el array de pelis que se intercambia entre formB y formA una vez usada.
 
 
 

@@ -4,6 +4,7 @@ use es\ucm\fdi\aw as path;
 
 
 $tituloPagina = 'Registro';
+$claseArticle = 'Registro';
 
 $form = new path\FormularioRegistro();
 $htmlFormRegistro = $form->gestiona();
