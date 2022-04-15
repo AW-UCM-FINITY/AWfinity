@@ -1,7 +1,8 @@
 <?php
 
 function estaLogado(){
-    return isset($_SESSION['login']) && ($_SESSION['esEditor']==true);
+    //return isset($_SESSION['login']) && ($_SESSION['esEditor']==true);
+    return isset($_SESSION['login']);
 }
 
 function esEditor(){
