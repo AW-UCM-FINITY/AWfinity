@@ -117,16 +117,18 @@ class UsuarioReto{
     /*Crea una fila usuario reto */ 
     static public function joinReto($id, $reto){
 
-        $date = date("Y/m/d");
-    $idd=$conn->real_escape_string($id);
-    $retoo=$conn->real_escape_string($reto);
-        $sql = "INSERT INTO usuarioreto VALUES ('$idd','$retoo','$date','0')";
-
-        
         $conn = Aplicacion::getInstance()->getConexionBd();
+        $date = date("Y/m/d");
+
+        $idd = $conn->real_escape_string($id);
+        $retoo = $conn->real_escape_string($reto);
+        $sql = "INSERT INTO usuarioreto VALUES ($idd,$retoo,$date,0)";
+        
+
+       
         if($conn->query($sql) === TRUE){
             $check=true;
-            Reto::incrementaNumMiembros($reto);//Actualiza num_miembros de la tabla retos
+            Reto::incrementaNumUsuarios($reto);//Actualiza num_miembros de la tabla retos
         }else{
             $check=false;
         }
@@ -154,13 +156,13 @@ class UsuarioReto{
 
     static public function salirReto($id, $reto){
 
-        $sql = "DELETE FROM usuarioreto WHERE id_usuario=$id AND id_Reto=$reto->getIdReto()";
+        $sql = "DELETE FROM usuarioreto WHERE id_usuario=$id AND id_Reto=$reto";
 
        
         $conn =  Aplicacion::getInstance()->getConexionBd();
         if($conn->query($sql) === TRUE){
             $check=true;
-            Reto::decrementaNumMiembros($reto->getIdReto());//Actualiza num_miembros de la tabla grupo
+            Reto::decrementaNumUsuarios($reto);//Actualiza num_miembros de la tabla grupo
         }else{
             $check=false;
         }
@@ -199,12 +201,12 @@ class UsuarioReto{
     //completa un reto
     static public function completaReto($id, $reto){
 
-        $sql="UPDATE usuarioreto SET completado = '1' WHERE id_usuario = $id AND id_Reto=$reto->id_Reto";
+        $sql="UPDATE usuarioreto SET completado = '1' WHERE id_usuario = $id AND id_Reto=$reto";
         
         $conn = Aplicacion::getInstance()->getConexionBd();
         if($conn->query($sql) === TRUE){
             $check=true;
-
+            Reto::incrementaNumCompletados($reto);
         }else{
             $check=false;
         }
@@ -213,10 +215,9 @@ class UsuarioReto{
     }
     //comprueba si ya lo completaste
     static public function compruebaCompletado($reto, $id){
-        
         $conn = Aplicacion::getInstance()->getConexionBd();
         $check=false;
-        $sql=sprintf("SELECT * FROM usuarioreto WHERE id_usuario = '%s' AND id_Reto = '%s'",$conn->real_escape_string($reto), $conn->real_escape_string($id));
+        $sql=sprintf("SELECT * FROM usuarioreto WHERE id_usuario = '%s' AND id_Reto = '%s'",$conn->real_escape_string($id), $conn->real_escape_string($reto));
         $consulta =$conn->query($sql);
         if($consulta->num_rows > 0){
             if($fila = mysqli_fetch_assoc($consulta)) {

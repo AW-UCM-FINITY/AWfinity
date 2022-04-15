@@ -1,7 +1,8 @@
 <?php
 namespace es\ucm\fdi\aw;
 
-class FormUserAbandonReto extends Formulario
+
+class FormUserCompletaReto extends Formulario
 {
     private $id_user;
     private $id_Reto;
@@ -9,8 +10,8 @@ class FormUserAbandonReto extends Formulario
     public function __construct($id_user, $id_Reto) {
         $this->id_user = $id_user;
         $this->id_Reto = $id_Reto;
-        parent::__construct('FormUserAbandonReto', ['urlRedireccion' =>  'retoSingVist.php?retoid='.$id_Reto]);
-
+        parent::__construct('FormUserCompletaReto', ['urlRedireccion' => 'retoSingVist.php?retoid='.$id_Reto]);
+        
     }
 
     
@@ -25,8 +26,8 @@ class FormUserAbandonReto extends Formulario
         $html = <<<EOF
         $htmlErroresGlobales
         <div>
-            <input type="hidden" name="salirReto" value="$this->id_Reto" />
-            <button type="submit" name="salir">Abandonar</button>
+            <input type="hidden" name="CompletaReto" value="$this->id_Reto" />
+            <button type="submit" name="Completa">Completar Reto</button>
         </div>
            
         EOF;
@@ -35,6 +36,6 @@ class FormUserAbandonReto extends Formulario
 
     protected function procesaFormulario(&$datos) 
     {
-        UsuarioReto::salirReto($this->id_user,$this->id_Reto); 
+        UsuarioReto::completaReto($this->id_user,$this->id_Reto); 
     }
 }

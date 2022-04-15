@@ -59,7 +59,7 @@ if(!($retos==false)){
           EOS;
           if(estaLogado()&& !esEditor() && !esAdmin()){
            
-            if(UsuarioReto::compruebaCompletado($ret->getIdReto(), Usuario::buscaUsuario($_SESSION['nombreUsuario'])->getId())){
+            if(UsuarioReto::compruebaCompletado($ret->getIdReto(), Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']))){
               $contenidoPrincipal.= "<p>Completado</p>";
             }
             else{

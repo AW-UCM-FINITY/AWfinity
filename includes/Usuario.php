@@ -269,6 +269,22 @@ class Usuario
         return false;
     }
 
+    public static function buscaIDPorNombre($nombre){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM usuarios WHERE nombreUsuario='%s'", $nombre);
+        $rs = $conn->query($query);
+        if ($rs) {
+            $fila = $rs->fetch_assoc();
+            $user = $fila['id_user'];
+            $rs->free();
+
+            return $user;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return false;
+    }
+
   
 
    

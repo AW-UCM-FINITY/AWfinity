@@ -96,20 +96,33 @@ if(!isset($_GET['busca'])){
   unset($_SESSION['array']); 
 }
 // si esta logado como usuario normal, puede elegir unirse o abandonar el reto
-/*else if(estaLogado() && !esAdmin()){
-  $id_usuario = Usuario::buscaUsuario($_SESSION['nombreUsuario']);
-  echo "<p>.$id_usuario.</p>";
+else if(estaLogado() && !esAdmin()){
+  $id_usuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
   if(!empty($id_usuario)){
 
-  // si ya se ha unido al reto puede abandor
+  // si el usuario ya se ha unido al reto
   if(UsuarioReto::compruebaPerteneceReto($id_usuario,$id_reto)){
-    $formD = new FormUserAbandonReto($id_reto);
-    $htmlFormAbandonReto = $formD->gestiona();
-    $contenidoPrincipal .= $htmlFormAbandonReto;
+
+    // si el reto no esta completado puede o completar reto o abandonar el reto
+    if(!UsuarioReto::compruebaCompletado($id_reto, $id_usuario)){
+      $formD = new FormUserAbandonReto($id_usuario, $id_reto);
+      $htmlFormAbandonReto = $formD->gestiona();
+      $contenidoPrincipal .= $htmlFormAbandonReto;
+
+      $formC = new FormUserCompletaReto($id_usuario, $id_reto);
+      $htmlFormCompletaReto = $formC->gestiona();
+      $contenidoPrincipal .= $htmlFormCompletaReto;
+    }
+    // si ha completado el reto, no se muestra boton
+    else{
+      $contenidoPrincipal .= "<p> RETO YA COMPLETADO </p>";
+    }
+    
   }
   else{
   // si no esta dentro de reto, puede unirse
-  $formJ = new FormUserJoinReto($id_reto);
+  
+  $formJ = new FormUserJoinReto($id_usuario,$id_reto);
   $htmlFormJoinReto = $formJ->gestiona();
   $contenidoPrincipal .= $htmlFormJoinReto;
   }
@@ -117,7 +130,7 @@ if(!isset($_GET['busca'])){
   
   }
 
-}*/
+}
 
 $contenidoPrincipal .=<<<EOS
                             </div>

@@ -290,11 +290,10 @@ public static function pagina($numPagina,$numPorPagina){
     return $arrayRetos;
 }
 
-static public function incrementUsuarios($id_Reto){
+static public function incrementaNumUsuarios($id_Reto){
 
     $conn = Aplicacion::getInstance()->getConexionBd();
-    $reto = new self($id_Reto);
-    $query="UPDATE retos SET num_usuarios = $reto-$num_usuarios + 1 WHERE id_Reto = $id_Reto";
+    $query="UPDATE retos SET num_usuarios = num_usuarios + 1 WHERE id_Reto = $id_Reto";
 
     if ( $conn->query($query) ) {
         if ( $conn->affected_rows != 1) {
@@ -312,8 +311,25 @@ static public function incrementUsuarios($id_Reto){
 static public function decrementaNumUsuarios($id_Reto){
 
     $conn = Aplicacion::getInstance()->getConexionBd();
-    $reto = new self($id_Reto);
-    $query="UPDATE retos SET num_miembros = $reto->num_miembros - 1 WHERE id_Reto = $id_Reto";
+    $query="UPDATE retos SET num_usuarios = num_usuarios - 1 WHERE id_Reto = $id_Reto";
+
+    if ( $conn->query($query) ) {
+        if ( $conn->affected_rows != 1) {
+            echo "No se ha podido actualizar el reto: " . $reto->nombre;
+            exit();
+        }
+    } else {
+        echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+        exit();
+    }
+    
+
+}
+
+static public function incrementaNumCompletados($id_Reto){
+
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $query="UPDATE retos SET num_completado = num_completado + 1 WHERE id_Reto = $id_Reto";
 
     if ( $conn->query($query) ) {
         if ( $conn->affected_rows != 1) {
