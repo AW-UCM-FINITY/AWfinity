@@ -5,6 +5,7 @@ require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobacion
 
 
 $tituloPagina = 'Contenido';
+$claseArticle = 'Contenido';
 
 $contenidoPrincipal = '';
 if (!estaLogado()){
