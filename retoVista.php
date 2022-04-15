@@ -52,11 +52,23 @@ if(!($retos==false)){
                          
                             <p>{$ret->getDescripcion()}</p>
                            
-                            </div>
+                            
 
                             
                         
           EOS;
+          if(estaLogado()&& !esEditor() && !esAdmin()){
+           
+            if(UsuarioReto::compruebaCompletado($ret->getIdReto(), Usuario::buscaUsuario($_SESSION['nombreUsuario'])->getId())){
+              $contenidoPrincipal.= "<p>Completado</p>";
+            }
+            else{
+              $contenidoPrincipal.= "<p>No Completado</p>";
+            }
+    
+            
+      }
+      $contenidoPrincipal.= "</div>";
       }
 
   $contenidoPrincipal.=<<<EOS

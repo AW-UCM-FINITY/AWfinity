@@ -213,10 +213,10 @@ class UsuarioReto{
     }
     //comprueba si ya lo completaste
     static public function compruebaCompletado($reto, $id){
+        
+        $conn = Aplicacion::getInstance()->getConexionBd();
         $check=false;
-        $sql="SELECT * FROM usuarioreto WHERE id_usuario = $id AND id_Reto = $reto";
-        $app = Aplicacion::getSingleton();
-        $conn = $app->conexionBd();
+        $sql=sprintf("SELECT * FROM usuarioreto WHERE id_usuario = '%s' AND id_Reto = '%s'",$conn->real_escape_string($reto), $conn->real_escape_string($id));
         $consulta =$conn->query($sql);
         if($consulta->num_rows > 0){
             if($fila = mysqli_fetch_assoc($consulta)) {

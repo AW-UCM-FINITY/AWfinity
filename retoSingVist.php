@@ -75,34 +75,58 @@ if(esEditor()){
   $htmlFormElimReto
   
 EOS;
+
+// Si esta logado como editor, permite añadir pelis al reto
+if(!isset($_GET['busca'])){
+  $formB = new FormEditorBuscaPelisReto($id_reto);
+  $htmlFormBuscaPelis = $formB->gestiona();
+  $contenidoPrincipal .= <<< EOS
+    $htmlFormBuscaPelis
+    EOS;
+  }else{
+    $formA = new FormEditorAddPelisReto($id_reto);
+    $htmlFormAnadirPelis = $formA->gestiona();
+    
+    $contenidoPrincipal .= <<< EOS
+    $htmlFormAnadirPelis
+    EOS;
+  }
+  
+  // destruir el array de pelis que se intercambia entre formB y formA.
+  unset($_SESSION['array']); 
 }
+// si esta logado como usuario normal, puede elegir unirse o abandonar el reto
+/*else if(estaLogado() && !esAdmin()){
+  $id_usuario = Usuario::buscaUsuario($_SESSION['nombreUsuario']);
+  echo "<p>.$id_usuario.</p>";
+  if(!empty($id_usuario)){
+
+  // si ya se ha unido al reto puede abandor
+  if(UsuarioReto::compruebaPerteneceReto($id_usuario,$id_reto)){
+    $formD = new FormUserAbandonReto($id_reto);
+    $htmlFormAbandonReto = $formD->gestiona();
+    $contenidoPrincipal .= $htmlFormAbandonReto;
+  }
+  else{
+  // si no esta dentro de reto, puede unirse
+  $formJ = new FormUserJoinReto($id_reto);
+  $htmlFormJoinReto = $formJ->gestiona();
+  $contenidoPrincipal .= $htmlFormJoinReto;
+  }
+
+  
+  }
+
+}*/
 
 $contenidoPrincipal .=<<<EOS
                             </div>
                             </div>
+                            <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>
                             EOS;
 }else{
     echo "<p>Error en la muestra de retos</p>";
 }
-
-if(!isset($_GET['busca'])){
-$formB = new FormEditorBuscaPelisReto($id_reto);
-$htmlFormBuscaPelis = $formB->gestiona();
-$contenidoPrincipal .= <<< EOS
-  $htmlFormBuscaPelis
-  EOS;
-}else{
-  $formA = new FormEditorAddPelisReto($id_reto);
-  $htmlFormAnadirPelis = $formA->gestiona();
-  
-  $contenidoPrincipal .= <<< EOS
-  $htmlFormAnadirPelis
-  EOS;
-}
-
-unset($_SESSION['array']); // destruir el array de pelis que se intercambia entre formB y formA una vez usada.
-
-
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
