@@ -15,40 +15,34 @@ $titulo = $serie->getTitulo();
 $tituloPagina = 'Serie - Temporada';
 $claseArticle = 'vistaTemporada';
 $contenidoPrincipal = "";
-$contenidoPrincipal .= "<div>
-<h3>Todos los episodios de la <span>$temporada</span> temporada de la serie <span>$titulo</span></h3>
-</div>";
 
-// Boton para añadir episodio
-if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
+
+$contenidoPrincipal .= 
+"<div class='tituloIndex'>
+<h3>Todos los episodios de la <span>$temporada</span> temporada de la serie <span>$titulo</span></h3>";
+    
+if(esEditor()){
 	//Antes de modificar
 	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaEpisodio.php?id_serie=$id_serie&temporada=$temporada'> Añadir Episodio</a> </div>";
 	
 }
-//$contenidoPrincipal = "</div>";
+$contenidoPrincipal .= "</div>";
 
 
+$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>Capítulos</h3> </div>";
 
 // Lista los episodios
 $arrayEpisodios = path\Episodio::listaEpisodios($id_serie, $temporada);
 
-$contenidoPrincipal .= "<div>";
+$contenidoPrincipal .= "<div class='listaCapitulos'>";
+$contenidoPrincipal .= "<ol>";
 foreach ($arrayEpisodios as $key => $episodio) {
     $tituloEp = $episodio->getTitulo();
     $duracionEp = $episodio->getDuracion();
     $id_episodio = $episodio->getId();
-	
-	$contenidoPrincipal .= "<div> <a href='episodioVista.php?id_episodio=$id_episodio'> $tituloEp </a> ";
-	
-	
-	$contenidoPrincipal .= "</div>";
-	// if(isset( $_SESSION['esEditor']) &&  $_SESSION['login']==true && $_SESSION['esEditor']==true){
-	// 	$formP = new path\FormEditorElimEpisodio($id_episodio);
-	// 	$htmlFormEliEpisodio = $formP->gestiona();
-	// 	$contenidoPrincipal .= "$htmlFormEliEpisodio";
-	// }
-    
+	$contenidoPrincipal .= "<li> <div class='butonGeneral'> <a href='episodioVista.php?id_episodio=$id_episodio'> $tituloEp </a> </div></li>";
 }
+$contenidoPrincipal .= "</ol>";
 $contenidoPrincipal .= "</div>";
 
 

@@ -29,30 +29,34 @@ $contenidoPrincipal = "";
 
 $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
 
+
+$contenidoPrincipal .= "<div class='derecha'>";
+$contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'>
+  <video width='400' controls>
+  <source src='$cadena_video' type='video/mp4'>
+  Your browser does not support the video tag.
+  </video> 
+</div>";
+
+if(esEditor()){
+  
+  $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
+  $contenidoPrincipal .="$htmlFormElimEpisodio";
+  $contenidoPrincipal .= "</div>"; //fin div = peli-editar
+
+}
+$contenidoPrincipal .= "</div>"; //cierra div derecha
+
 $contenidoPrincipal .= "<div class='peli-datos-card' id ='peli-datos'>";
 
 $contenidoPrincipal .= "<div class='fila-dato'> <strong>Titulo:  </strong>$titulo</div>";
 $contenidoPrincipal .= "<div class='fila-dato'> <strong>Temporada:  </strong>$temporada</div>";
 $contenidoPrincipal .= "<div class='fila-dato'> <strong>Duracion:  </strong>$duracion  minutos</div>";
 $contenidoPrincipal .= "<div class='fila-dato'> <strong>Sinopsis:  </strong>$sinopsis</div>";
-$contenidoPrincipal .= "<div class='fila-dato'> <strong>Video: </strong>
-<video width='400' controls>
-  <source src='$cadena_video' type='video/mp4'>
-  Your browser does not support the video tag.
-</video></div>";
 
 $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
-
-
-if(esEditor()){
-  
-    $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
-    $contenidoPrincipal .="$htmlFormElimEpisodio";
-    $contenidoPrincipal .= "</div>"; //fin div = peli-editar
-
-}
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
