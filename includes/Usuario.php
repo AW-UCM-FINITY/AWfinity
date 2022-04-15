@@ -40,6 +40,9 @@ class Usuario
     public function getNombreUsuario() {
         return $this->nombreUsuario;
     }
+    public function getRol() {
+        return $this->rol_user;
+    }
 
     public function getNombre(){
         return $this->nombre;
@@ -117,18 +120,20 @@ class Usuario
     }
 
     /** Actualiza el usuario existente en BD guarda() -> actualiza() */
-    private static function actualiza($usuario){
+    public static function actualiza($nombreUsuario, $nombre, $apellido, $password, $rol_user,$puntos, $id) {
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE usuarios U SET nombreUsuario = '%s', nombre='%s', apellido='%s', password='%s', rol_user='%s' WHERE U.id=%d"
-            , $conn->real_escape_string($usuario->nombreUsuario)
-            , $conn->real_escape_string($usuario->nombre)
-            , $conn->real_escape_string($usuario->apellido)
-            , $conn->real_escape_string($usuario->password)
-            , $conn->real_escape_string($usuario->rol_user)
-            , $usuario->id
+        $query=sprintf("UPDATE usuarios U SET nombreUsuario = '%s', nombre='%s', apellido='%s', password='%s', rol_user='%s', puntos='%s' WHERE U.id_user=%d"
+            , $conn->real_escape_string($nombreUsuario)
+            , $conn->real_escape_string($nombre)
+            , $conn->real_escape_string($apellido)
+            , $conn->real_escape_string($password)
+            , $conn->real_escape_string($rol_user)
+            , $conn->real_escape_string($puntos)
+            , $id
         );
         if ( $conn->query($query)) {
+            $result = true;
             /*$result = self::borraRoles($usuario);
             if ($result) {
                 $result = self::insertaRoles($usuario);
@@ -136,7 +141,7 @@ class Usuario
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $usuario;
+        return $result;
     }
     public function actualizaRolUser($id, $rol_user){
         $conn = Aplicacion::getInstance()->getConexionBd();

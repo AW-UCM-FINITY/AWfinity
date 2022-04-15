@@ -74,6 +74,8 @@ $contenidoPrincipal .= <<<EOS
 </tr>
         </tbody>
 	</table>
+    <div class='butonGeneral'> <a href='editUsuario.php?nombreusuario={$_SESSION['nombreUsuario']}'> Editar </a> </div>
+
 </div>
 </div>
       
