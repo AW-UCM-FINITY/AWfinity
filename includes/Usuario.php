@@ -127,7 +127,7 @@ class Usuario
             , $conn->real_escape_string($nombreUsuario)
             , $conn->real_escape_string($nombre)
             , $conn->real_escape_string($apellido)
-            , $conn->real_escape_string($password)
+            , self::hashPassword($conn->real_escape_string($password))
             , $conn->real_escape_string($rol_user)
             , $conn->real_escape_string($puntos)
             , $id

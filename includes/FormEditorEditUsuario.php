@@ -98,7 +98,7 @@ class FormEditorEditUsuario extends Formulario
         if (count($this->errores) === 0) {
            // $usuario = path\Usuario::buscaUsuario($nombreUsuario);
           $usuer= $usuer=Usuario::buscaUsuario($this->nombUser);
-	       $val=Usuario::actualiza($usuer->getNombreUsuario(), $nombre, $apellido, $password, $usuer->getRol(), $usuer->getPuntos(), $usuer->getId());
+	       $val=Usuario::actualiza($usuer->getNombreUsuario(), $nombre, $apellido,  $password, $usuer->getRol(), $usuer->getPuntos(), $usuer->getId());
             if (!$val) {
                 $this->errores[] = "El usuario no se pudo actualizar";
             } 
