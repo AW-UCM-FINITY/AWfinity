@@ -5,7 +5,7 @@ class FormEditorBuscaPelisReto extends Formulario
 {
     
     public function __construct() {
-        parent::__construct('FormEditorBuscarPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'reto.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorBuscarPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoVista.php']);//por ahora queda mas claro asi
     }
     
 
@@ -40,6 +40,7 @@ class FormEditorBuscaPelisReto extends Formulario
         
         if (count($this->errores) === 0) {
             return Pelicula::buscar($titulo);
+
         }
         return null;        
      }

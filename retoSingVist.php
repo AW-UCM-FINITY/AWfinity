@@ -88,7 +88,11 @@ $contenidoPrincipal .=<<<EOS
 $formB = new FormEditorBuscaPelisReto(NULL);
 $htmlFormBuscaPelis = $formB->gestiona();
 
-if($htmlFormBuscaPelis['HTML']==='NO'){
+$htmlFormBuscaPelis['Contenido']
+
+
+
+/*if($htmlFormBuscaPelis['HTML']==='NO'){
   $formA = new FormEditorAddPelisReto($htmlFormBuscaPelis['Contenido'],$id_reto);
   $htmlFormAnadirPelis = $formA->gestiona();
   
@@ -101,7 +105,7 @@ else{
   $contenidoPrincipal .= <<< EOS
   {$htmlFormBuscaPelis['Contenido']}
   EOS;
-}
+}*/
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

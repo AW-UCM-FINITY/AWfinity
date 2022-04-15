@@ -210,7 +210,7 @@ abstract class Formulario
         
         if ($resultadoProcesar !== null){
             $resultado['HTML']='NO';
-            $resultado['Contenido']=$resultadoProcesar;
+            $resultado['SalidaArray']=$resultadoProcesar;
             return $resultado;
         }
 
