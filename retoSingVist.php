@@ -85,27 +85,24 @@ $contenidoPrincipal .=<<<EOS
     echo "<p>Error en la muestra de retos</p>";
 }
 
-$formB = new FormEditorBuscaPelisReto(NULL);
+if(!isset($_GET['busca'])){
+$formB = new FormEditorBuscaPelisReto($id_reto);
 $htmlFormBuscaPelis = $formB->gestiona();
-
-$htmlFormBuscaPelis['Contenido']
-
-
-
-/*if($htmlFormBuscaPelis['HTML']==='NO'){
-  $formA = new FormEditorAddPelisReto($htmlFormBuscaPelis['Contenido'],$id_reto);
+$contenidoPrincipal .= <<< EOS
+  {$htmlFormBuscaPelis['Contenido']}
+  EOS;
+}else{
+  $formA = new FormEditorAddPelisReto($id_reto);
   $htmlFormAnadirPelis = $formA->gestiona();
   
   $contenidoPrincipal .= <<< EOS
   {$htmlFormAnadirPelis['Contenido']}
   EOS;
-    
 }
-else{
-  $contenidoPrincipal .= <<< EOS
-  {$htmlFormBuscaPelis['Contenido']}
-  EOS;
-}*/
+
+
+
+
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

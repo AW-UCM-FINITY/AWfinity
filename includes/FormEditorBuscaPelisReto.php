@@ -4,8 +4,9 @@ namespace es\ucm\fdi\aw;
 class FormEditorBuscaPelisReto extends Formulario
 {
     
-    public function __construct() {
-        parent::__construct('FormEditorBuscarPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoVista.php']);//por ahora queda mas claro asi
+    public function __construct($id_reto) {
+        $d='retoSingVist.php?retoid='.$id_reto.'&busca=1';
+        parent::__construct('FormEditorBuscarPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => $d]);//por ahora queda mas claro asi
     }
     
 
@@ -39,7 +40,7 @@ class FormEditorBuscaPelisReto extends Formulario
         }
         
         if (count($this->errores) === 0) {
-            return Pelicula::buscar($titulo);
+            $_SESSION['array']=Pelicula::buscar($titulo);
 
         }
         return null;        

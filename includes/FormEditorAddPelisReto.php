@@ -8,8 +8,8 @@ class FormEditorAddPelisReto extends Formulario
     private $id_Reto;
     private $pelis_marcados = array();
 
-    public function __construct($lista, $id_Reto) {
-        $this->lista = $lista;
+    public function __construct($id_Reto) {
+        $this->lista = $_SESSION['array'];
         $this->id_Reto = $id_Reto;
         parent::__construct('FormEditorAddPelisReto', ['enctype' => 'multipart/form-data','urlRedireccion' => 'retoVista.php']);//por ahora queda mas claro asi
     }
@@ -19,7 +19,7 @@ class FormEditorAddPelisReto extends Formulario
 
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
 
-        $html= "";
+        $html= "<fieldset>";
         
         foreach($this->lista as $pelis){
             $id_pelis = $pelis->getId();
@@ -34,13 +34,10 @@ class FormEditorAddPelisReto extends Formulario
         <div>
             <button type="submit" name="registro"> Añadir </button>
         </div>
+        </fieldset>
         EOS;
 
-        $html.=<<<EOS
-        <div>
-            <button type="submit" name="registro"> Añadir </button>
-        </div>
-        EOS;
+      
         
         return $html;
     }
@@ -51,7 +48,7 @@ class FormEditorAddPelisReto extends Formulario
         foreach($peli_seleccionado as $pelis){
             
         }*/
-        PelisReto::anadirPeliAReto(24,1);
+        PelisReto::anadirPeliAReto(17,1);
         return null;
     }
 }
