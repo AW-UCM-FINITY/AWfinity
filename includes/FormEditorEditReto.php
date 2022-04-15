@@ -98,7 +98,7 @@ class FormEditorEditReto extends Formulario
             </div>
 
             <div>
-            <label for="puntos">Puntos (5-100):</label>
+            <label for="puntos">Puntos (5-50):</label>
             <input id="puntos" type="range" name="puntos" value="$puntos" min="5" max="50" oninput="puntosout.value = puntos.value"/>
             <output name="puntosout" id="puntosout">$puntos</output>
             {$erroresCampos['puntos']}
@@ -156,7 +156,7 @@ class FormEditorEditReto extends Formulario
   
         }
 
-        $puntos = $puntos['puntos']?? '5'; 
+        $puntos = $datos['puntos']?? '5'; 
         $puntos  = filter_var($puntos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if($puntos<5){
             $this->errores['puntos'] = 'Los puntos no pueden ser menores que 5';//para empezar lo dejamos asi, mas tarde en otra tabla
