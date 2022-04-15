@@ -207,6 +207,7 @@ class UsuarioReto{
         if($conn->query($sql) === TRUE){
             $check=true;
             Reto::incrementaNumCompletados($reto);
+            Usuario::aumentarPuntos($id, Reto::buscarPorId($reto)->getPuntos());
         }else{
             $check=false;
         }

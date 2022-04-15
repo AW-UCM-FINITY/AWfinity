@@ -7,7 +7,7 @@ class FormUserCompletaReto extends Formulario
     private $id_user;
     private $id_Reto;
 
-    public function __construct($id_user, $id_Reto) {
+    public function __construct($id_user, $id_Reto, ) {
         $this->id_user = $id_user;
         $this->id_Reto = $id_Reto;
         parent::__construct('FormUserCompletaReto', ['urlRedireccion' => 'retoSingVist.php?retoid='.$id_Reto]);

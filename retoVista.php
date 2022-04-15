@@ -59,11 +59,19 @@ if(!($retos==false)){
           EOS;
           if(estaLogado()&& !esEditor() && !esAdmin()){
            
-            if(UsuarioReto::compruebaCompletado($ret->getIdReto(), Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']))){
+            $idReto = $ret->getIdReto();
+            $idUsuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+            if(UsuarioReto::compruebaCompletado($idReto, $idUsuario)){
               $contenidoPrincipal.= "<p>Completado</p>";
             }
             else{
               $contenidoPrincipal.= "<p>No Completado</p>";
+              if(UsuarioReto::compruebaPerteneceReto($idUsuario,$idReto)){
+                $contenidoPrincipal.= "<p>Reto Aceptado</p>";
+              }
+              else{
+                $contenidoPrincipal.= "<p>Únete al reto</p>";
+              }
             }
     
             

@@ -285,9 +285,24 @@ class Usuario
         return false;
     }
 
+    public static function aumentarPuntos($id_usuario, $puntos){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query="UPDATE usuarios SET puntos = puntos + $puntos WHERE  id_user= $id_usuario";
+    
+        if ( $conn->query($query) ) {
+            if ( $conn->affected_rows != 1) {
+                echo "No se ha podido actualizar los puntos de usuario.";
+                exit();
+            }
+        } else {
+            echo "Error al insertar en la BD: (" . $conn->errno . ") " . utf8_encode($conn->error);
+            exit();
+        }
+    }
   
 
-   
+
 
     /*private static function insertaRoles($usuario){
         $conn = Aplicacion::getInstance()->getConexionBd();
