@@ -184,23 +184,6 @@ class Serie
         return $arraySeries;   
     }
 
-
-    // public static function eliminarSerieTitulo($titulo){
-
-    //     //borro de la bd
-    //     print($titulo);
-    //     $conn = Aplicacion::getInstance()->getConexionBd();	
-    //     $query = sprintf("DELETE FROM series WHERE titulo = '%s'", $conn->real_escape_string($titulo));
-	// 	print($titulo);
-    //     $rs = $conn->query($query);
-    //     $check =false;
-	// 	if($rs){
-	// 		$check =true;
-
-	// 	}
-	// 	return $check;        
-    // }
-
     public static function eliminarSerie($id_serie){
 
         //borro de la bd

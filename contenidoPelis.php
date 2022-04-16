@@ -16,128 +16,30 @@ $contenidoPrincipal .=
     <h2>AWfinity </h2>
 	<h1><span>Películas</span> todos los géneros y más </h1>";
     
-
 if(esEditor()){
 	//Antes de modificar
 	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
 	
 }
-$contenidoPrincipal .= "</div>";
+$contenidoPrincipal .= "</div>";//cierra div tituloIndex
 
+$arrayGeneros = path\Pelicula::getGenerosPeli(); //Obtenemos todos los generos disponibles
 
-/**MOSTRAMOS PELICULAS GENERO ACCION */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE ACCIÓN</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("accion");
-foreach ($arrayPelis as $key => $value) {
- 	$ruta = $value->getRutaImagen();
- 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$id_pelicula = $value->getId();
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$ruta></a>";
+//Recorremos array de generos y mostramos las películas
+foreach ($arrayGeneros as $key => $genero) {
+	$contenidoPrincipal .="<div class='pelisIndex'>";
+	$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE $genero </h3> </div>";
+	$contenidoPrincipal .= "<div class='peliLista'>";
+	$arrayPelis = path\Pelicula::ordenarPor($genero);
+	foreach ($arrayPelis as $key => $value) {
+		$ruta = $value->getRutaImagen();
+		$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
+		$id_pelicula = $value->getId();
+		$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$ruta></a>";
+   }
+   $contenidoPrincipal .= "</div>";
+   $contenidoPrincipal .= "</div>";
 }
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-/**MOSTRAMOS PELICULAS GENERO ANIME */
-$contenidoPrincipal .="<div class='pelisIndex'>"; 
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE ANIME</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("anime");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
- 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-/**MOSTRAMOS PELICULAS GENERO CIENCIA FICCION */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE CIENCIA FICCIÓN</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("ciencia ficcion");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
-	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-/**MOSTRAMOS PELICULAS GENERO COMEDIA */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE COMEDIA</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("comedia");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
- 	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-
-/**MOSTRAMOS PELICULAS GENERO DRAMA */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE DRAMA</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("drama");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
-	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-/**MOSTRAMOS PELICULAS GENERO FANTASIA */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE FANTASÍA</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("fantasia");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
-	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-
-/**MOSTRAMOS PELICULAS GENERO MUSICAL */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE MUSICAL</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("musical");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
-	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
-
-/**MOSTRAMOS PELICULAS GENERO TERROR */
-$contenidoPrincipal .="<div class='pelisIndex'>";
-$contenidoPrincipal.= "<div class='tituloPeliIndex'> <h3>PELÍCULAS DE TERROR</h3> </div>";
-$contenidoPrincipal .= "<div class='peliLista'>";
-$arrayPelis = path\Pelicula::ordenarPor("TERROR");
-foreach ($arrayPelis as $key => $value) {
-	$id_pelicula = $value->getId();
- 	$ruta = $value->getRutaImagen();
-	 $cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	 $contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
-}
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
 
 $contenidoPrincipal .= "</div>"; //Cierre de div = contenidoPelis
 
