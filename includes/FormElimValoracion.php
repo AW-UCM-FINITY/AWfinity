@@ -20,7 +20,7 @@ class FormElimValoracion extends Formulario
         // Se generan los mensajes de error si existen.
         $user=Usuario::buscaPorId($this->valoracion->getIdUser());
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        if(($_SESSION['nombreUsuario']===$user->getNombreUsuario() ) || $_SESSION['esEditor']){
+        if(estaLogado() && ($_SESSION['nombreUsuario']===$user->getNombreUsuario()  || $_SESSION['esEditor'])){
                 
             $html = <<<EOF
             <input type="hidden" name="elimcoment" value="{$this->valoracion->getId_valoracion()}" />
