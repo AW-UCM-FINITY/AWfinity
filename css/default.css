@@ -677,12 +677,10 @@ div#peli-card.peli-card{
 	margin-top: 50px;
 	background-color: rgb(242, 211, 250);;
 	display: grid;
-    grid-template-areas: "foto datos";
-	height: 400px;
+    grid-template-areas: "derecha datos";
 	grid-column-gap: 10px;
-
 }
-div#peli-foto-card.peli-foto-card {
+div#peli-foto.peli-foto-card {
 	grid-area: foto;
 }
 
@@ -694,8 +692,8 @@ div#peli-foto.peli-foto-card img {
 	padding-right: 20px;
 	padding-top: 20px;	
 	display: block;
-	grid-area: foto;
 }
+
 div#peli-datos.peli-datos-card {
 	grid-area: datos;
 	padding-right: 20px;
@@ -708,10 +706,13 @@ div.fila-dato{
 div#peli-editar.peli-editar-card{
 	display: block;
 	margin-left: 35px;
+	margin-top: 20px;
+	padding-bottom: 20px;
 	grid-area: editar;
 }
 div.derecha{
 	display: grid;
+	grid-area: derecha;
 	grid-row: auto;
 	grid-template-areas: 
 	"foto" 
@@ -720,21 +721,21 @@ div.derecha{
  /*FIN PARA LA VISTA DE 1 PELÍCULA*/
 
  /*CSS VISTA CAPITULOS*/
- div.listaCapitulos li{
+div.listaCapitulos li{
 	 padding-top: 10px;
 	 padding-bottom: 10px;
- }
- div.listaCapitulos ol{
+}
+div.listaCapitulos ol{
 	 margin-left: 20px;
- }
+}
 
- div#peli-foto.peli-foto-card video {
+div#peli-foto.peli-foto-card video {
 	float: left;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 59px;	
 	display: block;
-	grid-area: foto;
+	width: 400px;
 }
  /*FIN CSS VISTA CAPITULOS*/
 

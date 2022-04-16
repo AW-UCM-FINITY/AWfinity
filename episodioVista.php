@@ -32,7 +32,7 @@ $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
 
 $contenidoPrincipal .= "<div class='derecha'>";
 $contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'>
-  <video width='400' controls>
+  <video controls>
   <source src='$cadena_video' type='video/mp4'>
   Your browser does not support the video tag.
   </video> 
