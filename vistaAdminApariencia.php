@@ -26,8 +26,8 @@ $contenidoPrincipal .= <<<EOS
 		
         <p>Tema</p>
 
-		<button type="button" onclick="cambiarCSS({$rutaTemaDefault})">rosa</button>
-		<button type="button" onclick="cambiarCSS({$rutaTemaAzul})">azul</button>
+		<button type="button" onclick="cambiarCSS('{$rutaTemaDefault}')">rosa</button>
+		<button type="button" onclick="cambiarCSS('{$rutaTemaAzul}')">azul</button>
         </div>
                                 
 EOS;//<img src="img/temadefault.png"/>
