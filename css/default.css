@@ -531,12 +531,14 @@ a.deshabilitado {
 
 .imgBlogBlox{
 	height:300px;
-    width: 900px;
+    width: 800px;
+	
 }
 
 .imagNoticias2{
     max-width: 100%;
 	max-height: 100%
+	
 }
 
 .imagAboutus{
@@ -567,6 +569,10 @@ a.deshabilitado {
 
 .boxlayComentario:hover {
     transform: scale(1.1);
+}
+
+.crearValoracionPanel{
+	padding: 10px 70px 20px;
 }
 
   /* Para cuando se reduzca el tamaño de la ventana */
