@@ -9,18 +9,18 @@ class BSO
     private $id_bso;
     private $titulo;
     private $compositor;
-    private $numCancion;
+    private $numCanciones;
     private $genero; //Enum de generos
     private $sinopsis;
     private $ruta_imagen;
 
 
     //Constructor
-    private function __construct($titulo, $compositor, $numCancion, $genero, $sinopsis, $ruta_imagen, $id_bso = NULL) {
+    private function __construct($titulo, $compositor, $numCanciones, $genero, $sinopsis, $ruta_imagen, $id_bso = NULL) {
         
         $this->titulo = $titulo;
         $this->compositor = $compositor;
-        $this->numCancion = $numCancion;
+        $this->numCanciones = $numCanciones;
         $this->genero = $genero;
         $this->sinopsis = $sinopsis;
         $this->ruta_imagen = $ruta_imagen;
@@ -40,8 +40,8 @@ class BSO
         return $this->compositor;
     }
 
-    public function getNumCancion(){
-        return $this->numCancion;
+    public function getNumCanciones(){
+        return $this->numCanciones;
     }
     
     public function getGenero() {
@@ -69,8 +69,8 @@ class BSO
         $this->compositor = $compositor;
     }
 
-    public function setNumCancion($numCancion){
-        $this->numCancion = $numCancion;
+    public function setNumCanciones($numCanciones){
+        $this->numCanciones = $numCanciones;
     }
     
     public function setGenero($genero) {
@@ -98,23 +98,23 @@ class BSO
         return $enum;
     }
 
-    public static function crea($titulo, $compositor, $numCancion, $genero, $sinopsis, $ruta_imagen){
+    public static function crea($titulo, $compositor, $numCanciones, $genero, $sinopsis, $ruta_imagen){
         $ok = false;
         $BSO = self::buscaBSO($titulo);//buscaBSO
         if ($BSO) {
             return false;
         }
-        $BSO = new BSO($titulo, $compositor, $numCancion, $genero, $sinopsis, $ruta_imagen);
+        $BSO = new BSO($titulo, $compositor, $numCanciones, $genero, $sinopsis, $ruta_imagen);
         return self::inserta($BSO);
     }
 
      private static function inserta($BSO){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("INSERT INTO bso (titulo, compositor, numCancion, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')"
+        $query = sprintf("INSERT INTO bso (titulo, compositor, numCanciones, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')"
             , $conn->real_escape_string($BSO->titulo)
             , $conn->real_escape_string($BSO->compositor)
-            , $conn->real_escape_string($BSO->numCancion)
+            , $conn->real_escape_string($BSO->numCanciones)
             , $conn->real_escape_string($BSO->genero)
             , $conn->real_escape_string($BSO->sinopsis)
             , $conn->real_escape_string($BSO->ruta_imagen)
@@ -139,7 +139,7 @@ class BSO
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new BSO($fila['titulo'], $fila['compositor'], $fila['numCancion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
+                $result = new BSO($fila['titulo'], $fila['compositor'], $fila['numCanciones'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
             }
             $rs->free();
         } else {
@@ -158,7 +158,7 @@ class BSO
         if ($rs) {
             $fila = $rs->fetch_assoc();
             if ($fila) {
-                $result = new BSO($fila['titulo'], $fila['compositor'], $fila['numCancion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
+                $result = new BSO($fila['titulo'], $fila['compositor'], $fila['numCanciones'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
             }
             $rs->free();
         } else {
@@ -176,7 +176,7 @@ class BSO
 
         if($consulta->num_rows > 0){
             while ($fila = mysqli_fetch_assoc($consulta)) {
-                $arrayBSOs[] = new BSO($fila['titulo'], $fila['compositor'], $fila['numCancion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
+                $arrayBSOs[] = new BSO($fila['titulo'], $fila['compositor'], $fila['numCanciones'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
             }
             $consulta->free();
         }
@@ -208,11 +208,11 @@ class BSO
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
         $id_bso=$BSO->getId();
-        $query=sprintf("UPDATE bso S SET S.titulo='%s', S.compositor='%s', S.numCancion='%d', S.genero='%s', S.sinopsis='%s', S.ruta_imagen='%s' 
+        $query=sprintf("UPDATE bso S SET S.titulo='%s', S.compositor='%s', S.numCanciones='%d', S.genero='%s', S.sinopsis='%s', S.ruta_imagen='%s' 
             WHERE S.id_bso = $id_bso"
             , $conn->real_escape_string($BSO->getTitulo())
             , $conn->real_escape_string($BSO->getCompositor())
-            , $conn->real_escape_string($BSO->getNumCancion())
+            , $conn->real_escape_string($BSO->getnumCanciones())
             , $conn->real_escape_string($BSO->getGenero())
             , $conn->real_escape_string($BSO->getSinopsis())
             , $conn->real_escape_string($BSO->getRutaImagen())
