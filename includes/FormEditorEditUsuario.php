@@ -58,6 +58,7 @@ class FormEditorEditUsuario extends Formulario
             </div>
             <div>
                 <button type="submit" name="registro">Editar</button>
+                <button type="submit" name="cancelar">Cancelar</button>
             </div>
         </fieldset>
         EOF;
@@ -67,6 +68,7 @@ class FormEditorEditUsuario extends Formulario
 
     protected function procesaFormulario(&$datos)
     {
+        if(isset($datos['registro'])){
         $this->errores = [];
 
        
@@ -104,4 +106,5 @@ class FormEditorEditUsuario extends Formulario
             } 
         }
     }
+}
 }

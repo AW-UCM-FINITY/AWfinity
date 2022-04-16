@@ -67,6 +67,15 @@ class Usuario
         return $this->rol_user == 'editor' ? true : false;
     }
 
+    public static function getRoles(){
+
+        $arrayRol=array();
+        foreach (self::TIPOS as $key => $value) {
+            $arrayRol[]=$value;
+        }
+        return $arrayRol;
+    }
+
     /**Fin funciones get */
 
     
@@ -143,9 +152,9 @@ class Usuario
         }
         return $result;
     }
-    public function actualizaRolUser($id, $rol_user){
+    public static function actualizaRolUser($id, $rol_user){
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("UPDATE usuarios U SET rol_user = '$rol_user' WHERE U.id=$id");
+        $query= "UPDATE usuarios U SET U.rol_user = '$rol_user' WHERE U.id_user=$id";
         if ( $conn->query($query) ) {
             /*$result = self::borraRoles($usuario);
             if ($result) {

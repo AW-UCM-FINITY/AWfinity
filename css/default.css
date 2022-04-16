@@ -325,7 +325,8 @@ a.deshabilitado {
 
 .boxlay {
     background-color: rgb(255, 255, 255);;
-    width: 160px;
+    width: 190px;
+	height: 190px;
     border: 2px solid #9f2863;
     padding: 50px;
     margin: 20px;
@@ -558,7 +559,7 @@ a.deshabilitado {
 
 .boxlayComentario {
     background-color: rgb(255, 255, 255);;
-    width: 350px;
+    width: 300px;
     border: 2px solid #9f2863;
     padding: 50px;
     margin: 20px;
@@ -588,12 +589,12 @@ article.Noticia div.card p{
 
 
 .imagenNivel1{
-	max-height:48px;
-    max-width: 48px;
-}
-.imagenNivel2{
 	max-height:43px;
     max-width: 43px;
+}
+.imagenNivel2{
+	max-height:38px;
+    max-width: 38px;
 }
 
   /* Para cuando se reduzca el tamaño de la ventana */
@@ -766,3 +767,30 @@ div.butonGeneral a{
 	text-decoration:none;
 }
  /*FIN CSS BOTON EDITOR*/
+
+
+ /*CSS PANEL ADMIN: APARIENCIA*/
+
+
+ .temaAzul{
+  background-color: #008CBA; /* Azul */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+ }
+
+ .temaRosa{
+	background-color: #9f2863; /* Azul */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+   }
+ /*FIN CSS PANEL ADMIN: APARIENCIA*/

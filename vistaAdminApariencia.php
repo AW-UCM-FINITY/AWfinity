@@ -21,16 +21,17 @@ $contenidoPrincipal .= <<<EOS
         <a class="active" href="./vistaAdminGestionUser.php">Gestión Usuario</a>
         <a  href="./vistaAdminApariencia.php">Apariencia</a>
         </div>
-        <div class="contened">
-        <h1>Página sencilla para decorar con estilos</h1>
+        
+        <div class="card">
+        <h1>Cambio de tema</h1>
 		
-        <p>Tema</p>
-
-		<button type="button" onclick="cambiarCSS('{$rutaTemaDefault}')">rosa</button>
-		<button type="button" onclick="cambiarCSS('{$rutaTemaAzul}')">azul</button>
+        
+		<button class ="temaRosa" type="button" onclick="cambiarCSS('{$rutaTemaDefault}')">Rosa</button>
+		<button class ="temaAzul" type="button" onclick="cambiarCSS('{$rutaTemaAzul}')">Azul</button>
+        
         </div>
                                 
-EOS;//<img src="img/temadefault.png"/>
+EOS;
 
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

@@ -21,20 +21,20 @@ main {
 	padding-left: 50px;
     padding-right: 50px;
 	float: left;
-	background-color: rgb(2, 1, 1);
+	background-color: white;
     min-height: 700px;
 }
 
 footer {
 	padding:20px 60px;
-	background-color: #8c3838;
+	background-color: #000000;
 	color: white;
 	text-align: center;
 }
 
 header{
 	grid-area: header;
-	background-color:rgb(33, 145, 87);
+	background-color:#000;
 }
 
 /*MENU PRINCIPAL*/
@@ -61,7 +61,7 @@ nav#menuP ul {
 }
 
 .nav li a:hover {
-	background-color:#9f2863;
+	background-color:#2574a5;
 }
 
 .nav li ul {
@@ -86,7 +86,7 @@ nav#menuP ul {
 }
 div.saludo {
 	text-align: right;
-	background-color:rgb(25, 155, 221);
+	background-color:#000;
 	color:#fff;
 	text-decoration:none;
 	padding:30px 30px;
@@ -200,7 +200,7 @@ form button.enlace:hover {
 form button{
 	background-color: white; 
 	color: black; 
-	border: 2px solid #9f2863;
+	border: 2px solid #2574a5;
 	padding: 9px 20px;
 	text-align: center;
 	text-decoration: none;
@@ -209,7 +209,7 @@ form button{
 	transition-duration: 0.4s;
 }
 form button:hover{
-	background-color: #9f2863;
+	background-color: #2574a5;
   	color: white;
 }
 button, a.boton {
@@ -264,7 +264,7 @@ a.deshabilitado {
   
   /* Style the "active" element to highlight the current page */
 .menublog a.active {
-    background-color: #9f2863;
+    background-color: #2574a5;
     color: white;
 }
 
@@ -325,8 +325,9 @@ a.deshabilitado {
 
 .boxlay {
     background-color: rgb(255, 255, 255);;
-    width: 160px;
-    border: 2px solid #9f2863;
+    width: 190px;
+	height: 190px;
+    border: 2px solid #2574a5;
     padding: 50px;
     margin: 20px;
     text-align: center;
@@ -359,7 +360,7 @@ a.deshabilitado {
 	background: rgb(255, 255, 255);
 	padding: 30px 10px 30px;
 }
-.unirseReto P{ color:#9f2863; font-weight: bold;}
+.unirseReto P{ color:#2574a5; font-weight: bold;}
 
 .cardRetoPelis h1{
 	padding: 1% 0;
@@ -478,11 +479,11 @@ a.deshabilitado {
     padding: 30px;
     font-size: 40px;
     text-align: center;
-    background: #9581954b;
+    background: #818d954b;
 }
   
 .header2 h2{
-    color: #9f2863;
+    color: #2574a5;
 }
 
   /* izquieda */
@@ -511,7 +512,7 @@ a.deshabilitado {
   
   /* articulos como cartas */
 .card {
-    background-color: rgb(241, 237, 239);
+    background-color: rgb(237, 240, 241);
     padding: 20px;
     margin-top: 20px;
 
@@ -558,8 +559,8 @@ a.deshabilitado {
 
 .boxlayComentario {
     background-color: rgb(255, 255, 255);;
-    width: 350px;
-    border: 2px solid #9f2863;
+    width: 300px;
+    border: 2px solid #2574a5;
     padding: 50px;
     margin: 20px;
     text-align: center;
@@ -588,12 +589,12 @@ article.Noticia div.card p{
 
 
 .imagenNivel1{
-	max-height:48px;
-    max-width: 48px;
-}
-.imagenNivel2{
 	max-height:43px;
     max-width: 43px;
+}
+.imagenNivel2{
+	max-height:38px;
+    max-width: 38px;
 }
 
   /* Para cuando se reduzca el tamaño de la ventana */
@@ -628,7 +629,7 @@ div.tituloIndex h3{
 }
 
 div.tituloIndex span{
-	color: #9f2863;     /*Te has vuelto a ir*/
+	color: #2574a5;     /*Te has vuelto a ir*/
 }
 
 div.peliLista a img {
@@ -675,14 +676,12 @@ div.tituloPeliIndex h3{
  /* CSS PARA LA VISTA 1PELÍCULA */
 div#peli-card.peli-card{
 	margin-top: 50px;
-	background-color: rgb(242, 211, 250);;
+	background-color: rgb(211, 238, 250);;
 	display: grid;
-    grid-template-areas: "foto datos";
-	height: 400px;
+    grid-template-areas: "derecha datos";
 	grid-column-gap: 10px;
-
 }
-div#peli-foto-card.peli-foto-card {
+div#peli-foto.peli-foto-card {
 	grid-area: foto;
 }
 
@@ -694,8 +693,8 @@ div#peli-foto.peli-foto-card img {
 	padding-right: 20px;
 	padding-top: 20px;	
 	display: block;
-	grid-area: foto;
 }
+
 div#peli-datos.peli-datos-card {
 	grid-area: datos;
 	padding-right: 20px;
@@ -708,10 +707,13 @@ div.fila-dato{
 div#peli-editar.peli-editar-card{
 	display: block;
 	margin-left: 35px;
+	margin-top: 20px;
+	padding-bottom: 20px;
 	grid-area: editar;
 }
 div.derecha{
 	display: grid;
+	grid-area: derecha;
 	grid-row: auto;
 	grid-template-areas: 
 	"foto" 
@@ -720,21 +722,21 @@ div.derecha{
  /*FIN PARA LA VISTA DE 1 PELÍCULA*/
 
  /*CSS VISTA CAPITULOS*/
- div.listaCapitulos li{
+div.listaCapitulos li{
 	 padding-top: 10px;
 	 padding-bottom: 10px;
- }
- div.listaCapitulos ol{
+}
+div.listaCapitulos ol{
 	 margin-left: 20px;
- }
+}
 
- div#peli-foto.peli-foto-card video {
+div#peli-foto.peli-foto-card video {
 	float: left;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 59px;	
 	display: block;
-	grid-area: foto;
+	width: 400px;
 }
  /*FIN CSS VISTA CAPITULOS*/
 
@@ -747,7 +749,7 @@ div.butonGeneral{
 	display: inline-block;
 	background-color: white; 
 	color: black; 
-	border: 2px solid #9f2863;
+	border: 2px solid #2574a5;
 	padding: 9px 20px;
 	text-align: center;
 	text-decoration: none;
@@ -756,7 +758,7 @@ div.butonGeneral{
 	border-radius: 4px;
 }
 div.butonGeneral:hover{
-	background-color: #9f2863;
+	background-color: #2574a5;
   	color: white;
 }
 
@@ -765,3 +767,29 @@ div.butonGeneral a{
 	text-decoration:none;
 }
  /*FIN CSS BOTON EDITOR*/
+
+ /*CSS PANEL ADMIN: APARIENCIA*/
+
+
+.temaAzul{
+	background-color: #008CBA; /* Azul */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+  
+.temaRosa{
+	background-color: #9f2863; /* Azul */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+   /*FIN CSS PANEL ADMIN: APARIENCIA*/

@@ -30,6 +30,7 @@ $contenidoPrincipal .= <<<EOS
                                             <th>Apellido</th>
                                             <th>Rol</th>
                                             <th>Puntos</th>
+                                            <th>Cambiar Rol</th>
                                             <th>Borrar</th>
                                         </tr>
                                     </thead>
@@ -47,13 +48,24 @@ $usuarios= Usuario::getTodosUsuarios();
                 <td class="apellido">{$us->getApellido()}</td>
                 <td class="rol">{$us->getRol()}</td>
                 <td class="puntos">{$us->getPuntos()}</td>
-                
+                <td class="cambiar">
                 EOS;
 
                 $formU[$cont]= new FormEditorElimUsuario($us);
                 $htmlFormEditorElimUsuario[$cont]= $formU[$cont]->gestiona();
 
+                if(esAdmin() && $us->getRol()!=="admin"){
+
                 $contenidoPrincipal .=<<<EOS
+                    
+                <div class='butonGeneral'> <a href='editUsuario.php?nombreusuario={$us->getNombreUsuario()}'> Cambiar </a> </div>
+                    
+                EOS;
+
+                }
+
+                $contenidoPrincipal .=<<<EOS
+                </td>
                 <td class="borrar">
                 {$htmlFormEditorElimUsuario[$cont]}
                 </td>
