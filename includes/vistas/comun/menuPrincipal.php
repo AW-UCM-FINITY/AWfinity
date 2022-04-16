@@ -7,5 +7,11 @@
 		<li><a href="<?= RUTA_APP ?>/retoVista.php">RETOS</a></li>
 		<li><a href="<?= RUTA_APP ?>/blog.php">BLOG</a></li>
 		<li><a href="<?= RUTA_APP ?>/contenido.php">CONTACTO</a></li>
+		<?php 
+		if(esAdmin()){
+			echo "<li><a href=\"<?= ".RUTA_APP ."?>/contenido.php\">ADMIN</a></li>";
+		}
+		
+		?>
 	</ul>
 </nav>
