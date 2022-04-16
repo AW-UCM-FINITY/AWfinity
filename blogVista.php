@@ -65,6 +65,7 @@ foreach($comentarios as $com){
   <div class="boxlay">
   
   <p>Comentado por:  {$user->getNombre() } </p>
+  <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
   <p> {$com->getContenido()} </p>
   </div>
 EOS;
