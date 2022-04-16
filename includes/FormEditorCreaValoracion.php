@@ -28,11 +28,11 @@ class FormEditorCreaValoracion extends Formulario
             $htmlErroresGlobales
             <fieldset>
             <p> Puntuacion: </p> 
-            <input class="form-input" name="puntuacion" /> 
-         
+            <input type="number" class="form-input" name="puntuacion" /> 
+            {$erroresCampos['puntuacion']}
             <p> Añade tu comentario:</p> 
             <textarea name="valoracion" rows="8" cols="1100"></textarea>
-          
+            {$erroresCampos['valoracion']}
     
             <button class="submit" type="submit" name="registro">Añadir comentario</button>
             </fieldset>
@@ -50,10 +50,10 @@ class FormEditorCreaValoracion extends Formulario
       
                 
         if ( empty($valoracion) ) {
-            $this->errores[] = "La valoración no puede estar vacía";
+            $this->errores['valoracion'] = "La valoración no puede estar vacía";
         }
-        if($valoracion < 0){
-            $this->errores[] = "La puntuacion no puede ser negativa";
+        if($puntuacion < 0){
+            $this->errores['puntuacion'] = "La puntuacion no puede ser negativa";
         }
         if(!isset($_SESSION['login'])){
             $this->errores[] = "Tienes que estar registrado para crear una valoración";
