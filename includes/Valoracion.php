@@ -85,7 +85,7 @@ class Valoracion{
 		return $reult;
 	}
     
-    static public function getValoracion($id_valoracion){
+    /*static public function getValoracion($id_valoracion){
 
         $valoracion = array();
         
@@ -104,7 +104,7 @@ class Valoracion{
         $consulta->free();
         
         return $valoracion;
-	}
+	}*/
     static public function getComentarios($idnoticia){
 
         $valoracion = array();
@@ -145,7 +145,40 @@ class Valoracion{
         
         return $puntuaciones;
 	}
-    
+    static public function getValoracion($id_valoracion){//valoracion es el nombre del comentario
+
+        $result = false;
+        
+         $conn =  Aplicacion::getInstance()->getConexionBd();
+        $sql = "SELECT * FROM valoraciones WHERE id_valoracion=$id_valoracion";
+        $consulta = $conn->query($sql);
+        if($consulta->num_rows != 0){
+          
+            if ($fila = mysqli_fetch_assoc($consulta)){
+                $result =  new Valoracion($fila['idNoticia'],$fila['idUser'],$fila['contenido'],$fila['puntuacion'],$fila['id_valoracion']);
+                
+            }
+
+        }
+        $consulta->free();
+        
+        return $result;
+	}
+    static public function elimValoracion($id_valoracion){//valoracion es el nombre del comentario
+
+        $result = false;
+        $conn =  Aplicacion::getInstance()->getConexionBd();
+        $id_valoracion= $conn->real_escape_string($id_valoracion);
+      
+        $sql = "DELETE FROM valoraciones WHERE id_valoracion=$id_valoracion";
+        $consulta = $conn->query($sql);
+        if($consulta){
+            $result=true;
+        }
+        
+        
+        return $result;
+	}
     static public function getUsuario($id_valoracion){
 
         $usuario = false;
@@ -166,26 +199,7 @@ class Valoracion{
         return $usuarios;
 	}
 
-   /* static public function numvaloracionLibro($id_user){
-
-        $sql = "SELECT * FROM valoraciones WHERE idUser = $id_user";
-	
-        $app = Aplicacion::getSingleton();
-        $conn = $app->conexionBd();
-		$consulta = $conn->query($sql);
-        $numero = 0;
-
-       if($consulta->num_rows > 0){
-	        while ($fila = mysqli_fetch_assoc($consulta)) {
-	        	
-	        	$numero++;
-	        }
-	        $consulta->free();
-    	}
-
-        return $numero;
-    }
-*/
+   
 
 }
 

@@ -375,8 +375,18 @@ a.deshabilitado {
 	line-height: 300%;
 }
 
+.cardRetoPelis{
+	flex-grow: 2;
+	background-color: rgb(241, 237, 239);
+    padding: 20px;
+    margin-top: 20px;
+	width: 80%;
+}
+
 .cardPelis fieldset{
 	min-width: 250px;
+	text-align: left;
+	padding: 1em;
 }
 
 .cardPelis{
@@ -386,19 +396,36 @@ a.deshabilitado {
 	margin-top: 20px;
 	width: 20%;
 }
-.cardRetoPelis{
-	flex-grow: 2;
-	background-color: rgb(241, 237, 239);
-    padding: 20px;
-    margin-top: 20px;
-	width: 80%;
-}
 
 .columnaPelis{
     background: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.checkbox{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.imgPelisRetoBlock{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.imgPelisReto{
+	width: 180px;
+	height: 235px;
+	padding: 4px 1%;
+}
+
+.imgPelis{
+	max-width: 100%;
+	max-height: 100%;
 }
 
 /*--------------*/
@@ -498,12 +525,19 @@ a.deshabilitado {
 }
   
 .imagNoticias{
-    height:250px;
-    width: 250px;
-    }
+    height:200px;
+    width: 700px;
+}
+
+.imgBlogBlock{
+	height:300px;
+    width: 1000px;
+}
+
 .imagNoticias2{
-    height:400px;
-    width: 400px;
+    max-width: 100%;
+	max-height: 100%
+	
 }
 
 .imagAboutus{
@@ -515,7 +549,53 @@ a.deshabilitado {
     background: #ddd;
     margin-top: 20px;
 }
-  
+
+.comentarioPanel{
+	display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.boxlayComentario {
+    background-color: rgb(255, 255, 255);;
+    width: 350px;
+    border: 2px solid #9f2863;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+    transition: 500ms linear;
+}
+
+.boxlayComentario:hover {
+    transform: scale(1.1);
+}
+
+.crearValoracionPanel{
+	padding: 10px 70px 20px;
+}
+
+article.Noticia div.card h2{
+	padding: 10px 50px 10px 0;
+}
+
+article.Noticia div.card h5{
+	padding: 2% 0;
+}
+
+article.Noticia div.card p{
+	padding: 1% 0;
+}
+
+
+.imagenNivel1{
+	max-height:48px;
+    max-width: 48px;
+}
+.imagenNivel2{
+	max-height:43px;
+    max-width: 43px;
+}
+
   /* Para cuando se reduzca el tamaño de la ventana */
 @media screen and (max-width: 800px) {
     .columnaIzq, .columnaDer {

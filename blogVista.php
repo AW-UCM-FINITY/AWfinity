@@ -13,6 +13,9 @@ $contenidoPrincipal .=<<<EOS
           <div class="header2">
             <h2>Blog AWfinity</h2>
           </div>
+          <div class="menublog">
+          <a class="active" href="blog.php">Inicio</a>
+          </div>
           <div class="columna">
          
 EOS;
@@ -34,7 +37,7 @@ $contenidoPrincipal .=<<<EOS
     <h2>{$noticia->getTitulo()}</h2>
     <h5>{$noticia->getSubtitulo()}, {$noticia->getFechaPublicacion()}</h5>
     <div></div>
-    <div>
+    <div class="imgBlogBlock">
       <img class="imagNoticias2" src="img/{$noticia->getImagenNombre()}" alt="Imagen">
     </div> 
     <div><p> </p></div>
@@ -53,23 +56,46 @@ EOS;
 }
 $contenidoPrincipal .=<<<EOS
   </div>
-  
   </div>
-  <div>
 EOS;
+
 $comentarios=Valoracion::getComentarios($id_noticia);
+$contenidoPrincipal .="<div class=\"comentarioPanel\">";
+$formms=array();
+$cont=0;
+$FormElimValoracion=array();
 foreach($comentarios as $com){
   $id=$com->getIdUser();
   $user=Usuario::buscaPorId($id);
-  $contenidoPrincipal .=<<<EOS
-  <div class="boxlay">
+  $formms[$cont]= new FormElimValoracion($com);
+  $FormElimValoracion[$cont]=$formms[$cont]->gestiona();
   
-  <p>Comentado por:  {$user->getNombre() } </p>
-  <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
+  $contenidoPrincipal .=<<<EOS
+  <div class="boxlayComentario">
+  
+  <h5>Comentado por:  {$user->getNombre() } </h5>
   <p> {$com->getContenido()} </p>
-  </div>
+  <label>Puntuación:</label>
 EOS;
+
+// generacion icono estrella en funcion de la puntuacion que da usuario al ese blog
+$contador=1;
+for($i=0; $i<5; $i++){
+  if($contador<=$com->getPuntuacion()){
+    $contenidoPrincipal.= "<img class=\"imagenNivel1\" src=\"img/estrella1.png\">";
+  }
+  else{
+    $contenidoPrincipal.= "<img class=\"imagenNivel2\" src=\"img/estrella2.png\">";
+  }
+  $contador++;
 }
+
+$contenidoPrincipal.= "{$FormElimValoracion[$cont]}</div>";
+$cont++;
+}
+$contenidoPrincipal .="</div>";
+
+// formulario para crear valoracion por usuario
 if(isset( $_SESSION['nombreUsuario'])){
 $usuarioid=Usuario::buscaIDPorNombre(  $_SESSION['nombreUsuario']);
 
@@ -79,10 +105,11 @@ $formularioCrearValoracion=$formm->gestiona();
 
 $contenidoPrincipal .=<<<EOS
 </div>
-                            <div>
-                            {$formularioCrearValoracion}
-                            </div>
+<div class="crearValoracionPanel">
+{$formularioCrearValoracion}
+</div>
 EOS;
 }
+
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
