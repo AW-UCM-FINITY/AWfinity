@@ -4,8 +4,8 @@ require_once __DIR__.'/includes/config.php';
 require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobaciones de login y esEditor
 
 
-$tituloPagina = 'Noticias';
-$claseArticle = 'NoticiasAll';
+$tituloPagina = 'Reto';
+$claseArticle = 'RetoAll';
 $valr =isset($_GET['search']) ? htmlspecialchars(trim(strip_tags($_GET["search"]))) : 0;
 
 $contenidoPrincipal = '';
@@ -36,13 +36,10 @@ $contenidoPrincipal.=<<<EOS
           </form>
           </div>
           </div>
-          <div class="columna">
-            <div class="columnaIzq">
+          <div class="panelReto">
 EOS;
 
 if(isset($_GET['search'])){
-  
- 
 
   $retos=Reto::buscar($valr);
 }else{
@@ -55,23 +52,32 @@ if(!($retos==false)){
         $contenidoPrincipal .=<<<EOS
                       
       <div class="boxlay" onclick="location.href='./retoSingVist.php?retoid={$ret->getIdReto()}'">
-      <h5>{$ret->getNombre()}</h5>
+      <h3>{$ret->getNombre()}</h3>
       <p>{$ret->getDescripcion()}</p>
 EOS;
+      if($ret->getDificultad()==='FACIL'){
+        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+      }
+      else if($ret->getDificultad()==='MEDIO'){
+        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+      }
+      else{
+        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+      }
           if(estaLogado()&& !esEditor() && !esAdmin()){
            
                 $idReto = $ret->getIdReto();
                 $idUsuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
                 if(UsuarioReto::compruebaCompletado($idReto, $idUsuario)){
-                  $contenidoPrincipal.= "<p>Completado</p>";
+                  $contenidoPrincipal.= "<div class=\"completadoReto\"><p class>¡ Completado !</p></div>";
                 }
                 else{
-                  $contenidoPrincipal.= "<p>No Completado</p>";
+                  //$contenidoPrincipal.= "<p>No Completado</p>";
                   if(UsuarioReto::compruebaPerteneceReto($idUsuario,$idReto)){
-                    $contenidoPrincipal.= "<p>Reto Aceptado</p>";
+                    $contenidoPrincipal.= "<div class=\"aceptadoReto\"><p>Completa tu reto</p></div>";
                   }
                   else{
-                    $contenidoPrincipal.= "<p>Únete al reto</p>";
+                    $contenidoPrincipal.= "<div class=\"unirseReto\"><p>Únete al reto</p></div>";
                   }
                 }
     
@@ -96,7 +102,6 @@ EOS;
 }
 
 $contenidoPrincipal.=<<<EOS
-</div>
 </div>
 
 EOS;
