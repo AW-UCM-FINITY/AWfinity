@@ -73,12 +73,24 @@ foreach($comentarios as $com){
   $contenidoPrincipal .=<<<EOS
   <div class="boxlayComentario">
   
-  <p>Comentado por:  {$user->getNombre() } </p>
-  <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
+  <h5>Comentado por:  {$user->getNombre() } </h5>
   <p> {$com->getContenido()} </p>
-  {$FormElimValoracion[$cont]}
-  </div>
+  <label>Puntuación:</label>
 EOS;
+
+// generacion icono estrella en funcion de la puntuacion que da usuario al ese blog
+$contador=1;
+for($i=0; $i<5; $i++){
+  if($contador<=$com->getPuntuacion()){
+    $contenidoPrincipal.= "<img class=\"imagenNivel1\" src=\"img/estrella1.png\">";
+  }
+  else{
+    $contenidoPrincipal.= "<img class=\"imagenNivel2\" src=\"img/estrella2.png\">";
+  }
+  $contador++;
+}
+
+$contenidoPrincipal.= "{$FormElimValoracion[$cont]}</div>";
 $cont++;
 }
 $contenidoPrincipal .="</div>";

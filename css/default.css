@@ -525,14 +525,13 @@ a.deshabilitado {
 }
   
 .imagNoticias{
-    height:250px;
-    width: 250px;
-    }
+    height:200px;
+    width: 700px;
+}
 
-.imgBlogBlox{
+.imgBlogBlock{
 	height:300px;
-    width: 800px;
-	
+    width: 1000px;
 }
 
 .imagNoticias2{
@@ -573,6 +572,28 @@ a.deshabilitado {
 
 .crearValoracionPanel{
 	padding: 10px 70px 20px;
+}
+
+article.Noticia div.card h2{
+	padding: 10px 50px 10px 0;
+}
+
+article.Noticia div.card h5{
+	padding: 2% 0;
+}
+
+article.Noticia div.card p{
+	padding: 1% 0;
+}
+
+
+.imagenNivel1{
+	max-height:48px;
+    max-width: 48px;
+}
+.imagenNivel2{
+	max-height:43px;
+    max-width: 43px;
 }
 
   /* Para cuando se reduzca el tamaño de la ventana */

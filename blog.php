@@ -5,7 +5,7 @@ require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobacion
 
 
 $tituloPagina = 'Noticias';
-$claseArticle = 'NoticiasAll';
+$claseArticle = 'Noticia';
 $valr =isset($_GET['search']) ? htmlspecialchars(trim(strip_tags($_GET["search"]))) : 0;
 
 $contenidoPrincipal = '';
@@ -50,6 +50,7 @@ if(isset($_GET['search'])){
 
 if(!($noticias==false)){
       foreach($noticias as $notic){
+        $parteContenido = substr($notic->getContenido(), 0, 295)."...";
         $contenidoPrincipal .=<<<EOS
                       
        
@@ -57,11 +58,11 @@ if(!($noticias==false)){
                             <h2>{$notic->getTitulo()}</h2>
                             <h5>{$notic->getSubtitulo()}, {$notic->getFechaPublicacion()}</h5>
                             <div></div>
-                            <div><img
-                             class="imagNoticias" src="img/{$notic->getImagenNombre()}" alt="Imagen">
+                            <div class="imagNoticias"><img
+                             class="imagNoticias2" src="img/{$notic->getImagenNombre()}" alt="Imagen">
                             </div> 
                             <div><p> </p></div>
-                            <p>{$notic->getContenido()}</p>
+                            <p>{$parteContenido}</p>
                             <p><b>Pincha en la noticia para seguir viendo..</b></p>
                             </div>
 
