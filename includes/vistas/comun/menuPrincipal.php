@@ -9,7 +9,8 @@
 		<li><a href="<?= RUTA_APP ?>/contenido.php">CONTACTO</a></li>
 		<?php 
 		if(esAdmin()){
-			echo "<li><a href=\"<?= ".RUTA_APP ."?>/contenido.php\">ADMIN</a></li>";
+			$s=RUTA_APP;
+			echo "<li><a href=\"$s/index.php\">ADMIN</a></li>";
 		}
 		
 		?>
