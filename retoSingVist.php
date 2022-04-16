@@ -5,7 +5,7 @@ require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobacion
 
 
 $tituloPagina = 'Retos';
-$claseArticle = 'Noticia';// a finees de tener mismo diseño
+$claseArticle = 'Retos';// a finees de tener mismo diseño
 
 $contenidoPrincipal = '';
 
@@ -61,9 +61,46 @@ foreach ($arrayPelis as $key => $value) {
 	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p>";
+$contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p> <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>";
 
-// cuando es editor muestra el boton para editar reto
+// si esta logado como usuario normal, puede elegir unirse o abandonar el reto
+if(estaLogado() && !esEditor() && !esAdmin()){
+
+  $id_usuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+  if(!empty($id_usuario)){
+
+  // si el usuario ya se ha unido al reto
+  if(UsuarioReto::compruebaPerteneceReto($id_usuario,$id_reto)){
+
+    // si el reto no esta completado puede o completar reto o abandonar el reto
+    if(!UsuarioReto::compruebaCompletado($id_reto, $id_usuario)){
+      $formD = new FormUserAbandonReto($id_usuario, $id_reto);
+      $htmlFormAbandonReto = $formD->gestiona();
+      $contenidoPrincipal .= $htmlFormAbandonReto;
+
+      $formC = new FormUserCompletaReto($id_usuario, $id_reto);
+      $htmlFormCompletaReto = $formC->gestiona();
+      $contenidoPrincipal .= $htmlFormCompletaReto;
+    }
+    // si ha completado el reto, no se muestra los botones
+    else{
+      $contenidoPrincipal .= "<p> RETO YA COMPLETADO </p>";
+    }
+    
+  }
+  else{
+  // si no esta dentro de reto, puede unirse
+  
+  $formJ = new FormUserJoinReto($id_usuario,$id_reto);
+  $htmlFormJoinReto = $formJ->gestiona();
+  $contenidoPrincipal .= $htmlFormJoinReto;
+  }
+  }
+  else{
+    echo "<p>Error en la muestra de opciones para usuario</p>";
+  }
+}
+// cuando es editor muestra los botones para editar y eliminar reto
 if(esEditor()){
   $contenidoPrincipal .=<<<EOS
   
@@ -72,13 +109,13 @@ if(esEditor()){
   $htmlFormElimReto
   
   EOS;
-}
-  $contenidoPrincipal .= "<div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div></div>";
 
-// Si esta logado como editor, permite añadir pelis al reto
-if(esEditor()){
-$contenidoPrincipal .="<div class=\"cardPelis\">";
-if(!isset($_GET['busca'])){
+  $contenidoPrincipal .= "</div>";
+
+// Si esta logado como editor, permite añadir pelis al reto usando buscador de pelis
+
+  $contenidoPrincipal .="<div class=\"cardPelis\">";
+  if(!isset($_GET['busca'])){
   $formB = new FormEditorBuscaPelisReto($id_reto);
   $htmlFormBuscaPelis = $formB->gestiona();
   $contenidoPrincipal .= <<< EOS
@@ -99,48 +136,8 @@ if(!isset($_GET['busca'])){
   
   // destruir el array de pelis que se intercambia entre formB y formA.
   unset($_SESSION['array']); 
-}
-// si esta logado como usuario normal, puede elegir unirse o abandonar el reto
-else if(estaLogado() && !esAdmin()){
-  $id_usuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
-  if(!empty($id_usuario)){
-
-  // si el usuario ya se ha unido al reto
-  if(UsuarioReto::compruebaPerteneceReto($id_usuario,$id_reto)){
-
-    // si el reto no esta completado puede o completar reto o abandonar el reto
-    if(!UsuarioReto::compruebaCompletado($id_reto, $id_usuario)){
-      $formD = new FormUserAbandonReto($id_usuario, $id_reto);
-      $htmlFormAbandonReto = $formD->gestiona();
-      $contenidoPrincipal .= $htmlFormAbandonReto;
-
-      $formC = new FormUserCompletaReto($id_usuario, $id_reto);
-      $htmlFormCompletaReto = $formC->gestiona();
-      $contenidoPrincipal .= $htmlFormCompletaReto;
-    }
-    // si ha completado el reto, no se muestra boton
-    else{
-      $contenidoPrincipal .= "<p> RETO YA COMPLETADO </p>";
-    }
-    
-  }
-  else{
-  // si no esta dentro de reto, puede unirse
-  
-  $formJ = new FormUserJoinReto($id_usuario,$id_reto);
-  $htmlFormJoinReto = $formJ->gestiona();
-  $contenidoPrincipal .= $htmlFormJoinReto;
-  }
-
-  
-  }
 
 }
-
-$contenidoPrincipal .=<<<EOS
-                            
-                            
-                            EOS;
 }else{
     echo "<p>Error en la muestra de retos</p>";
 }
