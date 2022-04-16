@@ -82,7 +82,7 @@ class FormEditorEditReto extends Formulario
 
             <div>
                 <label for="descripcion">Descripcion:</label>
-                <textarea rows=5 cols=50 name="descripcion" required>{$descripcion}</textarea>
+                <textarea rows=5 cols=50 name="descripcion">{$descripcion}</textarea>
                 {$erroresCampos['descripcion']}
             </div>
             
@@ -115,6 +115,7 @@ class FormEditorEditReto extends Formulario
 
             <div>
                 <button type="submit" name="registro">{$textoBoton}</button>
+                <button type="submit" name="volver">Volver</button>
             </div>
             </fieldset>
         EOF;
@@ -123,6 +124,7 @@ class FormEditorEditReto extends Formulario
 
     protected function procesaFormulario(&$datos)
     {
+        if(isset($datos['registro'])){
         $this->errores = [];
 
         $nombre = trim($datos['nombre'] ?? '');
@@ -181,5 +183,5 @@ class FormEditorEditReto extends Formulario
         }else{
             $this->errores['nombre'] =  "Error de crea/edita";
         }  
-    }
+    }}
 }

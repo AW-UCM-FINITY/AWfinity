@@ -261,7 +261,7 @@ public static function pagina($numPagina,$numPorPagina){
 
     $sql = "SELECT * FROM retos R";
 
-    $sql .= ' ORDER BY R$num_usuarios DESC';
+    //$sql .= ' ORDER BY R$num_usuarios DESC';
 
     if ($numPorPagina > 0) {
         $sql .= " LIMIT $numPorPagina";

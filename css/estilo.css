@@ -285,7 +285,7 @@ a.deshabilitado {
   
   /* Style the "active" element to highlight the current page */
   .menublog a.active {
-	background-color: #2196F3;
+	background-color: #9f2863;
 	color: white;
   }
   
@@ -336,12 +336,85 @@ a.deshabilitado {
 
 /* fin de wr3schools*/
 /* vista de retos*/
+
+.panelReto{
+	background: rgb(255, 255, 255);
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 .boxlay {
-	background-color: lightgrey;
-	width: 300px;
-	border: 15px solid rgb(27, 71, 165);
+	background-color: rgb(255, 255, 255);;
+	width: 180px;
+	border: 2px solid #9f2863;
 	padding: 50px;
 	margin: 20px;
+	text-align: center;
+	transition: 500ms linear;
+  }
+
+.boxlay h3 {
+	padding: 5px 50px 30px;
+	text-align: center;
+}
+
+.boxlay:hover {
+	transform: scale(1.1);
+  }
+
+  
+.completadoReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 50px 30px;
+}
+.completadoReto P{ color:rgb(9, 140, 46); font-weight: bold;}
+
+.aceptadoReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 50px 30px;
+}
+.aceptadoReto P{ color:rgb(237, 28, 0); font-weight: bold;}
+
+.unirseReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 50px 30px;
+}
+.unirseReto P{ color:#9f2863; font-weight: bold;}
+
+.cardRetoPelis h1{
+	padding: 1% 0;
+	font-size: xx-large;
+}
+
+.cardRetoPelis h5 {
+	line-height: 200%;
+	font-size: medium;
+}
+
+.cardRetoPelis p{
+	line-height: 300%;
+}
+
+.cardPelis{
+	background-color: rgb(241, 237, 239);
+	padding: 20px;
+	margin-top: 20px;
+	width: 20%;
+}
+.cardRetoPelis{
+	background-color: rgb(241, 237, 239);
+    padding: 20px;
+    margin-top: 20px;
+	width: 80%;
+
+}
+
+.columnaPelis{
+	background: rgb(255, 255, 255);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
   }
 
 /*--------------*/
@@ -367,7 +440,7 @@ a.deshabilitado {
 }
 
 .wrapper th {
-    background-color: #326295;
+    background-color: #4d5053;
     font-weight: bold;
     color: #fff;
     white-space: nowrap;
@@ -386,7 +459,7 @@ a.deshabilitado {
     transition: all .125s ease-in-out;
 }
 .wrapper tbody tr:hover {
-    background-color: rgba(50,98,149,.3);
+    background-color: rgba(75, 67, 74, 0.3);
 }
 
 .wrapper td.nombre {
@@ -399,9 +472,13 @@ a.deshabilitado {
     padding: 30px;
     font-size: 40px;
     text-align: center;
-    background: rgb(78, 113, 129);
+    background: #9581954b;
   }
   
+.header2 h2{
+    color: #9f2863;
+  }
+
   /* izquieda */
   .columnaIzq {
     float: left;
@@ -410,7 +487,7 @@ a.deshabilitado {
 
   }
   .columna{
-	background: rgb(207, 205, 233);
+	background: rgb(255, 255, 255);
   }
   
   /* derecha*/
@@ -424,12 +501,12 @@ a.deshabilitado {
   .img2 {
     background-color: #aaa;
     width: 90px;
-    padding: 20px;
+    padding: 4px;
   }
   
   /* articulos como cartas */
   .card {
-    background-color: rgb(242, 211, 250);
+    background-color: rgb(241, 237, 239);
     padding: 20px;
     margin-top: 20px;
 	

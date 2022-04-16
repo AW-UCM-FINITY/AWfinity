@@ -18,7 +18,7 @@ $contenidoPrincipal .=<<<EOS
           <a class="active" href="./retoVista.php">Retos</a>
           <a  href="./ranking.php">Ranking</a>
           </div>
-          <div class="columna">
+          <div class="columnaPelis">
          
 EOS;
 
@@ -38,19 +38,16 @@ $pelisretoArray=PelisReto::getPelisporReto($id_reto);
 $contenidoPrincipal .=<<<EOS
                       
                      
-  <div class="card">
-    <h2>{$reto->getNombre()}</h2>
+  <div class="cardRetoPelis">
+    <h1>{$reto->getNombre()}</h1>
     
     <div></div>
-    <h5> Este reto tiene una duración de {$reto->getDias()} dias y otorga {$reto->getPuntos()} puntos </h5>
-    <h5> Actualmente hay {$suma} personas en el reto </h5> ;
-    <h5> El reto tiene una dificultad {$reto->getDificultad()} </h5>
-    <h5>El reto ha sido INICIADO POR: {$reto->getNumMiembros()} personas</h5>
-    <h5>El reto ha sido COMPLETADO POR: {$reto->getNumCompletado()} personas</h5>
-    
-    <p>{$reto->getDescripcion()}</p>
-    <p> </p>
-    <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p>
+    <h5> Descripción: {$reto->getDescripcion()}</h5>
+    <h5> Duración: {$reto->getDias()} dias</h5>
+    <h5> Dificultad: {$reto->getDificultad()} </h5>
+    <h5> Puntos: {$reto->getPuntos()} </h5> 
+    <h5> Participantes: {$suma} personas en este reto </h5>
+    <h5> Han completado {$reto->getNumCompletado()} personas</h5>
 EOS;
 
 
@@ -64,7 +61,7 @@ foreach ($arrayPelis as $key => $value) {
 	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
 }
 $contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
+$contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p>";
 
 // cuando es editor muestra el boton para editar reto
 if(esEditor()){
@@ -74,14 +71,20 @@ if(esEditor()){
 
   $htmlFormElimReto
   
-EOS;
+  EOS;
+}
+  $contenidoPrincipal .= "<div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div></div>";
 
 // Si esta logado como editor, permite añadir pelis al reto
+if(esEditor()){
+$contenidoPrincipal .="<div class=\"cardPelis\">";
 if(!isset($_GET['busca'])){
   $formB = new FormEditorBuscaPelisReto($id_reto);
   $htmlFormBuscaPelis = $formB->gestiona();
   $contenidoPrincipal .= <<< EOS
     $htmlFormBuscaPelis
+    </div>
+    </div>
     EOS;
   }else{
     $formA = new FormEditorAddPelisReto($id_reto);
@@ -89,6 +92,8 @@ if(!isset($_GET['busca'])){
     
     $contenidoPrincipal .= <<< EOS
     $htmlFormAnadirPelis
+    </div>
+    </div>
     EOS;
   }
   
@@ -133,9 +138,8 @@ else if(estaLogado() && !esAdmin()){
 }
 
 $contenidoPrincipal .=<<<EOS
-                            </div>
-                            </div>
-                            <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>
+                            
+                            
                             EOS;
 }else{
     echo "<p>Error en la muestra de retos</p>";
