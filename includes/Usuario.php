@@ -260,8 +260,9 @@ class Usuario
     }
     public static function buscaPorId($idUsuario){
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM usuarios WHERE id=%d", $idUsuario);
+        $query = sprintf("SELECT * FROM usuarios WHERE id_user=%d", $idUsuario);
         $rs = $conn->query($query);
+        
         if ($rs) {
             $fila = $rs->fetch_assoc();
             $user = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);

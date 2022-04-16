@@ -51,11 +51,37 @@ if(esEditor()){
   
 EOS;
 }
+$contenidoPrincipal .=<<<EOS
+  </div>
+  
+  </div>
+  <div>
+EOS;
+$comentarios=Valoracion::getComentarios($id_noticia);
+foreach($comentarios as $com){
+  $id=$com->getIdUser();
+  $user=Usuario::buscaPorId($id);
+  $contenidoPrincipal .=<<<EOS
+  <div class="boxlay">
+  
+  <p>Comentado por:  {$user->getNombre() } </p>
+  <p> {$com->getContenido()} </p>
+  </div>
+EOS;
+}
+if(isset( $_SESSION['nombreUsuario'])){
+$usuarioid=Usuario::buscaIDPorNombre(  $_SESSION['nombreUsuario']);
+
+$formm= new FormEditorCreaValoracion($id_noticia, $usuarioid);
+$formularioCrearValoracion=$formm->gestiona();
+
 
 $contenidoPrincipal .=<<<EOS
+</div>
+                            <div>
+                            {$formularioCrearValoracion}
                             </div>
-                            </div>
-                            EOS;
-
+EOS;
+}
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
