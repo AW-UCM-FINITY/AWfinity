@@ -13,6 +13,9 @@ $contenidoPrincipal .=<<<EOS
           <div class="header2">
             <h2>Blog AWfinity</h2>
           </div>
+          <div class="menublog">
+          <a class="active" href="blog.php">Inicio</a>
+          </div>
           <div class="columna">
          
 EOS;
@@ -34,7 +37,7 @@ $contenidoPrincipal .=<<<EOS
     <h2>{$noticia->getTitulo()}</h2>
     <h5>{$noticia->getSubtitulo()}, {$noticia->getFechaPublicacion()}</h5>
     <div></div>
-    <div>
+    <div class="imgBlogBlock">
       <img class="imagNoticias2" src="img/{$noticia->getImagenNombre()}" alt="Imagen">
     </div> 
     <div><p> </p></div>
@@ -53,16 +56,16 @@ EOS;
 }
 $contenidoPrincipal .=<<<EOS
   </div>
-  
   </div>
-  <div>
 EOS;
+
 $comentarios=Valoracion::getComentarios($id_noticia);
+$contenidoPrincipal .="<div class=\"comentarioPanel\">";
 foreach($comentarios as $com){
   $id=$com->getIdUser();
   $user=Usuario::buscaPorId($id);
   $contenidoPrincipal .=<<<EOS
-  <div class="boxlay">
+  <div class="boxlayComentario">
   
   <p>Comentado por:  {$user->getNombre() } </p>
   <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
@@ -70,6 +73,9 @@ foreach($comentarios as $com){
   </div>
 EOS;
 }
+$contenidoPrincipal .="</div>";
+
+// formulario para crear valoracion por usuario
 if(isset( $_SESSION['nombreUsuario'])){
 $usuarioid=Usuario::buscaIDPorNombre(  $_SESSION['nombreUsuario']);
 
@@ -79,10 +85,11 @@ $formularioCrearValoracion=$formm->gestiona();
 
 $contenidoPrincipal .=<<<EOS
 </div>
-                            <div>
-                            {$formularioCrearValoracion}
-                            </div>
+<div>
+{$formularioCrearValoracion}
+</div>
 EOS;
 }
+
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>
