@@ -375,8 +375,18 @@ a.deshabilitado {
 	line-height: 300%;
 }
 
+.cardRetoPelis{
+	flex-grow: 2;
+	background-color: rgb(241, 237, 239);
+    padding: 20px;
+    margin-top: 20px;
+	width: 80%;
+}
+
 .cardPelis fieldset{
 	min-width: 250px;
+	text-align: left;
+	padding: 1em;
 }
 
 .cardPelis{
@@ -386,19 +396,36 @@ a.deshabilitado {
 	margin-top: 20px;
 	width: 20%;
 }
-.cardRetoPelis{
-	flex-grow: 2;
-	background-color: rgb(241, 237, 239);
-    padding: 20px;
-    margin-top: 20px;
-	width: 80%;
-}
 
 .columnaPelis{
     background: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.checkbox{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.imgPelisRetoBlock{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.imgPelisReto{
+	width: 180px;
+	height: 235px;
+	padding: 4px 1%;
+}
+
+.imgPelis{
+	max-width: 100%;
+	max-height: 100%;
 }
 
 /*--------------*/

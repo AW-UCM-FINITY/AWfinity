@@ -54,13 +54,14 @@ EOS;
 $contenidoPrincipal .="<div class='pelisIndex'>"; 
 $contenidoPrincipal .= "<div class='peliLista'>";
 $arrayPelis = $pelisretoArray;
+$contenidoPrincipal.="<div class=imgPelisRetoBlock>";
 foreach ($arrayPelis as $key => $value) {
 	$id_pelicula = $value->getId();
  	$ruta = $value->getRutaImagen();
  	$cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-	$contenidoPrincipal.= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img alt='imgPeli' src=$cadena></a>";
+	$contenidoPrincipal.= "<div class=\"imgPelisReto\"> <a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img class=\"imgPelis\" alt='imgPeli' src=$cadena></a> </div>";
 }
-$contenidoPrincipal .= "</div>";
+$contenidoPrincipal .= "</div></div>";
 $contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p> <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>";
 
 // si esta logado como usuario normal, puede elegir unirse o abandonar el reto
