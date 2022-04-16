@@ -26,7 +26,7 @@ class FormEditorAddPelisReto extends Formulario
             $id_pelis = $pelis->getId();
             $titulo_pelis = $pelis->getTitulo();
             $html.=<<<EOS
-            <div>
+            <div class= "checkbox">
             <input type="checkbox" name="pelis_marcados[]" value=$id_pelis> $titulo_pelis
             </div>
             <div>

@@ -17,7 +17,7 @@ class FormEditorCreaValoracion extends Formulario
     
     protected function generaCamposFormulario(&$datos)
     {
-        
+        $puntuacion=1;
         
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
@@ -26,15 +26,17 @@ class FormEditorCreaValoracion extends Formulario
         // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
         $html = <<<EOF
             $htmlErroresGlobales
-            <fieldset>
-            <p> Puntuacion: </p> 
-            <input type="number" class="form-input" name="puntuacion" /> 
+            <fieldset><legend>¡ Deja tu comentario !</legend>
+            <p> Puntuacion (1-5): </p> 
+            <input id="puntuacion" type="range" name="puntuacion" value="$puntuacion" min="1" max="5" oninput="puntuacionout.value = puntuacion.value"/>
+            <output name="puntuacionout" id="puntuacionout">$puntuacion</output>
             {$erroresCampos['puntuacion']}
-            <p> Añade tu comentario:</p> 
+            
+            <p> Comentario:</p> 
             <textarea name="valoracion" rows="8" cols="1100"></textarea>
             {$erroresCampos['valoracion']}
     
-            <button class="submit" type="submit" name="registro">Añadir comentario</button>
+            <button class="submit" type="submit" name="registro">Añadir</button>
             </fieldset>
         EOF;
         return $html;
