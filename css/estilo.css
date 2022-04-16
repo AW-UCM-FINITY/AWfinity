@@ -366,19 +366,19 @@ a.deshabilitado {
   
 .completadoReto{
 	background: rgb(255, 255, 255);
-	padding: 30px 50px 30px;
+	padding: 30px 10px 30px;
 }
 .completadoReto P{ color:rgb(9, 140, 46); font-weight: bold;}
 
 .aceptadoReto{
 	background: rgb(255, 255, 255);
-	padding: 30px 50px 30px;
+	padding: 30px 10px 30px;
 }
 .aceptadoReto P{ color:rgb(237, 28, 0); font-weight: bold;}
 
 .unirseReto{
 	background: rgb(255, 255, 255);
-	padding: 30px 50px 30px;
+	padding: 30px 10px 30px;
 }
 .unirseReto P{ color:#9f2863; font-weight: bold;}
 
