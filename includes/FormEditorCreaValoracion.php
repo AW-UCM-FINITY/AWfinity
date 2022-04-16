@@ -4,7 +4,7 @@ namespace es\ucm\fdi\aw;
 
 class FormEditorCreaValoracion extends Formulario
 {
-    //private $id_libro;
+   
     private $id_noticia;
     private $id_user;
     public function __construct($id_noticia,$id_user) {
