@@ -93,7 +93,7 @@ $formularioCrearValoracion=$formm->gestiona();
 
 $contenidoPrincipal .=<<<EOS
 </div>
-<div>
+<div class="crearValoracionPanel">
 {$formularioCrearValoracion}
 </div>
 EOS;
