@@ -21,7 +21,7 @@ class FormElimValoracion extends Formulario
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         
         $html = <<<EOF
-            <button type="submit" name="$id_valoracion">Eliminar comentario</button>
+            <button type="submit" name="elim">Eliminar comentario</button>
             $htmlErroresGlobales
         EOF;
         return $html;
@@ -31,25 +31,27 @@ class FormElimValoracion extends Formulario
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
-        if(isset($datos['$id_valoracion'])){
+       
 
         
            
            $user=Usuario::buscaPorId($this->valoracion->getIdUser());
             if(($_SESSION['nombreUsuario']!=$user->getNombreUsuario()  && !$_SESSION['esAdmin'])){
                 
-                    $this->errores[] = "No puedes eliminar un comentario si no eres su creador o un administrador de la página";
+                    $this->errores[] = "No puedes eliminar un comentario si no tienes permisos";
                 
             }
-            if (count($result) === 0) {
+            if (count($this->errores) === 0) {
 
                 
                     $res = Valoracion::elimValoracion($this->valoracion->getId_valoracion());
                     if(!$res){
-                        $this->errores[] = "No se ha podido eliminar el grupo.";
+                        $this->errores[] = "No se ha podido eliminar el comentario.";
                     }
+            }else{
+                $this->errores[] = "No se ha podido eliminar el comentario.";
             }
-        }
+        
         return $this->errores;
    }
 }

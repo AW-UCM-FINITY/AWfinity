@@ -64,12 +64,15 @@ $contenidoPrincipal .="<div class=\"comentarioPanel\">";
 foreach($comentarios as $com){
   $id=$com->getIdUser();
   $user=Usuario::buscaPorId($id);
+  $formms= new FormElimValoracion($com);
+  $FormElimValoracion=$formms->gestiona();
   $contenidoPrincipal .=<<<EOS
   <div class="boxlayComentario">
   
   <p>Comentado por:  {$user->getNombre() } </p>
   <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
   <p> {$com->getContenido()} </p>
+  {$FormElimValoracion}
   </div>
 EOS;
 }

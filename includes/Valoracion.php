@@ -85,7 +85,7 @@ class Valoracion{
 		return $reult;
 	}
     
-    static public function getValoracion($id_valoracion){
+    /*static public function getValoracion($id_valoracion){
 
         $valoracion = array();
         
@@ -104,7 +104,7 @@ class Valoracion{
         $consulta->free();
         
         return $valoracion;
-	}
+	}*/
     static public function getComentarios($idnoticia){
 
         $valoracion = array();
@@ -167,9 +167,10 @@ class Valoracion{
     static public function elimValoracion($id_valoracion){//valoracion es el nombre del comentario
 
         $result = false;
+        $conn =  Aplicacion::getInstance()->getConexionBd();
         $id_valoracion= $conn->real_escape_string($id_valoracion);
-         $conn =  Aplicacion::getInstance()->getConexionBd();
-        $sql = "DELETE * FROM valoraciones WHERE id_valoracion=$id_valoracion";
+      
+        $sql = "DELETE FROM valoraciones WHERE id_valoracion=$id_valoracion";
         $consulta = $conn->query($sql);
         if($consulta){
             $result=true;
