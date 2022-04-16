@@ -61,20 +61,25 @@ EOS;
 
 $comentarios=Valoracion::getComentarios($id_noticia);
 $contenidoPrincipal .="<div class=\"comentarioPanel\">";
+$formms=array();
+$cont=0;
+$FormElimValoracion=array();
 foreach($comentarios as $com){
   $id=$com->getIdUser();
   $user=Usuario::buscaPorId($id);
-  $formms= new FormElimValoracion($com);
-  $FormElimValoracion=$formms->gestiona();
+  $formms[$cont]= new FormElimValoracion($com);
+  $FormElimValoracion[$cont]=$formms[$cont]->gestiona();
+  
   $contenidoPrincipal .=<<<EOS
   <div class="boxlayComentario">
   
   <p>Comentado por:  {$user->getNombre() } </p>
   <p><b>Puntuación:   {$com->getPuntuacion()}</b></p>
   <p> {$com->getContenido()} </p>
-  {$FormElimValoracion}
+  {$FormElimValoracion[$cont]}
   </div>
 EOS;
+$cont++;
 }
 $contenidoPrincipal .="</div>";
 
