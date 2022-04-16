@@ -157,9 +157,9 @@ class Usuario
         return true;
     }
     
-    public function borrar($usuario){
-        if ($usuario->id_usuario!== null) {
-            return self::borra($this);
+    public static function borrar($id_usuario){
+        if ($id_usuario!== null) {
+            return self::borraPorId($id_usuario);
         }
         return false;
     }
@@ -176,9 +176,9 @@ class Usuario
          * $result = self::borraRoles($usuario) !== false;
          */
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("DELETE FROM usuarios U WHERE U.id_usuario= %d"
-            , $idUsuario
-        );
+        //$query = sprintf("DELETE FROM usuarios U WHERE U.id_user= '%d'", $idUsuario);
+        $query = "DELETE FROM usuarios WHERE id_user=$idUsuario";
+
         if ( ! $conn->query($query) ) {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
             return false;
@@ -307,7 +307,24 @@ class Usuario
         }
     }
   
-
+    public static function getTodosUsuarios()
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM usuarios");
+        $rs = $conn->query($query);
+        $result = array();
+        if ($rs) {
+           while($fila = mysqli_fetch_assoc($rs)){
+            
+                $result[] = new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);
+                 
+            }
+            $rs->free();
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
 
 
     /*private static function insertaRoles($usuario){

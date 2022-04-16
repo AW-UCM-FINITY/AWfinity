@@ -1,0 +1,767 @@
+/*CSS PLANTILLA GLOBAL*/
+* {
+	margin:0px;
+	padding:0px;
+}
+div#contenedor{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-areas:
+	'header'
+	'main'
+	'footer';
+}
+html{
+	font-family:Arial, Helvetica, sans-serif;
+}
+main {
+	padding-top: 30px;
+	padding-left: 50px;
+    padding-right: 50px;
+	float: left;
+	background-color: rgb(2, 1, 1);
+    min-height: 700px;
+}
+
+footer {
+	padding:20px 60px;
+	background-color: #8c3838;
+	color: white;
+	text-align: center;
+}
+
+header{
+	grid-area: header;
+	background-color:rgb(33, 145, 87);
+}
+
+/*MENU PRINCIPAL*/
+
+nav#menuP{
+	display: block;
+}
+nav#menuP ul {
+	list-style:none;
+}
+
+.nav > li {
+	float:left;
+}
+
+.nav li a {
+	background-color:#000;
+	color:#fff;
+	text-decoration:none;
+	padding:30px 30px;
+	display:block;
+	width:100%;
+	height: 100%;
+}
+
+.nav li a:hover {
+	background-color:#9f2863;
+}
+
+.nav li ul {
+	display:none;
+	position:absolute;
+	min-width:140px;
+}
+
+.nav li:hover > ul {
+	display:block;
+}
+
+.nav li ul li {
+	position:relative;
+}
+
+.nav li ul li ul {
+	align-items: center;
+	top:0px;
+	width:100%;
+	height: 100%;
+}
+div.saludo {
+	text-align: right;
+	background-color:rgb(25, 155, 221);
+	color:#fff;
+	text-decoration:none;
+	padding:30px 30px;
+	padding-right: 60px;
+	display:block;
+	
+}
+div.saludo a{
+	color:#fff;
+}
+/*FIN MENU PRINCIPAL*/
+
+/*CSS FORMULARIO*/
+fieldset {
+	border: 2px solid black;
+	padding: 10px 20px;
+	margin-right: 600px;
+	margin-top: 20px;
+}
+
+fieldset div {
+	justify-content: center;
+	margin: 5px auto;
+	padding-bottom: 5px;
+}
+
+legend {
+	color: #fff;
+	background: #303030;
+	border: 1px solid black;
+	padding: 2px 6px;
+} 
+
+label {
+	margin-right: 0.5em;
+	display: block;
+	padding: 5px;
+}
+
+input {
+	display: block;
+}
+
+.form-field-error {
+	display: block;
+}
+select.peli_titulo{
+	text-rendering: auto;
+}
+
+.mensajes {
+	position: fixed;
+	width: 100%;
+  }
+  
+.mensaje {
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 30%;
+	margin: 0.2em auto;
+	background-color: #b0f5f1;
+}
+
+.mensajes input {
+	display: none;
+}
+
+.mensaje .cabecera {
+	font-size: 2em;
+	line-height: 0.7em;
+	text-align: right;
+	padding: 0 0.1em;
+}
+
+.mensaje .contenido {
+	padding: 0.2em 1em;
+	text-align: center;
+}
+
+.mensajes input:checked + .mensaje {
+	display: none;
+}
+
+form#FormEditorEditPeli fieldset div img.imgEdit {
+	width: 150px;
+	height: 200px;
+}
+
+form.inline {
+	display: inline;
+}
+
+form button.enlace, form button.enlace:visited {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	background-color: inherit;
+	border: none;
+}
+
+form input.sinopsis{
+	column-span: 100 ;
+	row-gap: 8;
+}
+form button.enlace:hover {
+	color: red;
+	font-weight: bold;
+	text-decoration: underline;
+
+}
+form button{
+	background-color: white; 
+	color: black; 
+	border: 2px solid #9f2863;
+	padding: 9px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	transition-duration: 0.4s;
+}
+form button:hover{
+	background-color: #9f2863;
+  	color: white;
+}
+button, a.boton {
+	border: 1px solid black;
+	font-size: 1.1em;
+	font-weight: 400;
+	border-radius: 4px;
+}
+
+a.boton {
+	color: inherit;
+	text-decoration: none;
+	background-color: rgb(239, 239, 239);
+	padding: 3px 8px;
+	margin: 1px 5px;
+}
+
+.inline {
+	display: inline;
+}
+
+a.deshabilitado {
+	color: rgba(16, 16, 16, 0.3);
+}
+/*FIN CSS FORMULARIO*/
+
+
+/*PARA BLOG----------------------------------------*/
+
+/* w3 schools para barra de navegación */
+.menublog {
+    overflow: hidden;
+    background-color: #e9e9e9;
+}
+  
+  
+.menublog a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+.menublog a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+  /* Style the "active" element to highlight the current page */
+.menublog a.active {
+    background-color: #9f2863;
+    color: white;
+}
+
+.menublog .barraBusca {
+    float: right;
+}
+  
+.menublog .barraBusca input[type=text] {
+    float: left;
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.menublog .barraBusca button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+  
+.menublog .barraBusca button:hover {
+    background: #ccc;
+}
+  
+@media screen and (max-width: 600px) {
+    .menublog .search-container {
+        float: none;
+    }
+    .menublog a, .menublog input[type=text], .menublog .barraBusca button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .menublog input[type=text] {
+        border: 1px solid #ccc;  
+    }
+}
+
+
+/* fin de wr3schools*/
+/* vista de retos*/
+
+.panelReto{
+    background: rgb(255, 255, 255);
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.boxlay {
+    background-color: rgb(255, 255, 255);;
+    width: 160px;
+    border: 2px solid #9f2863;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+    transition: 500ms linear;
+}
+
+.boxlay h3 {
+	padding: 5px 50px 30px;
+	text-align: center;
+}
+
+.boxlay:hover {
+    transform: scale(1.1);
+}
+
+  
+.completadoReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 10px 30px;
+}
+.completadoReto P{ color:rgb(9, 140, 46); font-weight: bold;}
+
+.aceptadoReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 10px 30px;
+}
+.aceptadoReto P{ color:rgb(237, 28, 0); font-weight: bold;}
+
+.unirseReto{
+	background: rgb(255, 255, 255);
+	padding: 30px 10px 30px;
+}
+.unirseReto P{ color:#9f2863; font-weight: bold;}
+
+.cardRetoPelis h1{
+	padding: 1% 0;
+	font-size: xx-large;
+}
+
+.cardRetoPelis h5 {
+	line-height: 200%;
+	font-size: medium;
+}
+
+.cardRetoPelis p{
+	line-height: 300%;
+}
+
+.cardRetoPelis{
+	flex-grow: 2;
+	background-color: rgb(241, 237, 239);
+    padding: 20px;
+    margin-top: 20px;
+	width: 80%;
+}
+
+.cardPelis fieldset{
+	min-width: 250px;
+	text-align: left;
+	padding: 1em;
+}
+
+.cardPelis{
+	flex-grow: 1;
+	background-color: rgb(241, 237, 239);
+	padding: 20px;
+	margin-top: 20px;
+	width: 20%;
+}
+
+.columnaPelis{
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.checkbox{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.imgPelisRetoBlock{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.imgPelisReto{
+	width: 180px;
+	height: 235px;
+	padding: 4px 1%;
+}
+
+.imgPelis{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/*--------------*/
+/* ranking de retos--------*/
+.wrapper {
+	line-height: 1.5em;
+	margin: 0 auto;
+	padding: 2em 0 3em;
+	width: 100%;
+	max-width: 2000px;
+	overflow: hidden;
+}
+
+.wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+
+.wrapper th {
+    background-color: #4d5053;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.wrapper td, th {
+    padding: 1em 1.5em;
+    text-align: left;
+}
+
+.wrapper tbody th {
+	background-color: #2ea879;
+}
+.wrapper tbody tr:nth-child(2n-1) {
+    background-color: #f5f5f5;
+    transition: all .125s ease-in-out;
+}
+.wrapper tbody tr:hover {
+    background-color: rgba(75, 67, 74, 0.3);
+}
+
+.wrapper td.nombre {
+	text-transform: capitalize;
+}
+
+/*-----------------------------*/
+/* Header/Blog Title */
+.header2 {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background: #9581954b;
+}
+  
+.header2 h2{
+    color: #9f2863;
+}
+
+  /* izquieda */
+.columnaIzq {
+    float: left;
+    width: 70%;
+
+}
+.columna{
+    background: rgb(255, 255, 255);
+}
+
+/* derecha*/
+.columnaDer {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+}
+  
+  /* fotos */
+.img2 {
+    background-color: #aaa;
+    width: 90px;
+    padding: 4px;
+}
+  
+  /* articulos como cartas */
+.card {
+    background-color: rgb(241, 237, 239);
+    padding: 20px;
+    margin-top: 20px;
+
+}
+
+/* Clear floats after the columns */
+.columna:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+.imagNoticias{
+    height:200px;
+    width: 700px;
+}
+
+.imgBlogBlock{
+	height:300px;
+    width: 1000px;
+}
+
+.imagNoticias2{
+    max-width: 100%;
+	max-height: 100%
+	
+}
+
+.imagAboutus{
+    height:100px;
+}
+.footer2 {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+.comentarioPanel{
+	display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.boxlayComentario {
+    background-color: rgb(255, 255, 255);;
+    width: 350px;
+    border: 2px solid #9f2863;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+    transition: 500ms linear;
+}
+
+.boxlayComentario:hover {
+    transform: scale(1.1);
+}
+
+.crearValoracionPanel{
+	padding: 10px 70px 20px;
+}
+
+article.Noticia div.card h2{
+	padding: 10px 50px 10px 0;
+}
+
+article.Noticia div.card h5{
+	padding: 2% 0;
+}
+
+article.Noticia div.card p{
+	padding: 1% 0;
+}
+
+
+.imagenNivel1{
+	max-height:48px;
+    max-width: 48px;
+}
+.imagenNivel2{
+	max-height:43px;
+    max-width: 43px;
+}
+
+  /* Para cuando se reduzca el tamaño de la ventana */
+@media screen and (max-width: 800px) {
+    .columnaIzq, .columnaDer {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/*------------------------------------------------------------*/
+
+/* CSS PARA LA VISTA DE LAS PELÍCULAS INDEX*/
+
+div.contenidoPelis{
+	padding-top: 50px;
+	padding-bottom: 200px;
+}
+
+div.tituloIndex h1{
+	align-items: center;
+	font-size: 40px;
+	padding-bottom: 20px;
+}
+div.tituloIndex h2{
+	align-items: center;
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+div.tituloIndex h3{
+	padding-bottom: 20px;
+}
+
+div.tituloIndex span{
+	color: #9f2863;     /*Te has vuelto a ir*/
+}
+
+div.peliLista a img {
+    width: 230px;
+	height: 300px;
+	float: left;
+}
+
+div.pelisIndex {
+	padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 0px;
+    padding-bottom: 15px;
+    display: grid;
+    grid-template-columns: auto auto auto; /*cols*/
+    grid-template-rows: auto auto; /*rows*/
+    grid-template-areas: 
+    ". titulo ."
+    "peli peli peli "
+    ;
+    align-items : center;
+}
+div.peliLista{
+	grid-area: peli;
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto; /*rows*/
+    grid-template-areas: " peli peli peli peli peli peli ";
+    align-items : center;
+
+}
+
+div.tituloPeliIndex h3{
+	grid-area: titulo;
+    align-items: center;
+	padding-top: 45px;
+	padding-bottom: 15px;	
+    text-transform: uppercase;
+}
+
+ /* FIN CSS PELICULAS*/
+
+ /* CSS PARA LA VISTA 1PELÍCULA */
+div#peli-card.peli-card{
+	margin-top: 50px;
+	background-color: rgb(242, 211, 250);;
+	display: grid;
+    grid-template-areas: "foto datos";
+	height: 400px;
+	grid-column-gap: 10px;
+
+}
+div#peli-foto-card.peli-foto-card {
+	grid-area: foto;
+}
+
+div#peli-foto.peli-foto-card img {
+	width: 230px;
+	height: auto;
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;	
+	display: block;
+	grid-area: foto;
+}
+div#peli-datos.peli-datos-card {
+	grid-area: datos;
+	padding-right: 20px;
+	padding-top: 60px;	
+}
+div.fila-dato{
+	padding-bottom: 10px;
+	margin-right: 120px;
+}
+div#peli-editar.peli-editar-card{
+	display: block;
+	margin-left: 35px;
+	grid-area: editar;
+}
+div.derecha{
+	display: grid;
+	grid-row: auto;
+	grid-template-areas: 
+	"foto" 
+	"editar";	
+}
+ /*FIN PARA LA VISTA DE 1 PELÍCULA*/
+
+ /*CSS VISTA CAPITULOS*/
+ div.listaCapitulos li{
+	 padding-top: 10px;
+	 padding-bottom: 10px;
+ }
+ div.listaCapitulos ol{
+	 margin-left: 20px;
+ }
+
+ div#peli-foto.peli-foto-card video {
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 59px;	
+	display: block;
+	grid-area: foto;
+}
+ /*FIN CSS VISTA CAPITULOS*/
+
+ /*CSS BOTON EDITOR*/
+ div.generalBoton{
+	display: inline-block;
+	padding-right: 10px;
+}
+div.butonGeneral{
+	display: inline-block;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #9f2863;
+	padding: 9px 20px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	transition-duration: 0.4s;
+	border-radius: 4px;
+}
+div.butonGeneral:hover{
+	background-color: #9f2863;
+  	color: white;
+}
+
+div.butonGeneral a{
+	color: black; 
+	text-decoration:none;
+}
+ /*FIN CSS BOTON EDITOR*/

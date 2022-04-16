@@ -4,8 +4,8 @@ require_once __DIR__.'/includes/config.php';
 require __DIR__. '/includes/helpers/autorizacion.php'; //Para hacer comprobaciones de login y esEditor
 
 
-$tituloPagina = 'Ranking TOP usuarios';
-$claseArticle = 'Ranking';
+$tituloPagina = 'Mi perfil';
+$claseArticle = 'perfil';
 
 $contenidoPrincipal = '';
 
@@ -17,7 +17,7 @@ if(isset($_SESSION['nombreUsuario']) && estaLogado()){
 
 $contenidoPrincipal .= <<<EOS
 <div class="header2">
-<h2>Usuario</h2>
+<h2>Mi perfil</h2>
 </div>
                                
 <div class="contened">
@@ -25,8 +25,8 @@ $contenidoPrincipal .= <<<EOS
     <table>
         <thead>
             <tr>
-                <th>Atributo</th>
-                <th>Valor</th>
+                <th>Campos</th>
+                <th>Datos</th>
                          
                                             
             </tr>

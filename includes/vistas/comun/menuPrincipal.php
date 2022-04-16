@@ -10,7 +10,7 @@
 		<?php 
 		if(esAdmin()){
 			$s=RUTA_APP;
-			echo "<li><a href=\"$s/index.php\">ADMIN</a></li>";
+			echo "<li><a href=\"$s/vistaAdminGestionUser.php\">ADMIN</a></li>";
 		}
 		
 		?>
