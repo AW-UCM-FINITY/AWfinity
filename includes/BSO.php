@@ -224,6 +224,23 @@ class BSO
         }
         return $BSO;
     }
+
+    public static function actualizaNumCanciones($id_bso){
+        $result = false;
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $BSO = BSO::buscaBSOID($id_bso);
+        $numCanciones = $BSO->getNumCanciones();
+        $total = 1 + $numCanciones;
+        $query=sprintf("UPDATE bso S SET S.numCanciones='%d' WHERE S.id_bso = $id_bso"
+            , $conn->real_escape_string($total)
+        );
+        if ($conn->query($query)) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
 }
 
 ?>

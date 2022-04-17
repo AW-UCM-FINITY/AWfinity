@@ -60,26 +60,70 @@ $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
 $contenidoPrincipal .= "</div>"; //fin div = peli-card
 
 $contenidoPrincipal .= "<div class='canciones'>";
+$contenidoPrincipal .= "<div class='arriba'>";
 if(esEditor()){
-    $contenidoPrincipal .="<div class ='butonGeneral'> <a href='creaCancion.php?id_bso=$id_bso'> Añadir Canción</a> </div>";
+    $contenidoPrincipal .="<div class='botonCreaBSO'> <div class ='butonGeneral'> <a href='creaCancion.php?id_bso=$id_bso'> Añadir Canción</a> </div></div>";
 }
-$contenidoPrincipal .= "<div class='playlist'>";
+$contenidoPrincipal .= "<div class='audio'>";
 $contenidoPrincipal.= "
-    <audio id ='audio' preload='auto' tabindex='0' controls >
-        <source src='img/canciones/generico.mp3'>
-    </audio>";
+<audio id='player' src='' controls >
+  Parece que el navegador no soporta el audio
+</audio>";
+$contenidoPrincipal .= "</div>";//cierra div audio
+$contenidoPrincipal .= "</div>";//cierra div arriba
+
+$contenidoPrincipal .= "<div class='ListaCanciones'>";
 $contenidoPrincipal.= "<ul id='playlist'>";
+
+$arrayNombreCanciones;
+$arrayRutaCanciones;
 foreach ($playList as $key => $cancion) {
-$nombre_cancion = $cancion->getNombreCancion();
-$ruta_audio = $cancion->getRutaAudio();
-$contenidoPrincipal.= "<li class='active'><a href='$ruta_audio'> $nombre_cancion </a></li>";
+    $arrayNombreCanciones[] = $cancion->getNombreCancion();
+    $arrayRutaCanciones[] = $cancion->getRutaAudio();
+}
+$contenidoPrincipal.= "<li class='current-song'><a href='$arrayRutaCanciones[0]'> $arrayNombreCanciones[0] </a></li>";
+for($i = 1; $i < $numCanciones; $i++) {
+    $contenidoPrincipal.= "<li><a href='$arrayRutaCanciones[$i]'> $arrayNombreCanciones[$i] </a></li>";
 }
 
+// foreach ($playList as $key => $cancion) {
+//     $nombre_cancion = $cancion->getNombreCancion();
+//     $ruta_audio = $cancion->getRutaAudio();
+//     $contenidoPrincipal.= "<li><a href='$ruta_audio'> $nombre_cancion </a></li>";
+// }
+$contenidoPrincipal .= "</ul>";
 
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>";
+$contenidoPrincipal .= "</div>"; //cierra div playlist
+$contenidoPrincipal .= "</div>"; //cierra div
 
-$contenidoPrincipal .= "<script type='text/javascript' src='/js/playlist.js'></script>";
+$contenidoPrincipal .= "<script>
+var currentSong = 0;
+var playing = true
+$('#player')[0].src = $('#playlist li a')[0].href;
+$('#player')[0].play();
+
+$('#playlist li a').click(function(e){
+  e.preventDefault(); 
+  $('#player')[0].src = this;
+  $('#player')[0].play();
+  $('#playlist li').removeClass('current-song');
+  currentSong = $(this).parent().index();
+  $(this).parent().addClass('current-song');
+});
+
+$('#player')[0].addEventListener('ended', function(){
+  currentSong++;
+  
+  if(currentSong == $('#playlist li a').length){
+    currentSong = 0;
+  }
+  $('#playlist li').removeClass('current-song');
+  $('#playlist li:eq('+currentSong+')').addClass('current-song');
+  $('#player')[0].src = $('#playlist li a')[currentSong].href;
+  $('#player')[0].play();
+});
+
+</script>";
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

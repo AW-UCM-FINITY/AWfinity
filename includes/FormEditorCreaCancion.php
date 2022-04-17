@@ -75,7 +75,8 @@ class FormEditorCreaCancion extends Formulario
                     if ($episodio) {
                         $this->errores[] = "La canción ya existe";
                     } else {
-                        $episodio = Cancion::crea($this->id_bso, $nombre, $folder);                
+                        $episodio = Cancion::crea($this->id_bso, $nombre, $folder);   
+                        $actualiza = BSO::actualizaNumCanciones($id_bso); //para aumentar el numero de canciones q tiene la BSO             
                     }
                 }
                 else{
