@@ -32,7 +32,7 @@ $htmlFormElimReto = $formP->gestiona();
 
 $reto=Reto::buscarPorId($id_reto);
 if($reto){
-$suma=$reto->getNumMiembros()+$reto->getNumCompletado();
+$suma=$reto->getNumMiembros();
 $numpelisreto=PelisReto::cuentasPelisPorReto($id_reto);
 $pelisretoArray=PelisReto::getPelisporReto($id_reto);
 $contenidoPrincipal .=<<<EOS
