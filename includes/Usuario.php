@@ -117,7 +117,7 @@ class Usuario
             , $conn->real_escape_string($usuario->apellido)
             , $conn->real_escape_string($usuario->password)
             , $conn->real_escape_string($usuario->rol_user)
-            ,0
+            , $conn->real_escape_string($usuario->puntos)
         );
         if ($conn->query($query)) {
             $usuario->id_usuario = $conn->insert_id;

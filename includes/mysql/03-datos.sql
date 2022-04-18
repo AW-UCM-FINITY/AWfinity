@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-04-2022 a las 11:34:21
+-- Tiempo de generación: 18-04-2022 a las 12:38:01
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -22,12 +22,32 @@ SET time_zone = "+00:00";
 --
 
 --
+-- Volcado de datos para la tabla `bso`
+--
+
+INSERT INTO `bso` (`id_bso`, `titulo`, `compositor`, `numCanciones`, `genero`, `sinopsis`, `ruta_imagen`) VALUES
+(4, 'Dune (Original Motio', '', 0, 'fantasia', 'Premio Grammy al mejor álbum de banda sonora para película, televisión u otro medio visual', './img/bso/dune.png'),
+(5, 'Your Name', '', 0, 'anime', 'Your Name es el séptimo álbum de estudio de la agrupación de rock japonesa Radwimps que fue lanzado el 24 de agosto de 2016 en plataformas digitales', './img/bso/name.png'),
+(7, 'Skyfall', '', 3, 'accion', 'Skyfall es la banda sonora de la vigesimatercera película de James Bond. Fue publicada por Sony Classical el 9 de octubre de 2012 en Reino Unido y el 6 de noviembre en Estados Unidos. La música fue compuesta por primera vez por Thomas Newman, en una banda sonora de James Bond.​', './img/bso/sky.png');
+
+--
+-- Volcado de datos para la tabla `canciones`
+--
+
+INSERT INTO `canciones` (`id_cancion`, `id_bso`, `nombre_cancion`, `ruta_audio`) VALUES
+(1, 3, 'Rancho Bonito', './img/canciones/generico.mp3'),
+(2, 3, 'Prueba rancho 2', './img/canciones/generico.mp3'),
+(3, 7, 'Skyfall', './img/canciones/generico.mp3'),
+(4, 7, 'Someone Usually Dies', './img/canciones/generico.mp3'),
+(5, 7, 'Kill Them First', './img/canciones/generico.mp3');
+
+--
 -- Volcado de datos para la tabla `episodios`
 --
 
 INSERT INTO `episodios` (`id_episodio`, `id_serie`, `titulo`, `duracion`, `temporada`, `ruta_video`, `sinopsis`) VALUES
-(21, 5, 'aaaaaaaaaa', 22, 1, './img/episodios/videogenerico.mp4', 'aaaaaaaaaaaa'),
-(23, 5, 'cccccc', 55, 1, './img/episodios/videogenerico.mp4', 'ccccccccccccc');
+(24, 7, 'A ti, dentro de 2000', 26, 1, './img/episodios/attackontitan.mp4', 'La historia comienza ubicándonos en el año 845, el Cuerpo de Exploración está a punto de agredir a un titán en su plan para empezar la venganza de la humanidad contra los titanes y crear la primera base extrajera de la humanidad.'),
+(26, 7, 'Aquel d&iacute;a', 22, 1, './img/episodios/attackontitan.mp4', 'La población sobreviviente, cuando el muro cayó, no tiene otra opción que la de escapar al interior de los muros. Esto, sin embargo, conduce a fuertes tensiones entre la población como de repente dejan de mantener reservas de alimentos necesarios para alimentar a todos. Así, después de vanos intentos por recuperar las zonas invadidas por los titanes Eran, Mikasa y Armin deciden alistarse para luchar contra los titanes');
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -62,7 +82,10 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `director`, `duracion`, `gener
 --
 
 INSERT INTO `series` (`id_serie`, `titulo`, `productor`, `numTemporadas`, `genero`, `sinopsis`, `ruta_imagen`) VALUES
-(5, 'ggggggggggggggg', 'ggggggggggggggg', 2, 'accion', 'gggggggggggggggggggggggggg', './img/series/brujero.jpg');
+(7, 'Attack on Titan', 'FUNimation Entertain', 4, 'anime', 'Serie basada en el manga del mismo nombre, dirigida por Tetsuro Araki y protagonizada por un grupo de residentes de una ciudad rodeada de murallas, las cuales sirven para proteger a la población de los ataques de gigantes caníbales, quienes de vez en cuando consiguen entrar en el lugar.', './img/series/attackontitan.png'),
+(8, 'The Witcher', 'Tomasz Bagiński', 2, 'fantasia', 'Serie de TV (2019-actualidad). 2 temporadas. Geralt de Rivia, un cazador de monstruos mutante, viaja en pos de su destino por un mundo turbulento en el que, a menudo, los humanos son peores que las bestias. Adaptación a la televisión de la saga literaria de Andrzej Sapkowski, que dio a su vez origen a una trilogía de prestigiosos videojuegos.', './img/series/brujero.jpg'),
+(9, 'Hanna', 'Amazon Studios', 1, 'accion', 'Una joven es entrenada desde pequeña por su padre, un ex-agente de la CIA, para convertirse en una asesina perfecta. Adaptación televisiva de la película de 2011.', './img/series/hannah.png'),
+(10, 'Neon Genesis Evangel', 'GAINAX TV Tokyo NAS', 1, 'anime', 'Serie de TV (1995-1996). 1 temporada. 26 episodios. En el año 1999, en la Antártida, ocurrió un cataclismo llamado \"El Segundo Impacto\", como resultado de un incidente ocasionado por unos seres conocidos como \"Ángeles\". Gran parte de la Tierra quedó devastada por el fenómeno, y la mitad de la población sucumbió en la catástrofe, aunque ahora la humanidad gradualmente se va recuperando. Años después, en el 2015, los \"Ángeles\" regresan y comienzan a atacar a la Tierra... Cada uno de los \"Ángeles\" es diferente de los demás, excepto por el hecho de que todos pueden generar un impenetrable escudo protector llamado Campo AT. La organización NERV revela su nuevo proyecto con miras a salvar el mundo: gigantes y bio-mecánicos robots conocidos como Evas, que son unos de las pocas fuerzas sobre la Tierra capaces de enfrentar a los \"Ángeles\". Sólo niños específicos pueden pilotar los Evas: Shinji Ikari, el hijo de el jefe de NERV y que no desea pelear, la reservada Rei Ayanami y la exaltada (y algo amante del combate) Asuka Langley. Mientras combaten a los \"Ángeles\" uno a uno, van descubriendo más y más acerca de la naturaleza y el futuro de la humanidad', './img/series/evangelion.png');
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -72,6 +95,17 @@ INSERT INTO `usuarios` (`id_user`, `nombreUsuario`, `nombre`, `apellido`, `passw
 (6, 'Admin', 'Administrador', 'Administrador', '$2y$10$KggiRmk9OI39yyBdNJw48.FTfGkKVEJLoNgYrfWMf0k4RbTCRCnxC', 'admin'),
 (7, 'Editor', 'Editor', 'Editor', '$2y$10$CKrc4uVMK8j9xikFAKG0FuxmnW9CCiBMSNICSKu9xPdC9Nowrw.9q', 'editor'),
 (8, 'User1', 'Usuario', 'Usuario', '$2y$10$WNEu6ImVGgVr0tGzuDCsmuit20sQpmAHfgbFqXDxeAbUb5bk.BQj.', 'editor');
+
+--
+-- Volcado de datos para la tabla `valoraciones`
+--
+
+INSERT INTO `valoraciones` (`id_valoracion`, `idNoticia`, `idUser`, `contenido`, `puntuacion`) VALUES
+(1, 31, 11, 'asasasas', 12),
+(2, 31, 11, 'asassssssssssssssssss', 10),
+(3, 31, 11, 'assasasasssssssssssssssssss', 12),
+(4, 31, 7, 'feoo', 23),
+(5, 31, 7, 'k va', 12);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

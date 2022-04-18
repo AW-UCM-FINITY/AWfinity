@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-04-2022 a las 00:05:12
+-- Tiempo de generación: 18-04-2022 a las 12:37:43
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -24,6 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `bso`
+--
+
+CREATE TABLE `bso` (
+  `id_bso` int(11) NOT NULL,
+  `titulo` varchar(20) NOT NULL,
+  `compositor` varchar(20) NOT NULL,
+  `numCanciones` int(11) NOT NULL,
+  `genero` enum('accion','anime','ciencia ficcion','comedia','drama','fantasia','musical','terror') NOT NULL,
+  `sinopsis` text NOT NULL,
+  `ruta_imagen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `canciones`
+--
+
+CREATE TABLE `canciones` (
+  `id_cancion` int(11) NOT NULL,
+  `id_bso` int(11) NOT NULL,
+  `nombre_cancion` varchar(20) NOT NULL,
+  `ruta_audio` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `episodios`
 --
 
@@ -35,6 +64,17 @@ CREATE TABLE `episodios` (
   `temporada` int(11) NOT NULL,
   `ruta_video` varchar(525) NOT NULL,
   `sinopsis` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `generos`
+--
+
+CREATE TABLE `generos` (
+  `id_genero` int(11) NOT NULL,
+  `nombre_genero` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -135,13 +175,26 @@ CREATE TABLE `usuarioreto` (
 --
 
 CREATE TABLE `usuarios` (
-  `id_user` int(10) NOT NULL,
+  `id_user` int(10) UNSIGNED NOT NULL,
   `nombreUsuario` varchar(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol_user` enum('admin','editor','user','') NOT NULL,
-  `puntos` int(10) NOT NULL
+  `rol_user` enum('admin','editor','user','') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `valoraciones`
+--
+
+CREATE TABLE `valoraciones` (
+  `id_valoracion` int(11) NOT NULL,
+  `idNoticia` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `contenido` text NOT NULL,
+  `puntuacion` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -149,11 +202,31 @@ CREATE TABLE `usuarios` (
 --
 
 --
+-- Indices de la tabla `bso`
+--
+ALTER TABLE `bso`
+  ADD PRIMARY KEY (`id_bso`);
+
+--
+-- Indices de la tabla `canciones`
+--
+ALTER TABLE `canciones`
+  ADD PRIMARY KEY (`id_cancion`),
+  ADD KEY `id_bso` (`id_bso`);
+
+--
 -- Indices de la tabla `episodios`
 --
 ALTER TABLE `episodios`
   ADD PRIMARY KEY (`id_episodio`),
   ADD KEY `id_serie` (`id_serie`);
+
+--
+-- Indices de la tabla `generos`
+--
+ALTER TABLE `generos`
+  ADD PRIMARY KEY (`id_genero`),
+  ADD KEY `nombre_genero` (`nombre_genero`);
 
 --
 -- Indices de la tabla `noticias`
@@ -205,14 +278,40 @@ ALTER TABLE `usuarios`
   ADD KEY `usuario` (`nombreUsuario`);
 
 --
+-- Indices de la tabla `valoraciones`
+--
+ALTER TABLE `valoraciones`
+  ADD PRIMARY KEY (`id_valoracion`),
+  ADD KEY `idNoticia` (`idNoticia`),
+  ADD KEY `idUser` (`idUser`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `bso`
+--
+ALTER TABLE `bso`
+  MODIFY `id_bso` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `canciones`
+--
+ALTER TABLE `canciones`
+  MODIFY `id_cancion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `episodios`
 --
 ALTER TABLE `episodios`
   MODIFY `id_episodio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `generos`
+--
+ALTER TABLE `generos`
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
@@ -242,7 +341,13 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `valoraciones`
+--
+ALTER TABLE `valoraciones`
+  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -254,13 +359,6 @@ ALTER TABLE `usuarios`
 ALTER TABLE `pelisreto`
   ADD CONSTRAINT `pelisreto_ibfk_1` FOREIGN KEY (`id_Reto`) REFERENCES `retos` (`id_Reto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pelisreto_ibfk_2` FOREIGN KEY (`id_Pelicula`) REFERENCES `peliculas` (`id_pelicula`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarioreto`
---
-ALTER TABLE `usuarioreto`
-  ADD CONSTRAINT `usuarioreto_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarioreto_ibfk_2` FOREIGN KEY (`id_Reto`) REFERENCES `retos` (`id_Reto`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

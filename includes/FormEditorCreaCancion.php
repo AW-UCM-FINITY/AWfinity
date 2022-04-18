@@ -72,11 +72,11 @@ class FormEditorCreaCancion extends Formulario
                 if (move_uploaded_file($tempname, $folder)){
                     $cancion = Cancion::buscaCancion($nombre, $this->id_bso);
             
-                    if ($episodio) {
+                    if ($cancion) {
                         $this->errores[] = "La canción ya existe";
                     } else {
-                        $episodio = Cancion::crea($this->id_bso, $nombre, $folder);   
-                        $actualiza = BSO::actualizaNumCanciones($id_bso); //para aumentar el numero de canciones q tiene la BSO             
+                        $cancion = Cancion::crea($this->id_bso, $nombre, $folder);   
+                        $actualiza = BSO::actualizaNumCanciones($this->id_bso); //para aumentar el numero de canciones q tiene la BSO             
                     }
                 }
                 else{

@@ -5,11 +5,7 @@ require __DIR__. '/includes/helpers/autorizacion.php';
 use es\ucm\fdi\aw as path;
 
 $id_serie = isset($_GET['id_serie']) ? htmlspecialchars(trim(strip_tags($_GET["id_serie"]))) : 0;
-//$id_serie = isset($_POST['id_serie']) ? htmlspecialchars(trim(strip_tags($_POST["id_serie"]))) : $id_serie;
 
-// $id_serie = $_GET['id_serie'];
-//$id_serie = $_GET['id_serie'];
-// print("este es el id");
  
 $serie = path\Serie::buscaSerieID($id_serie);
 $titulo = $serie->getTitulo();
