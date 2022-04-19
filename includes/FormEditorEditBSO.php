@@ -90,7 +90,7 @@ class FormEditorEditBSO extends Formulario
             </div>
             <div>
                 <label for="sinopsis">Sinopsis:</label>
-                <textarea rows= 5 cols= 50 name="sinopsis" value="" required>$sinopsis</textarea>
+                <textarea rows= 5 cols= 50 name="sinopsis"  required>$sinopsis</textarea>
                 {$erroresCampos['sinopsis']}
             </div>
             <div>

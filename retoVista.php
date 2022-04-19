@@ -56,13 +56,13 @@ if(!($retos==false)){
       <p>{$ret->getDescripcion()}</p>
 EOS;
       if($ret->getDificultad()==='FACIL'){
-        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+        $contenidoPrincipal.= "<img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\">";
       }
       else if($ret->getDificultad()==='MEDIO'){
-        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+        $contenidoPrincipal.= "<img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\"><img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\">";
       }
       else{
-        $contenidoPrincipal.= "<img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\"><img class=\"imagenNivel\" src=\"img/estrella1.png\">";
+        $contenidoPrincipal.= "<img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\"><img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\"><img alt='' class=\"imagenNivel\" src=\"img/estrella1.png\">";
       }
           if(estaLogado()&& !esEditor() && !esAdmin()){
            

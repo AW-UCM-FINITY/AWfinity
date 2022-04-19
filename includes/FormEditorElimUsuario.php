@@ -7,7 +7,7 @@ class FormEditorElimUsuario extends Formulario
     private $usuario;
     
     public function __construct($usuario) {
-        parent::__construct('FormEditorElimUsuario', ['enctype' => 'multipart/form-data','urlRedireccion' => 'vistaAdminGestionUser.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorElimUsuario'.$usuario->getNombreUsuario(), ['enctype' => 'multipart/form-data','urlRedireccion' => 'vistaAdminGestionUser.php']);//por ahora queda mas claro asi
         $this->usuario=$usuario;
     }
     

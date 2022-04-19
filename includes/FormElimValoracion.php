@@ -8,7 +8,7 @@ class FormElimValoracion extends Formulario
     private $valoracion;
     public function __construct($valoracion) {
         $this->valoracion=$valoracion;
-        parent::__construct('FormElimValoracion', ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'blogVista.php?tituloid='.$this->valoracion->getIdNoticia()]);
+        parent::__construct('FormElimValoracion'.$this->valoracion->getId_valoracion(), ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'blogVista.php?tituloid='.$this->valoracion->getIdNoticia()]);
        
        
     }

@@ -138,6 +138,8 @@ if(esEditor()){
   // destruir el array de pelis que se intercambia entre formB y formA.
   unset($_SESSION['array']); 
 
+}else{
+  $contenidoPrincipal .= "</div></div>";
 }
 }else{
     echo "<p>Error en la muestra de retos</p>";

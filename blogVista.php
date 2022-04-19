@@ -82,10 +82,10 @@ EOS;
 $contador=1;
 for($i=0; $i<5; $i++){
   if($contador<=$com->getPuntuacion()){
-    $contenidoPrincipal.= "<img class=\"imagenNivel1\" src=\"img/estrella1.png\">";
+    $contenidoPrincipal.= "<img alt='' class=\"imagenNivel1\" src=\"img/estrella1.png\">";
   }
   else{
-    $contenidoPrincipal.= "<img class=\"imagenNivel2\" src=\"img/estrella2.png\">";
+    $contenidoPrincipal.= "<img   alt='' class=\"imagenNivel2\" src=\"img/estrella2.png\">";
   }
   $contador++;
 }
@@ -104,7 +104,7 @@ $formularioCrearValoracion=$formm->gestiona();
 
 
 $contenidoPrincipal .=<<<EOS
-</div>
+
 <div class="crearValoracionPanel">
 {$formularioCrearValoracion}
 </div>
