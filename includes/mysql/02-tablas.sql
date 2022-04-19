@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2022 a las 12:37:43
+-- Tiempo de generación: 19-04-2022 a las 09:33:29
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -175,12 +175,13 @@ CREATE TABLE `usuarioreto` (
 --
 
 CREATE TABLE `usuarios` (
-  `id_user` int(10) UNSIGNED NOT NULL,
+  `id_user` int(10) NOT NULL,
   `nombreUsuario` varchar(20) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol_user` enum('admin','editor','user','') NOT NULL
+  `rol_user` enum('admin','editor','user','') NOT NULL,
+  `puntos` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -341,7 +342,7 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
@@ -354,11 +355,37 @@ ALTER TABLE `valoraciones`
 --
 
 --
+-- Filtros para la tabla `canciones`
+--
+ALTER TABLE `canciones`
+  ADD CONSTRAINT `canciones_ibfk_1` FOREIGN KEY (`id_bso`) REFERENCES `bso` (`id_bso`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `episodios`
+--
+ALTER TABLE `episodios`
+  ADD CONSTRAINT `episodios_ibfk_1` FOREIGN KEY (`id_serie`) REFERENCES `series` (`id_serie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `pelisreto`
 --
 ALTER TABLE `pelisreto`
   ADD CONSTRAINT `pelisreto_ibfk_1` FOREIGN KEY (`id_Reto`) REFERENCES `retos` (`id_Reto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pelisreto_ibfk_2` FOREIGN KEY (`id_Pelicula`) REFERENCES `peliculas` (`id_pelicula`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarioreto`
+--
+ALTER TABLE `usuarioreto`
+  ADD CONSTRAINT `usuarioreto_ibfk_1` FOREIGN KEY (`id_Reto`) REFERENCES `retos` (`id_Reto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarioreto_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `valoraciones`
+--
+ALTER TABLE `valoraciones`
+  ADD CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`idNoticia`) REFERENCES `noticias` (`idNoticia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `valoraciones_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

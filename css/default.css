@@ -382,7 +382,7 @@ a.deshabilitado {
 	background-color: rgb(241, 237, 239);
     padding: 20px;
     margin-top: 20px;
-	width: 80%;
+	width: 75%;
 }
 
 .cardPelis fieldset{
@@ -396,7 +396,7 @@ a.deshabilitado {
 	background-color: rgb(241, 237, 239);
 	padding: 20px;
 	margin-top: 20px;
-	width: 20%;
+	width: 25%;
 }
 
 .columnaPelis{
@@ -701,7 +701,8 @@ div#peli-foto.peli-foto-card img {
 div#peli-datos.peli-datos-card {
 	grid-area: datos;
 	padding-right: 20px;
-	padding-top: 60px;	
+	padding-top: 30px;	
+	padding-bottom: 20px;
 }
 div.fila-dato{
 	padding-bottom: 10px;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2022 a las 12:38:01
+-- Tiempo de generación: 19-04-2022 a las 09:33:52
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -78,6 +78,34 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `director`, `duracion`, `gener
 (39, 'La Tribu', 'Fernando Colomo', 90, 'comedia', 'Virginia (Carmen Machi), limpiadora de profesión y “streetdancer” vocacional, recupera al hijo que dio en adopción: Fidel (Paco León), un ejecutivo que lo ha perdido todo, incluida la memoria. Junto a “Las Mamis”, el extravagante grupo de baile que forman las compañeras de Virginia, madre e hijo descubrirán que a pesar de venir de mundos muy diferentes, ambos llevan el ritmo en la sangre.', './img/pelis/latribu.png');
 
 --
+-- Volcado de datos para la tabla `pelisreto`
+--
+
+INSERT INTO `pelisreto` (`id_Pelicula`, `id_Reto`) VALUES
+(17, 4),
+(19, 5),
+(21, 2),
+(22, 5),
+(23, 3),
+(25, 5),
+(27, 1),
+(27, 5),
+(28, 1),
+(28, 5);
+
+--
+-- Volcado de datos para la tabla `retos`
+--
+
+INSERT INTO `retos` (`id_Reto`, `nombre`, `num_usuarios`, `num_completado`, `dificultad`, `descripcion`, `dias`, `puntos`) VALUES
+(1, 'NOCHE DE ANIME 1', 2, 1, 'MEDIO', 'Supera este reto con amigos', 10, 15),
+(2, 'TERROR NIGHT', 1, 1, 'FACIL', 'El reto de lo mas terror&iacute;fico', 3, 8),
+(3, 'PELI Y MANTA', 2, 0, 'DIFICIL', 'El mejor plan de finde', 15, 30),
+(4, 'CIENCIA Y RETO', 2, 2, 'MEDIO', 'Ciencia ficci&oacute;n a tope', 9, 17),
+(5, 'PELI ENCANTADA', 1, 0, 'DIFICIL', 'Disfruta de retos y amigos', 4, 5),
+(6, 'RETO DE LA VIDA', 2, 1, 'FACIL', 'Aprovecha este reto!', 4, 8);
+
+--
 -- Volcado de datos para la tabla `series`
 --
 
@@ -88,24 +116,44 @@ INSERT INTO `series` (`id_serie`, `titulo`, `productor`, `numTemporadas`, `gener
 (10, 'Neon Genesis Evangel', 'GAINAX TV Tokyo NAS', 1, 'anime', 'Serie de TV (1995-1996). 1 temporada. 26 episodios. En el año 1999, en la Antártida, ocurrió un cataclismo llamado \"El Segundo Impacto\", como resultado de un incidente ocasionado por unos seres conocidos como \"Ángeles\". Gran parte de la Tierra quedó devastada por el fenómeno, y la mitad de la población sucumbió en la catástrofe, aunque ahora la humanidad gradualmente se va recuperando. Años después, en el 2015, los \"Ángeles\" regresan y comienzan a atacar a la Tierra... Cada uno de los \"Ángeles\" es diferente de los demás, excepto por el hecho de que todos pueden generar un impenetrable escudo protector llamado Campo AT. La organización NERV revela su nuevo proyecto con miras a salvar el mundo: gigantes y bio-mecánicos robots conocidos como Evas, que son unos de las pocas fuerzas sobre la Tierra capaces de enfrentar a los \"Ángeles\". Sólo niños específicos pueden pilotar los Evas: Shinji Ikari, el hijo de el jefe de NERV y que no desea pelear, la reservada Rei Ayanami y la exaltada (y algo amante del combate) Asuka Langley. Mientras combaten a los \"Ángeles\" uno a uno, van descubriendo más y más acerca de la naturaleza y el futuro de la humanidad', './img/series/evangelion.png');
 
 --
+-- Volcado de datos para la tabla `usuarioreto`
+--
+
+INSERT INTO `usuarioreto` (`id_usuario`, `id_Reto`, `fecha`, `completado`) VALUES
+(8, 1, '0000-00-00', 0),
+(8, 2, '0000-00-00', 1),
+(8, 4, '0000-00-00', 1),
+(8, 5, '0000-00-00', 0),
+(8, 6, '0000-00-00', 1),
+(9, 1, '0000-00-00', 1),
+(9, 3, '0000-00-00', 0),
+(9, 4, '0000-00-00', 1),
+(9, 6, '0000-00-00', 0);
+
+--
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_user`, `nombreUsuario`, `nombre`, `apellido`, `password`, `rol_user`) VALUES
-(6, 'Admin', 'Administrador', 'Administrador', '$2y$10$KggiRmk9OI39yyBdNJw48.FTfGkKVEJLoNgYrfWMf0k4RbTCRCnxC', 'admin'),
-(7, 'Editor', 'Editor', 'Editor', '$2y$10$CKrc4uVMK8j9xikFAKG0FuxmnW9CCiBMSNICSKu9xPdC9Nowrw.9q', 'editor'),
-(8, 'User1', 'Usuario', 'Usuario', '$2y$10$WNEu6ImVGgVr0tGzuDCsmuit20sQpmAHfgbFqXDxeAbUb5bk.BQj.', 'editor');
+INSERT INTO `usuarios` (`id_user`, `nombreUsuario`, `nombre`, `apellido`, `password`, `rol_user`, `puntos`) VALUES
+(6, 'Admin', 'Administrador', 'Administrador', '$2y$10$KggiRmk9OI39yyBdNJw48.FTfGkKVEJLoNgYrfWMf0k4RbTCRCnxC', 'admin', 0),
+(7, 'Editor', 'Editor', 'Editor', '$2y$10$CKrc4uVMK8j9xikFAKG0FuxmnW9CCiBMSNICSKu9xPdC9Nowrw.9q', 'editor', 0),
+(8, 'User1', 'Usuario1', 'Usuario', '$2y$10$m.X9HsdXjJ9rbAaxr6hsxe1dXYH.xnJrTW1FOU9KZ0/F2cNTkyf.m', 'user', 33),
+(9, 'bucanero2', 'Marta', 'Louis2', '$2y$10$XMJ8GEswXhV7BVZ0jvYQRuJYuh/WYuae7NY8ctC64Pl/ZUKINLQmG', 'user', 32);
 
 --
 -- Volcado de datos para la tabla `valoraciones`
 --
 
 INSERT INTO `valoraciones` (`id_valoracion`, `idNoticia`, `idUser`, `contenido`, `puntuacion`) VALUES
-(1, 31, 11, 'asasasas', 12),
-(2, 31, 11, 'asassssssssssssssssss', 10),
-(3, 31, 11, 'assasasasssssssssssssssssss', 12),
-(4, 31, 7, 'feoo', 23),
-(5, 31, 7, 'k va', 12);
+(6, 31, 7, 'Poned vuestros comentarios chicos!!!!', 5),
+(7, 32, 7, '¿Qué os ha aparecido Emma?', 5),
+(8, 31, 9, 'Pues a mi no me gustó!!!', 3),
+(9, 32, 9, 'Emma es la mejor, pero esta peli no es muy buena, es mi opinión', 2),
+(10, 32, 9, 'La noticia esta muy chula!!', 3),
+(11, 33, 9, 'Kate es una villana', 1),
+(12, 31, 6, 'Cuanto comentario negativo!!!', 4),
+(13, 31, 8, 'Una reina', 2),
+(14, 32, 8, 'No me la creo!', 4);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
