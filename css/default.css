@@ -51,6 +51,19 @@ header{
 	border-radius: 60px;
 }
 
+div.botonAtras {
+	display:block;
+	padding:10px;
+	background:#9f2863;
+	font-size:25px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:90px;	
+	border-radius: 60px;
+}
+
 /*MENU PRINCIPAL*/
 
 nav#menuP{

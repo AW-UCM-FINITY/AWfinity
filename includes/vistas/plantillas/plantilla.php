@@ -10,6 +10,8 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="<?= RUTA_JS ?>/botonSubir.js"> </script>
 
+    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts2.css"/>
+
     <title><?= $tituloPagina ?></title>
 
 </head>
@@ -25,12 +27,13 @@
         </article>
     </main>
 
+    <a href="javascript: history.go(-1)"><div class="botonAtras icon-undo2"></div></a>
+    <div class="ir-arriba icon-circle-up"> </div>
     <?php
 		require(RAIZ_APP.'/vistas/comun/pie.php');
 	?>
 
-    <div class="ir-arriba icon-circle-up"> </div>
-    
+
 </div>
 </body>
 </html>
