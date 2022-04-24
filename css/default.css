@@ -38,6 +38,19 @@ header{
 	background-color:#000;
 }
 
+.ir-arriba {
+	display:none;
+	padding:10px;
+	background:#9f2863;
+	font-size:30px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;	
+	border-radius: 60px;
+}
+
 /*MENU PRINCIPAL*/
 
 nav#menuP{
