@@ -250,6 +250,23 @@ class Pelicula
         }
         return $peli;
     }
+
+    public static function getPeliculas(){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = sprintf("SELECT * FROM peliculas");
+        $consulta = $conn->query($sql);
+
+        $arrayPeliculas = array();
+
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arrayPeliculas[] = new Pelicula($fila['titulo'], $fila['director'], $fila['duracion'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_pelicula']);
+            }
+            $consulta->free();
+        }
+        return $arrayPeliculas; 
+
+    }
 }
 
 ?>

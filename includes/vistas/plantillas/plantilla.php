@@ -6,7 +6,7 @@
     <link rel="stylesheet" id="estilo" type="text/css" href="<?= RUTA_CSS ?>/default.css"/>
     <script type="text/javascript" src="<?= RUTA_JS ?>/cambiarcss.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts1.css"/>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="<?= RUTA_JS ?>/botonSubir.js"> </script>
 

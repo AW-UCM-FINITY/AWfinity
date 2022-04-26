@@ -9,7 +9,7 @@ $tituloPagina = 'Series';
 $contenidoPrincipal = "";
 
 
-$contenidoPrincipal .=  "<div class='contenidoSeries'>";
+$contenidoPrincipal .=  "<div class='contenidoPelis'>";
 
 $contenidoPrincipal .= 
 "<div class='tituloIndex'>
