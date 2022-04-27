@@ -123,6 +123,7 @@ div.saludo {
 div.saludo a{
 	color:#fff;
 }
+
 /*FIN MENU PRINCIPAL*/
 
 /*CSS FORMULARIO*/
@@ -930,18 +931,19 @@ div.descripcionPrincipal p{
 	max-width: 50%;
 	margin-bottom: 1.25em;
 }
-div.botonInfo .boton{
+div.botonInfo .boton {
 	background: rgba(0,0,0, 0.5);
 	border: none;
 	border-radius: 0.31em;
 	padding: 0.93em 1.87em;
 	color: #fff;
-	margin-right: 82%;
+	margin-right: 1.25em;
 	cursor: pointer;
 	transition: .3s ease all;
 	font-size: 1.12em;
 }
-div.botonInfo .boton:hover{
+
+div.botonInfo .boton:hover {
 	background: #fff;
 	color: #000;
 }
@@ -1044,7 +1046,7 @@ div.botonInfo .boton i {
 }
 
 .peliculas-recomendadas .contenedor-carousel .carousel .pelicula img {
-	width: 90%;
+	width: 80%;
 	vertical-align: top;
 }
 /* ---- ----- ----- Media Queries ----- ----- ----- */

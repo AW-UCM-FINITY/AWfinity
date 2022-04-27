@@ -241,6 +241,24 @@ class BSO
         }
         return $result;
     }
+
+
+    public static function getBSO(){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = sprintf("SELECT * FROM bso");
+        $consulta = $conn->query($sql);
+
+        $arrayBSOs = array();
+
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arrayBSOs[] = new BSO($fila['titulo'], $fila['compositor'], $fila['numCanciones'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_bso']);
+            }
+            $consulta->free();
+        }
+        return $arrayBSOs; 
+
+    }
 }
 
 ?>

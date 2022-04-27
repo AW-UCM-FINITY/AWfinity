@@ -224,6 +224,24 @@ class Serie
         }
         return $serie;
     }
+
+    public static function getSeries(){
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = sprintf("SELECT * FROM series");
+        $consulta = $conn->query($sql);
+
+        $arraySeries = array();
+
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $arraySeries[] = new Serie($fila['titulo'], $fila['productor'], $fila['numTemporadas'], $fila['genero'], $fila['sinopsis'], $fila['ruta_imagen'], $fila['id_serie']);
+            }
+            $consulta->free();
+        }
+        return $arraySeries; 
+
+    }
+
 }
 
 ?>
