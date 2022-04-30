@@ -11,7 +11,8 @@ $contenidoPrincipal = '';
 
 $rutaTemaDefault = RUTA_CSS."/default.css";
 $rutaTemaAzul = RUTA_CSS."/azul.css";
-
+$formm= new FormCambiaApariencia();
+$FormCambiaApariencia= $formm->gestiona();
 $contenidoPrincipal .= <<<EOS
 <div class="header2">
         <h2>Apariencia página</h2>
@@ -26,8 +27,7 @@ $contenidoPrincipal .= <<<EOS
         <h1>Cambio de tema</h1>
 		
         
-		<button class ="temaRosa" type="button" onclick="cambiarCSS('{$rutaTemaDefault}')">Rosa</button>
-		<button class ="temaAzul" type="button" onclick="cambiarCSS('{$rutaTemaAzul}')">Azul</button>
+		{$FormCambiaApariencia}
         
         </div>
                                 

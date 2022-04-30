@@ -53,6 +53,7 @@ class FormEditorCreaValoracion extends Formulario
         $this->errores = [];
         
         $valoracion = $datos['valoracion'] ?? '';
+        //$valoracion= htmlspecialchars(trim(strip_tags($valoracion))); SI LE QUITAMOS LOS ESPECIAL CHAR NO SIRVE DE NADA EL TINYMCE
         $puntuacion = $datos['puntuacion'] ?? '';
       
                 
