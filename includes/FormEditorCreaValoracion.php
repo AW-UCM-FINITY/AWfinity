@@ -33,11 +33,16 @@ class FormEditorCreaValoracion extends Formulario
             {$erroresCampos['puntuacion']}
             
             <p> Comentario:</p> 
-            <textarea name="valoracion" rows="8" cols="165"></textarea>
+            <textarea id="valoracion" name="valoracion" rows="8" cols="165"></textarea>
             {$erroresCampos['valoracion']}
     
             <button class="submit" type="submit" name="registro">Añadir</button>
             </fieldset>
+            <script>
+            tinymce.init({
+            selector: '#valoracion'
+             });
+            </script>
         EOF;
         return $html;
     }

@@ -11,7 +11,7 @@
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="<?= RUTA_JS ?>/botonSubir.js"> </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1/tinymce.min.js" referrerpolicy="origin"></script>
 
     <title><?= $tituloPagina ?></title>
 
