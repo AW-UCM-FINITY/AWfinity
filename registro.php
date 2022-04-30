@@ -9,11 +9,13 @@ $claseArticle = 'Registro';
 $form = new path\FormularioRegistro();
 $htmlFormRegistro = $form->gestiona();
 
+$contenidoPrincipal = "";
 
-$contenidoPrincipal = <<<EOS
-	<h1>Registro de usuario</h1>
-	$htmlFormRegistro
-EOS;
+$contenidoPrincipal .= "<div class='login'>";
+$contenidoPrincipal .= "<h1>Registro de usuario</h1>";
+$contenidoPrincipal .= "$htmlFormRegistro";
+$contenidoPrincipal .= "</div>";
+
 
 require __DIR__.'/includes/vistas/plantillas/plantilla.php';
 ?>

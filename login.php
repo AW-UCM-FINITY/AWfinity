@@ -9,10 +9,13 @@ $form = new path\FormularioLogin();
 $htmlFormLogin = $form->gestiona();
 $claseArticle = 'Login';
 
-$contenidoPrincipal = <<<EOS
-	<h1>Acceso al sistema</h1>
-	$htmlFormLogin
-EOS;
+$contenidoPrincipal = "";
+
+$contenidoPrincipal .= "<div class='login'>";
+$contenidoPrincipal .= "<h1>Acceso al sistema</h1>";
+$contenidoPrincipal .= "$htmlFormLogin";
+$contenidoPrincipal .= "</div>";
+
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

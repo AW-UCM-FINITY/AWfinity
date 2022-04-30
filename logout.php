@@ -11,9 +11,12 @@ session_destroy();
 
 $tituloPagina = 'Logout';
 $claseArticle = 'Logout';
-$contenidoPrincipal = <<< EOS
-	<h1>Hasta pronto!</h1>
-EOS;
+$contenidoPrincipal = "";
+
+header("Location: index.php");
+
+
+
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 
