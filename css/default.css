@@ -1078,3 +1078,132 @@ div.botonInfo .boton i {
 
 /*FIN CSS PAGINA DE INICIO (index.php)-----------------------*/
 
+
+/*CSS CONTACTO-MIEMBROS*/
+
+
+.panelMiembros{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+	
+.miembros-box-item {
+	width: 350px;
+	height: 560px;
+    box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.14);
+    background: #fcfcfc;
+    border: 2px solid #faf9fb;
+    padding: 45px 40px 60px;
+    transition: .3s linear;
+	margin: 2em 1em 2em;
+}
+.miembros-box-item:hover {
+    border-radius: 4px;
+    border-color: #9f2863;
+}
+.miembros-top {
+    text-align: center;
+    margin-bottom: 45px;
+}
+.miembros-top h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.miembros-top img.a {
+	max-width: 150px;
+	max-height: 150px;
+	margin: 1em;
+}
+.miembros-list ul{
+	list-style: none;
+}
+.miembros-list ul li {
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #414146;
+    font-size: 12px;
+    color: rgb(7, 7, 7);
+	font-weight: bold;
+}
+
+.miembros-list ul li i {
+    margin-right: 10px;
+}
+.miembros-list ul li span {
+    float: right;
+    padding-right: 5px;
+	font-weight: normal;
+}
+.miembros-list ul li img {
+    float: right;
+    padding-right: 5px;
+	max-width: 50px;
+	max-height: 50px;
+	padding-bottom: 50px;
+	position: relative;
+	bottom: 1em;
+}
+
+.miembros-list ul li p {
+    padding: 10px 20px 10px;
+	text-align: justify;
+	font-weight: normal;
+}
+.miembros-list ul li.rol {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #414146;
+    font-size: 12px;
+    color: rgb(7, 7, 7);
+	font-weight: bold;
+}
+.miembros-list ul li.correo span {
+    color: #9f2863;
+	font-weight: normal;
+}
+.miembros-list ul li:last-child {
+    margin-bottom: 0;
+}
+
+.cardMiembros {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    margin-top: 20px;
+	margin-left: 10px;
+	width: 65%;
+	float: left;
+}
+
+.cardMiembros h1{
+	font-size: 30px;
+}
+
+.cardContacto {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    margin-top: 20px;
+	margin-left: 5px;
+	width: 25%;
+	float: left;
+}
+
+.cardContacto fieldset {
+    border: 2px solid black;
+	padding: 10px 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+	max-width: 100%;
+}
+
+
+
+  /* Para cuando se reduzca el tamaño de la ventana */
+@media screen and (max-width: 800px) {
+    .cardMiembros, .cardContacto {
+        width: 100%;
+        padding: 0;
+    }
+}
+/*FIN CSS CONTACTO-MIEMBROS*/
