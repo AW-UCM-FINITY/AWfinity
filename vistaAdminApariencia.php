@@ -18,7 +18,8 @@ $contenidoPrincipal .= <<<EOS
         </div>
         <div class="menublog">
           
-        <a class="active" href="./vistaAdminGestionUser.php">Gestión Usuario</a>
+        <a class="active" href="./vistaAdminGestionUser.php">Usuarios</a>
+        <a  href="./vistaAdminGestionConsulta.php">Consultas</a>
         <a  href="./vistaAdminApariencia.php">Apariencia</a>
         </div>
         
