@@ -3,14 +3,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" id="estilo" type="text/css" href="<?= RUTA_CSS ?>/default.css"/>
+    <link rel="stylesheet" id="estilo" type="text/css" href="<?= RUTA_CSS?>/<?= es\ucm\fdi\aw\Apariencia::getAspecto()->getCss();?>"/>
     <script type="text/javascript" src="<?= RUTA_JS ?>/cambiarcss.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts1.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts.css"/>
+    
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="<?= RUTA_JS ?>/botonSubir.js"> </script>
-
-    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts2.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1/tinymce.min.js" referrerpolicy="origin"></script>
 
     <title><?= $tituloPagina ?></title>
 

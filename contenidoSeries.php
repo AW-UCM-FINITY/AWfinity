@@ -11,17 +11,19 @@ $contenidoPrincipal = "";
 
 $contenidoPrincipal .=  "<div class='contenidoPelis'>";
 
+$contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
 $contenidoPrincipal .= 
 "<div class='tituloIndex'>
     <h2>AWfinity </h2>
 	<h1><span>Series</span> todos los géneros y más </h1>";
-
+    
 if(esEditor()){
 	//Antes de modificar
-	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaSerie.php'> Nueva Serie</a> </div>";
+	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
 	
 }
-$contenidoPrincipal .= "</div>";
+$contenidoPrincipal .= "</div>";//cierra div tituloIndex
+$contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 
 $arrayGeneros = path\Serie::getGenerosSerie(); //Obtenemos todos los generos disponibles

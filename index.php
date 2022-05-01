@@ -9,14 +9,6 @@ $tituloPagina = 'Página Inicial';
 $contenidoPrincipal = "";
 $claseArticle = 'index';
 
-// $contenidoPrincipal .= <<< EOS
-// <section class ="bloque-area">	
-// 	<h1> AWfinity </h1>	
-// 	<h2> Página principal </h2>
-// 	<p> Aquí está el contenido público, visible para todos los usuarios. </p>
-// </section>
-// EOS;
-
 $contenidoPrincipal .= "<div class='vistaPrincipal'> ";
 $contenidoPrincipal .= "<div class='contenedorPrincipal'> ";
 $contenidoPrincipal .= "<div class='tituloPrincipal'> ";
@@ -28,7 +20,7 @@ Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de g
 </p>";
 $contenidoPrincipal .= "</div> "; //cierre div descripcionPrincipal
 $contenidoPrincipal .= "<div class='botonInfo'>";
-$contenidoPrincipal .= "<button role='button' class='boton'><i class='fas fa-info-circle'></i>Más información</button>";
+$contenidoPrincipal .= "<button role='button' class='boton'><i class='fas icon-info'></i>Más información</button>";
 $contenidoPrincipal .= "</div> "; //cierre div botonInfo
 $contenidoPrincipal .= "</div> "; //cierre div contenedorPrincipal
 $contenidoPrincipal .= "</div> "; //cierre div vistaPrincipal
@@ -41,7 +33,7 @@ $contenidoPrincipal .= "<div class='indicadores'></div>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-titulo-controles
 
 $contenidoPrincipal .= "<div class='contenedor-principal'>";
-$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas fa-angle-left'></i></button>";
+$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas icon-circle-left'></i></button>";
 
 $contenidoPrincipal .= "<div class='contenedor-carousel'>";
 $contenidoPrincipal .= "<div class='carousel'>";
@@ -57,7 +49,7 @@ foreach ($arrayPeliculas as $key => $peli) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas fa-angle-right'></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right'></i></button>;";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
@@ -71,7 +63,7 @@ $contenidoPrincipal .= "<div class='indicadores'></div>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-titulo-controles
 
 $contenidoPrincipal .= "<div class='contenedor-principal'>";
-$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas fa-angle-left'></i></button>";
+$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas icon-circle-left'></i></button>";
 
 $contenidoPrincipal .= "<div class='contenedor-carousel'>";
 $contenidoPrincipal .= "<div class='carousel'>";
@@ -87,7 +79,7 @@ foreach ($arraySeries as $key => $serie) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas fa-angle-right'></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right''></i></button>;";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
@@ -100,7 +92,7 @@ $contenidoPrincipal .= "<div class='indicadores'></div>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-titulo-controles
 
 $contenidoPrincipal .= "<div class='contenedor-principal'>";
-$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas fa-angle-left'></i></button>";
+$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas icon-circle-left'></i></button>";
 
 $contenidoPrincipal .= "<div class='contenedor-carousel'>";
 $contenidoPrincipal .= "<div class='carousel'>";
@@ -116,17 +108,45 @@ foreach ($arrayBSO as $key => $bso) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas fa-angle-right'></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right''></i></button>;";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
 
 /**--------------------BLOG------------------------------------------------- */
+$contenidoPrincipal .= "<div class='peliculas-recomendadas'>";
+$contenidoPrincipal .= "<div class='contenedor-titulo-controles'>";
+$contenidoPrincipal .= "<h3>Actualízate con nuestras noticias</h3>";
+$contenidoPrincipal .= "<div class='indicadores'></div>";
+$contenidoPrincipal .= "</div> "; //cierre div contenedor-titulo-controles
 
+$contenidoPrincipal .= "<div class='contenedor-principal'>";
+$contenidoPrincipal .= "<button role='button' id='flecha-izquierda' class='flecha-izquierda'><i class='fas icon-circle-left'></i></button>";
 
-$contenidoPrincipal .= "<script src='https://kit.fontawesome.com/2c36e9b7b1.js' crossorigin='anonymous'></script>";
+$contenidoPrincipal .= "<div class='contenedor-carousel'>";
+$contenidoPrincipal .= "<div class='carousel'>";
+$arrayNoticias = path\Noticia::getNoticias();
+foreach ($arrayNoticias as $key => $noticia) {
+	$imgNoticia = $noticia->getImagenNombre();
+	$tituloNoticia = $noticia->getTitulo();
+	$id_noticia = $noticia->getIdNoticia();
+	$contenidoPrincipal .= "<div class='pelicula'>";
+	$contenidoPrincipal .= "<a href=\"".RUTA_APP."/blogVista.php?tituloid=$id_noticia\"><img alt='imgBSO' src=img/$imgNoticia></a>";
+	$contenidoPrincipal .= "<h5>$tituloNoticia </h5>";
+	$contenidoPrincipal .= "</div> "; //cierre div pelicula
+}
+$contenidoPrincipal .= "</div> "; //cierre div carousel
+$contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
+
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right''></i></button>;";
+$contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
+
+$contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
+
+/*------------------RETOS---------------------------------- */
+$contenidoPrincipal .= "<div class ='relleno'> </div> "; 
+
 $contenidoPrincipal .= "<script src='js/main.js'></script>";
-
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 

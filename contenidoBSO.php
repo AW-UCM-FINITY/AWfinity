@@ -11,17 +11,19 @@ $contenidoPrincipal = "";
 
 $contenidoPrincipal .=  "<div class='contenidoPelis'>";
 
+$contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
 $contenidoPrincipal .= 
 "<div class='tituloIndex'>
     <h2>AWfinity </h2>
-	<h1>Todas tus <span>Bandas Sonoras</span> favoritas y más </h1>";
+	<h1>Tus <span>Bandas Sonoras</span> favoritas y más </h1>";
     
 if(esEditor()){
 	//Antes de modificar
-	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaBSO.php'> Nueva Banda Sonora</a> </div>";
+	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
 	
 }
 $contenidoPrincipal .= "</div>";//cierra div tituloIndex
+$contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 $arrayGeneros = path\BSO::getGenerosBSO(); //Obtenemos todos los generos disponibles
 

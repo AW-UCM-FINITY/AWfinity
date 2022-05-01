@@ -33,11 +33,16 @@ class FormEditorCreaValoracion extends Formulario
             {$erroresCampos['puntuacion']}
             
             <p> Comentario:</p> 
-            <textarea name="valoracion" rows="8" cols="165"></textarea>
+            <textarea id="valoracion" name="valoracion" rows="8" cols="165"></textarea>
             {$erroresCampos['valoracion']}
     
             <button class="submit" type="submit" name="registro">Añadir</button>
             </fieldset>
+            <script>
+            tinymce.init({
+            selector: '#valoracion'
+             });
+            </script>
         EOF;
         return $html;
     }
@@ -48,6 +53,7 @@ class FormEditorCreaValoracion extends Formulario
         $this->errores = [];
         
         $valoracion = $datos['valoracion'] ?? '';
+        //$valoracion= htmlspecialchars(trim(strip_tags($valoracion))); SI LE QUITAMOS LOS ESPECIAL CHAR NO SIRVE DE NADA EL TINYMCE
         $puntuacion = $datos['puntuacion'] ?? '';
       
                 
