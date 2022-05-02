@@ -53,6 +53,7 @@ class Episodio
         return $this->titulo;
     }
 
+
     //Setter
     public function setId($id_episodio) {
         $this->id_episodio = $id_episodio;
@@ -71,6 +72,12 @@ class Episodio
     }
     public function setTitulo($titulo) {
         $this->titulo=$titulo;
+    }
+    public function setTemporada($temporada){
+        $this->temporada=$temporada;
+    }
+    public function setRutaVideo($ruta_video){
+        $this->ruta_video=$ruta_video;
     }
     
     /** Crea un nuevo episodio con los datos introducidos por parámetro*/
@@ -106,6 +113,26 @@ class Episodio
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
         return $result;
+    }
+    public static function actualiza($episodio){
+        $result = false;
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $id_episodio=$episodio->getId();
+        $query=sprintf("UPDATE episodios E SET E.id_serie='%d' ,E.titulo='%s', E.duracion='%d', E.temporada='%s', E.sinopsis='%s', E.ruta_video='%s' 
+            WHERE E.id_episodio = $id_episodio"
+            , $conn->real_escape_string($episodio->getId_serie())
+            , $conn->real_escape_string($episodio->getTitulo())
+            , $conn->real_escape_string($episodio->getDuracion())
+            , $conn->real_escape_string($episodio->getTemporada())
+            , $conn->real_escape_string($episodio->getSinopsis())
+            , $conn->real_escape_string($episodio->getRutaVideo())
+        );
+        if ($conn->query($query)) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $peli;
     }
 
     public static function buscaEpisodio($titulo, $id_serie)

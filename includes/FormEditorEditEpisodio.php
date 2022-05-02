@@ -4,10 +4,11 @@ use es\ucm\fdi\aw as path;
 
 class FormEditorEditEpisodio extends Formulario
 {
+    private $id_episodio;
     private $id_serie;
     private $temporada;
-
-    public function __construct($id_serie, $temporada) {
+    public function __construct($id_serie, $temporada, $id_episodio = NULL) {
+        $this->id_episodio = $id_episodio;
         $this->id_serie = $id_serie;
         $this->temporada = $temporada;
         parent::__construct('FormEditorEditEpisodio', ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'serieVista.php?id_serie='.$this->id_serie]);
@@ -17,19 +18,39 @@ class FormEditorEditEpisodio extends Formulario
     }
     
     protected function generaCamposFormulario(&$datos)
-    {
+    {     
+        if(isset($this->id_episodio)){ //si existe el id -> actualizamos
+            //buscamos el episodio para obtener atributos
+            $episodio= path\Episodio::buscaEpisodioId($this->id_episodio);
+            
+            $titulo = $episodio->getTitulo() ?? '';
+            $duracion = $episodio->getDuracion() ?? '';
+            $sinopsis = $episodio->getSinopsis() ?? '';
+            $uploadfile = $episodio->getRutaVideo() ?? '';
+            //$uploadfile = $datos['uploadfile'] ?? '';       
+           
+        }else{  //creamos
+            $titulo = $datos['titulo'] ?? '';
+            $duracion = $datos['duracion'] ?? '';
+            $sinopsis = $datos['sinopsis'] ?? '';
+            $uploadfile = $datos['uploadfile'] ?? '';
+            //$ruta_imagen = NULL;
 
-        //creamos
-        $titulo = $datos['titulo'] ?? '';
-        $duracion = $datos['duracion'] ?? '';
-        $sinopsis = $datos['sinopsis'] ?? '';
-        $uploadfile = $datos['uploadfile'] ?? '';
-        
-        
+        }
+
+
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['titulo', 'duracion', 'sinopsis', 'uploadfile'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['titulo', 'duracion', 'sinopsis','uploadfile'], $this->errores, 'span', array('class' => 'error'));
 
+        if(isset($this->id_episodio)){
+            $funcionalidad = "modificación";
+            $textoBoton = "Modificar";
+        } 
+        else{
+            $funcionalidad = "creación";
+            $textoBoton = "Crear";
+        }
 
         $html = <<<EOF
         $htmlErroresGlobales
@@ -75,13 +96,13 @@ class FormEditorEditEpisodio extends Formulario
         $titulo = trim($datos['titulo'] ?? '');
         $titulo = filter_var($titulo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( ! $titulo || mb_strlen($titulo) < 5) {
-            $this->errores['titulo'] = 'El nombre de la pelicula tiene que tener una longitud de al menos 5 caracteres.';
+            $this->errores['titulo'] = 'El nombre del episodio tiene que tener una longitud de al menos 5 caracteres.';
         }
 
         $duracion = trim($datos['duracion'] ?? '');
         $duracion = filter_var($duracion, FILTER_SANITIZE_NUMBER_INT);
         if ( ! $duracion || $duracion < 1 ) {
-            $this->errores['duracion'] = 'La duracion de la pelicula tiene que ser mayor que 0 minutos.';
+            $this->errores['duracion'] = 'La duracion del episodio tiene que ser mayor que 0 minutos.';
         }
         
         $sinopsis = trim($datos['sinopsis'] ?? '');
@@ -93,18 +114,23 @@ class FormEditorEditEpisodio extends Formulario
         $folder = RUTA_IMGS."/episodios/".$filename;
         //$folder_video = RUTA_IMGS_EPI."/video/videogenerico.mp4";
 
-
-        
+       
         if (count($this->errores) === 0) {
             if($filename != NULL){
                 // Now let's move the uploaded image into the folder: image
                 if (move_uploaded_file($tempname, $folder)){
-                    $episodio = Episodio::buscaEpisodio($titulo, $this->id_serie);
-            
-                    if ($episodio) {
-                        $this->errores[] = "El episodio ya existe";
-                    } else {
-                        $episodio = Episodio::crea($this->id_serie, $titulo, $duracion, $this->temporada, $sinopsis, $folder);                
+                    if(isset($this->id_episodio)){//existe el episodio, lo actualizamos
+                        $episodio= path\Episodio::buscaEpisodioId($this->id_episodio);
+                        $episodio->setTitulo($titulo);
+                        $episodio->setDuracion($duracion);
+                        $episodio->setTemporada($this->temporada);
+                        $episodio->setId_serie($this->id_serie);
+                        $episodio->setSinopsis($sinopsis);
+                        $episodio->setRutaVideo($folder);
+                        $episodio = path\Episodio::actualiza($episodio);
+                    }
+                    else{//no existe la peli
+                        $episodio = path\Episodio::crea($this->id_serie, $titulo, $duracion, $this->temporada, $sinopsis, $folder);                
                     }
                 }
                 else{

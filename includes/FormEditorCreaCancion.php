@@ -8,7 +8,7 @@ class FormEditorCreaCancion extends Formulario
 
     public function __construct($id_bso) {
         $this->id_bso = $id_bso;
-        parent::__construct('FormEditorEditEpisodio', ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'contenidoBSO.php']);
+        parent::__construct('FormEditorCreaCancion', ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'contenidoBSO.php']);
     }
     
     protected function generaCamposFormulario(&$datos)

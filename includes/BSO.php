@@ -108,7 +108,7 @@ class BSO
         return self::inserta($BSO);
     }
 
-     private static function inserta($BSO){
+    private static function inserta($BSO){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("INSERT INTO bso (titulo, compositor, numCanciones, genero, sinopsis, ruta_imagen) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')"
@@ -223,6 +223,23 @@ class BSO
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
         return $BSO;
+    }
+
+    public static function disminuyeNumCanciones($id_bso){
+        $result = false;
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $BSO = BSO::buscaBSOID($id_bso);
+        $numCanciones = $BSO->getNumCanciones();
+        $total = $numCanciones - 1;
+        $query=sprintf("UPDATE bso S SET S.numCanciones='%d' WHERE S.id_bso = $id_bso"
+            , $conn->real_escape_string($total)
+        );
+        if ($conn->query($query)) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
     }
 
     public static function actualizaNumCanciones($id_bso){

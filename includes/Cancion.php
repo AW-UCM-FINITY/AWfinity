@@ -92,7 +92,7 @@ class Cancion
     public static function buscaCancionId($id_bso)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM cancion E WHERE E.id_bso = '%d'"
+        $query = sprintf("SELECT * FROM canciones E WHERE E.id_bso = '%d'"
         , $conn->real_escape_string($id_bso)
         );
 
@@ -129,23 +129,23 @@ class Cancion
         return $arrayCanciones;   
     }
 
-    // public static function eliminarEpisodio($id_episodio){
+     public static function eliminarCancion($id_cancion){
 
-    //     //borro de la bd
-    //     $conn = Aplicacion::getInstance()->getConexionBd();
-    //     $episodio = Episodio::buscaEpisodioId($id_episodio);
-    //     $rutaV = $episodio->getRutaVideo();
+    //borro de la bd
+         $conn = Aplicacion::getInstance()->getConexionBd();
+         $cancion = Cancion::buscaCancionId($id_cancion);
+        // $rutaV = $cancion->getRutaAudio();
 
-    //     $query = sprintf("DELETE FROM episodios WHERE id_episodio = $id_episodio");
+         $query = sprintf("DELETE FROM canciones WHERE id_cancion = $id_cancion");
 		
-    //     $rs = $conn->query($query);
-    //     $check =false;
-	// 	if($rs){
-	// 		$check =true;
-    //         unlink($rutaV);
-	// 	}
-	// 	return $check;        
-    // }
+         $rs = $conn->query($query);
+         $check =false;
+         if($rs){
+             $check =true;
+            // unlink($rutaV);
+         }
+         return $check;             
+     }
 
 
     public static function eliminarTodos($id_bso){

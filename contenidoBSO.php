@@ -9,7 +9,7 @@ $tituloPagina = 'Bandas Sonoras';
 $contenidoPrincipal = "";
 
 
-$contenidoPrincipal .=  "<div class='contenidoPelis'>";
+$contenidoPrincipal .=  "<div class='contenidoBSO'>";
 
 $contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
 $contenidoPrincipal .= 
@@ -19,7 +19,7 @@ $contenidoPrincipal .=
     
 if(esEditor()){
 	//Antes de modificar
-	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaPeli.php'> Nueva Película</a> </div>";
+	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaBSO.php'> Nueva BSO</a> </div>";
 	
 }
 $contenidoPrincipal .= "</div>";//cierra div tituloIndex

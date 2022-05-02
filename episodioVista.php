@@ -10,6 +10,8 @@ $id_episodio = isset($_GET['id_episodio']) ? htmlspecialchars(trim(strip_tags($_
  
 $episodio = path\Episodio::buscaEpisodioId($id_episodio);
 $titulo = $episodio->getTitulo();
+$id_serie = $episodio->getId_serie();
+$temporada = $episodio->getTemporada();
 
 $formP = new path\FormEditorElimEpisodio($id_episodio);
 $htmlFormElimEpisodio = $formP->gestiona();
@@ -42,7 +44,14 @@ if(esEditor()){
   
   $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
   $contenidoPrincipal .="$htmlFormElimEpisodio";
+  $contenidoPrincipal .=" <div class='butonGeneral'><a href='editEpisodio.php?id_episodio=$id_episodio&id_serie=$id_serie&temporada=$temporada'> Editar </a> </div>";
   $contenidoPrincipal .= "</div>"; //fin div = peli-editar
+  // $contenidoPrincipal .= "</div>"; //cierra div derecha
+
+
+  // $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
+  // $contenidoPrincipal .="$htmlFormElimEpisodio";
+  // $contenidoPrincipal .= "</div>";
 
 }
 $contenidoPrincipal .= "</div>"; //cierra div derecha

@@ -117,9 +117,9 @@ class FormEditorEditBSO extends Formulario
             $this->errores['titulo'] = 'El nombre de la banda sonora tiene que tener una longitud de al menos 5 caracteres.';
         }
         
-        $director = trim($datos['compositor'] ?? '');
-        $director = filter_var($director, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $director || mb_strlen($director) < 5) {
+        $compositor = trim($datos['compositor'] ?? '');
+        $compositor = filter_var($compositor, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ( ! $compositor || mb_strlen($compositor) < 5) {
             $this->errores['compositor'] = 'El nombre del compositor tiene que tener una longitud de al menos 5 caracteres.';
         }
         
@@ -168,7 +168,6 @@ class FormEditorEditBSO extends Formulario
                     $bso->setCompositor($compositor);
                     $bso->setGenero($genero);
                     $bso->setSinopsis($sinopsis);
-                    $bso->setRutaImagen($folder);
                     $bso = path\BSO::actualiza($bso);
                 }
                 else{
