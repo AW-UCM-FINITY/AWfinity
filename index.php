@@ -12,15 +12,17 @@ $claseArticle = 'index';
 $contenidoPrincipal .= "<div class='vistaPrincipal'> ";
 $contenidoPrincipal .= "<div class='contenedorPrincipal'> ";
 $contenidoPrincipal .= "<div class='tituloPrincipal'> ";
-$contenidoPrincipal .= "<h3>Interestellar</h3>";
+$contenidoPrincipal .= "<h3>AWfinity</h3>";
 $contenidoPrincipal .= "</div> "; //cierre div tituloPrincipal
 $contenidoPrincipal .= "<div class='descripcionPrincipal'> ";
 $contenidoPrincipal .= "<p>
-Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente descubierto para superar las limitaciones de los viajes espaciales tripulados y vencer las inmensas distancias que tiene un viaje interestelar.
+AWfinity es un espacio para disfrutar de todas tus películas, series y bandas sonoras favoritas. 
+Puedes compartir con nosotros noticias del mundo cinematográfico y apuntarte a increíbles retos.
+No esperes más, regístrate y comienza la aventura.
 </p>";
 $contenidoPrincipal .= "</div> "; //cierre div descripcionPrincipal
 $contenidoPrincipal .= "<div class='botonInfo'>";
-$contenidoPrincipal .= "<button role='button' class='boton'><i class='fas icon-info'></i>Más información</button>";
+$contenidoPrincipal .= "<a href=\"".RUTA_APP."/contacto.php\" ><button role='button' class='boton'><i class='fas icon-info'></i>Más información</button></a>";
 $contenidoPrincipal .= "</div> "; //cierre div botonInfo
 $contenidoPrincipal .= "</div> "; //cierre div contenedorPrincipal
 $contenidoPrincipal .= "</div> "; //cierre div vistaPrincipal
@@ -144,7 +146,11 @@ $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
 
 /*------------------RETOS---------------------------------- */
-$contenidoPrincipal .= "<div class ='relleno'> </div> "; 
+$contenidoPrincipal .= "<div class ='retos'> ";
+$contenidoPrincipal .= "<h1>Apúntate a nuestros <a href=\"".RUTA_APP."/retoVista.php\"><span>Retos</span></a></h1>";
+$contenidoPrincipal .= "<div></div>";
+$contenidoPrincipal .= "</div> "; 
+
 
 $contenidoPrincipal .= "<script src='js/main.js'></script>";
 
