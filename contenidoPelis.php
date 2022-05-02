@@ -8,7 +8,6 @@ use es\ucm\fdi\aw as path;
 $tituloPagina = 'Películas';
 $contenidoPrincipal = "";
 
-$opcion = isset($_GET['opcion']) ? htmlspecialchars(trim(strip_tags($_GET["opcion"]))) : 0;
 
 
 $contenidoPrincipal .=  "<div class='contenidoPelis'>";
@@ -26,8 +25,6 @@ $contenidoPrincipal .= "</div>";//cierra div tituloIndex
 $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 $arrayGeneros = path\Pelicula::getGenerosPeli(); //Obtenemos todos los generos disponibles
-$arrayPeliculas = path\Pelicula::getPeliculas(); //Obtenemos todas las peliculas
-
 
 $contenidoPrincipal .= "<div class='wrap'>";
 $contenidoPrincipal .= "<h1>Catálogo</h1>";
@@ -42,7 +39,9 @@ $contenidoPrincipal .= "<div class='category_list'>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='fantasia'>Fantasia</a>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='musiacal'>Musical</a>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='terror'>Terror</a>";
-$contenidoPrincipal .= "</div>"; //cierra store-wrapper
+$contenidoPrincipal .= "</div>"; //cierra category_list
+$contenidoPrincipal .= "</div>"; //cierra div wrapper
+; 
 
 $contenidoPrincipal .= "<section class='products-list'>";
 
@@ -57,12 +56,11 @@ foreach ($arrayGeneros as $key => $genero) {
         $contenidoPrincipal .= "<a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img src='$cadena' alt='' ></a>";
         // $contenidoPrincipal .= "<a href='#'>$titulo</a>";
     }
-    $contenidoPrincipal .= "</div>";
+    $contenidoPrincipal .= "</div>";//cierra div product-item
 }
 $contenidoPrincipal .= "</section>";
-$contenidoPrincipal .= "</div>";
-$contenidoPrincipal .= "</div>"; 
 
+$contenidoPrincipal .= "</div>"; //cierra div wrap
 
 $contenidoPrincipal .= "</div>"; //Cierre de div = contenidoPelis
 

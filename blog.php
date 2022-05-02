@@ -10,21 +10,32 @@ $valr =isset($_GET['search']) ? htmlspecialchars(trim(strip_tags($_GET["search"]
 
 $contenidoPrincipal = '';
 
-$contenidoPrincipal .=<<<EOS
-          <div class="header2">
-            <h2>Blog AWfinity</h2>
-EOS;
-
-// cuando es editor muestra el boton para crear blog
+$contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
+$contenidoPrincipal .= 
+"<div class='tituloIndex'>
+    <h2>AWfinity </h2>
+	<h1><span>Blog</span></h1>";
 if(esEditor()){
-  $contenidoPrincipal.=<<<EOS
-
-    <div class='butonGeneral'> <a href='creaNoticia.php'> Crear </a> </div>
-EOS;
+	//Antes de modificar
+	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaNoticia.php'> Nueva Noticia </a> </div>";
 }
+$contenidoPrincipal .= "</div>";//cierra div tituloIndex
+$contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
+
+// $contenidoPrincipal .=<<<EOS
+//           <div class="header2">
+//             <h2>Blog AWfinity</h2>
+// EOS;
+
+// // cuando es editor muestra el boton para crear blog
+// if(esEditor()){
+//   $contenidoPrincipal.=<<<EOS
+
+//     <div class='butonGeneral'> <a href='creaNoticia.php'> Crear </a> </div>
+// EOS;
+// }
 
 $contenidoPrincipal.=<<<EOS
-          </div>
           <div class="menublog">
           <a class="active" href="blog.php">Inicio</a>
           <div class="barraBusca">

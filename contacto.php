@@ -12,11 +12,21 @@ $contenidoPrincipal = '';
 $rutaTemaDefault = RUTA_CSS."/default.css";
 $rutaTemaAzul = RUTA_CSS."/azul.css";
 
-$contenidoPrincipal .= <<<EOS
-<div class="header2">
-        <h2>Contáctanos ;)</h2>
-</div>
+// $contenidoPrincipal .= <<<EOS
+// <div class="header2">
+//         <h2>Contáctanos ;)</h2>
+// </div>
+// EOS;
 
+$contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
+$contenidoPrincipal .= 
+"<div class='tituloIndex'>
+    <h2>AWfinity </h2>
+	<h1><span>Contáctanos</span> ;)</h1>";
+$contenidoPrincipal .= "</div>";//cierra div tituloIndex
+$contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
+
+$contenidoPrincipal .= <<<EOS
 <div class="panelContactoGeneral">
 <div class="cardMiembros">
         <h1>Miembros</h1>

@@ -23,6 +23,9 @@ main {
 	float: left;
 	background-color: white;
     min-height: 700px;
+	padding-bottom: 2%;
+	background-color: #bbcdeb;
+	
 }
 
 footer {
@@ -359,7 +362,7 @@ a.deshabilitado {
 /* vista de retos*/
 
 .panelReto{
-    background: rgb(255, 255, 255);
+    /*background: rgb(255, 255, 255);*/
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -535,7 +538,9 @@ a.deshabilitado {
 
 }
 .columna{
-    background: rgb(255, 255, 255);
+    /* background: rgb(255, 255, 255); */
+	margin: 1%;
+	margin-left: 3%;
 }
 
 /* derecha*/
@@ -591,6 +596,8 @@ a.deshabilitado {
     text-align: center;
     background: #ddd;
     margin-top: 20px;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 .comentarioPanel{
@@ -654,6 +661,7 @@ article.Noticia div.card p{
 
 div.contenidoPelis {
 	display: block;
+	
 
 }
 
@@ -662,7 +670,7 @@ div.encabezado.encabezado-bg{
 	display: block;
 }
 .encabezado-bg {
-    padding: 93px 0 136px;
+    padding: 52px 0 52px;
     background-position: center;
     background-size: cover;
     position: relative;
@@ -689,6 +697,7 @@ div.tituloIndex span{
 
 div.wrap {
 	margin: 3%;
+	
 }
 div.wrap h1{
 	text-align: center;
@@ -701,6 +710,11 @@ div.category_list {
 	padding-bottom: 3%;
 	text-align: center;
 	justify-content: center;	
+}
+div.category_list a:hover{
+	border-color: #9f2863;
+	background-color: #fff;
+  	color: rgb(3, 3, 3);
 }
 
 a.category_item {
@@ -723,6 +737,7 @@ section.products-list {
     margin-right: auto; */
 	align-content: center;
 	text-align: center;
+	
     
 }
 /* div.product-item{
@@ -940,7 +955,7 @@ div.butonGeneral a{
 
 /*CSS PAGINA DE INICIO (index.php)---------------------*/
 article.index{
-	background: #141414;
+	/*background: #141414;*/
 	height: 100%;
 }
 div.vistaPrincipal{
@@ -1102,6 +1117,22 @@ div.pelicula h5{
     margin-right: 10%;
     margin-top: 5%;
 }
+div.retos{
+	margin: 2%;
+	text-align: center;
+	font-size: 30px;	
+}
+div.retos h1 span {
+	color: #9f2863;
+
+
+}
+div.retos h1{
+	padding-top: 2%;
+}
+div.retos h1 a{
+	text-decoration: none;
+}
 
 /* ---- ----- ----- Media Queries ----- ----- ----- */
 @media screen and (max-width: 800px) {
@@ -1145,7 +1176,7 @@ div.pelicula h5{
 .miembros-box-item {
 	width: 350px;
 	height: 560px;
-    box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 8px 3px 13px 8px rgba(0, 0, 0, 0.14);
     background: #fcfcfc;
     border: 2px solid #faf9fb;
     padding: 45px 40px 60px;
@@ -1222,11 +1253,11 @@ div.pelicula h5{
 }
 
 .cardMiembros {
-    background-color: rgb(255, 255, 255);
-    padding: 20px;
-    margin-top: 20px;
-	margin-left: 10px;
-	width: 65%;
+    /* background-color: rgb(255, 255, 255); */
+    /* padding: 20px; */
+    margin-top: 3%;
+	margin-left: 3%;
+	width: 50%;
 	float: left;
 }
 
@@ -1237,10 +1268,12 @@ div.pelicula h5{
 .cardContacto {
     background-color: rgb(255, 255, 255);
     padding: 20px;
-    margin-top: 20px;
-	margin-left: 5px;
-	width: 25%;
-	float: left;
+    margin-top: 6%;
+	/* margin-left: 5px; */
+	margin-right: 3%;
+	width: 40%;
+	height: 50%;
+	float: right;
 }
 
 .cardContacto fieldset {
@@ -1250,8 +1283,13 @@ div.pelicula h5{
 	margin-top: 20px;
 	max-width: 100%;
 }
-
-
+/* .cardContacto fieldset div{
+	display: inline-flex;
+} */
+.cardContacto fieldset div input{
+	margin: 1%;
+	display: inline-block;
+}
 
   /* Para cuando se reduzca el tamaño de la ventana */
 @media screen and (max-width: 800px) {
