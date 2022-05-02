@@ -651,129 +651,12 @@ article.Noticia div.card p{
 
 /* CSS PARA LA VISTA DE LAS PELÍCULAS INDEX*/
 
-div.contenidoPelis{
-	/* padding-left: 50px;
-    padding-right: 50px;
-	padding-top: 50px;
-	padding-bottom: 200px; */
-	/* background: linear-gradient(rgba(0, 0, 0, .50) 0%, rgba(0,0,0,.50) 100%), url(../img/comun/bg.jpg); */
+
+div.contenidoPelis {
 	display: block;
-}
-div.tituloIndex{
-	text-align: center;
-}
-div.tituloIndex h1{
-	color: #ffff;
+
 }
 
-div.tituloIndex h1{
-	align-items: center;
-	font-size: 50px;
-	padding-bottom: 20px;
-}
-div.tituloIndex h2{
-	align-items: center;
-	font-size: 30px;
-	color: #ffff;
-}
-/* div.tituloIndex h3{
-	padding-bottom: 20px;
-} */
-
-div.tituloIndex span{
-	color: #9f2863;     /*Te has vuelto a ir*/
-}
-
-div.peliLista a img {
-    width: 230px;
-	height: 300px;
-	float: left;
-}
-div.listaPelis a img {
-    width: 230px;
-	height: 300px;
-	float: left;
-	padding: 1%;
-}
-div.seccion-pelis{
-	margin: 5%;
-}
-div.seccion-pelis .intro{
-	margin-bottom: 3%;
-}
-div.intro-titulo{
-	padding-bottom: 20px;
-	text-align: center;
-	font-size: 20px;
-} 
-div.intro-botones{
-	display: flex;
-	
-}
-div.intro-botones button{
-	border-radius: 50px;
-    background: #20212b;
-    font-size: 12px;
-    font-weight: 600;
-    color: #e3dfdf;
-    border: 3px solid #2d303d;
-    padding: 11px 27px;
-    margin-bottom: 0;
-    transition: none !important;
-	margin-right: 5px;
-}
-
-div.intro-botones button:hover{
-	border-color: #9f2863;
-	background-color: #fff;
-  	color: rgb(3, 3, 3);
-}
-
-
-div.container{
-	padding-left: 2%;
-	padding-right: 2%;
-}
-
-div.pelisIndex {
-	padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 0px;
-    padding-bottom: 15px;
-    display: grid;
-    grid-template-columns: auto auto auto; /*cols*/
-    grid-template-rows: auto auto; /*rows*/
-    grid-template-areas: 
-    ". titulo ."
-    "peli peli peli "
-    ;
-    align-items : center;
-}
-div.peliLista{
-	grid-area: peli;
-    align-items: center;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto auto auto; /*rows*/
-    grid-template-areas: " peli peli peli peli ";
-	grid-row-gap: 15px;
-    align-items : center;
-}
-div.listaPelis{
-	grid-area: peli;
-	text-align: center;
-    align-items: center;
-    display: block;
-}
-
-div.tituloPeliIndex h3{
-	grid-area: titulo;
-    align-items: center;
-	padding-top: 45px;
-	padding-bottom: 15px;	
-    text-transform: uppercase;
-}
-/*NUEVO CSS PELICULAS*/
 div.encabezado.encabezado-bg{
 	background-image: url(../img/comun/encabezado.png);
 	display: block;
@@ -785,9 +668,75 @@ div.encabezado.encabezado-bg{
     position: relative;
     z-index: 1;
 }
-div.pelis-genero{
-	display: inline;
+
+div.tituloIndex h1{
+	align-items: center;
+	font-size: 50px;
+	padding-bottom: 20px;
+	color: #ffff;
 }
+div.tituloIndex{
+	text-align: center;
+}
+div.tituloIndex h2{
+	align-items: center;
+	font-size: 30px;
+	color: #ffff;
+}
+div.tituloIndex span{
+	color: #9f2863;     
+}
+
+div.wrap {
+	margin: 3%;
+}
+div.wrap h1{
+	text-align: center;
+	padding-bottom: 3%;
+	font-size: 30px;
+}
+
+div.category_list {
+	display: flex;
+	padding-bottom: 3%;
+	text-align: center;
+	justify-content: center;	
+}
+
+a.category_item {
+	border-radius: 50px;
+    background: #20212b;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e3dfdf;
+    border: 3px solid #2d303d;
+    padding: 11px 27px;
+    margin-bottom: 0;
+    transition: none !important;
+	margin-right: 5px;	
+	text-decoration: none;
+}
+
+section.products-list {
+	display: block;
+	/* margin-left: auto;
+    margin-right: auto; */
+	align-content: center;
+	text-align: center;
+    
+}
+/* div.product-item{
+	grid-area: peli;
+} */
+div.product-item img{
+	grid-area: peli;
+	width: 230px;
+	height: 300px;
+	float: left;
+	padding: 1%;
+}
+
+
 
 
 

@@ -196,7 +196,7 @@ class BSO
         $rs = $conn->query($query);
         $check =false;
 		if($rs){
-			$check = Episodio::eliminarTodos($id_bso);
+			$check = Cancion::eliminarTodos($id_bso);
             unlink($ruta);  
 
 		}
