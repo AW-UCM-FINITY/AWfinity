@@ -9,12 +9,7 @@ $tituloPagina = 'Bandas Sonoras';
 $contenidoPrincipal = "";
 
 
-<<<<<<< HEAD
-$contenidoPrincipal .=  "<div class='contenidoBSO'>";
-=======
-
 $contenidoPrincipal .=  "<div class='contenidoPelis'>";
->>>>>>> e01492e79207e0cf8db869e4bda7d5e870e31b06
 
 $contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
 $contenidoPrincipal .= 
@@ -23,12 +18,7 @@ $contenidoPrincipal .=
 	<h1>Tus <span>Bandas Sonoras</span> favoritas y más </h1>";
 if(esEditor()){
 	//Antes de modificar
-<<<<<<< HEAD
-	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaBSO.php'> Nueva BSO</a> </div>";
-	
-=======
 	$contenidoPrincipal .= "<div class='butonGeneral'> <a href='creaBSO.php'> Nueva Banda Sonora</a> </div>";
->>>>>>> e01492e79207e0cf8db869e4bda7d5e870e31b06
 }
 $contenidoPrincipal .= "</div>";//cierra div tituloIndex
 $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg

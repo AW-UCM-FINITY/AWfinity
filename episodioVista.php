@@ -44,7 +44,9 @@ if(esEditor()){
   
   $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
   $contenidoPrincipal .="$htmlFormElimEpisodio";
-  $contenidoPrincipal .=" <div class='butonGeneral'><a href='editEpisodio.php?id_episodio=$id_episodio&id_serie=$id_serie&temporada=$temporada'> Editar </a> </div>";
+  $contenidoPrincipal .=" <div class='butonGeneral'><a href='
+  
+  .php?id_episodio=$id_episodio&id_serie=$id_serie&temporada=$temporada'> Editar </a> </div>";
   $contenidoPrincipal .= "</div>"; //fin div = peli-editar
   // $contenidoPrincipal .= "</div>"; //cierra div derecha
 
