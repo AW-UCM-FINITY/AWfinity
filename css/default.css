@@ -1176,7 +1176,7 @@ div.retos h1 a{
 .miembros-box-item {
 	width: 350px;
 	height: 560px;
-    box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 8px 3px 13px 8px rgba(0, 0, 0, 0.14);
     background: #fcfcfc;
     border: 2px solid #faf9fb;
     padding: 45px 40px 60px;
