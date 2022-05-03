@@ -86,20 +86,23 @@ if(estaLogado()){
         $arrayIdCanciones[]= $cancion->getId();
         $arrayFormulario[] = new path\FormEditorElimCancion($cancion->getId(), $id_bso);//funciona regulinchi
     }
-    $contenidoPrincipal.= "<li class='current-song'><a href='$arrayRutaCanciones[0]'> $arrayNombreCanciones[0] </a></li>";
+    $contenidoPrincipal.= "<li class='current-song'><a href='$arrayRutaCanciones[0]'>$arrayNombreCanciones[0]</a>";
     
     if(esEditor()){
       $formP = new path\FormEditorElimCancion($arrayIdCanciones[0], $id_bso);
       $htmlFormElimCancion = $formP->gestiona();
-      $contenidoPrincipal.= "<div class ='generalBoton'> $htmlFormElimCancion </div>";
+      $contenidoPrincipal.= "<div class ='botonImg'> $htmlFormElimCancion </div>";
     }
+    $contenidoPrincipal .= "</li>";
+
     for($i = 1; $i < $numCanciones; $i++) {
-      $contenidoPrincipal.= "<li><a href='$arrayRutaCanciones[$i]'> $arrayNombreCanciones[$i] </a></li>";  
+      $contenidoPrincipal.= "<li><a href='$arrayRutaCanciones[$i]'> $arrayNombreCanciones[$i] </a>";  
       if(esEditor()){
         // $formP = new path\FormEditorElimCancion($arrayIdCanciones[$i], $id_bso);
         $htmlFormElimCancion = $arrayFormulario[$i]->gestiona();
-        $contenidoPrincipal.= "<div class ='generalBoton'> $htmlFormElimCancion </div>";
+        $contenidoPrincipal.= "<div class ='botonImg'> $htmlFormElimCancion </div>";
       }
+      $contenidoPrincipal .= "</li>";
     }
   
     // foreach ($playList as $key => $cancion) {

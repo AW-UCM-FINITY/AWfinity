@@ -24,9 +24,11 @@ if (!esEditor()){//Funcion de archivo includes/helpers/autorizacion.php
 }else{
 	$sidebar = "si";
 	$contenidoPrincipal .= <<< EOS
+	<div class = "edicion-panel">
 	<h1>Consola de Edición de Contenido</h1>
 	<p>Aquí estarían todos los controles de edición del contenido</p>
 	$htmlFormEditNoticia
+	</div>
 	EOS;
 }
 

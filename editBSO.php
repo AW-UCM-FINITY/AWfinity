@@ -17,8 +17,10 @@ $htmlFormEditBSO = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Edición de BSO</h1>
 $htmlFormEditBSO
+</div>
 EOS;
 
 

@@ -25,7 +25,7 @@ class FormEditorElimCancion extends Formulario
         $htmlErroresGlobales
         <div>
             <input type="hidden" name ="eliminarCancion" value="$this->id_cancion" />
-            <button type="submit" name="eliminar">Eliminar</button>
+            <button type="submit" name="eliminar" class='papelera'><i class='fas icon-bin'></i></button>
         </div>
            
         EOF;

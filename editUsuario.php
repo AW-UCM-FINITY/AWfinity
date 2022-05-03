@@ -18,8 +18,10 @@ if(esAdmin() && $_GET['nombreusuario'] !== $_SESSION['nombreUsuario']){
     $contenidoPrincipal = '';
     
     $contenidoPrincipal .= <<< EOS
+    <div class = "edicion-panel">
     <h1>Consola de Edición de Rol de Usuario</h1>
     $htmlFormAdminCambiarRol
+    </div>
     EOS;
 }
 else{
@@ -30,8 +32,10 @@ $FormEditorEditUsuario = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Edición de Usuario</h1>
 $FormEditorEditUsuario
+</div>
 EOS;
 }
 

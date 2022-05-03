@@ -867,39 +867,53 @@ div.ListaCanciones ul{
 
 }
 div.ListaCanciones ul li{
-	margin-bottom: 1px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
+	/* margin-bottom: 1%;
+	padding: 3%;
 	background-color: white;
     color: black;
     border: 1px solid #9f2863;
     text-decoration: none;
     font-size: 14px;
     transition-duration: 0.4s;
-    border-radius: 4px;
-
+    border-radius: 4px; */
+	margin-bottom: 1%;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 10%;
+	align-items: center;
+	
 }
-div.ListaCanciones li:hover{
+div.ListaCanciones li a:hover{
 	background-color: #9f2863;
 	color: white;
-}
+} 
 div.ListaCanciones li a {
 	color: black;
     text-decoration: none;
+	margin-bottom: 1%;
+	border: 1px solid #9f2863;
+	border-radius: 4px;
+	padding: 4%;
+	background-color: white;
+	font-size: 14px;
+	transition-duration: 0.4s;
 }
-div.ListaCanciones li.current-song{
+div.ListaCanciones li.current-song a{
 	background-color: #9f2863;
 	color: white;	  
 }
-div.ListaCanciones li.current-song a{
+/* div.ListaCanciones li.current-song a{
 	color: white;	  
-}
+} */
 /*FIN CSS VISTA PLAYLIST BANDA SONORA*/
 
 /*CSS BOTON EDITOR*/
- div.generalBoton{
+button.papelera{
+	display: inline-block;
+	border-radius: 20px;
+	padding: 9px 10px;
+}
+div.generalBoton{
 	display: inline-block;
 	padding-right: 10px;
 }
@@ -1299,3 +1313,10 @@ div.retos h1 a{
     }
 }
 /*FIN CSS CONTACTO-MIEMBROS*/
+
+/*------------------CSS VISTAS DE EDICIÓN------------------*/
+div.edicion-panel{
+	margin: 5%;
+}
+
+/*--------FIN CSS VISTA EDITOR*/

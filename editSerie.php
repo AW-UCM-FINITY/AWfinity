@@ -17,8 +17,10 @@ $htmlFormEditSerie = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Edición de Series</h1>
 $htmlFormEditSerie
+</div>
 EOS;
 
 
