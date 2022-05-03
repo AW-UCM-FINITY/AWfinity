@@ -20,8 +20,10 @@ class FormEditorEditNoticia extends Formulario
     
     protected function generaCamposFormulario(&$datos)
     {
-        if(isset($this->idNoticia)){
+      
+        if(isset($this->idNoticia) && empty($this->errores)){
             //modifica la noticia
+            
             $noticia=Noticia::buscaNoticiaID($this->idNoticia);
 
             $titulo = $noticia->getTitulo() ?? '';
