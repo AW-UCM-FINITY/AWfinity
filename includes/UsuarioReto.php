@@ -118,11 +118,11 @@ class UsuarioReto{
     static public function joinReto($id, $reto){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $date = date("Y/m/d");
+        $date = date("y/m/d");
 
         $idd = $conn->real_escape_string($id);
         $retoo = $conn->real_escape_string($reto);
-        $sql = "INSERT INTO usuarioreto VALUES ($idd,$retoo,$date,0)";
+        $sql = "INSERT INTO usuarioreto VALUES ($idd,$retoo,$date,0)";//el error puede venir desde el cero este de la INSERT
         
 
        
