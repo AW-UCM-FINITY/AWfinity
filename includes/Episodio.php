@@ -132,7 +132,7 @@ class Episodio
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $peli;
+        return $episodio;
     }
 
     public static function buscaEpisodio($titulo, $id_serie)

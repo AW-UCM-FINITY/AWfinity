@@ -1,5 +1,5 @@
 var currentSong = 0;
-var playing = true
+var playing = true;
 $("#player")[0].src = $("#playlist li a")[0].href;
 $("#player")[0].play();
 

@@ -17,13 +17,7 @@
             "program": "${file}",
             "cwd": "${fileDirname}",
             "port": 9003,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ],
-            "env": {
-                "XDEBUG_MODE": "debug,develop",
-                "XDEBUG_CONFIG": "client_port=${port}"
-            }
+           
         },
         {
             "name": "Launch Built-in web server",

@@ -13,7 +13,7 @@ class FormEditorEditSerie extends Formulario
        
         if(isset($this->id_serie)){ //si existe el id -> actualizamos
             
-            parent::__construct('FormEditorEditSerie', ['enctype' => 'multipart/form-data','urlRedireccion' => 'SerieVista.php?id_serie='.$this->id_serie]);  
+            parent::__construct('FormEditorEditSerie', ['enctype' => 'multipart/form-data','urlRedireccion' => 'serieVista.php?id_serie='.$this->id_serie]);  
         }
         else{   //sino -> creamos
             parent::__construct('FormEditorEditSerie', ['enctype' => 'multipart/form-data','urlRedireccion' => 'contenidoSeries.php']);

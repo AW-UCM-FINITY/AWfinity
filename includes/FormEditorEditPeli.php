@@ -12,7 +12,7 @@ class FormEditorEditPeli extends Formulario
        
         if(isset($this->id_pelicula)){ //si existe el id -> actualizamos
             
-            parent::__construct('FormEditorEditPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'peliVista.php?id_pelicula='.$this->id_pelicula]);  
+            parent::__construct('FormEditorEditPeli'.$id_pelicula, ['enctype' => 'multipart/form-data','urlRedireccion' => 'peliVista.php?id_pelicula='.$this->id_pelicula]);  
         }
         else{   //sino -> creamos
             parent::__construct('FormEditorEditPeli', ['enctype' => 'multipart/form-data','urlRedireccion' => 'contenidoPelis.php']);
@@ -192,11 +192,5 @@ class FormEditorEditPeli extends Formulario
         }    
     }     //cierro procesa form
 }  //class
-//<div>
-// <label for="imagen">Fichero de imagen:</label>
-// <img class="imgEdit" src="{$ruta_imagen}" alt="Portada">
-// <input type="file" name="uploadfile" value="$ruta_imagen" />
-// {$erroresCampos['uploadfile']}
-// </div>
 
 ?>

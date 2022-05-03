@@ -12,7 +12,7 @@ class FormEditorEditBSO extends Formulario
        
         if(isset($this->id_bso)){ //si existe el id -> actualizamos
             
-            parent::__construct('FormEditorEditBSO', ['enctype' => 'multipart/form-data','urlRedireccion' => 'bsoVista.php?id_bso='.$this->id_bso]);  
+            parent::__construct('FormEditorEditBSO'.$id_bso, ['enctype' => 'multipart/form-data','urlRedireccion' => 'bsoVista.php?id_bso='.$this->id_bso]);  
         }
         else{   //sino -> creamos
             parent::__construct('FormEditorEditBSO', ['enctype' => 'multipart/form-data','urlRedireccion' => 'contenidoBSO.php']);

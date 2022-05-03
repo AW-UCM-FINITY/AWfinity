@@ -86,14 +86,14 @@ if(estaLogado()){
         $arrayIdCanciones[]= $cancion->getId();
         $arrayFormulario[] = new path\FormEditorElimCancion($cancion->getId(), $id_bso);//funciona regulinchi
     }
-    // $contenidoPrincipal.= "<li class='current-song'><a href='$arrayRutaCanciones[0]'> $arrayNombreCanciones[0] </a></li>";
+    $contenidoPrincipal.= "<li class='current-song'><a href='$arrayRutaCanciones[0]'> $arrayNombreCanciones[0] </a></li>";
     
-    // if(esEditor()){
-    //   $formP = new path\FormEditorElimCancion($arrayIdCanciones[0], $id_bso);
-    //   $htmlFormElimCancion = $formP->gestiona();
-    //   $contenidoPrincipal.= "<div class ='generalBoton'> $htmlFormElimCancion </div>";
-    // }
-    for($i = 0; $i < $numCanciones; $i++) {
+    if(esEditor()){
+      $formP = new path\FormEditorElimCancion($arrayIdCanciones[0], $id_bso);
+      $htmlFormElimCancion = $formP->gestiona();
+      $contenidoPrincipal.= "<div class ='generalBoton'> $htmlFormElimCancion </div>";
+    }
+    for($i = 1; $i < $numCanciones; $i++) {
       $contenidoPrincipal.= "<li><a href='$arrayRutaCanciones[$i]'> $arrayNombreCanciones[$i] </a></li>";  
       if(esEditor()){
         // $formP = new path\FormEditorElimCancion($arrayIdCanciones[$i], $id_bso);

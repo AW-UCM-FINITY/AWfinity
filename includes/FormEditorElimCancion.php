@@ -7,7 +7,7 @@ class FormEditorElimCancion extends Formulario
     private $id_cancion;
     //parametro id_pelicula
     public function __construct($id_cancion, $id_bso) {
-        parent::__construct('FormEditorElimCancion', ['urlRedireccion' => 'contenidoBSO.php']);//contenidoBSO.php
+        parent::__construct('FormEditorElimCancion'.$id_cancion, ['urlRedireccion' => 'contenidoBSO.php']);//contenidoBSO.php
         $this->id_cancion = $id_cancion;
         $this->id_bso = $id_bso;
     }

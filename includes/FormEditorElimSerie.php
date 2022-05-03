@@ -8,7 +8,7 @@ class FormEditorElimSerie extends Formulario
     private $id_serie;
 
     public function __construct($id_serie) {
-        parent::__construct('FormEditorElimSerie', ['urlRedireccion' => 'contenidoSeries.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorElimSerie'.$id_serie, ['urlRedireccion' => 'contenidoSeries.php']);//por ahora queda mas claro asi
         $this->id_serie = $id_serie;
     }
     protected function generaCamposFormulario(&$datos)

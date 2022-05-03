@@ -11,7 +11,7 @@ class FormEditorEditEpisodio extends Formulario
         $this->id_episodio = $id_episodio;
         $this->id_serie = $id_serie;
         $this->temporada = $temporada;
-        parent::__construct('FormEditorEditEpisodio', ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'serieVista.php?id_serie='.$this->id_serie]);
+        parent::__construct('FormEditorEditEpisodio'.$id_episodio, ['enctype' => 'multipart/form-data', 'urlRedireccion' => 'serieVista.php?id_serie='.$this->id_serie]);
         
 
 

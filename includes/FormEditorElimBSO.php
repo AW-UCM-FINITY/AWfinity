@@ -8,7 +8,7 @@ class FormEditorElimBSO extends Formulario
     private $id_bso;
 
     public function __construct($id_bso) {
-        parent::__construct('FormEditorElimBSO', ['urlRedireccion' => 'contenidoBSO.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorElimBSO'.$id_bso, ['urlRedireccion' => 'contenidoBSO.php']);//por ahora queda mas claro asi
         $this->id_bso = $id_bso;
     }
     protected function generaCamposFormulario(&$datos)

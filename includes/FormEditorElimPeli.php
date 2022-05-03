@@ -7,7 +7,7 @@ class FormEditorElimPeli extends Formulario
     private $id_pelicula;
     //parametro id_pelicula
     public function __construct($id_pelicula) {
-        parent::__construct('FormEditorElimPeli', ['urlRedireccion' => 'contenidoPelis.php']);//por ahora queda mas claro asi
+        parent::__construct('FormEditorElimPeli'.$id_pelicula, ['urlRedireccion' => 'contenidoPelis.php']);//por ahora queda mas claro asi
         $this->id_pelicula = $id_pelicula;
     }
 
