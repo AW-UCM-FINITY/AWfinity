@@ -7,6 +7,8 @@ use es\ucm\fdi\aw as path;
 
 $id_pelicula = isset($_GET['id_pelicula']) ? htmlspecialchars(trim(strip_tags($_GET["id_pelicula"]))) : 0;
 
+$id_reto = isset($_GET['idreto']) ? htmlspecialchars(trim(strip_tags($_GET["idreto"]))) : 0;
+
  
 $pelicula = path\Pelicula::buscaPeliID($id_pelicula);
 $titulo = $pelicula->getTitulo();
@@ -28,6 +30,9 @@ $claseArticle = 'vistaPeli';
 $contenidoPrincipal = "";
 
 if(estaLogado()){
+  $idUsuario = path\Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+$formC = new path\FormUserCompletaReto($idUsuario, $id_reto,$id_pelicula);
+$htmlFormCompletaReto = $formC->gestiona();
   $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
   
   $contenidoPrincipal .= "<div class='derecha'>";
@@ -42,6 +47,15 @@ if(estaLogado()){
     $contenidoPrincipal .= "</div>"; //fin div = peli-editar
   
   }
+
+  if(!esEditor() && !esAdmin() && $id_reto && path\UsuarioReto::compruebaPerteneceReto($idUsuario,$id_reto) && !(path\UsuarioReto::compruebaCompletado($id_reto, $idUsuario)) && !(path\PelisReto::compruebaPelisComplet($idUsuario,$id_reto,$id_pelicula))){
+ 
+    $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormCompletaReto </div>";
+
+   
+  
+  }
+  
   $contenidoPrincipal .= "</div>"; //cierra div derecha
   
   $contenidoPrincipal .= "<div class='peli-datos-card' id ='peli-datos'>";
