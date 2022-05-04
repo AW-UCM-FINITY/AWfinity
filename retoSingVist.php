@@ -60,7 +60,7 @@ if(estaLogado()){
     $id_pelicula = $value->getId();
     $ruta = $value->getRutaImagen();
     $cadena = substr($ruta,2); //restamos 2 pa quitar de delante ./
-    $contenidoPrincipal.= "<div class=\"imgPelisReto\"> <a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula\"><img class=\"imgPelis\" alt='imgPeli' src=$cadena></a> </div>";
+    $contenidoPrincipal.= "<div class=\"imgPelisReto\"> <a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula&idreto=$id_reto\"><img class=\"imgPelis\" alt='imgPeli' src=$cadena></a> </div>";
   }
   $contenidoPrincipal .= "</div></div>";
   $contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p> <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>";
@@ -79,10 +79,11 @@ if(estaLogado()){
         $formD = new FormUserAbandonReto($id_usuario, $id_reto);
         $htmlFormAbandonReto = $formD->gestiona();
         $contenidoPrincipal .= $htmlFormAbandonReto;
-
+        /*
         $formC = new FormUserCompletaReto($id_usuario, $id_reto);
         $htmlFormCompletaReto = $formC->gestiona();
         $contenidoPrincipal .= $htmlFormCompletaReto;
+        */
       }
       // si ha completado el reto, no se muestra los botones
       else{
