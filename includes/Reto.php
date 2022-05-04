@@ -261,7 +261,6 @@ public static function pagina($numPagina,$numPorPagina){
 
     $sql = "SELECT * FROM retos R";
 
-    //$sql .= ' ORDER BY R$num_usuarios DESC';
 
     if ($numPorPagina > 0) {
         $sql .= " LIMIT $numPorPagina";
@@ -280,8 +279,8 @@ public static function pagina($numPagina,$numPorPagina){
     if($consulta->num_rows > 0){
         while ($fila = mysqli_fetch_assoc($consulta)) {
 
-            $arrayRetos[]= new path\reto($fila['id_Reto']);
-
+            $arrayRetos[]= new Reto($fila['nombre'],$fila['num_usuarios'],$fila['num_completado'],$fila['dificultad'],$fila['descripcion'],$fila['dias'],$fila['puntos'],$fila['id_Reto']);
+            
         }
         $consulta->free();
     }

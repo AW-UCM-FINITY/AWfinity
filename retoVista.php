@@ -35,6 +35,47 @@ $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 // EOS;
 // }
 
+//-----------------------------------PAGINACION--------------------------------
+
+$enlaceSiguiente ="";
+$enlaceAnterior = "";
+$numPorPagina = 3; //Define los grupos por página que haya
+
+
+if(isset($_GET['numPagina'])){ 
+  $retos = Reto::getNumRetos();
+
+  $numPagina = $_GET['numPagina'];
+  // mostrar el boton siguiente cuando hay más retos
+  if($retos > $numPorPagina * ($numPagina +1)){ 
+      $numPagina++;
+      $ruta= "retoVista.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<a href=$ruta> Siguiente </a>";
+      $numPagina--;
+  }
+  // si no es la primera pagina mostrar la pagina anterior
+  if($numPagina >0){
+      $numPagina--;
+      $ruta= "retoVista.php?numPagina=".$numPagina;
+      $enlaceAnterior = "<a href=$ruta> Anterior </a>";
+      $numPagina++;
+  }
+}
+else{
+  $retos = Reto::getNumRetos();
+  $numPagina = 0;
+   // mostrar el boton siguiente cuando hay más retos
+  if($retos > $numPorPagina){ 
+      $numPagina++; 
+      $ruta= "retoVista.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<a href=$ruta> Siguiente </a>";
+      $numPagina--;
+  }
+}
+
+
+//-----------------------------------FIN PAGINACION--------------------------------
+
 $contenidoPrincipal.=<<<EOS
           <div class="menublog">
           
@@ -54,7 +95,7 @@ if(isset($_GET['search'])){
 
   $retos=Reto::buscar($valr);
 }else{
-  $retos=Reto::getRetos();
+  $retos=Reto::pagina($numPagina, $numPorPagina);
 }
 
 
@@ -96,6 +137,8 @@ EOS;
           }
       $contenidoPrincipal.= "</div>";
       }
+      $contenidoPrincipal.= $enlaceAnterior;
+      $contenidoPrincipal.= $enlaceSiguiente;
 
 
   
