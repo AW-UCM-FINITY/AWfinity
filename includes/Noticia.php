@@ -261,13 +261,14 @@ public static  function  date_compare2($element1, $element2) {
 public static function eliminarNoticia($idNoticia){
 
     $conn = Aplicacion::getInstance()->getConexionBd();	
-    
+    $notic=self::buscaNoticiaID($idNoticia);
     $query = sprintf("DELETE FROM noticias WHERE noticias.idNoticia='%s'",$idNoticia);
     $rs = $conn->query($query);
     $check =false;
-
+    
     if($rs){
         $check =true;
+        unlink(RUTA_IMGS."/".$notic->getImagenNombre()); 
     }
     
     return $check;        

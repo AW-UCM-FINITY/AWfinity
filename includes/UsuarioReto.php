@@ -122,14 +122,16 @@ class UsuarioReto{
 
         $idd = $conn->real_escape_string($id);
         $retoo = $conn->real_escape_string($reto);
-        $sql = "INSERT INTO usuarioreto VALUES ($idd,$retoo,$date,0)";//el error puede venir desde el cero este de la INSERT
+        $sql = "INSERT INTO usuarioreto VALUES ('$idd','$retoo','$date','0')";//el error puede venir desde el cero este de la INSERT
         
 
        
         if($conn->query($sql) === TRUE){
             $check=true;
             Reto::incrementaNumUsuarios($reto);//Actualiza num_miembros de la tabla retos
+           
         }else{
+            echo "No se ha podido annadir al reto";
             $check=false;
         }
 

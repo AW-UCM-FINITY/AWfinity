@@ -53,7 +53,39 @@ class FormEditorCreaValoracion extends Formulario
         $this->errores = [];
         
         $valoracion = $datos['valoracion'] ?? '';
-        //$valoracion= htmlspecialchars(trim(strip_tags($valoracion))); SI LE QUITAMOS LOS ESPECIAL CHAR NO SIRVE DE NADA EL TINYMCE
+              
+            require_once __DIR__.'/htmlpurifier-4.13.0/library/HTMLPurifier.auto.php';
+
+            $dirty_html = $valoracion ?? '';
+            $config = \HTMLPurifier_Config::createDefault();
+
+            // Habilitar la opción de embeber vídeos de YouTube
+            $config->set('HTML.SafeIframe', true);
+            $config->set('URI.SafeIframeRegexp', '%^http(s)?://www.youtube.com/embed/%');
+            // https://github.com/intelliants/subrion/commit/ddc3fe7a12832ec754bbde2ac20b7a8ad3442071
+            // Set some HTML5 properties
+            $config->set('HTML.DefinitionID', 'html5-video'); // unqiue id
+            $config->set('HTML.DefinitionRev', 1);
+            if ($def = $config->maybeGetRawHTMLDefinition()) {
+                $def->addElement('video', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', [
+                    'src' => 'URI',
+                    'type' => 'Text',
+                    'width' => 'Length',
+                    'height' => 'Length',
+                    'poster' => 'URI',
+                    'preload' => 'Enum#auto,metadata,none',
+                    'controls' => 'Bool',
+                ]);
+                $def->addElement('source', 'Block', 'Flow', 'Common', [
+                    'src' => 'URI',
+                    'type' => 'Text',
+                ]);
+            }
+
+
+            $purifier = new \HTMLPurifier($config);
+            $valoracion = $purifier->purify($dirty_html);
+        
         $puntuacion = $datos['puntuacion'] ?? '';
       
                 
