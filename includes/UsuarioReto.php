@@ -129,8 +129,9 @@ class UsuarioReto{
         if($conn->query($sql) === TRUE){
             $check=true;
             Reto::incrementaNumUsuarios($reto);//Actualiza num_miembros de la tabla retos
-            echo "No se ha podido annadir al reto";
+           
         }else{
+            echo "No se ha podido annadir al reto";
             $check=false;
         }
 
