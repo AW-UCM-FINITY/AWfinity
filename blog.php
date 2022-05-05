@@ -35,6 +35,53 @@ $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 // EOS;
 // }
 
+//-----------------------------------PAGINACION--------------------------------
+
+$enlaceSiguiente ="";
+$enlaceAnterior = "";
+$numPorPagina = 3; //Define los grupos por página que haya
+
+
+if(isset($_GET['numPagina'])){ 
+  $noticias = Noticia::getNumNoticias();
+
+  $numPagina = $_GET['numPagina'];
+  // mostrar el boton siguiente cuando hay más retos
+  if($noticias > $numPorPagina * ($numPagina +1)){ 
+      $numPagina++;
+      $ruta= "blog.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $numPagina--;
+  }
+  // si no es la primera pagina mostrar la pagina anterior
+  if($numPagina >0){
+      $numPagina--;
+      $ruta= "blog.php?numPagina=".$numPagina;
+      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
+      $numPagina++;
+  }
+}
+else{
+  $noticias = Noticia::getNumNoticias();
+  $numPagina = 0;
+   // mostrar el boton siguiente cuando hay más retos
+  if($noticias > $numPorPagina){ 
+      $numPagina++; 
+      $ruta= "blog.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $numPagina--;
+  }
+}
+
+$numPagTotal = intval($noticias/$numPorPagina);
+if(($noticias%$numPorPagina)!==0){
+  $numPagTotal = $numPagTotal+1;
+}
+
+
+//-----------------------------------FIN PAGINACION--------------------------------
+
+
 $contenidoPrincipal.=<<<EOS
           <div class="menublog">
           <a class="active" href="blog.php">Inicio</a>
@@ -55,7 +102,8 @@ if(isset($_GET['search'])){
 
   $noticias=Noticia::busca($valr);
 }else{
-  $noticias=Noticia::getNoticias();
+  //$noticias=Noticia::getNoticias();
+  $noticias=Noticia::pagina($numPagina, $numPorPagina);
 }
 
 
@@ -81,6 +129,13 @@ if(!($noticias==false)){
                         
           EOS;
       }
+
+$contenidoPrincipal.= "<div class=\"buttonPanel\">";
+$numPaginaAux=$numPagina+1;
+$contenidoPrincipal.= $enlaceAnterior;
+$contenidoPrincipal.= "<p> $numPaginaAux / $numPagTotal</p>";
+$contenidoPrincipal.= $enlaceSiguiente;
+$contenidoPrincipal.= "</div>";
 
   $contenidoPrincipal.=<<<EOS
                        </div>

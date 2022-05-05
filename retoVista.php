@@ -39,7 +39,7 @@ $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 $enlaceSiguiente ="";
 $enlaceAnterior = "";
-$numPorPagina = 3; //Define los grupos por página que haya
+$numPorPagina = 4; //Define los grupos por página que haya
 
 
 if(isset($_GET['numPagina'])){ 
@@ -50,14 +50,14 @@ if(isset($_GET['numPagina'])){
   if($retos > $numPorPagina * ($numPagina +1)){ 
       $numPagina++;
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<a href=$ruta> Siguiente </a>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
       $numPagina--;
   }
   // si no es la primera pagina mostrar la pagina anterior
   if($numPagina >0){
       $numPagina--;
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceAnterior = "<a href=$ruta> Anterior </a>";
+      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
       $numPagina++;
   }
 }
@@ -68,9 +68,14 @@ else{
   if($retos > $numPorPagina){ 
       $numPagina++; 
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<a href=$ruta> Siguiente </a>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
       $numPagina--;
   }
+}
+
+$numPagTotal = intval($retos/$numPorPagina);
+if(($retos%$numPorPagina)!==0){
+  $numPagTotal = $numPagTotal+1;
 }
 
 
@@ -137,8 +142,6 @@ EOS;
           }
       $contenidoPrincipal.= "</div>";
       }
-      $contenidoPrincipal.= $enlaceAnterior;
-      $contenidoPrincipal.= $enlaceSiguiente;
 
 
   
@@ -154,10 +157,17 @@ EOS;
 
 EOS;
 }
-
 $contenidoPrincipal.=<<<EOS
 </div>
-
+<div class="buttonPanel">
 EOS;
+
+$numPaginaAux=$numPagina+1;
+$contenidoPrincipal.= $enlaceAnterior;
+$contenidoPrincipal.= "<p> $numPaginaAux / $numPagTotal</p>";
+$contenidoPrincipal.= $enlaceSiguiente;
+$contenidoPrincipal.= "</div>";
+
+
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

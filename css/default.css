@@ -366,12 +366,15 @@ a.deshabilitado {
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+	padding: 0px 5px 10px 40px;
+	margin-top: 3em;
+	margin-bottom: 2em;
 }
 
 .boxlay {
     background-color: rgb(255, 255, 255);;
-    width: 190px;
-	height: 190px;
+    width: 200px;
+	height: 200px;
     border: 2px solid #9f2863;
     padding: 50px;
     margin: 20px;
@@ -388,22 +391,45 @@ a.deshabilitado {
     transform: scale(1.1);
 }
 
-  
+article.RetoAll div.buttonPanel{
+	margin-left: 60px;
+}
+
+article.RetoAll div.buttonPanel p{
+	color: #9f2863;
+	text-decoration:none;
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+article.RetoAll div.buttonPanel div.butonGeneral{
+	padding: 5px 10px 5px;
+	margin-left: 1em;
+}
+
+article.RetoAll div.buttonPanel div.butonGeneral a{
+	color: #9f2863;
+	text-decoration:none;
+	font-weight: bold;
+}
+
 .completadoReto{
-	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 0);
 	padding: 30px 10px 30px;
 }
 .completadoReto P{ color:rgb(9, 140, 46); font-weight: bold;}
 
 .aceptadoReto{
-	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 0);
 	padding: 30px 10px 30px;
 }
 .aceptadoReto P{ color:rgb(237, 28, 0); font-weight: bold;}
 
 .unirseReto{
-	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 0);
 	padding: 30px 10px 30px;
+	
 }
 .unirseReto P{ color:#9f2863; font-weight: bold;}
 
@@ -634,6 +660,33 @@ article.Noticia div.card h5{
 
 article.Noticia div.card p{
 	padding: 1% 0;
+}
+
+
+article.Noticia div.buttonPanel{
+	margin-top: 2em;
+	display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article.Noticia div.buttonPanel p{
+	color: #9f2863;
+	text-decoration:none;
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+article.Noticia div.buttonPanel div.butonGeneral{
+	padding: 5px 10px 5px;
+	margin-left: 1em;
+}
+
+article.Noticia div.buttonPanel div.butonGeneral a{
+	color: #9f2863;
+	text-decoration:none;
+	font-weight: bold;
 }
 
 
@@ -1280,7 +1333,7 @@ div.retos h1 a{
 }
 
 .cardContacto {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.689);
     padding: 20px;
     margin-top: 6%;
 	/* margin-left: 5px; */
