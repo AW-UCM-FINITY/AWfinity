@@ -9,9 +9,10 @@ class Contacto{
     protected $email;
     protected $consulta;
     protected $motivo;
+    protected $fecha;
 
 	/* CONSTRUCTOR */
-	public function __construct($nombre, $email, $consulta, $motivo, $id_consulta=NULL){
+	public function __construct($nombre, $email, $consulta, $motivo, $fecha, $id_consulta=NULL){
         
         
     	
@@ -20,6 +21,7 @@ class Contacto{
 			$this->email = $email;
             $this->consulta = $consulta;
             $this->motivo = $motivo;
+            $this->fecha = $fecha;
 
 	}
 	
@@ -48,6 +50,10 @@ class Contacto{
 		return $this->motivo;
 	}
 
+    public function getFecha(){
+		return $this->fecha;
+	}
+
     
     static public function crearContacto($nombre, $email, $consulta, $motivo){
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -56,13 +62,15 @@ class Contacto{
         $email= $conn->real_escape_string($email);
         $consulta= $conn->real_escape_string($consulta);
         $motivo= $conn->real_escape_string($motivo);
+        $date = date("y/m/d");
 
-        $query=sprintf("INSERT INTO consulta (nombre,email,consulta,motivo) VALUES ('%s', '%s', '%s', '%s')"
+        $query=sprintf("INSERT INTO consulta (nombre,email,consulta,motivo,fecha) VALUES ('%s', '%s', '%s', '%s','%s')"
         
         ,$conn->real_escape_string($nombre)
         ,$conn->real_escape_string($email)
         ,$conn->real_escape_string($consulta)
         ,$conn->real_escape_string($motivo)
+        ,$date
         );
 	
 		if($conn->query($query)){
@@ -75,16 +83,27 @@ class Contacto{
 		return $result;
 	}
     
-    static public function getTodosContactos()
+    //con paginacion
+    static public function getTodosContactos($numPagina,$numPorPagina)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM consulta");
+        $query = sprintf("SELECT * FROM consulta ORDER BY fecha DESC, id_consulta DESC");
+       
+        if ($numPorPagina > 0) {
+            $query .= " LIMIT $numPorPagina";
+    
+            $offset = $numPagina  *$numPorPagina;
+            if ($offset > 0) {
+              $query .= " OFFSET $offset";
+            }
+        }    
+
         $rs = $conn->query($query);
         $result = array();
         if ($rs) {
            while($fila = mysqli_fetch_assoc($rs)){
             
-                $result[] = new Contacto($fila['nombre'], $fila['email'], $fila['consulta'], $fila['motivo'], $fila['id_consulta']);
+                $result[] = new Contacto($fila['nombre'], $fila['email'], $fila['consulta'], $fila['motivo'],$fila['fecha'], $fila['id_consulta']);
                  
             }
             $rs->free();
@@ -112,6 +131,23 @@ class Contacto{
         return $result;
 	}
    
+    public static function getNumContactos(){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = "SELECT * FROM retos";
+    
+        $consulta = $conn->query($sql);
+    
+        $numContactos = 0;
+    
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $numContactos++;
+            }
+            $consulta->free();
+        }
+        return $numContactos;
+    }
 
 }
 

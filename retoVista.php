@@ -39,6 +39,7 @@ $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 $enlaceSiguiente ="";
 $enlaceAnterior = "";
+$pagTotal = "";
 $numPorPagina = 4; //Define los grupos por página que haya
 
 
@@ -76,6 +77,11 @@ else{
 $numPagTotal = intval($retos/$numPorPagina);
 if(($retos%$numPorPagina)!==0){
   $numPagTotal = $numPagTotal+1;
+}
+
+$numPaginaAux=$numPagina+1;
+if($numPagTotal!==1){
+  $pagTotal = "<p> $numPaginaAux / $numPagTotal</p>";
 }
 
 
@@ -131,7 +137,15 @@ EOS;
                 else{
                   //$contenidoPrincipal.= "<p>No Completado</p>";
                   if(UsuarioReto::compruebaPerteneceReto($idUsuario,$idReto)){
-                    $contenidoPrincipal.= "<div class=\"aceptadoReto\"><p>Completa tu reto</p></div>";
+                    $peliscompletado = PelisReto::contarPelisCompletadas($idUsuario,$idReto);
+                    $pelistotales = count(PelisReto::getPelisporReto($idReto));
+                    
+                    $contenidoPrincipal.= "<div class=\"aceptadoReto\"><p>Completa tu reto </p>";
+                    if($pelistotales!=0){
+                    $contenidoPrincipal.= " <p>($peliscompletado / $pelistotales) </p>";
+                    }
+                    $contenidoPrincipal.= "</div>";
+                    
                   }
                   else{
                     $contenidoPrincipal.= "<div class=\"unirseReto\"><p>Únete al reto</p></div>";
@@ -162,9 +176,9 @@ $contenidoPrincipal.=<<<EOS
 <div class="buttonPanel">
 EOS;
 
-$numPaginaAux=$numPagina+1;
+
 $contenidoPrincipal.= $enlaceAnterior;
-$contenidoPrincipal.= "<p> $numPaginaAux / $numPagTotal</p>";
+$contenidoPrincipal.= $pagTotal;
 $contenidoPrincipal.= $enlaceSiguiente;
 $contenidoPrincipal.= "</div>";
 

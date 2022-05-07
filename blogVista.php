@@ -45,10 +45,10 @@ if(estaLogado()){
   // cuando es editor muestra el boton para editar blog
   if(esEditor()){
     $contenidoPrincipal .=<<<EOS
-    
+    <div class=panelBotones>
     <div class='butonGeneral'> <a href='editNoticia.php?idnoticia={$id_noticia}'> Editar </a> </div>
   
-    $htmlFormElimNoticia
+    $htmlFormElimNoticia </div>
     
   EOS;
   }

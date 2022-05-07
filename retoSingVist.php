@@ -63,12 +63,25 @@ if(estaLogado()){
     $contenidoPrincipal.= "<div class=\"imgPelisReto\"> <a href=\"".RUTA_APP."/peliVista.php?id_pelicula=$id_pelicula&idreto=$id_reto\"><img class=\"imgPelis\" alt='imgPeli' src=$cadena></a> </div>";
   }
   $contenidoPrincipal .= "</div></div>";
-  $contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p> <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>";
+  $contenidoPrincipal .= "</div> <p> ESTE RETO TIENE ASOCIADO {$numpelisreto} PELICULAS </p>";
+
+  // mostrar mensaje si no hay ningun pelis asociado al reto
+  if($numpelisreto==0){
+    $contenidoPrincipal .= "<div class=\"mensajeRojo\"><p> No se puede completar este reto hasta que el editor añade peliculas :( </p></div>";
+  }
+
+  $id_usuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+
+  // mostrar mensaje si el reto ya esta completado
+  if(estaLogado() && !esEditor() && !esAdmin() && UsuarioReto::compruebaPerteneceReto($id_usuario,$id_reto) && UsuarioReto::compruebaCompletado($id_reto, $id_usuario)){
+    $contenidoPrincipal .= "<div class=\"mensajeVerde\"><p> RETO YA COMPLETADO </p></div>";
+  }
+  $contenidoPrincipal .= "<div class=panelBotones> <div class='butonGeneral'> <a href='retoVista.php'> Volver </a> </div>";
 
   // si esta logado como usuario normal, puede elegir unirse o abandonar el reto
   if(estaLogado() && !esEditor() && !esAdmin()){
 
-    $id_usuario = Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
+
     if(!empty($id_usuario)){
 
     // si el usuario ya se ha unido al reto
@@ -79,15 +92,6 @@ if(estaLogado()){
         $formD = new FormUserAbandonReto($id_usuario, $id_reto);
         $htmlFormAbandonReto = $formD->gestiona();
         $contenidoPrincipal .= $htmlFormAbandonReto;
-        /*
-        $formC = new FormUserCompletaReto($id_usuario, $id_reto);
-        $htmlFormCompletaReto = $formC->gestiona();
-        $contenidoPrincipal .= $htmlFormCompletaReto;
-        */
-      }
-      // si ha completado el reto, no se muestra los botones
-      else{
-        $contenidoPrincipal .= "<p> RETO YA COMPLETADO </p>";
       }
       
     }
@@ -102,6 +106,7 @@ if(estaLogado()){
     else{
       echo "<p>Error en la muestra de opciones para usuario</p>";
     }
+    $contenidoPrincipal .= "</div>";
   }
   // cuando es editor muestra los botones para editar y eliminar reto
   if(esEditor()){
@@ -112,8 +117,8 @@ if(estaLogado()){
     $htmlFormElimReto
     
     EOS;
-
-    $contenidoPrincipal .= "</div>";
+    
+    $contenidoPrincipal .= "</div></div>";
 
   // Si esta logado como editor, permite añadir pelis al reto usando buscador de pelis
 

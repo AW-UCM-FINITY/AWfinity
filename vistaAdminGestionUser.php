@@ -9,6 +9,56 @@ $claseArticle = 'gestionUser';
 
 $contenidoPrincipal = '';
 
+//-----------------------------------PAGINACION--------------------------------
+
+$enlaceSiguiente ="";
+$enlaceAnterior = "";
+$pagTotal = "";
+$numPorPagina = 6; //Define los grupos por página que haya
+
+
+if(isset($_GET['numPagina'])){ 
+  $user = Usuario::getNumUsuarios();
+
+  $numPagina = $_GET['numPagina'];
+  // mostrar el boton siguiente cuando hay más retos
+  if($user > $numPorPagina * ($numPagina +1)){ 
+      $numPagina++;
+      $ruta= "vistaAdminGestionUser.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $numPagina--;
+  }
+  // si no es la primera pagina mostrar la pagina anterior
+  if($numPagina >0){
+      $numPagina--;
+      $ruta= "vistaAdminGestionUser.php?numPagina=".$numPagina;
+      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
+      $numPagina++;
+  }
+}
+else{
+  $user = Usuario::getNumUsuarios();
+  $numPagina = 0;
+   // mostrar el boton siguiente cuando hay más retos
+  if($user > $numPorPagina){ 
+      $numPagina++; 
+      $ruta= "vistaAdminGestionUser.php?numPagina=".$numPagina;
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $numPagina--;
+  }
+}
+
+$numPagTotal = intval($user/$numPorPagina);
+if(($user%$numPorPagina)!==0){
+  $numPagTotal = $numPagTotal+1;
+}
+$numPaginaAux=$numPagina+1;
+if($numPagTotal!==1){
+  $pagTotal = "<p> $numPaginaAux / $numPagTotal</p>";
+}
+
+
+//-----------------------------------FIN PAGINACION--------------------------------
 
 
 $contenidoPrincipal .= <<<EOS
@@ -38,7 +88,7 @@ $contenidoPrincipal .= <<<EOS
                                     <tbody> 
 EOS;
 
-$usuarios= Usuario::getTodosUsuarios();
+$usuarios= Usuario::pagina($numPagina,$numPorPagina);
 
         $cont=0;
         foreach($usuarios as $us){
@@ -83,11 +133,11 @@ $contenidoPrincipal.=<<<EOS
       
 EOS;
 
-
-  
-   
-  
- 
+$contenidoPrincipal.= "<div class=\"buttonPanel\">";
+$contenidoPrincipal.= $enlaceAnterior;
+$contenidoPrincipal.= $pagTotal;
+$contenidoPrincipal.= $enlaceSiguiente;
+$contenidoPrincipal.= "</div>";
 
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

@@ -39,7 +39,8 @@ $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
 $enlaceSiguiente ="";
 $enlaceAnterior = "";
-$numPorPagina = 3; //Define los grupos por página que haya
+$pagTotal = "";
+$numPorPagina = 2; //Define los grupos por página que haya
 
 
 if(isset($_GET['numPagina'])){ 
@@ -76,6 +77,10 @@ else{
 $numPagTotal = intval($noticias/$numPorPagina);
 if(($noticias%$numPorPagina)!==0){
   $numPagTotal = $numPagTotal+1;
+}
+$numPaginaAux=$numPagina+1;
+if($numPagTotal!==1){
+  $pagTotal = "<p> $numPaginaAux / $numPagTotal</p>";
 }
 
 
@@ -131,9 +136,8 @@ if(!($noticias==false)){
       }
 
 $contenidoPrincipal.= "<div class=\"buttonPanel\">";
-$numPaginaAux=$numPagina+1;
 $contenidoPrincipal.= $enlaceAnterior;
-$contenidoPrincipal.= "<p> $numPaginaAux / $numPagTotal</p>";
+$contenidoPrincipal.= $pagTotal;
 $contenidoPrincipal.= $enlaceSiguiente;
 $contenidoPrincipal.= "</div>";
 

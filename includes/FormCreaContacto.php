@@ -65,17 +65,28 @@ class FormCreaContacto extends Formulario
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
+
         
-        $nombre = $datos['nombre'] ?? '';
-        $email = $datos['email'] ?? '';
-        $consulta = $datos['consulta'] ?? '';
-        $motivo = $datos['motivo'] ?? '';
-                
+        $nombre = trim($datos['nombre'] ?? '');
+        $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( empty($nombre) ) {
             $this->errores['nombre'] = "El nombre no puede estar vacío";
         }
     
+        $email = $datos['email'] ?? '';
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if ( empty($email) ) {
+            $this->errores['email'] = "El correo no puede estar vacío";
+        }
+        else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $this->errores['email'] = "Introduzca un correo con formato valido";
+        }
 
+        $motivo = trim($datos['motivo'] ?? '');
+        $motivo = filter_var($motivo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        $consulta = trim($datos['consulta'] ?? '');
+        $consulta = filter_var($consulta, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ( empty($consulta) ) {
             $this->errores['consulta'] = "La consulta no puede estar vacío";
         }

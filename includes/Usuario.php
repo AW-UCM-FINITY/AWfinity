@@ -249,10 +249,23 @@ class Usuario
         }
         return $result;
     }
-    public static function getUsuariosOrdenPuntos()
+
+    //con paginacion
+    public static function getUsuariosOrdenPuntos($numPagina,$numPorPagina)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM usuarios ORDER BY puntos DESC");
+
+        if ($numPorPagina > 0) {
+            $query .= " LIMIT $numPorPagina";
+    
+            $offset = $numPagina  *$numPorPagina;
+            if ($offset > 0) {
+              $query .= " OFFSET $offset";
+            }
+        }
+    
+
         $rs = $conn->query($query);
         $result = array();
         if ($rs) {
@@ -267,6 +280,7 @@ class Usuario
         }
         return $result;
     }
+
     public static function buscaPorId($idUsuario){
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM usuarios WHERE id_user=%d", $idUsuario);
@@ -364,6 +378,55 @@ class Usuario
         return $usuario;
     }*/
    
+    public static function getNumUsuarios(){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $sql = "SELECT * FROM usuarios";
+    
+        $consulta = $conn->query($sql);
+    
+        $numRetos = 0;
+    
+        if($consulta->num_rows > 0){
+            while ($fila = mysqli_fetch_assoc($consulta)) {
+                $numRetos++;
+            }
+            $consulta->free();
+        }
+        return $numRetos;
+    }
+
+    public static function pagina($numPagina,$numPorPagina){
+
+    $sql = "SELECT * FROM usuarios U";
+
+
+    if ($numPorPagina > 0) {
+        $sql .= " LIMIT $numPorPagina";
+
+        $offset = $numPagina  *$numPorPagina;
+        if ($offset > 0) {
+          $sql .= " OFFSET $offset";
+        }
+    }
+
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $consulta = $conn->query($sql);
+
+    $arrayUsuarios = array();
+
+    if($consulta->num_rows > 0){
+        while ($fila = mysqli_fetch_assoc($consulta)) {
+
+            $arrayUsuarios[]= new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['apellido'], $fila['password'], $fila['rol_user'],$fila['puntos'],  $fila['id_user']);
+                 
+        }
+        $consulta->free();
+    }
+
+
+    return $arrayUsuarios;
+    }
 
 }
 

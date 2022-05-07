@@ -38,23 +38,39 @@ $htmlFormCompletaReto = $formC->gestiona();
   $contenidoPrincipal .= "<div class='derecha'>";
   $contenidoPrincipal .= "<div class='peli-foto-card' id ='peli-foto'> <img alt='imgPeli' src=$cadena /> </div>";
   
+  $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
+
+  $botonVolver = "<div class='butonGeneral'> <a href='retoSingVist.php?retoid=$id_reto'> Volver </a> </div>";
   if(esEditor()){
     
-    $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
-  
     $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormElimPeli </div>";
     $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
-    $contenidoPrincipal .= "</div>"; //fin div = peli-editar
-  
+    if($id_reto){
+      $contenidoPrincipal .=$botonVolver;
+    }else{
+      $contenidoPrincipal .=" <div class='butonGeneral'> <a href='contenidoPelis.php'> Volver </a> </div>";
+    }
+
   }
 
-  if(!esEditor() && !esAdmin() && $id_reto && path\UsuarioReto::compruebaPerteneceReto($idUsuario,$id_reto) && !(path\UsuarioReto::compruebaCompletado($id_reto, $idUsuario)) && !(path\PelisReto::compruebaPelisComplet($idUsuario,$id_reto,$id_pelicula))){
- 
-    $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormCompletaReto </div>";
-
+  
+  
    
-  
+  // si eres usuario normal y has accedido a la pagina de pelis a traves de la vista de reto
+  if(!esEditor() && !esAdmin() && $id_reto && path\UsuarioReto::compruebaPerteneceReto($idUsuario,$id_reto)){
+    
+    if(!(path\UsuarioReto::compruebaCompletado($id_reto, $idUsuario)) && !(path\PelisReto::compruebaPelisComplet($idUsuario,$id_reto,$id_pelicula))){
+    $contenidoPrincipal .="$botonVolver <div class ='generalBoton'> $htmlFormCompletaReto </div>";
+    }
+    else{
+    $contenidoPrincipal .="<div class=\"mensajeVerde\"><p> YA HAS COMPLETADO ESTE PELIS! </p></div>";
+    $contenidoPrincipal .=$botonVolver;
+    }
   }
+  else if(!esEditor() && $id_reto){
+    $contenidoPrincipal .=$botonVolver;
+  }
+  $contenidoPrincipal .= "</div>"; //fin div = peli-editar
   
   $contenidoPrincipal .= "</div>"; //cierra div derecha
   
