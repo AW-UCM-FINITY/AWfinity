@@ -110,8 +110,13 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="contenido">Contenido:</label>
-                <textarea rows=5 cols=50 name="contenido" required>{$contenido}</textarea>
+                <textarea rows=5 cols=50 id="contenido" name="contenido" required>{$contenido}</textarea>
                 {$erroresCampos['contenido']}
+                <script>
+                tinymce.init({
+                selector: '#contenido'
+                 });
+                </script>
             </div>
             <div>
                 <label for="imagen">Fichero de imagen:</label>
@@ -179,6 +184,38 @@ class FormEditorEditNoticia extends Formulario
 
         $contenido = trim($datos['contenido'] ?? '');
         //$sinopsis = filter_var($sinopsis, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //
+        require_once __DIR__.'/htmlpurifier-4.13.0/library/HTMLPurifier.auto.php';
+
+        $dirty_html = $contenido ?? '';
+        $config = \HTMLPurifier_Config::createDefault();
+
+        // Habilitar la opción de embeber vídeos de YouTube
+        $config->set('HTML.SafeIframe', true);
+        $config->set('URI.SafeIframeRegexp', '%^http(s)?://www.youtube.com/embed/%');
+        // https://github.com/intelliants/subrion/commit/ddc3fe7a12832ec754bbde2ac20b7a8ad3442071
+        // Set some HTML5 properties
+        $config->set('HTML.DefinitionID', 'html5-video'); // unqiue id
+        $config->set('HTML.DefinitionRev', 1);
+        if ($def = $config->maybeGetRawHTMLDefinition()) {
+            $def->addElement('video', 'Block', 'Optional: (source, Flow) | (Flow, source) | Flow', 'Common', [
+                'src' => 'URI',
+                'type' => 'Text',
+                'width' => 'Length',
+                'height' => 'Length',
+                'poster' => 'URI',
+                'preload' => 'Enum#auto,metadata,none',
+                'controls' => 'Bool',
+            ]);
+            $def->addElement('source', 'Block', 'Flow', 'Common', [
+                'src' => 'URI',
+                'type' => 'Text',
+            ]);
+        }
+
+
+        $purifier = new \HTMLPurifier($config);
+        $contenido = $purifier->purify($dirty_html);
         //
         if ( empty( $contenido)) {
             $this->errores['contenido'] = 'El contenido no puede ser vacio';//para empezar lo dejamos asi, mas tarde en otra tabla
