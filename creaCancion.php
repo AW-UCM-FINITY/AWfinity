@@ -17,8 +17,10 @@ $htmlFormCreaCancion = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Creacion de Canciones</h1>
 $htmlFormCreaCancion
+</div>
 EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

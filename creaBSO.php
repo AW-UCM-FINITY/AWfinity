@@ -15,8 +15,10 @@ $htmlFormCreaBSO = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Creación de Bandas Sonoras</h1>
 $htmlFormCreaBSO
+</div>
 EOS;
 
 

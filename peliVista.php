@@ -31,8 +31,8 @@ $contenidoPrincipal = "";
 
 if(estaLogado()){
   $idUsuario = path\Usuario::buscaIDPorNombre($_SESSION['nombreUsuario']);
-$formC = new path\FormUserCompletaReto($idUsuario, $id_reto,$id_pelicula);
-$htmlFormCompletaReto = $formC->gestiona();
+  $formC = new path\FormUserCompletaReto($idUsuario, $id_reto,$id_pelicula);
+  $htmlFormCompletaReto = $formC->gestiona();
   $contenidoPrincipal .= "<div class='peli-card' id ='peli-card'>";
   
   $contenidoPrincipal .= "<div class='derecha'>";
@@ -40,36 +40,23 @@ $htmlFormCompletaReto = $formC->gestiona();
   
   $contenidoPrincipal .= "<div class='peli-editar-card' id ='peli-editar'>";
 
-  $botonVolver = "<div class='butonGeneral'> <a href='retoSingVist.php?retoid=$id_reto'> Volver </a> </div>";
+  
   if(esEditor()){
-    
     $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormElimPeli </div>";
     $contenidoPrincipal .=" <div class='butonGeneral'><a href='editPeli.php?id_pelicula=$id_pelicula'> Editar </a> </div>";
-    if($id_reto){
-      $contenidoPrincipal .=$botonVolver;
-    }else{
-      $contenidoPrincipal .=" <div class='butonGeneral'> <a href='contenidoPelis.php'> Volver </a> </div>";
-    }
+    // if($id_reto){
+    //   $contenidoPrincipal .=$botonVolver;
+    // }
+    // else{
+    //   $contenidoPrincipal .=" <div class='butonGeneral'> <a href='contenidoPelis.php'> Volver </a> </div>";
+    // }
 
   }
-
-  
-  
    
-  // si eres usuario normal y has accedido a la pagina de pelis a traves de la vista de reto
-  if(!esEditor() && !esAdmin() && $id_reto && path\UsuarioReto::compruebaPerteneceReto($idUsuario,$id_reto)){
-    
-    if(!(path\UsuarioReto::compruebaCompletado($id_reto, $idUsuario)) && !(path\PelisReto::compruebaPelisComplet($idUsuario,$id_reto,$id_pelicula))){
-    $contenidoPrincipal .="$botonVolver <div class ='generalBoton'> $htmlFormCompletaReto </div>";
-    }
-    else{
-    $contenidoPrincipal .="<div class=\"mensajeVerde\"><p> YA HAS COMPLETADO ESTE PELIS! </p></div>";
-    $contenidoPrincipal .=$botonVolver;
-    }
-  }
-  else if(!esEditor() && $id_reto){
-    $contenidoPrincipal .=$botonVolver;
-  }
+
+  // else if(!esEditor() && $id_reto){
+  //   $contenidoPrincipal .=$botonVolver;
+  // }
   $contenidoPrincipal .= "</div>"; //fin div = peli-editar
   
   $contenidoPrincipal .= "</div>"; //cierra div derecha
@@ -82,8 +69,22 @@ $htmlFormCompletaReto = $formC->gestiona();
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Genero:  </strong>$genero</div>";
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Sinopsis:  </strong>$sinopsis</div>";
   
+  $contenidoPrincipal .= "<div class='pelis-retos'>";
+  if($id_reto){
+    // si eres usuario normal y has accedido a la pagina de pelis a traves de la vista de reto
+    if(!esEditor() && !esAdmin() && $id_reto && path\UsuarioReto::compruebaPerteneceReto($idUsuario,$id_reto)){
+      if(!(path\UsuarioReto::compruebaCompletado($id_reto, $idUsuario)) && !(path\PelisReto::compruebaPelisComplet($idUsuario,$id_reto,$id_pelicula))){
+        $contenidoPrincipal .="<div class ='generalBoton'> $htmlFormCompletaReto </div>";
+      }
+      else{
+        $contenidoPrincipal .="<div class=\"mensajeVerde\"><p>¡YA HAS COMPLETADO ESTA PELÍCULA!</p></div>";
+      }
+    }
+    $botonVolver = "<div class='butonGeneral'> <a href='retoSingVist.php?retoid=$id_reto'> Volver Reto </a> </div>";
+    $contenidoPrincipal .=$botonVolver;
+  }
+  $contenidoPrincipal .= "</div>"; //cierra pelis-retos
   $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
-  
   $contenidoPrincipal .= "</div>"; //fin div = peli-card
 }
 else{ //No es un usuario registrado -> no puede acceder a las vistas de pelis/series/bso/blog/etc

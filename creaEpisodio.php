@@ -18,8 +18,10 @@ $htmlFormCreaEpisodio = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Creacion de Episodios</h1>
 $htmlFormCreaEpisodio
+</div>
 EOS;
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';

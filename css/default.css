@@ -125,6 +125,7 @@ div.saludo {
 }
 div.saludo a{
 	color:#fff;
+	text-decoration: none;
 }
 
 div.avisoLog{
@@ -523,6 +524,14 @@ article.RetoAll div.buttonPanel div.butonGeneral a{
 }
 
 /*--------------*/
+/*--------PERFIL USER------*/
+div.contened{
+	margin: 2%;
+}
+div.perfil-editor{
+	margin-top: 2%;
+}
+
 /* ranking de retos--------*/
 .wrapper {
 	line-height: 1.5em;
@@ -597,7 +606,7 @@ article.Ranking div.buttonPanel div.butonGeneral a{
     padding: 30px;
     font-size: 40px;
     text-align: center;
-    background: #9581954b;
+    /* background: #9581954b; */
 }
   
 .header2 h2{
@@ -871,11 +880,14 @@ div.product-item img{
 
  /* CSS PARA LA VISTA 1PELÍCULA */
 div#peli-card.peli-card{
-	margin-top: 50px;
-	background-color: rgb(242, 211, 250);;
+	margin: 4%;
+	width: 85%;
+	box-shadow: 8px 3px 13px 8px rgb(0 0 0 / 14%);
+	border: 1px solid #9f2863;
+	background-color: rgb(241, 237, 239);
 	display: grid;
     grid-template-areas: "derecha datos";
-	grid-column-gap: 10px;
+	grid-column-gap: 1%;
 }
 div#peli-foto.peli-foto-card {
 	grid-area: foto;
@@ -919,12 +931,44 @@ div.derecha{
 	"editar";	
 }
 article.vistaPeli .butonGeneral{
-margin-right: 10px;
+	margin-right: 10px;
 }
 
- /*FIN PARA LA VISTA DE 1 PELÍCULA*/
+/*FIN PARA LA VISTA DE 1 PELÍCULA*/
+/*-Desplegable capitulos temporada*/
+button.dropdown-btn a{
+	text-decoration: none;
+	margin-right: 2px;
+	color: #000;
+}
+div.capitulos-container {
+	margin-bottom: 1%;
+}
+div.dropdown-container{
+	display: none;
+  	position: absolute;
+  	background-color: #f1f1f1;
+  	min-width: 160px;
+  	overflow: auto;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	z-index: 1;
+}
+div.dropdown-container a{
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+div.capitulos-container button{
+	padding: 1%;
+	margin-right: 2%;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #9f2863;
+	justify-content: center;
+}
 
- /*CSS VISTA CAPITULOS*/
+/*CSS VISTA CAPITULOS*/
 div.listaCapitulos li{
 	 padding-top: 10px;
 	 padding-bottom: 10px;
@@ -937,7 +981,7 @@ div#peli-foto.peli-foto-card video {
 	float: left;
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-top: 59px;	
+	padding-top: 29px;	
 	display: block;
 	width: 400px;
 }
@@ -945,7 +989,11 @@ div#peli-foto.peli-foto-card video {
 
 /*CSS VISTA PLAYLIST BANDA SONORA*/
 div.canciones{
-	background-color: rgb(242, 211, 250);
+	margin: 4%;
+	width: 80%;
+	box-shadow: 8px 3px 13px 8px rgb(0 0 0 / 14%);
+	border: 1px solid #9f2863;
+	background-color: rgb(241, 237, 239);
 	display: grid;
 	grid-template-areas: 
 	"arriba"
@@ -970,6 +1018,10 @@ div.audio{
 	grid-area: audio;
 	display: inline-block;
 	padding-top: 20px;
+}
+div.audio audio{
+	border: 1px solid #9f2863;
+	border-radius: 54px;
 }
 
 div.ListaCanciones{

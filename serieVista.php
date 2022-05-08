@@ -49,10 +49,43 @@ if(estaLogado()){
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Temporadas:  </strong>$numTemporadas temporadas</div>";
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Genero:  </strong>$genero</div>";
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Sinopsis:  </strong>$sinopsis</div>";
-  for($i = 1; $i <= $numTemporadas; $i++) {
-      $contenidoPrincipal .=" <div class='butonGeneral'><a href='temporadaVista.php?id_serie=$id_serie&temporada=$i'> Temporada $i </a> </div>";
-  }
   
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "";
+  $contenidoPrincipal .= "<div class='temporadas-container'>";
+  for($i = 1; $i <= $numTemporadas; $i++) {
+    $contenidoPrincipal .= "<div class='capitulos-container'>";
+    // $contenidoPrincipal .=" <div class='butonGeneral'><a href='temporadaVista.php?id_serie=$id_serie&temporada=$i'> Temporada $i </a> </div>";
+    $contenidoPrincipal .= "<button class='dropdown-btn'>Temporada $i   <i class='icon icon-circle-down'>  </i>";
+    if(esEditor()){
+      //Antes de modificar
+      $contenidoPrincipal .= "<a class='edit-cap' href='creaEpisodio.php?id_serie=$id_serie&temporada=$i'>  <i class='icon icon-box-add'></i></a>";
+      
+    }
+    $contenidoPrincipal .= "</button>";
+    $arrayEpisodios = path\Episodio::listaEpisodios($id_serie, $i);
+    $contenidoPrincipal .= "<div class='dropdown-container'>";
+    foreach ($arrayEpisodios as $key => $episodio) {
+      $tituloEp = $episodio->getTitulo();
+      // $duracionEp = $episodio->getDuracion();
+      $id_episodio = $episodio->getId();
+      $contenidoPrincipal .= "<a href='episodioVista.php?id_episodio=$id_episodio'>$tituloEp</a>";
+    }
+    $contenidoPrincipal .= "</div>"; //cierra drop-container
+    $contenidoPrincipal .= "</div>"; //cierra capitulos-container
+
+    // $contenidoPrincipal .= "<div class='dropdown-content'>";
+    // $contenidoPrincipal .= "<a href='#'>Link 1</a>";
+    // $contenidoPrincipal .= "<a href='#'>Link 2</a>";
+    // $contenidoPrincipal .= "<a href='#'>Link 3</a>";
+  }
+  $contenidoPrincipal .= "</div>"; //cierra temporada container
+    
   $contenidoPrincipal .= "</div>"; //fin div = peli-datos-card
   
   $contenidoPrincipal .= "</div>"; //fin div = peli-card
@@ -67,8 +100,7 @@ else{ //No es un usuario registrado -> no puede acceder a las vistas de pelis/se
 }
 
 
-
-
+$contenidoPrincipal .= "<script src='js/dropdown.js'></script>";
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
 ?>

@@ -17,8 +17,10 @@ $htmlFormCreaPeli = $formC->gestiona();
 $contenidoPrincipal = '';
 
 $contenidoPrincipal .= <<< EOS
+<div class = "edicion-panel">
 <h1>Consola de Creación de Peliculas</h1>
 $htmlFormCreaPeli
+</div>
 EOS;
 
 
