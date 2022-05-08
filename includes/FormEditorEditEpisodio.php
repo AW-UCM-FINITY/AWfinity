@@ -55,7 +55,7 @@ class FormEditorEditEpisodio extends Formulario
         $html = <<<EOF
         $htmlErroresGlobales
         <fieldset>
-            <legend>Datos añadir un nuevo episodio</legend>
+            <legend>Datos para el registro la $funcionalidad de Episodio</legend>
             <div>
                 <label for="titulo">Titulo del episodio:</label>
                 <input id="titulo" type="text" name="titulo" value="$titulo" />
@@ -81,7 +81,7 @@ class FormEditorEditEpisodio extends Formulario
             </div>
              
             <div>
-                <button type="submit" name="crear">Añadir</button>
+                <button type="submit" name="crear">$textoBoton</button>
             </div>
             
         </fieldset>
@@ -136,9 +136,22 @@ class FormEditorEditEpisodio extends Formulario
                 else{
                     $this->errores['uploadfile'] =  "Failed to upload image";
                 }
-
             }
-
+            else{
+                if(isset($this->id_episodio)){//existe la pelicula
+                    $episodio= path\Episodio::buscaEpisodioId($this->id_episodio);
+                    $episodio->setTitulo($titulo);
+                    $episodio->setDuracion($duracion);
+                    $episodio->setTemporada($this->temporada);
+                    $episodio->setId_serie($this->id_serie);
+                    $episodio->setSinopsis($sinopsis);
+                    $episodio->setRutaVideo($folder);
+                    $episodio = path\Episodio::actualiza($episodio);
+                }
+                else{
+                    $this->errores['uploadfile'] =  "Failed to upload image";
+                }
+            }
 
         }       
     }     //cierro procesa form
