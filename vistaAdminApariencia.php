@@ -16,7 +16,7 @@ $FormCambiaApariencia= $formm->gestiona();
 $contenidoPrincipal .= <<<EOS
         <div class="encabezado encabezado-bg">
         <div class="tituloIndex">
-            <h1>Aparienca de la página</h1>
+            <h1>Apariencia de la página</h1>
         </div>
         </div>
         <div class="menublog">
