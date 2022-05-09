@@ -134,7 +134,7 @@ class Contacto{
     public static function getNumContactos(){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $sql = "SELECT * FROM retos";
+        $sql = "SELECT * FROM consulta";
     
         $consulta = $conn->query($sql);
     

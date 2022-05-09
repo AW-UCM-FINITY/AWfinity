@@ -11,8 +11,10 @@ $contenidoPrincipal = '';
 
 if(estaLogado()){
   $contenidoPrincipal .=<<<EOS
-            <div class="header2">
-              <h2>Blog AWfinity</h2>
+            <div class="encabezado encabezado-bg">
+            <div class="tituloIndex">
+              <h1>Blog AWfinity</h1>
+            </div>
             </div>
             <div class="menublog">
             <a class="active" href="blog.php">Inicio</a>

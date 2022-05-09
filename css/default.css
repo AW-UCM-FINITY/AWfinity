@@ -474,7 +474,7 @@ article.RetoAll div.buttonPanel div.butonGeneral a{
 	flex-grow: 2;
 	background-color: rgb(241, 237, 239);
     padding: 20px;
-    margin-top: 20px;
+    margin: 3%;
 	width: 75%;
 }
 
@@ -493,7 +493,7 @@ article.RetoAll div.buttonPanel div.butonGeneral a{
 }
 
 .columnaPelis{
-    background: rgb(255, 255, 255);
+    /* background: rgb(255, 255, 255); */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -619,11 +619,7 @@ article.Ranking div.buttonPanel div.butonGeneral a{
     width: 70%;
 
 }
-.columna{
-    /* background: rgb(255, 255, 255); */
-	margin: 1%;
-	margin-left: 3%;
-}
+
 
 /* derecha*/
 .columnaDer {
@@ -643,7 +639,7 @@ article.Ranking div.buttonPanel div.butonGeneral a{
 .card {
     background-color: rgb(241, 237, 239);
     padding: 20px;
-    margin-top: 20px;
+    margin: 3%;
 
 }
 
@@ -1113,7 +1109,7 @@ div.butonGeneral a{
 
 
 .temaAzul{
-	background-color: #008CBA; /* Azul */
+	background-color: #d54a07; /* Azul */
 	border: none;
 	color: white;
 	padding: 15px 32px;
@@ -1121,6 +1117,7 @@ div.butonGeneral a{
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
+	margin-top: 2%;;
 }
 
 .temaRosa{

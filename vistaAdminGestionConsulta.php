@@ -62,8 +62,10 @@ if($numPagTotal!==1){
 
 
 $contenidoPrincipal .= <<<EOS
-<div class="header2">
-                                <h2>Gestión consultas</h2>
+                                <div class="encabezado encabezado-bg">
+                                <div class="tituloIndex">
+                                    <h1>Consultas</h1>
+                                </div>
                                 </div>
                                 <div class="menublog">
           

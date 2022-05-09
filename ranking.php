@@ -63,26 +63,28 @@ if($numPagTotal!==1){
 
 
 $contenidoPrincipal .= <<<EOS
-<div class="header2">
-                                <h2>Ranking</h2>
-                                </div>
-                                <div class="menublog">
-          
-                                <a class="active" href="./retoVista.php">Retos</a>
-                                <a  href="./ranking.php">Ranking</a>
-                                </div>
-                                <div class="contened">
-                                <div class="wrapper">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Usuario</th>
-                                            <th>Retos completados</th>
-                                            <th>Puntos</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody> 
+<div class="encabezado encabezado-bg"> 
+<div class="tituloIndex">
+<h1>Ranking</h1>
+</div>
+</div>
+<div class="menublog">
+
+<a class="active" href="./retoVista.php">Retos</a>
+<a  href="./ranking.php">Ranking</a>
+</div>
+<div class="contened">
+<div class="wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Retos completados</th>
+            <th>Puntos</th>
+            
+        </tr>
+    </thead>
+    <tbody> 
 EOS;
 
 $usuarios= Usuario::getUsuariosOrdenPuntos($numPagina,$numPorPagina);

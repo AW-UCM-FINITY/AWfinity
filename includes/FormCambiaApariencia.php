@@ -26,14 +26,14 @@ class FormCambiaApariencia extends Formulario
         if(Apariencia::getAspecto()->getCss()==="default.css"){
             $html = <<<EOF
            
-            <button name="botoncolor1" class ="temaAzul" type="submit" >Azul</button>
+            <button name="botoncolor1" class ="temaAzul" type="submit" > Naranja </button>
             </div>
             EOF;
         }else{
             $html = <<<EOF
             
            
-            <button name="botoncolor2" class ="temaRosa" type="submit" >Rosa</button>
+            <button name="botoncolor2" class ="temaRosa" type="submit" > Granate </button>
             </div>
             EOF;
         }

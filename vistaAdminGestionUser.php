@@ -62,9 +62,11 @@ if($numPagTotal!==1){
 
 
 $contenidoPrincipal .= <<<EOS
-<div class="header2">
-                                <h2>Gestión usuarios</h2>
-                                </div>
+                              <div class="encabezado encabezado-bg">
+                              <div class="tituloIndex">
+                                  <h1>Gestión de Usuario</h1>
+                              </div>
+                              </div>
                                 <div class="menublog">
           
                                 <a class="active" href="./vistaAdminGestionUser.php">Usuarios</a>

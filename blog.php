@@ -178,9 +178,6 @@ $contenidoPrincipal.= "</div>";
         </div>
       </div>
 
-      <div class="footer2">
-        <h2>Bienvenido a Fondo de Bikini..</h2>
-      </div>
 EOS;
 
 }else{

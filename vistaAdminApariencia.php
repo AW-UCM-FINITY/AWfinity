@@ -14,8 +14,10 @@ $rutaTemaAzul = RUTA_CSS."/azul.css";
 $formm= new FormCambiaApariencia();
 $FormCambiaApariencia= $formm->gestiona();
 $contenidoPrincipal .= <<<EOS
-<div class="header2">
-        <h2>Apariencia página</h2>
+        <div class="encabezado encabezado-bg">
+        <div class="tituloIndex">
+            <h1>Aparienca de la página</h1>
+        </div>
         </div>
         <div class="menublog">
           
