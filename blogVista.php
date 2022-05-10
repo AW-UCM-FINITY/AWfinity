@@ -40,8 +40,8 @@ if(estaLogado()){
       <div class="imgBlogBlock">
         <img class="imagNoticias2" src="img/{$noticia->getImagenNombre()}" alt="Imagen">
       </div> 
-      <div><p> </p></div>
-      <p>{$noticia->getContenido()}</p>
+      
+      {$noticia->getContenido()}
   EOS;
   
   // cuando es editor muestra el boton para editar blog
@@ -74,7 +74,7 @@ if(estaLogado()){
     <div class="boxlayComentario">
     
     <h5>Comentado por:  {$user->getNombre() } </h5>
-    <p> {$com->getContenido()} </p>
+    {$com->getContenido()} 
     <label>Puntuación:</label>
   EOS;
   

@@ -20,7 +20,7 @@ class FormEditorEditReto extends Formulario
     
     protected function generaCamposFormulario(&$datos)
     {
-        if(isset($this->id_Reto)){
+        if(isset($this->id_Reto)  && empty($this->errores)){
             //modifica el reto
             $reto=Reto::buscarPorId($this->id_Reto);
 

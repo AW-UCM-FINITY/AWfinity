@@ -39,9 +39,13 @@ class FormEditorCreaValoracion extends Formulario
             <button class="submit" type="submit" name="registro">Añadir</button>
             </fieldset>
             <script>
-            tinymce.init({
-            selector: '#valoracion'
-             });
+            tinyMCE.init({
+                selector : '#valoracion',
+                toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+                theme : 'silver',
+                theme_advanced_buttons3_add : 'fullpage'
+
+                });
             </script>
         EOF;
         return $html;

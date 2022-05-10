@@ -229,33 +229,26 @@ public static function getNoticias(){
     return $arrayNoticias;
 }
 
-public static function ordenarPorFecha($orden){ //1 orden mayor a menor, 2 orden contrario
+public static function ordenarPorFecha(){ 
   
 
 
-    $arrayPeliculas = self::getNoticias();
-    if($orden==1){
-    
-        $resul=usort($arrayPeliculas,array('es\ucm\fdi\aw\Noticia', 'date_compare1'));
-    }else{
-        $resul=usort($arrayPeliculas,array('es\ucm\fdi\aw\Noticia','date_compare2'));
+    $conn = Aplicacion::getInstance()->getConexionBd();
+    $sql = "SELECT * FROM noticias ORDER BY fechaPublicacion DESC , idNoticia DESC";
+    $consulta = $conn->query($sql);
+
+    $arrayNoticias = array();
+
+    if($consulta->num_rows > 0){
+        while ($fila = $consulta->fetch_assoc()) {
+            $arrayNoticias[]=new Noticia($fila['titulo'], $fila['subtitulo'], $fila['imagenNombre'],$fila['contenido'], $fila['fechaPublicacion'], $fila['autor'], $fila['categoria'],  $fila['etiquetas'],$fila['idNoticia']);
+      
+        }
+        $consulta->free();
     }
-   if ($resul==false){
-    error_log("Error de ordenacion de noticias");
-   }
-    return $arrayPeliculas;   
+    return $arrayNoticias;  
 }
-//geeksforgeeks.com
-public static function date_compare1($element1, $element2) {
-    $datetime1 = strtotime($element1->fechaPublicacion);
-    $datetime2 = strtotime($element2->fechaPublicacion);
-    return $datetime1 - $datetime2;
-} 
-public static  function  date_compare2($element1, $element2) {
-    $datetime1 = strtotime($element1->fechaPublicacion);
-    $datetime2 = strtotime($element2->fechaPublicacion);
-    return $datetime2 - $datetime1;
-}
+
 
 
 public static function eliminarNoticia($idNoticia){

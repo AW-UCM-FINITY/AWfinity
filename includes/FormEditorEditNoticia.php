@@ -29,7 +29,7 @@ class FormEditorEditNoticia extends Formulario
             $titulo = $noticia->getTitulo() ?? '';
             $subtitulo = $noticia->getSubtitulo() ?? '';
             $contenido = $noticia->getContenido() ?? '';
-            $fecha = $noticia->getFechaPublicacion() ?? '';
+            $fecha = date("Y-m-d");
             $autor = $noticia->getAutor() ?? '';
             $categoria = $noticia->getCategoria() ?? '';
             $uploadfile = $datos['uploadfile'] ?? '';
@@ -40,7 +40,7 @@ class FormEditorEditNoticia extends Formulario
             $titulo = $datos['titulo'] ?? '';
             $subtitulo = $datos['subtitulo'] ?? '';
             $contenido = $datos['contenido'] ?? '';
-            $fecha = $datos['fecha'] ?? '';
+            $fecha = date("Y-m-d");
             $autor = $datos['autor'] ?? '';
             $categoria = $datos['categoria'] ?? '';
             $uploadfile = $datos['uploadfile'] ?? '';
@@ -97,8 +97,8 @@ class FormEditorEditNoticia extends Formulario
                 {$erroresCampos['autor']}
             </div>
             <div>
-                <label for="fecha">Fecha (dd/mm/aa):</label>
-                <input id="fecha" type="date" name="fecha" value="$fecha" required />
+                <label for="fecha">Fecha (aa/mm/dd):</label>
+                <input id="fecha" type="text" name="fecha" value="$fecha" readonly />
                 {$erroresCampos['fecha']}
             </div>
             <div>
@@ -110,12 +110,16 @@ class FormEditorEditNoticia extends Formulario
             </div>
             <div>
                 <label for="contenido">Contenido:</label>
-                <textarea rows=5 cols=50 id="contenido" name="contenido" required>{$contenido}</textarea>
+                <textarea rows=5 cols=50 id="contenido" name="contenido"  >{$contenido}</textarea>
                 {$erroresCampos['contenido']}
                 <script>
-                tinymce.init({
-                selector: '#contenido'
-                 });
+               
+                 tinyMCE.init({
+                    selector : '#contenido',
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+                    theme : 'silver',
+                    theme_advanced_buttons3_add : 'fullpage'
+                    });
                 </script>
             </div>
             <div>
