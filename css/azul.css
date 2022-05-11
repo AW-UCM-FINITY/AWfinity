@@ -1136,6 +1136,9 @@ div.butonGeneral a{
 /*FIN CSS PANEL ADMIN: APARIENCIA*/
 
 /*CSS PAGINA DE INICIO (index.php)---------------------*/
+div.tituloPrincipal span{
+	color: #d54a07;
+}
 article.index{
 	/*background: #141414;*/
 	height: 100%;

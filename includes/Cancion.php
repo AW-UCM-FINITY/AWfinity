@@ -33,8 +33,27 @@ class Cancion
     }
 
     public function getRutaAudio(){
-        return $this->ruta_audio;
+       return $this->ruta_audio;
     }
+    
+    //Setter
+    public function setId($id_cancion) {
+        $this->id_cancion = $id_cancion;
+    }
+
+    public function setIdBSO($id_bso){
+        $this->id_bso = $id_bso;
+    }
+   
+    public function setNombreCancion($nombre_cancion) {
+        $this->nombre_cancion = $nombre_cancion;
+    }
+
+    public function setRutaAudio($ruta_audio){
+        $this->ruta_audio = $ruta_audio;
+    }
+
+    
 
     
     /** Crea un nuevo cancion con los datos introducidos por parámetro*/
@@ -160,6 +179,24 @@ class Cancion
 			$check =true; 
 		}
 		return $check;        
+    }
+//id_bso, nombre_cancion, ruta_audio
+    public static function actualiza($cancion){
+        $result = false;
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $id_cancion=$cancion->getId();
+        $query=sprintf("UPDATE canciones C SET C.id_bso='%d' ,C.nombre_cancion='%s', C.ruta_audio='%s' 
+            WHERE C.id_cancion = $id_cancion"
+            , $conn->real_escape_string($cancion->getIdBSO())
+            , $conn->real_escape_string($cancion->getNombreCancion())
+            , $conn->real_escape_string($cancion->getRutaAudio())
+        );
+        if ($conn->query($query)) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $cancion;
     }
 
 }

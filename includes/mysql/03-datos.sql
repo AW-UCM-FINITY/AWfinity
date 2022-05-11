@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2022 a las 09:33:52
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.2
+-- Servidor: vm13.db.swarm.test
+-- Tiempo de generación: 10-05-2022 a las 08:01:36
+-- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
+-- Versión de PHP: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `awfinity`
 --
+
+--
+-- Volcado de datos para la tabla `apariencia`
+--
+
+INSERT INTO `apariencia` (`aspecto`) VALUES
+('default.css');
 
 --
 -- Volcado de datos para la tabla `bso`
@@ -40,6 +47,23 @@ INSERT INTO `canciones` (`id_cancion`, `id_bso`, `nombre_cancion`, `ruta_audio`)
 (3, 7, 'Skyfall', './img/canciones/generico.mp3'),
 (4, 7, 'Someone Usually Dies', './img/canciones/generico.mp3'),
 (5, 7, 'Kill Them First', './img/canciones/generico.mp3');
+
+--
+-- Volcado de datos para la tabla `consulta`
+--
+
+INSERT INTO `consulta` (`id_consulta`, `nombre`, `email`, `consulta`, `motivo`, `fecha`) VALUES
+(9, 'desconocido', 'desc@gmail.com', 'Esta pagina esta genial!!!', 'evaluacion', '2022-05-07'),
+(10, 'jkk01', 'javk@ucm.es', 'Podeis annadir mas pelis????', 'sugerencias', '2022-05-07'),
+(11, 'xx_30', 'xxx@gmail.com', 'Buenas! vuestros blogs son interesantes!!!', 'evaluacion', '2022-05-07'),
+(12, 'bucanero2', 'mart33@ucm.es', 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm :(', 'criticas', '2022-05-07'),
+(13, 'User1', 'user1@ucm.es', 'Estoy probando el formulario de contacto', 'evaluacion', '2022-05-07'),
+(14, 'User1', 'ussss@yahoo.com', 'ufffffffffffffffffffffffffff', 'criticas', '2022-05-07'),
+(15, 'Admin', 'admin001@gmail.com', 'Accede al panel de admin para gestionar las consultas...', 'sugerencias', '2022-05-07'),
+(16, 'moha', 'mohel@ucm.es', 'podeis colocar videos de eurovision pls? :(', 'sugerencias', '2022-05-07'),
+(17, 'bucanero2', 'mart33@ucm.es', 'otra pruebaaaaaaaaa', 'criticas', '2022-05-07'),
+(18, 'wkskh', 'skkk@gmail.com', 'consulta de dia 08/05/2022', 'criticas', '2022-05-08'),
+(19, 'Admin', 'ad@ucm.es', 'holaaaa', 'evaluacion', '2022-05-09');
 
 --
 -- Volcado de datos para la tabla `episodios`

@@ -134,7 +134,7 @@ class FormEditorEditEpisodio extends Formulario
                     }
                 }
                 else{
-                    $this->errores['uploadfile'] =  "Failed to upload image";
+                    $this->errores['uploadfile'] =  "Failed to upload video";
                 }
             }
             else{
@@ -149,7 +149,7 @@ class FormEditorEditEpisodio extends Formulario
                     $episodio = path\Episodio::actualiza($episodio);
                 }
                 else{
-                    $this->errores['uploadfile'] =  "Failed to upload image";
+                    $this->errores['uploadfile'] =  "Failed to upload video";
                 }
             }
 

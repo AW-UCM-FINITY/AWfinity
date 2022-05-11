@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2022 a las 09:33:29
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.2
+-- Servidor: vm13.db.swarm.test
+-- Tiempo de generación: 10-05-2022 a las 07:59:38
+-- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
+-- Versión de PHP: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,16 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `awfinity`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `apariencia`
+--
+
+CREATE TABLE `apariencia` (
+  `aspecto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -48,6 +58,21 @@ CREATE TABLE `canciones` (
   `id_bso` int(11) NOT NULL,
   `nombre_cancion` varchar(20) NOT NULL,
   `ruta_audio` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consulta`
+--
+
+CREATE TABLE `consulta` (
+  `id_consulta` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `consulta` text NOT NULL,
+  `motivo` enum('evaluacion','sugerencias','criticas') NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -114,6 +139,18 @@ CREATE TABLE `peliculas` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `peliscompletado`
+--
+
+CREATE TABLE `peliscompletado` (
+  `id_usuario` int(10) NOT NULL,
+  `id_Reto` int(10) NOT NULL,
+  `id_pelicula` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pelisreto`
 --
 
@@ -153,7 +190,7 @@ CREATE TABLE `series` (
   `genero` enum('accion','anime','ciencia ficcion','comedia','drama','fantasia','musical','terror') NOT NULL,
   `sinopsis` text NOT NULL,
   `ruta_imagen` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -203,6 +240,12 @@ CREATE TABLE `valoraciones` (
 --
 
 --
+-- Indices de la tabla `apariencia`
+--
+ALTER TABLE `apariencia`
+  ADD PRIMARY KEY (`aspecto`(50));
+
+--
 -- Indices de la tabla `bso`
 --
 ALTER TABLE `bso`
@@ -214,6 +257,12 @@ ALTER TABLE `bso`
 ALTER TABLE `canciones`
   ADD PRIMARY KEY (`id_cancion`),
   ADD KEY `id_bso` (`id_bso`);
+
+--
+-- Indices de la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`id_consulta`);
 
 --
 -- Indices de la tabla `episodios`
@@ -241,6 +290,15 @@ ALTER TABLE `noticias`
 ALTER TABLE `peliculas`
   ADD PRIMARY KEY (`id_pelicula`),
   ADD KEY `titulo` (`titulo`);
+
+--
+-- Indices de la tabla `peliscompletado`
+--
+ALTER TABLE `peliscompletado`
+  ADD PRIMARY KEY (`id_usuario`,`id_Reto`,`id_pelicula`),
+  ADD KEY `id_usuario` (`id_usuario`,`id_Reto`,`id_pelicula`),
+  ADD KEY `id_pelicula` (`id_pelicula`),
+  ADD KEY `id_Reto` (`id_Reto`);
 
 --
 -- Indices de la tabla `pelisreto`
@@ -301,6 +359,12 @@ ALTER TABLE `bso`
 --
 ALTER TABLE `canciones`
   MODIFY `id_cancion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `episodios`
@@ -365,6 +429,14 @@ ALTER TABLE `canciones`
 --
 ALTER TABLE `episodios`
   ADD CONSTRAINT `episodios_ibfk_1` FOREIGN KEY (`id_serie`) REFERENCES `series` (`id_serie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `peliscompletado`
+--
+ALTER TABLE `peliscompletado`
+  ADD CONSTRAINT `peliscompletado_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `peliscompletado_ibfk_2` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `peliscompletado_ibfk_3` FOREIGN KEY (`id_Reto`) REFERENCES `retos` (`id_Reto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pelisreto`

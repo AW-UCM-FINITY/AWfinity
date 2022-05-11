@@ -80,8 +80,11 @@ class FormEditorCreaCancion extends Formulario
                     }
                 }
                 else{
-                    $this->errores['uploadfile'] =  "Failed to upload image";
+                    $this->errores['uploadfile'] =  "Failed to upload audio";
                 }
+            }
+            else{
+                $this->errores['uploadfile'] =  "Failed to upload audio";
             }
         }       
     }     //cierro procesa form
