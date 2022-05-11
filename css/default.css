@@ -488,8 +488,11 @@ article.RetoAll div.buttonPanel div.butonGeneral a{
 	flex-grow: 1;
 	background-color: rgb(241, 237, 239);
 	padding: 20px;
-	margin-top: 20px;
+	margin-top: 3%;
 	width: 25%;
+	height: 45%;
+	margin-right: 3%;
+	
 }
 
 .columnaPelis{

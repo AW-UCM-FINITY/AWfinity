@@ -51,14 +51,14 @@ if(isset($_GET['numPagina'])){
   if($noticias > $numPorPagina * ($numPagina +1)){ 
       $numPagina++;
       $ruta= "blog.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
   // si no es la primera pagina mostrar la pagina anterior
   if($numPagina >0){
       $numPagina--;
       $ruta= "blog.php?numPagina=".$numPagina;
-      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
+      $enlaceAnterior = "<div class='butonGeneral'><a href=\"$ruta\"> < </a></div>";
       $numPagina++;
   }
 }
@@ -69,7 +69,7 @@ else{
   if($noticias > $numPorPagina){ 
       $numPagina++; 
       $ruta= "blog.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
 }
@@ -155,7 +155,7 @@ $contenidoPrincipal.= "</div>";
                         <h3>Ultimas noticias!</h3>
     EOS;
   
-  $ultimasNoticias=Noticia::ordenarPorFecha(1);
+  $ultimasNoticias=Noticia::ordenarPorFecha();
   $rondas=0;
   foreach($ultimasNoticias as $notic){
     if($rondas===3){

@@ -51,14 +51,14 @@ if(isset($_GET['numPagina'])){
   if($retos > $numPorPagina * ($numPagina +1)){ 
       $numPagina++;
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
   // si no es la primera pagina mostrar la pagina anterior
   if($numPagina >0){
       $numPagina--;
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
+      $enlaceAnterior = "<div class='butonGeneral'><a href=\"$ruta\"> < </a></div>";
       $numPagina++;
   }
 }
@@ -69,7 +69,7 @@ else{
   if($retos > $numPorPagina){ 
       $numPagina++; 
       $ruta= "retoVista.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
 }

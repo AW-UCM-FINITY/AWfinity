@@ -25,14 +25,14 @@ if(isset($_GET['numPagina'])){
   if($contact > $numPorPagina * ($numPagina +1)){ 
       $numPagina++;
       $ruta= "vistaAdminGestionConsulta.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
   // si no es la primera pagina mostrar la pagina anterior
   if($numPagina >0){
       $numPagina--;
       $ruta= "vistaAdminGestionConsulta.php?numPagina=".$numPagina;
-      $enlaceAnterior = "<div class='butonGeneral'><a href=$ruta> < </a></div>";
+      $enlaceAnterior = "<div class='butonGeneral'><a href=\"$ruta\"> < </a></div>";
       $numPagina++;
   }
 }
@@ -43,7 +43,7 @@ else{
   if($contact > $numPorPagina){ 
       $numPagina++; 
       $ruta= "vistaAdminGestionConsulta.php?numPagina=".$numPagina;
-      $enlaceSiguiente = "<div class='butonGeneral'><a href=$ruta> > </a></div>";
+      $enlaceSiguiente = "<div class='butonGeneral'><a href=\"$ruta\"> > </a></div>";
       $numPagina--;
   }
 }
