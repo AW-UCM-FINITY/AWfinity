@@ -151,7 +151,6 @@ $contenidoPrincipal .= "<h1>Apúntate a nuestros <a href=\"".RUTA_APP."/retoVist
 $contenidoPrincipal .= "<div></div>";
 $contenidoPrincipal .= "</div> "; 
 
-
 $contenidoPrincipal .= "<script src='js/main.js'></script>";
 
 require __DIR__. '/includes/vistas/plantillas/plantilla.php';
