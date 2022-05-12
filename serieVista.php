@@ -64,7 +64,7 @@ if(estaLogado()){
     $contenidoPrincipal .= "<button class='dropdown-btn'>Temporada $i   <i class='icon icon-circle-down'>  </i>";
     if(esEditor()){
       //Antes de modificar
-      $contenidoPrincipal .= "<a class='edit-cap' href='creaEpisodio.php?id_serie=$id_serie&temporada=$i'>  <i class='icon icon-box-add'></i></a>";
+      $contenidoPrincipal .= "<a class='edit-cap' href='creaEpisodio.php?id_serie=$id_serie&temporada=$i'>  <i class='icon icon-plus'></i></a>";
       
     }
     $contenidoPrincipal .= "</button>";

@@ -37,7 +37,7 @@ $contenidoPrincipal .= "<div class='category_list'>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='comedia'>Comedia</a>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='drama'>Drama</a>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='fantasia'>Fantasia</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='musiacal'>Musical</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' category='musical'>Musical</a>";
     $contenidoPrincipal .= "<a href='#' class='category_item' category='terror'>Terror</a>";
 $contenidoPrincipal .= "</div>"; //cierra category_list
 $contenidoPrincipal .= "</div>"; //cierra div wrapper
