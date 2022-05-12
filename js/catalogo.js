@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
 	// AGREGANDO CLASE ACTIVE AL PRIMER ENLACE ====================
-	$('.category_list .category_item[category="all"]').addClass('ct_item-active');
+	$('.category_list .category_item[data-category="all"]').addClass('ct_item-active');
 
 	// FILTRANDO PRODUCTOS  ============================================
 
 	$('.category_item').click(function(){
-		var catProduct = $(this).attr('category');
+		var catProduct = $(this).attr('data-category');
 		console.log(catProduct);
 
 		// AGREGANDO CLASE ACTIVE AL ENLACE SELECCIONADO
@@ -21,14 +21,14 @@ $(document).ready(function(){
 
 		// MOSTRANDO PRODUCTOS =========================
 		function showProduct(){
-			$('.product-item[category="'+catProduct+'"]').show();
-			$('.product-item[category="'+catProduct+'"]').css('transform', 'scale(1)');
+			$('.product-item[data-category="'+catProduct+'"]').show();
+			$('.product-item[data-category="'+catProduct+'"]').css('transform', 'scale(1)');
 		} setTimeout(showProduct,400);
 	});
 
 	// MOSTRANDO TODOS LOS PRODUCTOS =======================
 
-	$('.category_item[category="all"]').click(function(){
+	$('.category_item[data-category="all"]').click(function(){
 		function showAll(){
 			$('.product-item').show();
 			$('.product-item').css('transform', 'scale(1)');

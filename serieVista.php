@@ -49,25 +49,18 @@ if(estaLogado()){
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Temporadas:  </strong>$numTemporadas temporadas</div>";
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Genero:  </strong>$genero</div>";
   $contenidoPrincipal .= "<div class='fila-dato'> <strong>Sinopsis:  </strong>$sinopsis</div>";
-  
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
-  $contenidoPrincipal .= "";
+
   $contenidoPrincipal .= "<div class='temporadas-container'>";
   for($i = 1; $i <= $numTemporadas; $i++) {
     $contenidoPrincipal .= "<div class='capitulos-container'>";
     // $contenidoPrincipal .=" <div class='butonGeneral'><a href='temporadaVista.php?id_serie=$id_serie&temporada=$i'> Temporada $i </a> </div>";
-    $contenidoPrincipal .= "<button class='dropdown-btn'>Temporada $i   <i class='icon icon-circle-down'>  </i>";
+    $contenidoPrincipal .= "<div class='dropdown-btn'>Temporada  $i    <i class='icon icon-circle-down'>    </i>";
     if(esEditor()){
       //Antes de modificar
-      $contenidoPrincipal .= "<a class='edit-cap' href='creaEpisodio.php?id_serie=$id_serie&temporada=$i'>  <i class='icon icon-plus'></i></a>";
-      
+      $contenidoPrincipal .= "<a class='edit-cap' href='creaEpisodio.php?id_serie=$id_serie&temporada=$i'><i class='icon icon-plus'></i></a>";
     }
-    $contenidoPrincipal .= "</button>";
+    $contenidoPrincipal .= "</div>";
+
     $arrayEpisodios = path\Episodio::listaEpisodios($id_serie, $i);
     $contenidoPrincipal .= "<div class='dropdown-container'>";
     foreach ($arrayEpisodios as $key => $episodio) {

@@ -935,7 +935,7 @@ article.vistaPeli .butonGeneral{
 
 /*FIN PARA LA VISTA DE 1 PELÍCULA*/
 /*-Desplegable capitulos temporada*/
-button.dropdown-btn a{
+div.dropdown-btn a{
 	text-decoration: none;
 	margin-right: 2px;
 	color: #000;
@@ -958,13 +958,14 @@ div.dropdown-container a{
 	text-decoration: none;
 	display: block;
 }
-div.capitulos-container button{
+div.capitulos-container .dropdown-btn{
 	padding: 1%;
 	margin-right: 2%;
 	background-color: white; 
 	color: black; 
 	border: 2px solid #9f2863;
 	justify-content: center;
+	width: 25%;
 }
 
 /*CSS VISTA CAPITULOS*/

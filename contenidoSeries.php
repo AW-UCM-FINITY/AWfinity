@@ -29,21 +29,21 @@ $contenidoPrincipal .= "<div class='wrap'>";
 $contenidoPrincipal .= "<h1>Catálogo</h1>";
 $contenidoPrincipal .= "<div class='store-wrapper'>";
 $contenidoPrincipal .= "<div class='category_list'>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='all'>Todo</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='accion'>Accion</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='anime'>Anime</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='ciencia ficcion'>Ciencia ficcion</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='comedia'>Comedia</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='drama'>Drama</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='fantasia'>Fantasia</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='musical'>Musical</a>";
-    $contenidoPrincipal .= "<a href='#' class='category_item' category='terror'>Terror</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='all'>Todo</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='accion'>Accion</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='anime'>Anime</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='ciencia ficcion'>Ciencia ficcion</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='comedia'>Comedia</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='drama'>Drama</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='fantasia'>Fantasia</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='musical'>Musical</a>";
+    $contenidoPrincipal .= "<a href='#' class='category_item' data-category='terror'>Terror</a>";
 $contenidoPrincipal .= "</div>"; //cierra store-wrapper
 
 $contenidoPrincipal .= "<section class='products-list'>";
 
 foreach ($arrayGeneros as $key => $genero) {
-    $contenidoPrincipal .= "<div class='product-item' category='$genero'>";
+    $contenidoPrincipal .= "<div class='product-item' data-category='$genero'>";
     $arraySeries = path\Serie::ordenarPor($genero);
     foreach ($arraySeries as $key => $value) {
 		$id_serie = $value->getId();

@@ -22,7 +22,7 @@ $contenidoPrincipal .= "<div class='encabezado encabezado-bg'> ";
 $contenidoPrincipal .= 
 "<div class='tituloIndex'>
     <h2>AWfinity </h2>
-	<h1><span>Contáctanos</span> ;)</h1>";
+	<h1><span>Contáctanos</span> :)</h1>";
 $contenidoPrincipal .= "</div>";//cierra div tituloIndex
 $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
