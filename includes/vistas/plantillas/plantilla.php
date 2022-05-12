@@ -6,6 +6,7 @@
     <link rel="stylesheet" id="estilo" type="text/css" href="<?= RUTA_CSS?>/<?= es\ucm\fdi\aw\Apariencia::getAspecto()->getCss();?>"/>
     
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/fonts.css"/>
+    <link rel="shortcut icon" href="<?= RUTA_IMGS ?>/awfinity.png" />
     
 
     <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -27,8 +28,7 @@
         </article>
     </main>
 
-    <!-- <a href="javascript: history.go(-1)"><div class="botonAtras icon-undo2"></div></a> -->
-    <a href="<?= RUTA_JS ?>/botonAtras.js"><div class="botonAtras icon-undo2"></div></a>
+    <div class="botonAtras icon-undo2" onclick="history.go(-1)"></div>
     <div class="ir-arriba icon-circle-up"> </div>
     <?php
 		require(RAIZ_APP.'/vistas/comun/pie.php');

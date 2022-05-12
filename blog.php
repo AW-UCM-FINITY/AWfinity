@@ -22,18 +22,7 @@ if(esEditor()){
 $contenidoPrincipal .= "</div>";//cierra div tituloIndex
 $contenidoPrincipal .= "</div> "; //cierra encabezado encabezado-bg
 
-// $contenidoPrincipal .=<<<EOS
-//           <div class="header2">
-//             <h2>Blog AWfinity</h2>
-// EOS;
 
-// // cuando es editor muestra el boton para crear blog
-// if(esEditor()){
-//   $contenidoPrincipal.=<<<EOS
-
-//     <div class='butonGeneral'> <a href='creaNoticia.php'> Crear </a> </div>
-// EOS;
-// }
 
 //-----------------------------------PAGINACION--------------------------------
 
@@ -147,7 +136,7 @@ $contenidoPrincipal.= "</div>";
                         <div class="card">
                           <h2>About Us</h2>
                           <div >
-                          <img class="imagAboutus" src="img/logan.jpeg" alt="Imagen">
+                          <img class="imagAboutus" src="img/awfinity.png" alt="Imagen">
                           </div>
                           <p>El blog que tu quieres, con el mejor contenido ofrecido por los mejores editores de contenidos del mundo de la cinematografía</p>
                         </div>

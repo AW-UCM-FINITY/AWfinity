@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: vm13.db.swarm.test
--- Tiempo de generación: 10-05-2022 a las 07:59:38
+-- Tiempo de generación: 12-05-2022 a las 16:58:05
 -- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
 -- Versión de PHP: 8.0.15
 
@@ -89,17 +89,6 @@ CREATE TABLE `episodios` (
   `temporada` int(11) NOT NULL,
   `ruta_video` varchar(525) NOT NULL,
   `sinopsis` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `generos`
---
-
-CREATE TABLE `generos` (
-  `id_genero` int(11) NOT NULL,
-  `nombre_genero` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -272,13 +261,6 @@ ALTER TABLE `episodios`
   ADD KEY `id_serie` (`id_serie`);
 
 --
--- Indices de la tabla `generos`
---
-ALTER TABLE `generos`
-  ADD PRIMARY KEY (`id_genero`),
-  ADD KEY `nombre_genero` (`nombre_genero`);
-
---
 -- Indices de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -371,12 +353,6 @@ ALTER TABLE `consulta`
 --
 ALTER TABLE `episodios`
   MODIFY `id_episodio` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `generos`
---
-ALTER TABLE `generos`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`

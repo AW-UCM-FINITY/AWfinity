@@ -12,7 +12,7 @@ $claseArticle = 'index';
 $contenidoPrincipal .= "<div class='vistaPrincipal'> ";
 $contenidoPrincipal .= "<div class='contenedorPrincipal'> ";
 $contenidoPrincipal .= "<div class='tituloPrincipal'> ";
-$contenidoPrincipal .= "<h3><span>AW</span>finity</h3>";
+$contenidoPrincipal .= "<div><img alt='logo' src=img/awfinity.png></div><div><h3><span>AW</span>finity</h3></div> ";
 $contenidoPrincipal .= "</div> "; //cierre div tituloPrincipal
 $contenidoPrincipal .= "<div class='descripcionPrincipal'> ";
 $contenidoPrincipal .= "<p>
