@@ -207,15 +207,16 @@ class BSO
     public static function actualiza($BSO){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $id_bso=$BSO->getId();
+        // $id_bso=$BSO->getId();
         $query=sprintf("UPDATE bso S SET S.titulo='%s', S.compositor='%s', S.numCanciones='%d', S.genero='%s', S.sinopsis='%s', S.ruta_imagen='%s' 
-            WHERE S.id_bso = $id_bso"
+            WHERE S.id_bso = '%d'"
             , $conn->real_escape_string($BSO->getTitulo())
             , $conn->real_escape_string($BSO->getCompositor())
             , $conn->real_escape_string($BSO->getnumCanciones())
             , $conn->real_escape_string($BSO->getGenero())
             , $conn->real_escape_string($BSO->getSinopsis())
             , $conn->real_escape_string($BSO->getRutaImagen())
+            , $conn->real_escape_string($BSO->getId())
         );
         if ($conn->query($query)) {
             $result = true;

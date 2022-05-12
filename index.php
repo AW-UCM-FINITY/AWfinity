@@ -22,7 +22,7 @@ No esperes más, regístrate y comienza la aventura.
 </p>";
 $contenidoPrincipal .= "</div> "; //cierre div descripcionPrincipal
 $contenidoPrincipal .= "<div class='botonInfo'>";
-$contenidoPrincipal .= "<a href=\"".RUTA_APP."/contacto.php\" ><button role='button' class='boton'><i class='fas icon-info'></i>Más información</button></a>";
+$contenidoPrincipal .= "<div class='boton'><a href=\"".RUTA_APP."/contacto.php\" ><i class='fas icon-info'></i>Más información</a></div>";
 $contenidoPrincipal .= "</div> "; //cierre div botonInfo
 $contenidoPrincipal .= "</div> "; //cierre div contenedorPrincipal
 $contenidoPrincipal .= "</div> "; //cierre div vistaPrincipal
@@ -51,7 +51,7 @@ foreach ($arrayPeliculas as $key => $peli) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right'></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha' class='flecha-derecha'><i class='fas icon-circle-right'></i></button>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
@@ -81,7 +81,7 @@ foreach ($arraySeries as $key => $serie) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel-serie
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha-serie' class='flecha-derecha-serie'><i class='fas icon-circle-right''></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha-serie' class='flecha-derecha-serie'><i class='fas icon-circle-right'></i></button>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
@@ -110,7 +110,7 @@ foreach ($arrayBSO as $key => $bso) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha-bso' class='flecha-derecha-bso'><i class='fas icon-circle-right''></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha-bso' class='flecha-derecha-bso'><i class='fas icon-circle-right'></i></button>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas
@@ -140,7 +140,7 @@ foreach ($arrayNoticias as $key => $noticia) {
 $contenidoPrincipal .= "</div> "; //cierre div carousel
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-carousel
 
-$contenidoPrincipal .= "<button role='button' id='flecha-derecha-blog' class='flecha-derecha-blog'><i class='fas icon-circle-right''></i></button>;";
+$contenidoPrincipal .= "<button role='button' id='flecha-derecha-blog' class='flecha-derecha-blog'><i class='fas icon-circle-right'></i></button>";
 $contenidoPrincipal .= "</div> "; //cierre div contenedor-principal
 
 $contenidoPrincipal .= "</div> "; //cierre div peliculas-recomendadas

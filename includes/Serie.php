@@ -207,15 +207,16 @@ class Serie
     public static function actualiza($serie){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $id_serie=$serie->getId();
+        // $id_serie=$serie->getId();
         $query=sprintf("UPDATE series S SET S.titulo='%s', S.productor='%s', S.numTemporadas='%d', S.genero='%s', S.sinopsis='%s', S.ruta_imagen='%s' 
-            WHERE S.id_serie = $id_serie"
+            WHERE S.id_serie = '%d'"
             , $conn->real_escape_string($serie->getTitulo())
             , $conn->real_escape_string($serie->getProductor())
             , $conn->real_escape_string($serie->getNumTemporadas())
             , $conn->real_escape_string($serie->getGenero())
             , $conn->real_escape_string($serie->getSinopsis())
             , $conn->real_escape_string($serie->getRutaImagen())
+            , $conn->real_escape_string($serie->getId())
         );
         if ($conn->query($query)) {
             $result = true;

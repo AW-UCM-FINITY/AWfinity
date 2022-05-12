@@ -1181,6 +1181,11 @@ div.botonInfo .boton {
 	cursor: pointer;
 	transition: .3s ease all;
 	font-size: 1.12em;
+	width: 17%;
+}
+div.botonInfo .boton a{
+	color: #fff;
+	text-decoration: none;
 }
 
 div.botonInfo .boton:hover {

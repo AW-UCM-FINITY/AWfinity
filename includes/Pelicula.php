@@ -233,15 +233,16 @@ class Pelicula
     public static function actualiza($peli){
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $id_pelicula=$peli->getId();
+        // $id_pelicula=$peli->getId();
         $query=sprintf("UPDATE peliculas P SET P.titulo='%s', P.director='%s', P.duracion='%d', P.genero='%s', P.sinopsis='%s', P.ruta_imagen='%s' 
-            WHERE P.id_pelicula = $id_pelicula"
+            WHERE P.id_pelicula = '%d'"
             , $conn->real_escape_string($peli->getTitulo())
             , $conn->real_escape_string($peli->getDirector())
             , $conn->real_escape_string($peli->getDuracion())
             , $conn->real_escape_string($peli->getGenero())
             , $conn->real_escape_string($peli->getSinopsis())
             , $conn->real_escape_string($peli->getRutaImagen())
+            , $conn->real_escape_string($peli->getId())
         );
         if ($conn->query($query)) {
             $result = true;
